@@ -1,17 +1,61 @@
 import regex as re
 
-def parse_macros_noarg(latex_source):
-    # Find all \def definitions without arguments
-    pattern = r"\\def\s*\\(\w+)\s*({(?:[^{}]*+|(?2))*})"
+def parse_macros(latex_source):
+    # Find all \def definitions with or without arguments
+    pattern = r"\\def\s*\\(\w+)\s*(?:#\d\s*)*\s*({(?:[^{}]*+|(?2))*})"
     matches = re.findall(pattern, latex_source)
     command_mappings = {f"\\{name}" : definition[1:-1] for name, definition in matches}
 
-    # Find all \newcommand definitions without arguments
-    pattern = r"\\newcommand\s*{\s*\\(\w+)\s*}\s*({(?:[^{}]*+|(?2))*})"
+    # Find all \newcommand definitions
+    pattern = r"\\newcommand\*?\s*{?\s*\\(\w+)\s*}?\s*(?:\[\s*\d+\s*\])*\s*({(?:[^{}]*+|(?2))*})"
     matches = re.findall(pattern, latex_source)
     command_mappings.update({f"\\{name}" : definition[1:-1] for name, definition in matches})
 
     return command_mappings
+
+def sub_command_for_def(string, command, definition):
+    pattern = re.escape(f"{command}") + r"((?:\s*\{[^}]+\})*)"
+    args = re.findall(pattern, string)
+    pattern = r"\{([^}]+)\}"
+    expanded_args = []
+    for arg in args:
+        expanded_args.append(re.findall(pattern, arg))
+
+    for i, arg in enumerate(args):
+        command_call = f"{command}" + arg
+        sub_for_args = {}
+        for j, expanded_arg in enumerate(expanded_args[i]):
+            sub_for_args[f"#{j+1}"] = expanded_arg
+        pattern = re.compile("|".join(re.escape(key) for key in sub_for_args.keys()))
+        subbed_definition = pattern.sub(lambda match: sub_for_args[match.group(0)], definition)
+        string = string.replace(command_call, subbed_definition)
+
+    return string
+
+def sub_command_for_def(string, command, definition):
+    # Check if command definition uses args
+    # If yes args
+    if re.search(r"#\d+", definition):
+        pattern = re.escape(command) + r"((?:\s*\{[^}]+\})+)"
+        args = re.findall(pattern, string)
+        pattern = r"\{([^}]+)\}"
+        expanded_args = []
+        for arg in args:
+            expanded_args.append(re.findall(pattern, arg))
+        for i, arg in enumerate(args):
+            command_call = command + arg
+            sub_for_args = {}
+            for j, expanded_arg in enumerate(expanded_args[i]):
+                sub_for_args[f"#{j+1}"] = expanded_arg
+            pattern = re.compile("|".join(re.escape(key) for key in sub_for_args.keys()))
+            subbed_definition = pattern.sub(lambda match: sub_for_args[match.group(0)], definition)
+            string = string.replace(command_call, subbed_definition)
+        return string
+    # If no args
+    else:
+        pattern = re.escape(command) + r"\b"
+        definition = definition.replace('\\', '\\\\')
+        return re.sub(pattern, definition, string)
 
 def expand_nested_macros(command_mappings):
     # since some user-defined commands may make reference to other user-defined
@@ -37,8 +81,8 @@ def expand_nested_macros(command_mappings):
                     recursive_commands.append(command)
                 # replace all nested user-defined commands
                 elif nested_command in command_mappings.keys():
-                    definition = definition.replace(nested_command, 
-                    command_mappings[nested_command])
+                    nested_definition = command_mappings[nested_command]
+                    definition = sub_command_for_def(definition, nested_command, nested_definition)
                     changed = True
             if changed:
                 command_mappings[command] = definition
@@ -47,21 +91,21 @@ def expand_nested_macros(command_mappings):
 
 def sub_macros_for_defs(latex_source, command_mappings):
     # Remove all macro definitions from source
-    pattern = r"\\def\s*\\(\w+)\s*({(?:[^{}]*+|(?2))*})"
+    pattern = r"\\def\s*\\(\w+)\s*(?:#\d\s*)*\s*({(?:[^{}]*+|(?2))*})"
     latex_source = re.sub(pattern, "", latex_source)
-    pattern = r"\\newcommand\s*{\s*\\(\w+)\s*}\s*({(?:[^{}]*+|(?2))*})"
+    pattern = r"\\newcommand\*?\s*{?\s*\\(\w+)\s*}?\s*(?:\[\s*\d+\s*\])*\s*({(?:[^{}]*+|(?2))*})"
     latex_source = re.sub(pattern, "", latex_source)
     # Remove excessive newlines
-    latex_source = re.sub(r'(?<!\\)(\n){2,}', r'\1', latex_source)
+    latex_source = re.sub(r'(?<!\\)(\n\s*){2,}', r'\1', latex_source)
 
     for command in command_mappings:
         definition = command_mappings[command]
-        pattern = re.escape(command) + r"\b"
-        definition = definition.replace('\\', '\\\\')
-        latex_source = re.sub(pattern, definition, latex_source)
+        latex_source = sub_command_for_def(latex_source, command, definition)
     return latex_source
 
-def expand_latex_macros(latex_source_path):
-    latex_source = open(latex_source_path).read()
-    command_mappings = expand_nested_macros(parse_macros_noarg(latex_source))
+def expand_latex_macros(latex_source, *args):
+    macros_source = latex_source
+    for extra_macros_source in args:
+        macros_source += open(extra_macros_source).read()
+    command_mappings = expand_nested_macros(parse_macros(macros_source))
     return sub_macros_for_defs(latex_source, command_mappings)

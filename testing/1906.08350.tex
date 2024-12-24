@@ -1,0 +1,2530 @@
+\pdfoutput=1
+
+
+\documentclass[12pt,a4paper]{article}
+
+
+\usepackage{ifthen} \newboolean{pdflatex}
+\setboolean{pdflatex}{true} 
+
+\newboolean{articletitles}
+\setboolean{articletitles}{true} 
+
+\newboolean{uprightparticles}
+\setboolean{uprightparticles}{false} 
+
+
+
+\def\paperauthors{LHCb collaboration} \def\paperasciititle{Precision measurement of the Lambdac, Xic and Xic0 baryon lifetimes} \def\papertitle{Precision measurement of the $\Lc$, $\Xicp$ and $\Xicz$ baryon lifetimes} \def\paperkeywords{{High Energy Physics}, {LHCb}} \def\papercopyright{\the\year\ CERN for the benefit of the LHCb collaboration} \def\paperlicence{CC-BY-4.0 licence}
+\def\paperlicenceurl{https://creativecommons.org/licenses/by/4.0/}
+
+
+
+
+\usepackage[top=1in, bottom=1.25in, left=1in, right=1in]{geometry}
+
+
+
+\columnsep=5mm
+\addtolength{\belowcaptionskip}{0.5em}
+
+\renewcommand{\textfraction}{0.01}
+\renewcommand{\floatpagefraction}{0.8} \renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+
+\raggedbottom
+\sloppy
+
+\usepackage{microtype}
+\usepackage{lineno}  \usepackage{xspace} \usepackage{caption} \renewcommand{\captionfont}{\small}
+\renewcommand{\captionlabelfont}{\small}
+
+\usepackage{graphicx}  \usepackage{color}
+\usepackage{colortbl}
+\graphicspath{{./figs/}} \DeclareGraphicsExtensions{.pdf,.PDF,png,.PNG}
+
+\usepackage{amsmath} \usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{upgreek} 
+
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{\expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+\expandafter\let\csname oldend#1\expandafter\endcsname\csname
+end#1\endcsname
+ \renewenvironment{#1}{\linenomath\csname old#1\endcsname}{\csname oldend#1\endcsname\endlinenomath}}
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{\patchAmsMathEnvironmentForLineno{#1}\patchAmsMathEnvironmentForLineno{#1*}}
+\AtBeginDocument{\patchBothAmsMathEnvironmentsForLineno{equation}\patchBothAmsMathEnvironmentsForLineno{align}\patchBothAmsMathEnvironmentsForLineno{flalign}\patchBothAmsMathEnvironmentsForLineno{alignat}\patchBothAmsMathEnvironmentsForLineno{gather}\patchBothAmsMathEnvironmentsForLineno{multline}\patchBothAmsMathEnvironmentsForLineno{eqnarray}}
+
+
+
+\usepackage{hyperxmp}
+
+\usepackage[pdftex,
+            pdfauthor={\paperauthors},
+            pdftitle={\paperasciititle},
+            pdfkeywords={\paperkeywords},
+            pdfcopyright={Copyright (C) \papercopyright},
+            pdflicenseurl={\paperlicenceurl}]{hyperref}
+
+
+
+\usepackage[all]{hypcap} 
+
+
+
+\usepackage{xspace} 
+\usepackage{upgreek}
+
+
+
+
+\def\lhcb   {\mbox{LHCb}\xspace}
+\def\atlas  {\mbox{ATLAS}\xspace}
+\def\cms    {\mbox{CMS}\xspace}
+\def\alice  {\mbox{ALICE}\xspace}
+\def\babar  {\mbox{BaBar}\xspace}
+\def\belle  {\mbox{Belle}\xspace}
+\def\belletwo {\mbox{Belle~II}\xspace}
+\def\besiii {\mbox{BESIII}\xspace}
+\def\cleo   {\mbox{CLEO}\xspace}
+\def\cdf    {\mbox{CDF}\xspace}
+\def\dzero  {\mbox{D0}\xspace}
+\def\aleph  {\mbox{ALEPH}\xspace}
+\def\delphi {\mbox{DELPHI}\xspace}
+\def\opal   {\mbox{OPAL}\xspace}
+\def\lthree {\mbox{L3}\xspace}
+\def\sld    {\mbox{SLD}\xspace}
+\def\cern {\mbox{CERN}\xspace}
+\def\lhc    {\mbox{LHC}\xspace}
+\def\lep    {\mbox{LEP}\xspace}
+\def\tevatron {Tevatron\xspace}
+\def\bfactories {\mbox{\B Factories}\xspace}
+\def\bfactory   {\mbox{\B Factory}\xspace}
+\def\upgradeone {\mbox{Upgrade~I}\xspace}
+\def\upgradetwo {\mbox{Upgrade~II}\xspace}
+
+
+
+\def\velo   {VELO\xspace}
+\def\rich   {RICH\xspace}
+\def\richone {RICH1\xspace}
+\def\richtwo {RICH2\xspace}
+\def\ttracker {TT\xspace}
+\def\intr   {IT\xspace}
+\def\st     {ST\xspace}
+\def\ot     {OT\xspace}
+\def\herschel {\mbox{\textsc{HeRSCheL}}\xspace}
+\def\spd    {SPD\xspace}
+\def\presh  {PS\xspace}
+\def\ecal   {ECAL\xspace}
+\def\hcal   {HCAL\xspace}
+\def\MagUp {\mbox{\em Mag\kern -0.05em Up}\xspace}
+\def\MagDown {\mbox{\em MagDown}\xspace}
+
+\def\ode    {ODE\xspace}
+\def\daq    {DAQ\xspace}
+\def\tfc    {TFC\xspace}
+\def\ecs    {ECS\xspace}
+\def\lone   {L0\xspace}
+\def\hlt    {HLT\xspace}
+\def\hltone {HLT1\xspace}
+\def\hlttwo {HLT2\xspace}
+
+
+
+\ifthenelse{\boolean{uprightparticles}}{\def\Palpha      {\ensuremath{\upalpha}\xspace}
+ \def\Pbeta       {\ensuremath{\upbeta}\xspace}
+ \def\Pgamma      {\ensuremath{\upgamma}\xspace}                 
+ \def\Pdelta      {\ensuremath{\updelta}\xspace}                 
+ \def\Pepsilon    {\ensuremath{\upepsilon}\xspace}                 
+ \def\Pvarepsilon {\ensuremath{\upvarepsilon}\xspace}                 
+ \def\Pzeta       {\ensuremath{\upzeta}\xspace}                 
+ \def\Peta        {\ensuremath{\upeta}\xspace}
+ \def\Ptheta      {\ensuremath{\uptheta}\xspace}                 
+ \def\Pvartheta   {\ensuremath{\upvartheta}\xspace}                 
+ \def\Piota       {\ensuremath{\upiota}\xspace}                 
+ \def\Pkappa      {\ensuremath{\upkappa}\xspace}                 
+ \def\Plambda     {\ensuremath{\uplambda}\xspace}                 
+ \def\Pmu         {\ensuremath{\upmu}\xspace}                 
+ \def\Pnu         {\ensuremath{\upnu}\xspace}                 
+ \def\Pxi         {\ensuremath{\upxi}\xspace}                 
+ \def\Ppi         {\ensuremath{\uppi}\xspace}                 
+ \def\Pvarpi      {\ensuremath{\upvarpi}\xspace}                 
+ \def\Prho        {\ensuremath{\uprho}\xspace}                 
+ \def\Pvarrho     {\ensuremath{\upvarrho}\xspace}                 
+ \def\Ptau        {\ensuremath{\uptau}\xspace}                 
+ \def\Pupsilon    {\ensuremath{\upupsilon}\xspace}                 
+ \def\Pphi        {\ensuremath{\upphi}\xspace}                 
+ \def\Pvarphi     {\ensuremath{\upvarphi}\xspace}                 
+ \def\Pchi        {\ensuremath{\upchi}\xspace}                 
+ \def\Ppsi        {\ensuremath{\uppsi}\xspace}                 
+ \def\Pomega      {\ensuremath{\upomega}\xspace}                 
+
+ \def\PDelta      {\ensuremath{\Delta}\xspace}                 
+ \def\PXi         {\ensuremath{\Xi}\xspace}                 
+ \def\PLambda     {\ensuremath{\Lambda}\xspace}                 
+ \def\PSigma      {\ensuremath{\Sigma}\xspace}                 
+ \def\POmega      {\ensuremath{\Omega}\xspace}                 
+ \def\PUpsilon    {\ensuremath{\Upsilon}\xspace}                 
+
+ \def\PA      {\ensuremath{\mathrm{A}}\xspace}                 
+ \def\PB      {\ensuremath{\mathrm{B}}\xspace}                 
+ \def\PC      {\ensuremath{\mathrm{C}}\xspace}                 
+ \def\PD      {\ensuremath{\mathrm{D}}\xspace}                 
+ \def\PE      {\ensuremath{\mathrm{E}}\xspace}                 
+ \def\PF      {\ensuremath{\mathrm{F}}\xspace}                 
+ \def\PG      {\ensuremath{\mathrm{G}}\xspace}                 
+ \def\PH      {\ensuremath{\mathrm{H}}\xspace}                 
+ \def\PI      {\ensuremath{\mathrm{I}}\xspace}                 
+ \def\PJ      {\ensuremath{\mathrm{J}}\xspace}                 
+ \def\PK      {\ensuremath{\mathrm{K}}\xspace}                 
+ \def\PL      {\ensuremath{\mathrm{L}}\xspace}                 
+ \def\PM      {\ensuremath{\mathrm{M}}\xspace}                 
+ \def\PN      {\ensuremath{\mathrm{N}}\xspace}                 
+ \def\PO      {\ensuremath{\mathrm{O}}\xspace}                 
+ \def\PP      {\ensuremath{\mathrm{P}}\xspace}                 
+ \def\PQ      {\ensuremath{\mathrm{Q}}\xspace}                 
+ \def\PR      {\ensuremath{\mathrm{R}}\xspace}                 
+ \def\PS      {\ensuremath{\mathrm{S}}\xspace}                 
+ \def\PT      {\ensuremath{\mathrm{T}}\xspace}                 
+ \def\PU      {\ensuremath{\mathrm{U}}\xspace}                 
+ \def\PV      {\ensuremath{\mathrm{V}}\xspace}                 
+ \def\PW      {\ensuremath{\mathrm{W}}\xspace}                 
+ \def\PX      {\ensuremath{\mathrm{X}}\xspace}                 
+ \def\PY      {\ensuremath{\mathrm{Y}}\xspace}                 
+ \def\PZ      {\ensuremath{\mathrm{Z}}\xspace}                 
+ \def\Pa      {\ensuremath{\mathrm{a}}\xspace}                 
+ \def\Pb      {\ensuremath{\mathrm{b}}\xspace}                 
+ \def\Pc      {\ensuremath{\mathrm{c}}\xspace}                 
+ \def\Pd      {\ensuremath{\mathrm{d}}\xspace}                 
+ \def\Pe      {\ensuremath{\mathrm{e}}\xspace}                 
+ \def\Pf      {\ensuremath{\mathrm{f}}\xspace}                 
+ \def\Pg      {\ensuremath{\mathrm{g}}\xspace}                 
+ \def\Ph      {\ensuremath{\mathrm{h}}\xspace}                 
+ \def\Pi      {\ensuremath{\mathrm{i}}\xspace}                 
+ \def\Pj      {\ensuremath{\mathrm{j}}\xspace}                 
+ \def\Pk      {\ensuremath{\mathrm{k}}\xspace}                 
+ \def\Pl      {\ensuremath{\mathrm{l}}\xspace}                 
+ \def\Pm      {\ensuremath{\mathrm{m}}\xspace}                 
+ \def\Pn      {\ensuremath{\mathrm{n}}\xspace}                 
+ \def\Po      {\ensuremath{\mathrm{o}}\xspace}                 
+ \def\Pp      {\ensuremath{\mathrm{p}}\xspace}                 
+ \def\Pq      {\ensuremath{\mathrm{q}}\xspace}                 
+ \def\Pr      {\ensuremath{\mathrm{r}}\xspace}                 
+ \def\Ps      {\ensuremath{\mathrm{s}}\xspace}                 
+ \def\Pt      {\ensuremath{\mathrm{t}}\xspace}                 
+ \def\Pu      {\ensuremath{\mathrm{u}}\xspace}                 
+ \def\Pv      {\ensuremath{\mathrm{v}}\xspace}                 
+ \def\Pw      {\ensuremath{\mathrm{w}}\xspace}                 
+ \def\Px      {\ensuremath{\mathrm{x}}\xspace}                 
+ \def\Py      {\ensuremath{\mathrm{y}}\xspace}                 
+ \def\Pz      {\ensuremath{\mathrm{z}}\xspace}                 
+ \def\thebaroffset{0.0em}
+}
+{\def\Palpha      {\ensuremath{\alpha}\xspace}
+ \def\Pbeta       {\ensuremath{\beta}\xspace}
+ \def\Pgamma      {\ensuremath{\gamma}\xspace}                 
+ \def\Pdelta      {\ensuremath{\delta}\xspace}                 
+ \def\Pepsilon    {\ensuremath{\epsilon}\xspace}                 
+ \def\Pvarepsilon {\ensuremath{\varepsilon}\xspace}                 
+ \def\Pzeta       {\ensuremath{\zeta}\xspace}                 
+ \def\Peta        {\ensuremath{\eta}\xspace}                 
+ \def\Ptheta      {\ensuremath{\theta}\xspace}                 
+ \def\Pvartheta   {\ensuremath{\vartheta}\xspace}                 
+ \def\Piota       {\ensuremath{\iota}\xspace}                 
+ \def\Pkappa      {\ensuremath{\kappa}\xspace}                 
+ \def\Plambda     {\ensuremath{\lambda}\xspace}                 
+ \def\Pmu         {\ensuremath{\mu}\xspace}                 
+ \def\Pnu         {\ensuremath{\nu}\xspace}                 
+ \def\Pxi         {\ensuremath{\xi}\xspace}                 
+ \def\Ppi         {\ensuremath{\pi}\xspace}                 
+ \def\Pvarpi      {\ensuremath{\varpi}\xspace}                 
+ \def\Prho        {\ensuremath{\rho}\xspace}                 
+ \def\Pvarrho     {\ensuremath{\varrho}\xspace}                 
+ \def\Ptau        {\ensuremath{\tau}\xspace}                 
+ \def\Pupsilon    {\ensuremath{\upsilon}\xspace}                 
+ \def\Pphi        {\ensuremath{\phi}\xspace}                 
+ \def\Pvarphi     {\ensuremath{\varphi}\xspace}                 
+ \def\Pchi        {\ensuremath{\chi}\xspace}                 
+ \def\Ppsi        {\ensuremath{\psi}\xspace}                 
+ \def\Pomega      {\ensuremath{\omega}\xspace}                 
+ \mathchardef\PDelta="7101
+ \mathchardef\PXi="7104
+ \mathchardef\PLambda="7103
+ \mathchardef\PSigma="7106
+ \mathchardef\POmega="710A
+ \mathchardef\PUpsilon="7107
+ \def\PA      {\ensuremath{A}\xspace}                 
+ \def\PB      {\ensuremath{B}\xspace}                 
+ \def\PC      {\ensuremath{C}\xspace}                 
+ \def\PD      {\ensuremath{D}\xspace}                 
+ \def\PE      {\ensuremath{E}\xspace}                 
+ \def\PF      {\ensuremath{F}\xspace}                 
+ \def\PG      {\ensuremath{G}\xspace}                 
+ \def\PH      {\ensuremath{H}\xspace}                 
+ \def\PI      {\ensuremath{I}\xspace}                 
+ \def\PJ      {\ensuremath{J}\xspace}                 
+ \def\PK      {\ensuremath{K}\xspace}                 
+ \def\PL      {\ensuremath{L}\xspace}                 
+ \def\PM      {\ensuremath{M}\xspace}                 
+ \def\PN      {\ensuremath{N}\xspace}                 
+ \def\PO      {\ensuremath{O}\xspace}                 
+ \def\PP      {\ensuremath{P}\xspace}                 
+ \def\PQ      {\ensuremath{Q}\xspace}                 
+ \def\PR      {\ensuremath{R}\xspace}                 
+ \def\PS      {\ensuremath{S}\xspace}                 
+ \def\PT      {\ensuremath{T}\xspace}                 
+ \def\PU      {\ensuremath{U}\xspace}                 
+ \def\PV      {\ensuremath{V}\xspace}                 
+ \def\PW      {\ensuremath{W}\xspace}                 
+ \def\PX      {\ensuremath{X}\xspace}                 
+ \def\PY      {\ensuremath{Y}\xspace}                 
+ \def\PZ      {\ensuremath{Z}\xspace}                 
+ \def\Pa      {\ensuremath{a}\xspace}                 
+ \def\Pb      {\ensuremath{b}\xspace}                 
+ \def\Pc      {\ensuremath{c}\xspace}                 
+ \def\Pd      {\ensuremath{d}\xspace}                 
+ \def\Pe      {\ensuremath{e}\xspace}                 
+ \def\Pf      {\ensuremath{f}\xspace}                 
+ \def\Pg      {\ensuremath{g}\xspace}                 
+ \def\Ph      {\ensuremath{h}\xspace}                 
+ \def\Pi      {\ensuremath{i}\xspace}                 
+ \def\Pj      {\ensuremath{j}\xspace}                 
+ \def\Pk      {\ensuremath{k}\xspace}                 
+ \def\Pl      {\ensuremath{l}\xspace}                 
+ \def\Pm      {\ensuremath{m}\xspace}                 
+ \def\Pn      {\ensuremath{n}\xspace}                 
+ \def\Po      {\ensuremath{o}\xspace}                 
+ \def\Pp      {\ensuremath{p}\xspace}                 
+ \def\Pq      {\ensuremath{q}\xspace}                 
+ \def\Pr      {\ensuremath{r}\xspace}                 
+ \def\Ps      {\ensuremath{s}\xspace}                 
+ \def\Pt      {\ensuremath{t}\xspace}                 
+ \def\Pu      {\ensuremath{u}\xspace}                 
+ \def\Pv      {\ensuremath{v}\xspace}                 
+ \def\Pw      {\ensuremath{w}\xspace}                 
+ \def\Px      {\ensuremath{x}\xspace}                 
+ \def\Py      {\ensuremath{y}\xspace}                 
+ \def\Pz      {\ensuremath{z}\xspace}
+ \def\thebaroffset{0.18em}
+}
+\newcommand{\offsetoverline}[2][\thebaroffset]{\kern #1\overline{\kern -#1 #2}}
+
+\makeatletter
+\ifcase \@ptsize \relax \newcommand{\miniscule}{\@setfontsize\miniscule{4}{5}}\or \newcommand{\miniscule}{\@setfontsize\miniscule{5}{6}}\or \newcommand{\miniscule}{\@setfontsize\miniscule{5}{6}}\fi
+\makeatother
+
+
+\DeclareRobustCommand{\optbar}[1]{\shortstack{{\miniscule (\rule[.5ex]{1.25em}{.18mm})}
+  \\ [-.7ex] $#1$}}
+
+
+
+
+\let\emi\en
+\def\electron   {{\ensuremath{\Pe}}\xspace}
+\def\en         {{\ensuremath{\Pe^-}}\xspace}   \def\ep         {{\ensuremath{\Pe^+}}\xspace}
+\def\epm        {{\ensuremath{\Pe^\pm}}\xspace} 
+\def\emp        {{\ensuremath{\Pe^\mp}}\xspace} 
+\def\epem       {{\ensuremath{\Pe^+\Pe^-}}\xspace}
+
+
+\def\muon       {{\ensuremath{\Pmu}}\xspace}
+\def\mup        {{\ensuremath{\Pmu^+}}\xspace}
+\def\mun        {{\ensuremath{\Pmu^-}}\xspace} \def\mupm       {{\ensuremath{\Pmu^\pm}}\xspace} 
+\def\mump       {{\ensuremath{\Pmu^\mp}}\xspace} 
+\def\mumu       {{\ensuremath{\Pmu^+\Pmu^-}}\xspace}
+
+\def\tauon      {{\ensuremath{\Ptau}}\xspace}
+\def\taup       {{\ensuremath{\Ptau^+}}\xspace}
+\def\taum       {{\ensuremath{\Ptau^-}}\xspace}
+\def\taupm      {{\ensuremath{\Ptau^\pm}}\xspace}
+\def\taump      {{\ensuremath{\Ptau^\mp}}\xspace}
+\def\tautau     {{\ensuremath{\Ptau^+\Ptau^-}}\xspace}
+
+\def\lepton     {{\ensuremath{\ell}}\xspace}
+\def\ellm       {{\ensuremath{\ell^-}}\xspace}
+\def\ellp       {{\ensuremath{\ell^+}}\xspace}
+\def\ellell     {\ensuremath{\ell^+ \ell^-}\xspace}
+
+\def\neu        {{\ensuremath{\Pnu}}\xspace}
+\def\neub       {{\ensuremath{\overline{\Pnu}}}\xspace}
+\def\neue       {{\ensuremath{\neu_e}}\xspace}
+\def\neueb      {{\ensuremath{\neub_e}}\xspace}
+\def\neum       {{\ensuremath{\neu_\mu}}\xspace}
+\def\neumb      {{\ensuremath{\neub_\mu}}\xspace}
+\def\neut       {{\ensuremath{\neu_\tau}}\xspace}
+\def\neutb      {{\ensuremath{\neub_\tau}}\xspace}
+\def\neul       {{\ensuremath{\neu_\ell}}\xspace}
+\def\neulb      {{\ensuremath{\neub_\ell}}\xspace}
+
+
+
+
+\def\g      {{\ensuremath{\Pgamma}}\xspace}
+\def\H      {{\ensuremath{\PH^0}}\xspace}
+\def\Hp     {{\ensuremath{\PH^+}}\xspace}
+\def\Hm     {{\ensuremath{\PH^-}}\xspace}
+\def\Hpm    {{\ensuremath{\PH^\pm}}\xspace}
+\def\W      {{\ensuremath{\PW}}\xspace}
+\def\Wp     {{\ensuremath{\PW^+}}\xspace}
+\def\Wm     {{\ensuremath{\PW^-}}\xspace}
+\def\Wpm    {{\ensuremath{\PW^\pm}}\xspace}
+\def\Z      {{\ensuremath{\PZ}}\xspace}
+
+
+
+\def\quark     {{\ensuremath{\Pq}}\xspace}
+\def\quarkbar  {{\ensuremath{\overline \quark}}\xspace}
+\def\qqbar     {{\ensuremath{\quark\quarkbar}}\xspace}
+\def\uquark    {{\ensuremath{\Pu}}\xspace}
+\def\uquarkbar {{\ensuremath{\overline \uquark}}\xspace}
+\def\uubar     {{\ensuremath{\uquark\uquarkbar}}\xspace}
+\def\dquark    {{\ensuremath{\Pd}}\xspace}
+\def\dquarkbar {{\ensuremath{\overline \dquark}}\xspace}
+\def\ddbar     {{\ensuremath{\dquark\dquarkbar}}\xspace}
+\def\squark    {{\ensuremath{\Ps}}\xspace}
+\def\squarkbar {{\ensuremath{\overline \squark}}\xspace}
+\def\ssbar     {{\ensuremath{\squark\squarkbar}}\xspace}
+\def\cquark    {{\ensuremath{\Pc}}\xspace}
+\def\cquarkbar {{\ensuremath{\overline \cquark}}\xspace}
+\def\ccbar     {{\ensuremath{\cquark\cquarkbar}}\xspace}
+\def\bquark    {{\ensuremath{\Pb}}\xspace}
+\def\bquarkbar {{\ensuremath{\overline \bquark}}\xspace}
+\def\bbbar     {{\ensuremath{\bquark\bquarkbar}}\xspace}
+\def\tquark    {{\ensuremath{\Pt}}\xspace}
+\def\tquarkbar {{\ensuremath{\overline \tquark}}\xspace}
+\def\ttbar     {{\ensuremath{\tquark\tquarkbar}}\xspace}
+
+
+
+\def\hadron {{\ensuremath{\Ph}}\xspace}
+\def\pion   {{\ensuremath{\Ppi}}\xspace}
+\def\piz    {{\ensuremath{\pion^0}}\xspace}
+\def\pip    {{\ensuremath{\pion^+}}\xspace}
+\def\pim    {{\ensuremath{\pion^-}}\xspace}
+\def\pipm   {{\ensuremath{\pion^\pm}}\xspace}
+\def\pimp   {{\ensuremath{\pion^\mp}}\xspace}
+
+\def\rhomeson {{\ensuremath{\Prho}}\xspace}
+\def\rhoz     {{\ensuremath{\rhomeson^0}}\xspace}
+\def\rhop     {{\ensuremath{\rhomeson^+}}\xspace}
+\def\rhom     {{\ensuremath{\rhomeson^-}}\xspace}
+\def\rhopm    {{\ensuremath{\rhomeson^\pm}}\xspace}
+\def\rhomp    {{\ensuremath{\rhomeson^\mp}}\xspace}
+
+\def\kaon    {{\ensuremath{\PK}}\xspace}
+\def\Kbar    {{\ensuremath{\offsetoverline{\PK}}}\xspace}
+\def\Kb      {{\ensuremath{\Kbar}}\xspace}
+\def\KorKbar {\kern \thebaroffset\optbar{\kern -\thebaroffset \PK}{}\xspace}
+\def\Kz      {{\ensuremath{\kaon^0}}\xspace}
+\def\Kzb     {{\ensuremath{\Kbar{}^0}}\xspace}
+\def\Kp      {{\ensuremath{\kaon^+}}\xspace}
+\def\Km      {{\ensuremath{\kaon^-}}\xspace}
+\def\Kpm     {{\ensuremath{\kaon^\pm}}\xspace}
+\def\Kmp     {{\ensuremath{\kaon^\mp}}\xspace}
+\def\KS      {{\ensuremath{\kaon^0_{\mathrm{S}}}}\xspace}
+\def\KL      {{\ensuremath{\kaon^0_{\mathrm{L}}}}\xspace}
+\def\Kstarz  {{\ensuremath{\kaon^{*0}}}\xspace}
+\def\Kstarzb {{\ensuremath{\Kbar{}^{*0}}}\xspace}
+\def\Kstar   {{\ensuremath{\kaon^*}}\xspace}
+\def\Kstarb  {{\ensuremath{\Kbar{}^*}}\xspace}
+\def\Kstarp  {{\ensuremath{\kaon^{*+}}}\xspace}
+\def\Kstarm  {{\ensuremath{\kaon^{*-}}}\xspace}
+\def\Kstarpm {{\ensuremath{\kaon^{*\pm}}}\xspace}
+\def\Kstarmp {{\ensuremath{\kaon^{*\mp}}}\xspace}
+\def\KorKbarz {\ensuremath{\KorKbar^0}\xspace}
+
+\newcommand{\etaz}{\ensuremath{\Peta}\xspace}
+\newcommand{\etapr}{\ensuremath{\Peta^{\prime}}\xspace}
+\newcommand{\phiz}{\ensuremath{\Pphi}\xspace}
+\newcommand{\omegaz}{\ensuremath{\Pomega}\xspace}
+
+
+
+\def\Dbar    {{\ensuremath{\offsetoverline{\PD}}}\xspace}
+\def\D       {{\ensuremath{\PD}}\xspace}
+\def\Db      {{\ensuremath{\Dbar}}\xspace}
+\def\DorDbar {\kern \thebaroffset\optbar{\kern -\thebaroffset \PD}\xspace}
+\def\Dz      {{\ensuremath{\D^0}}\xspace}
+\def\Dzb     {{\ensuremath{\Dbar{}^0}}\xspace}
+\def\Dp      {{\ensuremath{\D^+}}\xspace}
+\def\Dm      {{\ensuremath{\D^-}}\xspace}
+\def\Dpm     {{\ensuremath{\D^\pm}}\xspace}
+\def\Dmp     {{\ensuremath{\D^\mp}}\xspace}
+\def\Dstar   {{\ensuremath{\D^*}}\xspace}
+\def\Dstarb  {{\ensuremath{\Dbar{}^*}}\xspace}
+\def\Dstarz  {{\ensuremath{\D^{*0}}}\xspace}
+\def\Dstarzb {{\ensuremath{\Dbar{}^{*0}}}\xspace}
+\def\theDstarz{{\ensuremath{\D^{*}(2007)^{0}}}\xspace}
+\def\theDstarzb{{\ensuremath{\Dbar^{*}(2007)^{0}}}\xspace}
+\def\Dstarp  {{\ensuremath{\D^{*+}}}\xspace}
+\def\Dstarm  {{\ensuremath{\D^{*-}}}\xspace}
+\def\Dstarpm {{\ensuremath{\D^{*\pm}}}\xspace}
+\def\Dstarmp {{\ensuremath{\D^{*\mp}}}\xspace}
+\def\theDstarp{{\ensuremath{\D^{*}(2010)^{+}}}\xspace}
+\def\theDstarm{{\ensuremath{\D^{*}(2010)^{-}}}\xspace}
+\def\theDstarpm{{\ensuremath{\D^{*}(2010)^{\pm}}}\xspace}
+\def\theDstarmp{{\ensuremath{\D^{*}(2010)^{\mp}}}\xspace}
+\def\Ds      {{\ensuremath{\D^+_\squark}}\xspace}
+\def\Dsp     {{\ensuremath{\D^+_\squark}}\xspace}
+\def\Dsm     {{\ensuremath{\D^-_\squark}}\xspace}
+\def\Dspm    {{\ensuremath{\D^{\pm}_\squark}}\xspace}
+\def\Dsmp    {{\ensuremath{\D^{\mp}_\squark}}\xspace}
+\def\Dss     {{\ensuremath{\D^{*+}_\squark}}\xspace}
+\def\Dssp    {{\ensuremath{\D^{*+}_\squark}}\xspace}
+\def\Dssm    {{\ensuremath{\D^{*-}_\squark}}\xspace}
+\def\Dsspm   {{\ensuremath{\D^{*\pm}_\squark}}\xspace}
+\def\Dssmp   {{\ensuremath{\D^{*\mp}_\squark}}\xspace}
+
+\def\B       {{\ensuremath{\PB}}\xspace}
+\def\Bbar    {{\ensuremath{\offsetoverline{\PB}}}\xspace}
+\def\Bb      {{\ensuremath{\Bbar}}\xspace}
+\def\BorBbar {\kern \thebaroffset\optbar{\kern -\thebaroffset \PB}\xspace}
+\def\Bz      {{\ensuremath{\B^0}}\xspace}
+\def\Bzb     {{\ensuremath{\Bbar{}^0}}\xspace}
+\def\Bu      {{\ensuremath{\B^+}}\xspace}
+\def\Bub     {{\ensuremath{\B^-}}\xspace}
+\def\Bp      {{\ensuremath{\Bu}}\xspace}
+\def\Bm      {{\ensuremath{\Bub}}\xspace}
+\def\Bpm     {{\ensuremath{\B^\pm}}\xspace}
+\def\Bmp     {{\ensuremath{\B^\mp}}\xspace}
+\def\Bd      {{\ensuremath{\B^0}}\xspace}
+\def\Bs      {{\ensuremath{\B^0_\squark}}\xspace}
+\def\Bsb     {{\ensuremath{\Bbar{}^0_\squark}}\xspace}
+\def\BdorBs  {{\ensuremath{\B^0_{(\squark)}}}\xspace}
+\def\Bdb     {{\ensuremath{\Bbar{}^0}}\xspace}
+\def\Bc      {{\ensuremath{\B_\cquark^+}}\xspace}
+\def\Bcp     {{\ensuremath{\B_\cquark^+}}\xspace}
+\def\Bcm     {{\ensuremath{\B_\cquark^-}}\xspace}
+\def\Bcpm    {{\ensuremath{\B_\cquark^\pm}}\xspace}
+\def\Bds     {{\ensuremath{\B_{(\squark)}^0}}\xspace}
+\def\Bdsb    {{\ensuremath{\Bbar{}_{(\squark)}^0}}\xspace}
+
+
+
+\def\jpsi     {{\ensuremath{{\PJ\mskip -3mu/\mskip -2mu\Ppsi\mskip 2mu}}}\xspace}
+\def\psitwos  {{\ensuremath{\Ppsi{(2S)}}}\xspace}
+\def\psiprpr  {{\ensuremath{\Ppsi(3770)}}\xspace}
+\def\etac     {{\ensuremath{\Peta_\cquark}}\xspace}
+\def\chic     {{\ensuremath{\Pchi_\cquark}}\xspace}
+\def\chiczero {{\ensuremath{\Pchi_{\cquark 0}}}\xspace}
+\def\chicone  {{\ensuremath{\Pchi_{\cquark 1}}}\xspace}
+\def\chictwo  {{\ensuremath{\Pchi_{\cquark 2}}}\xspace}
+\def\chicJ    {{\ensuremath{\Pchi_{\cquark J}}}\xspace}
+\def\Upsilonres  {{\ensuremath{\PUpsilon}}\xspace}
+\def\Y#1S{\ensuremath{\PUpsilon{(#1S)}}\xspace}
+\def\OneS  {{\Y1S}}
+\def\TwoS  {{\Y2S}}
+\def\ThreeS{{\Y3S}}
+\def\FourS {{\Y4S}}
+\def\FiveS {{\Y5S}}
+\def\chib     {{\ensuremath{\Pchi_{c}}}\xspace}
+\def\chibzero {{\ensuremath{\Pchi_{\bquark 0}}}\xspace}
+\def\chibone  {{\ensuremath{\Pchi_{\bquark 1}}}\xspace}
+\def\chibtwo  {{\ensuremath{\Pchi_{\bquark 2}}}\xspace}
+\def\chibJ    {{\ensuremath{\Pchi_{\bquark J}}}\xspace}
+
+
+
+\def\proton      {{\ensuremath{\Pp}}\xspace}
+\def\antiproton  {{\ensuremath{\overline \proton}}\xspace}
+\def\neutron     {{\ensuremath{\Pn}}\xspace}
+\def\antineutron {{\ensuremath{\overline \neutron}}\xspace}
+\def\Deltares    {{\ensuremath{\PDelta}}\xspace}
+\def\Deltaresbar {{\ensuremath{\overline \Deltares}}\xspace}
+\def\Lz          {{\ensuremath{\PLambda}}\xspace}
+\def\Lbar        {{\ensuremath{\offsetoverline{\PLambda}}}\xspace}
+\def\LorLbar     {\kern \thebaroffset\optbar{\kern -\thebaroffset \PLambda}\xspace}
+\def\Lambdares   {{\ensuremath{\PLambda}}\xspace}
+\def\Lambdaresbar{{\ensuremath{\Lbar}}\xspace}
+\def\Sigmares    {{\ensuremath{\PSigma}}\xspace}
+\def\Sigmaz      {{\ensuremath{\Sigmares{}^0}}\xspace}
+\def\Sigmap      {{\ensuremath{\Sigmares{}^+}}\xspace}
+\def\Sigmam      {{\ensuremath{\Sigmares{}^-}}\xspace}
+\def\Sigmaresbar {{\ensuremath{\offsetoverline{\Sigmares}}}\xspace}
+\def\Sigmabarz   {{\ensuremath{\Sigmaresbar{}^0}}\xspace}
+\def\Sigmabarp   {{\ensuremath{\Sigmaresbar{}^+}}\xspace}
+\def\Sigmabarm   {{\ensuremath{\Sigmaresbar{}^-}}\xspace}
+\def\Xires       {{\ensuremath{\PXi}}\xspace}
+\def\Xiresz      {{\ensuremath{\Xires^0}}\xspace}
+\def\Xiresm      {{\ensuremath{\Xires^-}}\xspace}
+\def\Xiresbar    {{\ensuremath{\offsetoverline{\Xires}}}\xspace}
+\def\Xiresbarz   {{\ensuremath{\Xiresbar^0}}\xspace}
+\def\Xiresbarp   {{\ensuremath{\Xiresbar^+}}\xspace}
+\def\Omegares    {{\ensuremath{\POmega}}\xspace}
+\def\Omegaresbar {{\ensuremath{\offsetoverline{\POmega}}}\xspace}
+\def\Omegam      {{\ensuremath{\Omegares^-}}\xspace}
+\def\Omegabarp   {{\ensuremath{\Omegaresbar^+}}\xspace}
+
+\def\Lc          {{\ensuremath{\Lz^+_\cquark}}\xspace}
+\def\Lcbar       {{\ensuremath{\Lbar{}^-_\cquark}}\xspace}
+\def\Xic         {{\ensuremath{\Xires_\cquark}}\xspace}
+\def\Xicz        {{\ensuremath{\Xires^0_\cquark}}\xspace}
+\def\Xicp        {{\ensuremath{\Xires^+_\cquark}}\xspace}
+\def\Xicbar      {{\ensuremath{\Xiresbar{}_\cquark}}\xspace}
+\def\Xicbarz     {{\ensuremath{\Xiresbar{}_\cquark^0}}\xspace}
+\def\Xicbarm     {{\ensuremath{\Xiresbar{}_\cquark^-}}\xspace}
+\def\Omegac      {{\ensuremath{\Omegares^0_\cquark}}\xspace}
+\def\Omegacbar   {{\ensuremath{\Omegaresbar{}_\cquark^0}}\xspace}
+\def\Xicc        {{\ensuremath{\Xires_{\cquark\cquark}}}\xspace}
+\def\Xiccbar     {{\ensuremath{\Xiresbar{}_{\cquark\cquark}}}\xspace}
+\def\Xiccp       {{\ensuremath{\Xires^+_{\cquark\cquark}}}\xspace}
+\def\Xiccpp      {{\ensuremath{\Xires^{++}_{\cquark\cquark}}}\xspace}
+\def\Xiccbarm    {{\ensuremath{\Xiresbar{}_{\cquark\cquark}^-}}\xspace}
+\def\Xiccbarmm   {{\ensuremath{\Xiresbar{}_{\cquark\cquark}^{--}}}\xspace}
+\def\Omegacc     {{\ensuremath{\Omegares^+_{\cquark\cquark}}}\xspace}
+\def\Omegaccbar  {{\ensuremath{\Omegaresbar{}_{\cquark\cquark}^-}}\xspace}
+\def\Omegaccc    {{\ensuremath{\Omegares^{++}_{\cquark\cquark\cquark}}}\xspace}
+\def\Omegacccbar {{\ensuremath{\Omegaresbar{}_{\cquark\cquark\cquark}^{--}}}\xspace}
+
+
+\def\Lb           {{\ensuremath{\Lz^0_\bquark}}\xspace}
+\def\Lbbar        {{\ensuremath{\Lbar{}^0_\bquark}}\xspace}
+\def\Sigmab       {{\ensuremath{\Sigmares_\bquark}}\xspace}
+\def\Sigmabp      {{\ensuremath{\Sigmares_\bquark^+}}\xspace}
+\def\Sigmabz      {{\ensuremath{\Sigmares_\bquark^0}}\xspace}
+\def\Sigmabm      {{\ensuremath{\Sigmares_\bquark^-}}\xspace}
+\def\Sigmabpm     {{\ensuremath{\Sigmares_\bquark^\pm}}\xspace}
+\def\Sigmabbar    {{\ensuremath{\Sigmaresbar_\bquark}}\xspace}
+\def\Sigmabbarp   {{\ensuremath{\Sigmaresbar_\bquark^+}}\xspace}
+\def\Sigmabbarz   {{\ensuremath{\Sigmaresbar_\bquark^0}}\xspace}
+\def\Sigmabbarm   {{\ensuremath{\Sigmaresbar_\bquark^-}}\xspace}
+\def\Sigmabbarpm  {{\ensuremath{\Sigmaresbar_\bquark^-}}\xspace}
+\def\Xib          {{\ensuremath{\Xires_\bquark}}\xspace}
+\def\Xibz         {{\ensuremath{\Xires^0_\bquark}}\xspace}
+\def\Xibm         {{\ensuremath{\Xires^-_\bquark}}\xspace}
+\def\Xibbar       {{\ensuremath{\Xiresbar{}_\bquark}}\xspace}
+\def\Xibbarz      {{\ensuremath{\Xiresbar{}_\bquark^0}}\xspace}
+\def\Xibbarp      {{\ensuremath{\Xiresbar{}_\bquark^+}}\xspace}
+\def\Omegab       {{\ensuremath{\Omegares^-_\bquark}}\xspace}
+\def\Omegabbar    {{\ensuremath{\Omegaresbar{}_\bquark^+}}\xspace}
+
+
+
+\def\BF         {{\ensuremath{\mathcal{B}}}\xspace}
+\def\BR         {\BF}
+\def\BRvis      {{\ensuremath{\BR_{\mathrm{{vis}}}}}}
+\newcommand{\decay}[2]{\mbox{\ensuremath{#1\!\to #2}}\xspace}         \def\ra                 {\ensuremath{\rightarrow}\xspace}
+\def\to                 {\ensuremath{\rightarrow}\xspace}
+
+\newcommand{\tauBs}{{\ensuremath{\tau_{\Bs}}}\xspace}
+\newcommand{\tauBd}{{\ensuremath{\tau_{\Bd}}}\xspace}
+\newcommand{\tauBz}{{\ensuremath{\tau_{\Bz}}}\xspace}
+\newcommand{\tauBu}{{\ensuremath{\tau_{\Bp}}}\xspace}
+\newcommand{\tauDp}{{\ensuremath{\tau_{\Dp}}}\xspace}
+\newcommand{\tauDz}{{\ensuremath{\tau_{\Dz}}}\xspace}
+\newcommand{\tauL}{{\ensuremath{\tau_{\mathrm{ L}}}}\xspace}
+\newcommand{\tauH}{{\ensuremath{\tau_{\mathrm{ H}}}}\xspace}
+
+\newcommand{\mBd}{{\ensuremath{m_{\Bd}}}\xspace}
+\newcommand{\mBp}{{\ensuremath{m_{\Bp}}}\xspace}
+\newcommand{\mBs}{{\ensuremath{m_{\Bs}}}\xspace}
+\newcommand{\mBc}{{\ensuremath{m_{\Bc}}}\xspace}
+\newcommand{\mLb}{{\ensuremath{m_{\Lb}}}\xspace}
+
+\def\grpsuthree {{\ensuremath{\mathrm{SU}(3)}}\xspace}
+\def\grpsutw    {{\ensuremath{\mathrm{SU}(2)}}\xspace}
+\def\grpuone    {{\ensuremath{\mathrm{U}(1)}}\xspace}
+
+\def\ssqtw   {{\ensuremath{\sin^{2}\!\theta_{\mathrm{W}}}}\xspace}
+\def\csqtw   {{\ensuremath{\cos^{2}\!\theta_{\mathrm{W}}}}\xspace}
+\def\stw     {{\ensuremath{\sin\theta_{\mathrm{W}}}}\xspace}
+\def\ctw     {{\ensuremath{\cos\theta_{\mathrm{W}}}}\xspace}
+\def\ssqtwef {{\ensuremath{{\sin}^{2}\theta_{\mathrm{W}}^{\mathrm{eff}}}}\xspace}
+\def\csqtwef {{\ensuremath{{\cos}^{2}\theta_{\mathrm{W}}^{\mathrm{eff}}}}\xspace}
+\def\stwef   {{\ensuremath{\sin\theta_{\mathrm{W}}^{\mathrm{eff}}}}\xspace}
+\def\ctwef   {{\ensuremath{\cos\theta_{\mathrm{W}}^{\mathrm{eff}}}}\xspace}
+\def\gv      {{\ensuremath{g_{\mbox{\tiny V}}}}\xspace}
+\def\ga      {{\ensuremath{g_{\mbox{\tiny A}}}}\xspace}
+
+\def\order   {{\ensuremath{\mathcal{O}}}\xspace}
+\def\ordalph {{\ensuremath{\mathcal{O}(\alpha)}}\xspace}
+\def\ordalsq {{\ensuremath{\mathcal{O}(\alpha^{2})}}\xspace}
+\def\ordalcb {{\ensuremath{\mathcal{O}(\alpha^{3})}}\xspace}
+
+\newcommand{\as}{{\ensuremath{\alpha_s}}\xspace}
+\newcommand{\MSb}{{\ensuremath{\overline{\mathrm{MS}}}}\xspace}
+\newcommand{\lqcd}{{\ensuremath{\Lambda_{\mathrm{QCD}}}}\xspace}
+\def\qsq       {{\ensuremath{q^2}}\xspace}
+
+
+
+\def\eps   {{\ensuremath{\varepsilon}}\xspace}
+\def\epsK  {{\ensuremath{\varepsilon_K}}\xspace}
+\def\epsB  {{\ensuremath{\varepsilon_B}}\xspace}
+\def\epsp  {{\ensuremath{\varepsilon^\prime_K}}\xspace}
+
+\def\CP                {{\ensuremath{C\!P}}\xspace}
+\def\CPT               {{\ensuremath{C\!PT}}\xspace}
+\def\T                 {{\ensuremath{T}}\xspace}
+
+\def\rhobar {{\ensuremath{\overline \rho}}\xspace}
+\def\etabar {{\ensuremath{\overline \eta}}\xspace}
+
+\def\Vud  {{\ensuremath{V_{\uquark\dquark}}}\xspace}
+\def\Vcd  {{\ensuremath{V_{\cquark\dquark}}}\xspace}
+\def\Vtd  {{\ensuremath{V_{\tquark\dquark}}}\xspace}
+\def\Vus  {{\ensuremath{V_{\uquark\squark}}}\xspace}
+\def\Vcs  {{\ensuremath{V_{\cquark\squark}}}\xspace}
+\def\Vts  {{\ensuremath{V_{\tquark\squark}}}\xspace}
+\def\Vub  {{\ensuremath{V_{\uquark\bquark}}}\xspace}
+\def\Vcb  {{\ensuremath{V_{\cquark\bquark}}}\xspace}
+\def\Vtb  {{\ensuremath{V_{\tquark\bquark}}}\xspace}
+\def\Vuds  {{\ensuremath{V_{\uquark\dquark}^\ast}}\xspace}
+\def\Vcds  {{\ensuremath{V_{\cquark\dquark}^\ast}}\xspace}
+\def\Vtds  {{\ensuremath{V_{\tquark\dquark}^\ast}}\xspace}
+\def\Vuss  {{\ensuremath{V_{\uquark\squark}^\ast}}\xspace}
+\def\Vcss  {{\ensuremath{V_{\cquark\squark}^\ast}}\xspace}
+\def\Vtss  {{\ensuremath{V_{\tquark\squark}^\ast}}\xspace}
+\def\Vubs  {{\ensuremath{V_{\uquark\bquark}^\ast}}\xspace}
+\def\Vcbs  {{\ensuremath{V_{\cquark\bquark}^\ast}}\xspace}
+\def\Vtbs  {{\ensuremath{V_{\tquark\bquark}^\ast}}\xspace}
+
+
+
+\newcommand{\dm}{{\ensuremath{\Delta m}}\xspace}
+\newcommand{\dms}{{\ensuremath{\Delta m_{\squark}}}\xspace}
+\newcommand{\dmd}{{\ensuremath{\Delta m_{\dquark}}}\xspace}
+\newcommand{\DG}{{\ensuremath{\Delta\Gamma}}\xspace}
+\newcommand{\DGs}{{\ensuremath{\Delta\Gamma_{\squark}}}\xspace}
+\newcommand{\DGd}{{\ensuremath{\Delta\Gamma_{\dquark}}}\xspace}
+\newcommand{\Gs}{{\ensuremath{\Gamma_{\squark}}}\xspace}
+\newcommand{\Gd}{{\ensuremath{\Gamma_{\dquark}}}\xspace}
+\newcommand{\MBq}{{\ensuremath{M_{\B_\quark}}}\xspace}
+\newcommand{\DGq}{{\ensuremath{\Delta\Gamma_{\quark}}}\xspace}
+\newcommand{\Gq}{{\ensuremath{\Gamma_{\quark}}}\xspace}
+\newcommand{\dmq}{{\ensuremath{\Delta m_{\quark}}}\xspace}
+\newcommand{\GL}{{\ensuremath{\Gamma_{\mathrm{ L}}}}\xspace}
+\newcommand{\GH}{{\ensuremath{\Gamma_{\mathrm{ H}}}}\xspace}
+\newcommand{\DGsGs}{{\ensuremath{\Delta\Gamma_{\squark}/\Gamma_{\squark}}}\xspace}
+\newcommand{\Delm}{{\mbox{$\Delta m $}}\xspace}
+\newcommand{\ACP}{{\ensuremath{{\mathcal{A}}^{\CP}}}\xspace}
+\newcommand{\Adir}{{\ensuremath{{\mathcal{A}}^{\mathrm{ dir}}}}\xspace}
+\newcommand{\Amix}{{\ensuremath{{\mathcal{A}}^{\mathrm{ mix}}}}\xspace}
+\newcommand{\ADelta}{{\ensuremath{{\mathcal{A}}^\Delta}}\xspace}
+\newcommand{\phid}{{\ensuremath{\phi_{\dquark}}}\xspace}
+\newcommand{\sinphid}{{\ensuremath{\sin\!\phid}}\xspace}
+\newcommand{\phis}{{\ensuremath{\phi_{\squark}}}\xspace}
+\newcommand{\betas}{{\ensuremath{\beta_{\squark}}}\xspace}
+\newcommand{\sbetas}{{\ensuremath{\sigma(\beta_{\squark})}}\xspace}
+\newcommand{\stbetas}{{\ensuremath{\sigma(2\beta_{\squark})}}\xspace}
+\newcommand{\stphis}{{\ensuremath{\sigma(\phi_{\squark})}}\xspace}
+\newcommand{\sinphis}{{\ensuremath{\sin\!\phis}}\xspace}
+
+\newcommand{\edet}{{\ensuremath{\varepsilon_{\mathrm{ det}}}}\xspace}
+\newcommand{\erec}{{\ensuremath{\varepsilon_{\mathrm{ rec/det}}}}\xspace}
+\newcommand{\esel}{{\ensuremath{\varepsilon_{\mathrm{ sel/rec}}}}\xspace}
+\newcommand{\etrg}{{\ensuremath{\varepsilon_{\mathrm{ trg/sel}}}}\xspace}
+\newcommand{\etot}{{\ensuremath{\varepsilon_{\mathrm{ tot}}}}\xspace}
+
+\newcommand{\mistag}{\ensuremath{\omega}\xspace}
+\newcommand{\wcomb}{\ensuremath{\omega^{\mathrm{comb}}}\xspace}
+\newcommand{\etag}{{\ensuremath{\varepsilon_{\mathrm{tag}}}}\xspace}
+\newcommand{\etagcomb}{{\ensuremath{\varepsilon_{\mathrm{tag}}^{\mathrm{comb}}}}\xspace}
+\newcommand{\effeff}{\ensuremath{\varepsilon_{\mathrm{eff}}}\xspace}
+\newcommand{\effeffcomb}{\ensuremath{\varepsilon_{\mathrm{eff}}^{\mathrm{comb}}}\xspace}
+\newcommand{\efftag}{{\ensuremath{\etag(1-2\omega)^2}}\xspace}
+\newcommand{\effD}{{\ensuremath{\etag D^2}}\xspace}
+
+\newcommand{\etagprompt}{{\ensuremath{\varepsilon_{\mathrm{ tag}}^{\mathrm{Pr}}}}\xspace}
+\newcommand{\etagLL}{{\ensuremath{\varepsilon_{\mathrm{ tag}}^{\mathrm{LL}}}}\xspace}
+
+
+
+\def\BdToKstmm    {\decay{\Bd}{\Kstarz\mup\mun}}
+\def\BdbToKstmm   {\decay{\Bdb}{\Kstarzb\mup\mun}}
+
+\def\BsToJPsiPhi  {\decay{\Bs}{\jpsi\phi}}
+\def\BdToJPsiKst  {\decay{\Bd}{\jpsi\Kstarz}}
+\def\BdbToJPsiKst {\decay{\Bdb}{\jpsi\Kstarzb}}
+
+\def\BsPhiGam     {\decay{\Bs}{\phi \g}}
+\def\BdKstGam     {\decay{\Bd}{\Kstarz \g}}
+
+\def\BTohh        {\decay{\B}{\Ph^+ \Ph'^-}}
+\def\BdTopipi     {\decay{\Bd}{\pip\pim}}
+\def\BdToKpi      {\decay{\Bd}{\Kp\pim}}
+\def\BsToKK       {\decay{\Bs}{\Kp\Km}}
+\def\BsTopiK      {\decay{\Bs}{\pip\Km}}
+\def\Cpipi        {\ensuremath{C_{\pip\pim}}\xspace}
+\def\Spipi        {\ensuremath{S_{\pip\pim}}\xspace}
+\def\CKK          {\ensuremath{C_{\Kp\Km}}\xspace}
+\def\SKK          {\ensuremath{S_{\Kp\Km}}\xspace}
+\def\ADGKK        {\ensuremath{A^{\DG}_{\Kp\Km}}\xspace}
+
+\def\BdKstee  {\decay{\Bd}{\Kstarz\epem}}
+\def\BdbKstee {\decay{\Bdb}{\Kstarzb\epem}}
+\def\bsll     {\decay{\bquark}{\squark \ell^+ \ell^-}}
+\def\AFB      {\ensuremath{A_{\mathrm{FB}}}\xspace}
+\def\FL       {\ensuremath{F_{\mathrm{L}}}\xspace}
+\def\AT#1     {\ensuremath{A_{\mathrm{T}}^{#1}}\xspace}           \def\btosgam  {\decay{\bquark}{\squark \g}}
+\def\btodgam  {\decay{\bquark}{\dquark \g}}
+\def\Bsmm     {\decay{\Bs}{\mup\mun}}
+\def\Bdmm     {\decay{\Bd}{\mup\mun}}
+\def\Bsee     {\decay{\Bs}{\epem}}
+\def\Bdee     {\decay{\Bd}{\epem}}
+\def\ctl       {\ensuremath{\cos{\theta_\ell}}\xspace}
+\def\ctk       {\ensuremath{\cos{\theta_K}}\xspace}
+
+\def\C#1      {\ensuremath{\mathcal{C}_{#1}}\xspace}                       \def\Cp#1     {\ensuremath{\mathcal{C}_{#1}^{'}}\xspace}                    \def\Ceff#1   {\ensuremath{\mathcal{C}_{#1}^{\mathrm{(eff)}}}\xspace}        \def\Cpeff#1  {\ensuremath{\mathcal{C}_{#1}^{'\mathrm{(eff)}}}\xspace}       \def\Ope#1    {\ensuremath{\mathcal{O}_{#1}}\xspace}                       \def\Opep#1   {\ensuremath{\mathcal{O}_{#1}^{'}}\xspace}                    
+
+
+
+\def\xprime     {\ensuremath{x^{\prime}}\xspace}
+\def\yprime     {\ensuremath{y^{\prime}}\xspace}
+\def\ycp        {\ensuremath{y_{\CP}}\xspace}
+\def\agamma     {\ensuremath{A_{\Gamma}}\xspace}
+\def\dkpicf     {\decay{\Dz}{\Km\pip}}
+
+\newcommand{\bra}[1]{\ensuremath{\langle #1|}}             \newcommand{\ket}[1]{\ensuremath{|#1\rangle}}              \newcommand{\braket}[2]{\ensuremath{\langle #1|#2\rangle}} 
+
+\newcommand{\nospaceunit}[1]{\ensuremath{\text{#1}}}       
+\newcommand{\aunit}[1]{\ensuremath{\text{\,#1}}}       
+\newcommand{\unit}[1]{\aunit{#1}\xspace}                   
+
+\newcommand{\tev}{\aunit{Te\kern -0.1em V}\xspace}
+\newcommand{\gev}{\aunit{Ge\kern -0.1em V}\xspace}
+\newcommand{\mev}{\aunit{Me\kern -0.1em V}\xspace}
+\newcommand{\kev}{\aunit{ke\kern -0.1em V}\xspace}
+\newcommand{\ev}{\aunit{e\kern -0.1em V}\xspace}
+\newcommand{\mevc}{\ensuremath{\aunit{Me\kern -0.1em V\!/}c}\xspace}
+\newcommand{\gevc}{\ensuremath{\aunit{Ge\kern -0.1em V\!/}c}\xspace}
+\newcommand{\mevcc}{\ensuremath{\aunit{Me\kern -0.1em V\!/}c^2}\xspace}
+\newcommand{\gevcc}{\ensuremath{\aunit{Ge\kern -0.1em V\!/}c^2}\xspace}
+\newcommand{\gevgevcc}{\ensuremath{\gev^2/c^2}\xspace} \newcommand{\gevgevcccc}{\ensuremath{\gev^2/c^4}\xspace} 
+
+\def\km   {\aunit{km}\xspace}
+\def\m    {\aunit{m}\xspace}
+\def\ma   {\ensuremath{\aunit{m}^2}\xspace}
+\def\cm   {\aunit{cm}\xspace}
+\def\cma  {\ensuremath{\aunit{cm}^2}\xspace}
+\def\mm   {\aunit{mm}\xspace}
+\def\mma  {\ensuremath{\aunit{mm}^2}\xspace}
+\def\mum  {\ensuremath{\,\upmu\nospaceunit{m}}\xspace}
+\def\muma {\ensuremath{\,\upmu\nospaceunit{m}^2}\xspace}
+\def\nm   {\aunit{nm}\xspace}
+\def\fm   {\aunit{fm}\xspace}
+\def\barn{\aunit{b}\xspace}
+\def\mbarn{\aunit{mb}\xspace}
+\def\mub{\ensuremath{\,\upmu\nospaceunit{b}}\xspace}
+\def\nb {\aunit{nb}\xspace}
+\def\invnb {\ensuremath{\nb^{-1}}\xspace}
+\def\pb {\aunit{pb}\xspace}
+\def\invpb {\ensuremath{\pb^{-1}}\xspace}
+\def\fb   {\ensuremath{\aunit{fb}}\xspace}
+\def\invfb   {\ensuremath{\fb^{-1}}\xspace}
+\def\ab   {\ensuremath{\aunit{ab}}\xspace}
+\def\invab   {\ensuremath{\ab^{-1}}\xspace}
+
+\def\sec  {\ensuremath{\aunit{s}}\xspace}
+\def\ms   {\ensuremath{\aunit{ms}}\xspace}
+\def\mus  {\ensuremath{\,\upmu\nospaceunit{s}}\xspace}
+\def\ns   {\ensuremath{\aunit{ns}}\xspace}
+\def\ps   {\ensuremath{\aunit{ps}}\xspace}
+\def\fs   {\aunit{fs}}
+
+\def\mhz  {\ensuremath{\aunit{MHz}}\xspace}
+\def\khz  {\ensuremath{\aunit{kHz}}\xspace}
+\def\hz   {\ensuremath{\aunit{Hz}}\xspace}
+
+\def\invps{\ensuremath{\ps^{-1}}\xspace}
+\def\invns{\ensuremath{\ns^{-1}}\xspace}
+
+\def\yr   {\aunit{yr}\xspace}
+\def\hr   {\aunit{hr}\xspace}
+
+\def\degc {\ensuremath{^\circ}{\text{C}}\xspace}
+\def\degk {\aunit{K}\xspace}
+
+\def\Xrad {\ensuremath{X_0}\xspace}
+\def\NIL{\ensuremath{\lambda_{\rm int}}\xspace}
+\def\mip {MIP\xspace}
+\def\neutroneq {\ensuremath{n_\nospaceunit{eq}}\xspace}
+\def\neqcmcm {\ensuremath{\neutroneq/\nospaceunit{cm}^2}\xspace}
+\def\kRad {\aunit{kRad}\xspace}
+\def\MRad {\aunit{MRad}\xspace}
+\def\ci {\aunit{Ci}\xspace}
+\def\mci {\aunit{mCi}\xspace}
+
+\def\sx    {\ensuremath{\sigma_x}\xspace}    
+\def\sy    {\ensuremath{\sigma_y}\xspace}   
+\def\sz    {\ensuremath{\sigma_z}\xspace}    
+
+\newcommand{\stat}{\aunit{(stat)}\xspace}
+\newcommand{\syst}{\aunit{(syst)}\xspace}
+
+
+
+\def\order{{\ensuremath{\mathcal{O}}}\xspace}
+\newcommand{\chisq}{\ensuremath{\chi^2}\xspace}
+\newcommand{\chisqndf}{\ensuremath{\chi^2/\mathrm{ndf}}\xspace}
+\newcommand{\chisqip}{\ensuremath{\chi^2_{\text{IP}}}\xspace}
+\newcommand{\chisqvs}{\ensuremath{\chi^2_{\text{VS}}}\xspace}
+\newcommand{\chisqvtx}{\ensuremath{\chi^2_{\text{vtx}}}\xspace}
+\newcommand{\chisqvtxndf}{\ensuremath{\chi^2_{\text{vtx}}/\mathrm{ndf}}\xspace}
+
+\def\deriv {\ensuremath{\mathrm{d}}}
+
+\def\gsim{{~\raise.15em\hbox{$>$}\kern-.85em
+          \lower.35em\hbox{$\sim$}~}\xspace}
+\def\lsim{{~\raise.15em\hbox{$<$}\kern-.85em
+          \lower.35em\hbox{$\sim$}~}\xspace}
+
+\newcommand{\mean}[1]{\ensuremath{\left\langle #1 \right\rangle}} \newcommand{\abs}[1]{\ensuremath{\left\|#1\right\|}} \newcommand{\Real}{\ensuremath{\mathcal{R}e}\xspace}
+\newcommand{\Imag}{\ensuremath{\mathcal{I}m}\xspace}
+
+\def\PDF {PDF\xspace}
+
+\def\sPlot{\mbox{\em sPlot}\xspace}
+\def\sFit{\mbox{\em sFit}\xspace}
+
+
+
+
+\def\Ebeam {\ensuremath{E_{\mbox{\tiny BEAM}}}\xspace}
+\def\sqs   {\ensuremath{\protect\sqrt{s}}\xspace}
+\def\sqsnn {\ensuremath{\protect\sqrt{s_{\scriptscriptstyle\text{NN}}}}\xspace}
+\def\pt         {\ensuremath{p_{\mathrm{T}}}\xspace}
+\def\ptsq       {\ensuremath{p_{\mathrm{T}}^2}\xspace}
+\def\ptot       {\ensuremath{p}\xspace}
+\def\et         {\ensuremath{E_{\mathrm{T}}}\xspace}
+\def\mt         {\ensuremath{M_{\mathrm{T}}}\xspace}
+\def\dpp        {\ensuremath{\Delta p/p}\xspace}
+\def\msq        {\ensuremath{m^2}\xspace}
+\newcommand{\dedx}{\ensuremath{\mathrm{d}\hspace{-0.1em}E/\mathrm{d}x}\xspace}
+\def\dllkpi     {\ensuremath{\mathrm{DLL}_{\kaon\pion}}\xspace}
+\def\dllppi     {\ensuremath{\mathrm{DLL}_{\proton\pion}}\xspace}
+\def\dllepi     {\ensuremath{\mathrm{DLL}_{\electron\pion}}\xspace}
+\def\dllmupi    {\ensuremath{\mathrm{DLL}_{\muon\pi}}\xspace}
+
+
+\def\degrees{\ensuremath{^{\circ}}\xspace}
+\def\krad {\aunit{krad}}
+\def\mrad{\aunit{mrad}}
+\def\rad{\aunit{rad}}
+
+\def\betastar {\ensuremath{\beta^*}}
+\newcommand{\lum} {\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\intlum}[1]{\ensuremath{\int\lum=#1}\xspace}  
+
+
+
+\def\bcvegpy    {\mbox{\textsc{Bcvegpy}}\xspace}
+\def\boole      {\mbox{\textsc{Boole}}\xspace}
+\def\brunel     {\mbox{\textsc{Brunel}}\xspace}
+\def\davinci    {\mbox{\textsc{DaVinci}}\xspace}
+\def\dirac      {\mbox{\textsc{Dirac}}\xspace}
+\def\evtgen     {\mbox{\textsc{EvtGen}}\xspace}
+\def\fewz       {\mbox{\textsc{Fewz}}\xspace}
+\def\fluka      {\mbox{\textsc{Fluka}}\xspace}
+\def\ganga      {\mbox{\textsc{Ganga}}\xspace}
+\def\gaudi      {\mbox{\textsc{Gaudi}}\xspace}
+\def\gauss      {\mbox{\textsc{Gauss}}\xspace}
+\def\geant      {\mbox{\textsc{Geant4}}\xspace}
+\def\hepmc      {\mbox{\textsc{HepMC}}\xspace}
+\def\herwig     {\mbox{\textsc{Herwig}}\xspace}
+\def\moore      {\mbox{\textsc{Moore}}\xspace}
+\def\neurobayes {\mbox{\textsc{NeuroBayes}}\xspace}
+\def\photos     {\mbox{\textsc{Photos}}\xspace}
+\def\powheg     {\mbox{\textsc{Powheg}}\xspace}
+\def\pythia     {\mbox{\textsc{Pythia}}\xspace}
+\def\resbos     {\mbox{\textsc{ResBos}}\xspace}
+\def\roofit     {\mbox{\textsc{RooFit}}\xspace}
+\def\root       {\mbox{\textsc{Root}}\xspace}
+\def\spice      {\mbox{\textsc{Spice}}\xspace}
+\def\urania     {\mbox{\textsc{Urania}}\xspace}
+
+\def\cpp        {\mbox{\textsc{C\raisebox{0.1em}{{\footnotesize{++}}}}}\xspace}
+\def\ruby       {\mbox{\textsc{Ruby}}\xspace}
+\def\fortran    {\mbox{\textsc{Fortran}}\xspace}
+\def\svn        {\mbox{\textsc{svn}}\xspace}
+\def\git        {\mbox{\textsc{git}}\xspace}
+
+\def\kbytes     {\aunit{kbytes}\xspace}
+\def\kbsps      {\aunit{kbytes/s}\xspace}
+\def\kbits      {\aunit{kbits}\xspace}
+\def\kbsps      {\aunit{kbits/s}\xspace}
+\def\mbsps      {\aunit{Mbits/s}\xspace}
+\def\mbytes     {\aunit{Mbytes}}\xspace
+\def\mbps       {\aunit{Mbyte/s}\xspace}
+\def\mbsps      {\aunit{Mbytes/s}\xspace}
+\def\gbsps      {\aunit{Gbits/s}\xspace}
+\def\gbytes     {\aunit{Gbytes}\xspace}
+\def\gbsps      {\aunit{Gbytes/s}\xspace}
+\def\tbytes     {\aunit{Tbytes}\xspace}
+\def\tbpy       {\aunit{Tbytes/yr}\xspace}
+
+\def\dst        {DST\xspace}
+
+
+
+\def\nonn {\ensuremath{\mathrm{{ \mathit{n^+}} \mbox{-} on\mbox{-}{ \mathit{n}}}}\xspace}
+\def\ponn {\ensuremath{\mathrm{{ \mathit{p^+}} \mbox{-} on\mbox{-}{ \mathit{n}}}}\xspace}
+\def\nonp {\ensuremath{\mathrm{{ \mathit{n^+}} \mbox{-} on\mbox{-}{ \mathit{p}}}}\xspace}
+\def\cvd  {CVD\xspace}
+\def\mwpc {MWPC\xspace}
+\def\gem  {GEM\xspace}
+
+\def\tell1  {TELL1\xspace}
+\def\ukl1   {UKL1\xspace}
+\def\beetle {Beetle\xspace}
+\def\otis   {OTIS\xspace}
+\def\croc   {CROC\xspace}
+\def\carioca {CARIOCA\xspace}
+\def\dialog {DIALOG\xspace}
+\def\sync   {SYNC\xspace}
+\def\cardiac {CARDIAC\xspace}
+\def\gol    {GOL\xspace}
+\def\vcsel  {VCSEL\xspace}
+\def\ttc    {TTC\xspace}
+\def\ttcrx  {TTCrx\xspace}
+\def\hpd    {HPD\xspace}
+\def\pmt    {PMT\xspace}
+\def\specs  {SPECS\xspace}
+\def\elmb   {ELMB\xspace}
+\def\fpga   {FPGA\xspace}
+\def\plc    {PLC\xspace}
+\def\rasnik {RASNIK\xspace}
+\def\elmb   {ELMB\xspace}
+\def\can    {CAN\xspace}
+\def\lvds   {LVDS\xspace}
+\def\ntc    {NTC\xspace}
+\def\adc    {ADC\xspace}
+\def\led    {LED\xspace}
+\def\ccd    {CCD\xspace}
+\def\hv     {HV\xspace}
+\def\lv     {LV\xspace}
+\def\pvss   {PVSS\xspace}
+\def\cmos   {CMOS\xspace}
+\def\fifo   {FIFO\xspace}
+\def\ccpc   {CCPC\xspace}
+
+\def\cfourften     {\ensuremath{\mathrm{ C_4 F_{10}}}\xspace}
+\def\cffour        {\ensuremath{\mathrm{ CF_4}}\xspace}
+\def\cotwo         {\ensuremath{\mathrm{ CO_2}}\xspace} 
+\def\csixffouteen  {\ensuremath{\mathrm{ C_6 F_{14}}}\xspace} 
+\def\mgftwo     {\ensuremath{\mathrm{ Mg F_2}}\xspace} 
+\def\siotwo     {\ensuremath{\mathrm{ SiO_2}}\xspace} 
+
+\newcommand{\eg}{\mbox{\itshape e.g.}\xspace}
+\newcommand{\ie}{\mbox{\itshape i.e.}\xspace}
+\newcommand{\etal}{\mbox{\itshape et al.}\xspace}
+\newcommand{\etc}{\mbox{\itshape etc.}\xspace}
+\newcommand{\cf}{\mbox{\itshape cf.}\xspace}
+\newcommand{\ffp}{\mbox{\itshape ff.}\xspace}
+\newcommand{\vs}{\mbox{\itshape vs.}\xspace}
+ 
+
+\usepackage{cite} \usepackage{mciteplus}
+ \usepackage{longtable} 
+
+\begin{document}
+
+
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{1}
+
+
+
+\begin{titlepage}
+\pagenumbering{roman}
+
+\vspace*{-1.5cm}
+\centerline{\large EUROPEAN ORGANIZATION FOR NUCLEAR RESEARCH (CERN)}
+\vspace*{1.5cm}
+\noindent
+\begin{tabular*}{\linewidth}{lc@{\extracolsep{\fill}}r@{\extracolsep{0pt}}}
+\ifthenelse{\boolean{pdflatex}}{\vspace*{-1.5cm}\mbox{\!\!\!\includegraphics[width=.14\textwidth]{lhcb-logo.pdf}} & &}{\vspace*{-1.2cm}\mbox{\!\!\!\includegraphics[width=.12\textwidth]{lhcb-logo.eps}} & &}\\
+ & & CERN-EP-2019-122 \\  & & LHCb-PAPER-2019-008 \\  & & 02 August 2019 \\ & & \\
+\end{tabular*}
+
+\vspace*{2.0cm}
+
+{\normalfont\bfseries\boldmath\huge
+\begin{center}
+\papertitle 
+\end{center}
+}
+
+\vspace*{2.0cm}
+
+\begin{center}
+\paperauthors\footnote{Authors are listed at the end of this paper.}
+\end{center}
+
+\vspace{\fill}
+
+\begin{abstract}
+  \noindent
+ We report measurements of the lifetimes of the $\Lc$, $\Xicp$ and $\Xicz$ charm baryons
+using proton-proton collision data at center-of-mass energies of 7 and 8\tev, corresponding to an 
+integrated luminosity of 3.0\invfb, collected by the LHCb experiment. 
+The charm baryons are reconstructed through the decays $\Lc\to p\Km\pip$, $\Xicp\to p\Km\pip$ and
+$\Xicz\to p\Km\Km\pip$, and originate from semimuonic decays of beauty baryons.
+The lifetimes are measured relative to that of the $\Dp$ meson, and are determined to be
+\begin{align*}
+  \tau_{\Lc} &= 203.5\pm1.0\pm1.3\pm1.4~{\rm fs}, \\
+  \tau_{\Xicp} &= 456.8\pm3.5\pm2.9\pm3.1~{\rm fs}, \\
+  \tau_{\Xicz} &= 154.5\pm1.7\pm1.6\pm1.0~{\rm fs},
+\end{align*}
+\noindent where the uncertainties are statistical, systematic, and due to the uncertainty in the
+$\Dp$ lifetime. The measurements are approximately 3--4 times more precise than the current world 
+average values. The $\Lc$ and $\Xicp$ lifetimes are in agreement with previous measurements;
+however, the $\Xicz$ baryon lifetime is approximately 3.3 standard deviations larger than the world average value.
+
+\end{abstract}
+
+\vspace*{2.0cm}
+
+\begin{center}
+  Published in Phys. Rev. D100 (2019) 032001
+\end{center}
+
+\vspace{\fill}
+
+{\footnotesize 
+\centerline{\copyright~\papercopyright. \href{\paperlicenceurl}{\paperlicence}.}}
+\vspace*{2mm}
+
+\end{titlepage}
+
+
+
+
+\newpage
+\setcounter{page}{2}
+\mbox{~}
+
+\cleardoublepage
+
+
+
+
+
+
+
+ 
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+
+
+
+
+
+\pagestyle{plain} \setcounter{page}{1}
+\pagenumbering{arabic}
+
+
+
+
+
+Measurements of the lifetimes of hadrons containing heavy ($b$ or $c$) quarks play an important role in testing theoretical approaches
+that are used to perform Standard Model calculations. The validation of such tools is important, as they
+can then be used to search for deviations from Standard Model expectations in other processes. One of the most predictive tools in quark flavor physics
+is the heavy quark expansion (HQE)~\cite{Khoze:1983yp,Bigi:1991ir,Bigi:1992su,Blok:1992hw,*Blok:1992he,Neubert:1997gu,Uraltsev:1998bk,Bigi:1995jr}, which
+can be used to calculate the decay widths of hadrons containing heavy quarks, $Q$, through an expansion in inverse powers of 
+the heavy quark mass, $m_Q$. The lowest-order term in the expansion depends only on $m_Q$, and therefore contributes equally to the
+decay width of all hadrons with a single heavy quark $Q$.
+Higher-order terms in the HQE are related to non-perturbative corrections, and to effects due to the 
+presence of the other light (spectator) quark(s) in the heavy hadron. These corrections generally increase as the mass of the heavy quark decreases, and
+therefore measurements of charm-hadron lifetimes are sensitive to these higher-order 
+contributions~\cite{Kirk:2017juj,Cheng:2015iom,Lenz:2013aua,Bianco:2003vb,Bellini:1996ra,Blok:1991st}.
+
+Particle lifetimes are also required to compare measured $b$- or $c$-hadron decay branching fractions to 
+corresponding predictions for partial decay widths. Improved precision on the lifetimes thus allows for 
+more stringent tests of theoretical predictions. Lastly, improving the knowledge of the properties of all Standard Model particles
+is important, as they serve as input directly, or through simulation, into a wide variety of studies both within and 
+beyond the Standard Model.
+
+Recently, the LHCb collaboration reported a measurement of the $\Omegac$ lifetime~\cite{LHCb-PAPER-2018-028} that was nearly four times 
+larger than, and inconsistent with, the world average value. The lifetimes of the other three ground state singly charmed baryons 
+($\Lc$, $\Xicp$ and $\Xicz$) were last measured 
+almost twenty years ago, and are only known with precisions of 3\%, 6\% and 10\%, respectively~\cite{PDG2018}. 
+The most precise measurements contributing to the average lifetimes are those from the FOCUS 
+collaboration~\cite{Link:2002ge,Link:2001qy,Link:2002xu} based on signal sample sizes of approximately 8000 $\Lc$, 500 $\Xicp$ and 100 $\Xicz$ decays. 
+For the $\Lc$ baryon, there is mild tension between the average lifetime obtained from fixed target experiments~\cite{Link:2002ge,Kushnirenko:2000ed,Frabetti:1992jx} 
+and that obtained by the CLEO collaboration~\cite{Mahmood:2000tw}. 
+
+The LHCb experiment has recorded samples of charm baryons that are
+larger than any previous sample by several orders of magnitude, through both prompt production and as secondary products
+of $b$-hadron decays. Given the large deviation seen in the recent $\Omegac$ lifetime
+measurement, the tension in the $\Lc$ lifetime measurements, and the overall relatively poor precision on the $\Lc$, $\Xicp$ and $\Xicz$ lifetimes compared 
+to those for the charm mesons, it is important to have additional precise measurements of the lifetimes of these baryons.
+
+This paper reports new measurements of the lifetimes of the $\Lc$, $\Xicp$ and $\Xicz$ baryons using samples of
+semileptonic $\Lb\to\Lc\mun\neumb X$, $\Xibz\to\Xicp\mun\neumb X$, and $\Xibm\to\Xicz\mun\neumb X$ decays, 
+respectively.\footnote{Throughout the text, charge-conjugate processes are implicitly included.}
+The symbol $X$ represents any additional undetected particles. 
+The $\Lc$ and $\Xicp$ baryons are both reconstructed in the $p\Km\pip$ final state and the $\Xicz$ baryon is observed through its decay to $p\Km\Km\pip$.
+The technique employed to measure the charm-baryon lifetimes
+follows that used to measure the $\Omegac$ lifetime in Ref.~\cite{LHCb-PAPER-2018-028}.
+
+To reduce the uncertainties associated with systematic effects, the lifetime ratio
+\begin{align}
+r_{H_c}\equiv\frac{\tau_{H_c}}{\tau_{\Dp}}
+\label{eq:rtau}
+\end{align}
+\noindent is measured, where the $\Dp$ meson is reconstructed using $B\to\Dp\mun\neumb X$ decays, with \mbox{$\Dp\to\Km\pip\pip$}. 
+The symbols $H_b$ and $H_c$ are used here and throughout to refer to the $b$ or $c$ hadron in any of the 
+modes indicated above.
+
+The measurements presented in this paper use proton-proton ($pp$) collision data samples collected by the LHCb experiment,
+corresponding to an integrated luminosity of 3.0\invfb, of which 1.0\invfb was recorded at 
+a center-of-mass energy of 7\tev and 2.0\invfb at 8\tev.
+The \lhcb detector~\cite{Alves:2008zz,LHCb-DP-2014-002} is a single-arm forward
+spectrometer covering the \mbox{pseudorapidity} range $2<\eta <5$,
+designed for the study of particles containing \bquark or \cquark
+quarks. The tracking system provides a measurement of the momentum, \ptot, of charged particles with
+a relative uncertainty that varies from 0.5\% at low momentum to 1.0\% at 200\gevc.
+The minimum distance of a track to a primary vertex (PV), the impact parameter (IP), 
+is measured with a resolution of $\sigma_{\rm IP}=(15+29/\pt)\mum$~\cite{LHCb-DP-2014-001},
+where \pt is the component of the momentum transverse to the beam, in\,\gevc.
+Charged hadrons are identified using information
+from two ring-imaging Cherenkov (RICH) detectors~\cite{LHCb-DP-2012-003}.
+Muons are identified by a
+system composed of alternating layers of iron and multiwire
+proportional chambers~\cite{LHCb-DP-2013-001}. The online event selection is performed by a trigger~\cite{LHCb-DP-2012-004}, 
+which consists of a hardware stage, based on information from the calorimeter and muon
+systems, followed by a software stage, which applies a full event reconstruction.
+
+Simulation is required to model the effects of the detector acceptance and resolution,
+as well as the imposed selection requirements. Proton-proton collisions are simulated using
+\pythia~\cite{Sjostrand:2006za,*Sjostrand:2007gs} with a specific \lhcb
+configuration~\cite{LHCb-PROC-2010-056}.  Decays of hadronic particles
+are described by \evtgen~\cite{Lange:2001uf}, in which final-state
+radiation is generated using \photos~\cite{Golonka:2005pn}. The
+interaction of the generated particles with the detector and its
+response are implemented using the \geant toolkit~\cite{Allison:2006ve, *Agostinelli:2002hh} as described in
+Ref.~\cite{LHCb-PROC-2011-006}. 
+
+Samples of candidate semileptonic $H_b$ decays are formed by combining a $\mun$ candidate with a
+charm-hadron candidate, reconstructed through one of the following modes:
+$\Lc\to p\Km\pip$, $\Xicp\to p\Km\pip$, $\Xicz\to p\Km\Km\pip$, or $\Dp\to\Km\pip\pip$.
+All final-state charged particles are required to be detached from all PVs in the event. This selection is
+based upon a quantity $\chisqip$, which is the difference in the $\chisq$ of the PV fit with and 
+without the inclusion of the particle under consideration. The requirement on $\chisqip$ 
+for the $p$, $\Km$ and $\pip$ ($\mun$) candidates corresponds to about 2$\sigma_{\rm IP}$ (3$\sigma_{\rm IP}$).
+The muon is required to have $\pt>1\gevc$, $p>6\gevc$ and have particle identification (PID) information  
+consistent with that of a muon. The final-state hadrons must have PID information consistent with their assumed particle hypotheses, and have
+$\pt>0.25\gevc$ and $p>2\gevc$.  To remove the contribution from promptly produced charm
+baryons, the reconstructed trajectory of the $H_c$ candidate must not point back to any PV in the event.
+Only $H_c$ candidates that have an invariant mass within 60\mevcc of their known mass are retained. 
+
+The $H_c\mun$ combinations are required to form a good quality vertex and satisfy the invariant mass requirement, $m(H_c\mun)<8.0$\gevcc. 
+Random combinations of $H_c$ and $\mun$ are suppressed by requiring the $H_c$ decay vertex to be downstream of the reconstructed $H_c\mun$ decay vertex.
+In events with more than one PV, the $b$-hadron candidate and its decay products are associated to the PV for which 
+the $\chisqip$ of the $b$ hadron is smallest.
+
+The dominant source of background in the $H_b\to H_c\mun$ samples is from other semileptonic $b$-hadron decays.
+To suppress the background in the $\Lc$ and $\Xicp$ samples from misidentified $\Ds\to\Kp\Km\pip$, $\Dp\to\Km\pip\pip$, $\Dstarp\to\Dz(\to\Km\pip)\pip$, and 
+$D\to\phi(\to\Kp\Km)X$ decays, a set of vetoes is employed. 
+The vetoes are only applied to candidates that have an invariant mass consistent (within $\sim2.5$ times the mass resolution) with 
+either the known $\Dsp$ mass, $\Dp$ mass, the $\Dstarp-\Dz$ mass difference, or the $\phi$ meson mass, after substituting either the kaon or pion mass 
+in place of the proton mass in the reconstructed decay chain. For those candidates, tighter PID requirements are imposed such that any
+peaking contribution is removed. The veto removes about 1--2\% of the signal, and reduces the total background by
+about 15\% (25\%) in the $\Lc$ ($\Xicp$) samples.
+Potential contamination in the $\Xicz$ sample from fully reconstructed, but misidentified, four-body $\Dz$ meson decays 
+has been investigated, and is found to be negligible. After all selections, the dominant source of background is from
+real muons combined with partially reconstructed or misidentified charm-hadron decays.
+
+After applying the above selections, the $\Xicp$ sample still has a lower signal-to-background ratio than the $\Lc$ and 
+$\Xicz$ samples.
+To improve the signal-to-background ratio in the $\Xicp\mun$ sample, a boosted decision tree (BDT) 
+discriminant~\cite{Breiman, AdaBoost} is built from 18 variables. The variables are the $\chisq$ for the $\Xibz$ and $\Xicp$ 
+decay-vertex fits, and for each final-state hadron: $p$, $\pt$, $\chisqip$ to the associated PV, and a PID response variable.
+The BDT is trained using simulated 
+$\Xibz\to\Xicp\mun\neumb X$ decays for the signal, while background is taken from the $\Xicp$ mass sidebands, 
+${30<|m(p\Km\pip)-m_{\Xicp}|<50\mevcc}$,
+where $m_{\Xicp}$ is the known $\Xicp$ mass~\cite{PDG2018}. Only a loose requirement on the BDT is employed, which provides an
+efficiency of about 97\% for signal decays while suppressing 40\% of the background.
+
+Signal candidates must satisfy a well-defined set of 
+hardware and software trigger requirements. At the hardware level, signal candidates are required to
+include a high $\pt$ muon. At the software level, they must pass a topological multivariate selection 
+designed to provide an enriched sample of beauty hadrons decaying to multibody final states containing a muon~\cite{BBDT}.
+
+The invariant-mass distributions for the selected $\Dp$, $\Lc$, $\Xicp$ and $\Xicz$ candidates in the $H_c\mun$ final states 
+are shown in Fig.~\ref{fig:MassPlots}. For the $\Lc$ and $\Dp$ samples only a 10\% randomly selected sub-sample of events is used 
+in this analysis, since the full yield is much larger than is needed in this analysis given the anticipated size of the systematic 
+uncertainties. A binned maximum-likelihood fit is performed to each of the four samples to obtain the signal yields.
+For each mass distribution, the signal shape is parametrized as the sum of two Gaussian functions with a common mean, and the 
+background shape is described using an exponential function. All signal and background shape parameters are freely varied in the fit. 
+The resulting signal yields are given in Table~\ref{tab:yields}. The $\Xicp$ and $\Xicz$ yields are
+about 100 times larger than any previous sample used to measure the lifetimes of these baryons, and the $\Lc$ sample is about 40 times
+larger.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.48\textwidth]{MassPlot_DMu_rs_def_paper.pdf}
+\includegraphics[width=0.48\textwidth]{MassPlot_LcMu_rs_def_paper.pdf}
+\includegraphics[width=0.48\textwidth]{MassPlot_XicMu_rs_def_paper.pdf}
+\includegraphics[width=0.48\textwidth]{MassPlot_XiczMu_rs_def_paper.pdf}
+\caption{\small{Invariant-mass distributions for candidate (top left) $\Dp$ in $B\to\Dp\mun\neumb X$,
+(top right) $\Lc$ in $\Lb\to\Lc\mun\neumb X$,
+(bottom left) $\Xicp$ in ${\Xibz\to\Xicp\mun\neumb X}$, and
+(bottom right) $\Xicz$ in ${\Xibm\to\Xicz\mun\neumb X}$ candidate decays.
+The results of the fits, as described in the text, are overlaid.}}
+\label{fig:MassPlots}
+\end{figure}
+
+\begin{table*}[b]
+\begin{center}
+\caption{\small{Yields from the binned maximum-likelihood fits to the $H_c$ invariant mass spectra in $H_c\mun$ signal candidates. For the
+$\Lc$ and $\Dp$ modes, only 10\% of the sample is used, since the yields in the full data set are much larger than needed in this analysis.}}
+\begin{tabular}{lc}
+\hline\hline
+\\ [-2.5ex]
+$H_c$                         &  Yield ($10^3$) \\
+\hline  
+$\Dp$                           &  $809.4\pm1.3$ \\
+$\Lc$                           &  $303.5\pm0.7$ \\
+$\Xicp$                         &  $~55.8\pm0.5$ \\
+$\Xicz$                         &  $~21.6\pm0.2$ \\
+\hline\hline
+\end{tabular}
+\label{tab:yields}
+\end{center}
+\end{table*}
+
+The decay time of each $H_c$ candidate is determined from the positions of the $H_b$ and $H_c$ decay vertices, and the measured 
+$H_c$ momentum. Because $b$ hadrons have a mean lifetime of about 1.5~ps, the decay vertices are well separated from the PV.
+As a result, systematic effects due to lifetime-biasing selections in the trigger or offline analysis are greatly reduced compared to
+promptly produced charmed baryons. 
+
+The background-subtracted decay-time spectra are obtained using the \sPlot technique~\cite{Pivk:2004ty}, where the 
+measured $H_c$ mass is used as the discriminating variable. To improve the accuracy of the \sPlot background subtraction, a correction
+to the $H_c$ mass is applied to remove a small dependence of the mean reconstructed $H_c$ mass on its reconstructed decay time, $t_{\rm rec}$.
+This correction is obtained by first fitting for the peak position of the reconstructed mass, $M_{\rm peak}^{H_c}(t_{\rm rec})$, in bins of
+reconstructed decay time, followed by a fit for the dependence of $M_{\rm peak}^{H_c}(t_{\rm rec})$ on $t_{\rm rec}$, using the functional form
+\begin{align}
+M^{H_c}(0)+A[1-\exp(-t_{\rm rec}/C)].
+\end{align}
+The second term represents the deviation from a constant value, and is used to correct the measured $H_c$ mass of every candidate used in the \sPlot. 
+For the four modes under study, the values of $A$ and $C$ range from 2.7--4.1\mevcc and 0.06--0.17~ps, respectively. 
+The uncertainties in the signal yields reflect both the finite signal yield and the statistical uncertainty associated with the background subtraction.
+
+Potential backgrounds from random $H_c\mun$ combinations, where the muon is not produced directly at the $H_b$ decay vertex, 
+could lead to a bias on the lifetime. Such decays include $H_b\to H_c\taum\neutb$, \mbox{$\taum\to\mun\neut\neumb$} and 
+$H_b\to H_c\Dbar,~\Dbar\to\mun X$, where $\Dbar$ represents a $\Dsm$, $\Dm$ or $\Dzb$ meson.
+These backgrounds are a small fraction of the observed signal, 
+about 3\% in total, and have decay-time spectra that are similar to the genuine $H_c\mun\neumb$ final state due to the 
+$\chisq$ requirements on the $H_b$ vertex fit. The effect of these backgrounds is studied with simulation
+and pseudoexperiments, and is included as a source of systematic uncertainty. 
+
+The decay-time spectra for the $\Dp$, $\Lc$, $\Xicp$ and $\Xicz$ signals are shown in Fig.~\ref{fig:XcDecaytimeRatioFits}, along 
+with the results of the fits described below. Only $H_c$ candidates with decay time larger than zero are used in the fit.
+The decrease in signal yield as the decay time approaches zero is mainly due to 
+the $H_c$ decay-time resolution, typically in the 85--100~fs range, which results in migration of the signal into the negative 
+decay-time region.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.48\textwidth]{XcDecaytimeFit_DMu_2012_def_paper.pdf}
+\includegraphics[width=0.48\textwidth]{XcDecaytimeRatioFit_LcMu_DMu_2012_tauReweight203_paper.pdf}
+\includegraphics[width=0.48\textwidth]{XcDecaytimeRatioFit_XicMu_DMu_2012_tauReweight455_paper.pdf}
+\includegraphics[width=0.48\textwidth]{XcDecaytimeRatioFit_XiczMu_DMu_2012_tauReweight155_paper.pdf}
+\caption{\small{Decay-time spectra for (top left) $\Dp$ signal in $B\to\Dp\mun\neumb X$, (top right) $\Lc$ signal in
+$\Lb\to\Lc\mun\neumb X$, (bottom left) $\Xicp$ signal in $\Xibz\to\Xicp\mun\neumb X$, and 
+(bottom right) $\Xicz$ signal in $\Xibm\to\Xicz\mun\neumb X$ candidate decays.
+Overlaid are the fit results, as described in the text, along with the uncertainties due to finite sizes of the simulated samples.}}
+\label{fig:XcDecaytimeRatioFits}
+\end{figure}
+
+The charm-hadron lifetimes are determined by fitting the decay-time spectra using a binned $\chi^2$ fit over the
+ranges shown in Fig.~\ref{fig:XcDecaytimeRatioFits}. The signal decay-time model takes the form
+\begin{align}
+S(t_{\rm rec};\tau_{\rm sim}^{H_c}) = f(t_{\rm rec};\tau_{\rm sim}^{H_c}) g(t_{\rm rec}) \beta(t_{\rm rec}),
+\end{align}
+where $f(t_{\rm rec};\tau_{\rm sim}^{H_c})$ is a signal template of reconstructed decay times obtained from the full LHCb simulation
+with input lifetime $\tau_{\rm sim}^{H_c}$. The selection requirements applied to the simulation are identical to those applied to the
+data. The function
+\begin{align}
+g(t_{\rm rec})=\exp(-t_{\rm rec}/\tau_{\rm fit}^{H_c}) / \exp(-t_{\rm rec}/\tau_{\rm sim}^{H_c})
+\label{eq:gt}
+\end{align}
+\noindent weights the simulated template with lifetime $\tau_{\rm sim}^{H_c}$ to a lifetime value
+$\tau_{\rm fit}^{H_c}$. Because the weighting function $g(t_{\rm rec})$ depends on 
+the reconstructed decay time, $t_{\rm rec}$, rather than the true decay time, there is a dependence of 
+$S(t_{\rm rec};\tau_{\rm sim}^{H_c})$ on the $\tau_{\rm sim}^{H_c}$ value used to generate the template.
+The simulation uses the known $\Dp$ lifetime, $\tau_{\rm sim}^{\Dp}=1040$~fs, which is accurately measured
+by many experiments~\cite{PDG2018}. 
+Since the charm-baryon lifetimes in this analysis are expected to have a better precision 
+than the existing world average values, a number of different $\tau_{\rm sim}^{H_c}$ templates are produced.
+An optimization procedure, as described below, is used to determine the
+best choice of $\tau_{\rm sim}^{H_c}$ to use for the charm-baryon templates.
+The simulation includes contributions from $H_c\taum\neutb X$ final states as well as excited charm hadrons.
+
+The function $\beta(t_{\rm rec})$ corrects for a small difference in the efficiency
+between data and simulation for reconstructing tracks in the vertex detector that originate far from the beamline~\cite{LHCb-PAPER-2013-065}. 
+As discussed in Ref.~\cite{LHCb-PAPER-2018-028}, $\beta(t)$ is calibrated using the precisely known value of the $\Dp$ lifetime,
+from which it is found that $\beta(t_{\rm rec}) = 1+\beta_0 t_{\rm rec}$, with
+$\beta_0 = (-0.89\pm0.32)\times10^{-2}$~ps$^{-1}$.  The result of the binned $\chi^2$ fit to the $\Dp$ decay-time spectrum 
+after this correction is applied is shown in Fig.~\ref{fig:XcDecaytimeRatioFits}\,(top left), where the fitted lifetime is 
+found to be ${\tau_{\rm fit}^{\Dp}=1042.0\pm1.7\stat~\rm{fs}}$. The inclusion of the $\beta(t)$ term in $S(t_{\rm rec})$ amounts to about a 
+1\% positive correction to the measured lifetime.
+
+Since beauty baryonic decays are not perfectly described by the simulation, the simulated events are weighted in bins of
+$(\pt,\eta)$ of the beauty baryon and the mass $m(H_c\mun)$ of the $H_c\mun$ system to match that which is
+observed in background-subtracted data. The simulation is also weighted to match all of the
+two-body invariant mass projections among the $H_c$ decay products. After all of these weights are applied, excellent agreement
+is seen for a wide range of observables in these decays, most notably those that are used in the BDT. These 
+weights are applied in the formation of the $f(t_{\rm rec};\tau_{\rm sim}^{H_c})$ templates. 
+
+The lifetime of each charmed baryon is determined from a simultaneous fit to its decay-time spectrum and that
+of the $\Dp$ meson. In these fits, $\tau_{\rm fit}^{H_c}$ in Eq.~\eqref{eq:gt} is replaced by $r_{H_c}\tau_{\rm fit}^{\Dp}$
+in order to reduce systematic uncertainties. Thus,
+the free parameters in the fit are $r_{H_c}$, as shown in Eq.~\eqref{eq:rtau}, and $\tau_{\rm fit}^{\Dp}$. 
+In the $\Xicz$ decay-time fit, $\beta_0$ is scaled by 4/3 since the effect scales with the number of charged 
+final-state particles in the $H_c$ decay~\cite{LHCb-PAPER-2013-065}.
+
+The procedure for determining the optimal values of $\tau_{\rm sim}^{H_c}$ to use in forming the templates $f(t_{\rm rec};\tau_{\rm sim}^{H_c})$ 
+is first developed and validated using simulation. A series of templates, $f_i(t_{\rm rec};\tau_{\rm sim}^{H_c})$, spanning a wide range of 
+$\tau_{\rm sim}^{H_c}$ values is produced for
+each charm baryon. From one template with true lifetime $\tau_{\rm sim}^{H_c,\rm true}$, a pseudo-dataset set of decay times is formed that has comparable yield to 
+that of the data. The decay-time fit is then performed using each template $f_i(t_{\rm rec};\tau_{\rm sim}^{H_c})$ to this pseudo-dataset, with each fit yielding a value of 
+$\tau_{\rm fit}$ and a $\chi^2$ of the fit. Examination of the results show, as expected, that when the pseudo-dataset are fit using the correct template, 
+$\tau_{\rm fit}$ is consistent with $\tau_{\rm sim}^{H_c, \rm true}$. 
+Conversely, when the same pseudo-dataset is fit with an alternate template that is produced with a significantly different input 
+value of $\tau_{\rm sim}^{H_c}$, $\tau_{\rm fit}$ deviates from $\tau_{\rm sim}^{H_c, \rm true}$. Thus the criterion for choosing the optimal template is to 
+select that in which $\tau_{\rm fit}$ is closest to $\tau_{\rm sim}^{H_c}$. The chosen template is also found to have the lowest fit $\chi^2$, 
+which provides additional support for the method of determining the optimal template. 
+
+Applying this same criterion to the data, the optimal values of $\tau_{\rm sim}^{H_c}$ are found to be $\tau_{\rm sim}^{\Lc}=203$~fs, $\tau_{\rm sim}^{\Xicp}=455$~fs, 
+and $\tau_{\rm sim}^{\Xicz}=155$~fs. As with the pseudo-data, these optimal values also yield the lowest $\chi^2$ value for the
+decay-time fit. Slightly different values of $\tau_{\rm sim}^{H_c}$ are not excluded by the procedure, and are considered as a source of
+systematic uncertainty.
+
+The results of the fits to the $\Lc$, $\Xicp$ and $\Xicz$ decay-time distributions using the best-fit templates are 
+shown in Fig.~\ref{fig:XcDecaytimeRatioFits}\, and corresponds to the ratios
+\begin{align*}
+  r_{\Lc} &= 0.1956\pm0.0010, \\
+  r_{\Xicp} &= 0.4392\pm0.0034, \\
+  r_{\Xicz} &= 0.1485\pm0.0017,
+\end{align*}
+\noindent where the uncertainties are statistical only.
+Multiplying these ratios by the $\Dp$ lifetime~\cite{PDG2018}, leads to the lifetimes
+\begin{align*}
+  \tau_{\Lc} &= 203.5\pm1.0~{\rm fs}, \\
+  \tau_{\Xicp} &= 456.8\pm3.5~{\rm fs}, \\
+  \tau_{\Xicz} &= 154.5\pm1.7~{\rm fs}.
+\end{align*}
+\noindent The statistical precision of these measurements is 
+5--8 times better than those of the current world average values~\cite{PDG2018}. 
+
+A number of sources of systematic uncertainty on the measured ratios $r_{H_c}$ are summarized in Table~\ref{tab:CharmSyst}.
+The decay-time acceptance correction, $\beta(t_{\rm rec})$, leads to an uncertainty of 0.5\% on $r_{H_c}$. This uncertainty includes a contribution from 
+the finite $B\to\Dp\mun X$ sample sizes and the choice of fit function. 
+
+The technique for finding the correct template is based on choosing that in which the fitted lifetime is most consistent with the
+value used in the simulation. The uncertainty due to this choice is estimated by repeating the decay-time fit using
+alternative templates that have simulated lifetimes that differ from the nominal one by 
+two times the uncertainty on the fitted lifetime. The difference between the fitted values of $r_{H_c}$ for these 
+alternative templates and the nominal one is assigned as a systematic uncertainty.
+
+The $\Lb$, $\Xibz$ and $\Xibm$ lifetimes are not known precisely, and this has a small effect on the decay-time
+acceptance. To study this effect, simulated decays are weighted to produce either a shorter or longer $H_b$ lifetime,
+based on the known uncertainties on the $b$-baryon lifetimes~\cite{PDG2018}. New signal templates are formed, 
+and the fits are repeated. The change in the fitted value of $r_{H_c}$ is assigned as a systematic uncertainty.
+
+Studies of the $\Dp$ calibration mode show a small difference in the reconstruction efficiency between data and simulation,
+which is described by the $\beta_0$ parameter. This parameter has a small dependence on the $\pt$ and $\eta$ of the $H_b$ hadron. 
+While the signal mode simulations are weighted to match the ($\pt$, $\eta$) spectrum observed in data, the weighting is imperfect.
+A difference would lead to a small bias in the average value of $\beta_0$. 
+The uncertainty on $r_{H_c}$ is obtained by taking into account the variation of $\beta_0$ in different 
+$\pt$ and $\eta$ ranges, and the extent to which the ($\pt$, $\eta$) spectrum differs between data and simulation
+for each of the decay modes.
+
+The decay-time resolution is checked by comparing the $\Dz$ decay-time spectra in
+$\Bm\to\Dz\pim$ decays between data and simulation, where no explicit requirement on the $\Dz$ flight distance is applied.
+The simulation reproduces the data well. A second check is performed where the $\Lc$ lifetime 
+is fitted using a template that is produced with an additional smearing which increases the decay-time resolution by 2.5\%. 
+The change increases the fit $\chisq$ substantially,
+with only a small change of 0.3~fs in the fitted lifetime. This difference is considered negligible, and no systematic
+uncertainty due to modeling the decay-time resolution is assigned.
+
+The method for background subtraction uses the \sPlot technique, which relies on a specific choice for modeling the 
+signal and background distributions in the charm-hadron invariant-mass spectra. To quantify a possible systematic effect on $r_{H_c}$,
+the decay-time spectra in data are obtained using a different background-subtraction technique. Instead of the \sPlot method,
+signal and sideband regions are defined for each of the mass spectra, and for each charm baryon the decay-time spectrum of candidates
+from the sideband regions are subtracted from the spectrum obtained from the signal region. The resulting background-subtracted
+decay-time spectra are then fitted using the decay-time fit described previously. The difference between this result and the nominal 
+one is assigned as a systematic uncertainty. 
+
+The decay-time spectra in the $H_c\mun$ samples have small contributions from random combinations of
+$H_c$ and $\mun$ candidates [($0.8\pm0.2)$\% of the signal], as well as backgrounds where the muon 
+comes from either a $\taum$ [($1.8\pm0.3$)\%] or a semileptonic $D$ decay [($0.5\pm0.2)$\%]. The impact of these 
+backgrounds is assessed using pseudoexperiments, as described in Ref.~\cite{LHCb-PAPER-2018-028}.
+
+The systematic uncertainty due to the finite size of the simulated samples used to produce the signal templates
+is assessed by repeating the fit to the data many times, where in each fit the
+simulated-template bin contents are fluctuated within their uncertainties. The standard deviation of the distribution of the
+fitted $r_{H_c}$ values is assigned as a systematic uncertainty.  The total systematic uncertainty on $r_{H_c}$ is about 0.6\% for
+the $\Lc$ and $\Xicp$ measurements, and about 1.2\% for that of the $\Xicz$ baryon.
+
+\begin{table*}[tb]
+\begin{center}
+\caption{\small{Summary of systematic uncertainties on the ratio of the charm baryon to $\Dp$ meson lifetimes (in units of $10^{-4}$).
+The statistical uncertainty on the measurements is also provided for reference.}}
+\begin{tabular}{lccc}
+\hline\hline
+Source                         & $r_{\Lc}$ & $r_{\Xicp}$ & $r_{\Xicz}$ \\
+\\ [-2.5ex]
+\hline          
+Decay-time acceptance                     &   6     &      13      &      4         \\
+$H_c$ lifetime                            &   4     &       4      &      12         \\
+$H_b$ lifetime                            &   1      &      3      &      0         \\
+$H_b$ production spectra                  &    2     &      4      &      1         \\
+Background subtraction                    &    8     &      17     &      7         \\
+$H_c(\taum,~D$, random $\mun$)            &    5     &      11     &      3         \\
+Simulated sample size                     &    4     &      13     &       5        \\
+\hline
+Total systematic                          &    13     &     28     &     16      \\
+\hline
+Statistical uncertainty                   &    10     &     34     &     17        \\
+\hline\hline
+\end{tabular}
+\label{tab:CharmSyst}
+\end{center}
+\end{table*}
+
+In summary, $pp$ collision data samples at 7\tev and 8\tev center-of-mass energies collected by the LHCb experiment,
+corresponding to 3.0\invfb of integrated luminosity, are used to measure the lifetimes of the $\Lc$, $\Xicp$ and $\Xicz$ baryons. 
+For the $\Lc$ and $\Dp$ samples, only 10\% of the integrated luminosity is used for this measurement.
+The lifetimes, measured relative to that of the $\Dp$ meson, are determined to be
+\begin{align*}
+  r_{\Lc} &= 0.1956\pm0.0010\pm0.0013, \\
+  r_{\Xicp} &= 0.4392\pm0.0034\pm0.0028, \\
+  r_{\Xicz} &= 0.1485\pm0.0017\pm0.0016,
+\end{align*}
+\noindent where the first uncertainty is statistical and the second is systematic. After multiplying by the
+known $\Dp$ lifetime of $1040\pm7$~fs~\cite{PDG2018}, the charm-baryon lifetimes are measured to be
+\begin{align*}
+  \tau_{\Lc} &= 203.5\pm1.0\pm1.3\pm1.4~{\rm fs}, \\
+  \tau_{\Xicp} &= 456.8\pm3.5\pm2.9\pm3.1~{\rm fs}, \\
+  \tau_{\Xicz} &= 154.5\pm1.7\pm1.6\pm1.0~{\rm fs},
+\end{align*}
+\noindent where the last uncertainty is due to the uncertainty in the $\Dp$ lifetime. 
+The $\Lc$ and $\Xicp$ lifetimes are measured with about 1\% precision and are consistent with the existing world averages.
+The $\Xicz$ lifetime is measured with about 1.8\% precision, and is $3.3\sigma$ larger than the world average value of 
+$112^{+13}_{-10}$~fs. These measurements have uncertainties that are approximately 3--4 times smaller than those of the existing 
+world average values, and have precision comparable to that achieved for charm mesons.
+
+ 
+
+\section*{Acknowledgements}
+\noindent 
+We express our gratitude to our colleagues in the CERN
+accelerator departments for the excellent performance of the LHC. We
+thank the technical and administrative staff at the LHCb
+institutes. We acknowledge support from CERN and from the national agencies:
+CAPES, CNPq, FAPERJ and FINEP (Brazil); 
+MOST and NSFC (China); CNRS/IN2P3 (France); 
+BMBF, DFG and MPG (Germany); 
+INFN (Italy); 
+NWO (Netherlands); 
+MNiSW and NCN (Poland); 
+MEN/IFA (Romania); 
+MSHE (Russia); 
+MinECo (Spain); 
+SNSF and SER (Switzerland); 
+NASU (Ukraine); 
+STFC (United Kingdom); 
+DOE NP and NSF (USA).
+We acknowledge the computing resources that are provided by CERN, IN2P3
+(France), KIT and DESY (Germany), INFN (Italy), SURF (Netherlands),
+PIC (Spain), GridPP (United Kingdom), RRCKI and Yandex
+LLC (Russia), CSCS (Switzerland), IFIN-HH (Romania), CBPF (Brazil),
+PL-GRID (Poland) and OSC (USA).
+We are indebted to the communities behind the multiple open-source
+software packages on which we depend.
+Individual groups or members have received support from
+AvH Foundation (Germany);
+EPLANET, Marie Sk\l{}odowska-Curie Actions and ERC (European Union);
+ANR, Labex P2IO and OCEVU, and R\'{e}gion Auvergne-Rh\^{o}ne-Alpes (France);
+Key Research Program of Frontier Sciences of CAS, CAS PIFI, and the Thousand Talents Program (China);
+RFBR, RSF and Yandex LLC (Russia);
+GVA, XuntaGal and GENCAT (Spain);
+the Royal Society
+and the Leverhulme Trust (United Kingdom).
+
+ 
+\clearpage
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{LHCb}
+\bibliography{main,standard,LHCb-PAPER,LHCb-CONF,LHCb-DP,LHCb-TDR,steve}
+ 
+\newpage
+\centerline
+{\large\bf LHCb collaboration}
+\begin
+{flushleft}
+\small
+R.~Aaij$^{29}$,
+C.~Abell{\'a}n~Beteta$^{46}$,
+B.~Adeva$^{43}$,
+M.~Adinolfi$^{50}$,
+C.A.~Aidala$^{77}$,
+Z.~Ajaltouni$^{7}$,
+S.~Akar$^{61}$,
+P.~Albicocco$^{20}$,
+J.~Albrecht$^{12}$,
+F.~Alessio$^{44}$,
+M.~Alexander$^{55}$,
+A.~Alfonso~Albero$^{42}$,
+G.~Alkhazov$^{35}$,
+P.~Alvarez~Cartelle$^{57}$,
+A.A.~Alves~Jr$^{43}$,
+S.~Amato$^{2}$,
+Y.~Amhis$^{9}$,
+L.~An$^{19}$,
+L.~Anderlini$^{19}$,
+G.~Andreassi$^{45}$,
+M.~Andreotti$^{18}$,
+J.E.~Andrews$^{62}$,
+F.~Archilli$^{29}$,
+J.~Arnau~Romeu$^{8}$,
+A.~Artamonov$^{41}$,
+M.~Artuso$^{63}$,
+K.~Arzymatov$^{39}$,
+E.~Aslanides$^{8}$,
+M.~Atzeni$^{46}$,
+B.~Audurier$^{24}$,
+S.~Bachmann$^{14}$,
+J.J.~Back$^{52}$,
+S.~Baker$^{57}$,
+V.~Balagura$^{9,b}$,
+W.~Baldini$^{18,44}$,
+A.~Baranov$^{39}$,
+R.J.~Barlow$^{58}$,
+S.~Barsuk$^{9}$,
+W.~Barter$^{57}$,
+M.~Bartolini$^{21}$,
+F.~Baryshnikov$^{73}$,
+V.~Batozskaya$^{33}$,
+B.~Batsukh$^{63}$,
+A.~Battig$^{12}$,
+V.~Battista$^{45}$,
+A.~Bay$^{45}$,
+F.~Bedeschi$^{26}$,
+I.~Bediaga$^{1}$,
+A.~Beiter$^{63}$,
+L.J.~Bel$^{29}$,
+S.~Belin$^{24}$,
+N.~Beliy$^{4}$,
+V.~Bellee$^{45}$,
+N.~Belloli$^{22,i}$,
+K.~Belous$^{41}$,
+I.~Belyaev$^{36}$,
+G.~Bencivenni$^{20}$,
+E.~Ben-Haim$^{10}$,
+S.~Benson$^{29}$,
+S.~Beranek$^{11}$,
+A.~Berezhnoy$^{37}$,
+R.~Bernet$^{46}$,
+D.~Berninghoff$^{14}$,
+E.~Bertholet$^{10}$,
+A.~Bertolin$^{25}$,
+C.~Betancourt$^{46}$,
+F.~Betti$^{17,e}$,
+M.O.~Bettler$^{51}$,
+Ia.~Bezshyiko$^{46}$,
+S.~Bhasin$^{50}$,
+J.~Bhom$^{31}$,
+M.S.~Bieker$^{12}$,
+S.~Bifani$^{49}$,
+P.~Billoir$^{10}$,
+A.~Birnkraut$^{12}$,
+A.~Bizzeti$^{19,u}$,
+M.~Bj{\o}rn$^{59}$,
+M.P.~Blago$^{44}$,
+T.~Blake$^{52}$,
+F.~Blanc$^{45}$,
+S.~Blusk$^{63}$,
+D.~Bobulska$^{55}$,
+V.~Bocci$^{28}$,
+O.~Boente~Garcia$^{43}$,
+T.~Boettcher$^{60}$,
+A.~Bondar$^{40,x}$,
+N.~Bondar$^{35}$,
+S.~Borghi$^{58,44}$,
+M.~Borisyak$^{39}$,
+M.~Borsato$^{14}$,
+M.~Boubdir$^{11}$,
+T.J.V.~Bowcock$^{56}$,
+C.~Bozzi$^{18,44}$,
+S.~Braun$^{14}$,
+M.~Brodski$^{44}$,
+J.~Brodzicka$^{31}$,
+A.~Brossa~Gonzalo$^{52}$,
+D.~Brundu$^{24,44}$,
+E.~Buchanan$^{50}$,
+A.~Buonaura$^{46}$,
+C.~Burr$^{58}$,
+A.~Bursche$^{24}$,
+J.S.~Butter$^{29}$,
+J.~Buytaert$^{44}$,
+W.~Byczynski$^{44}$,
+S.~Cadeddu$^{24}$,
+H.~Cai$^{67}$,
+R.~Calabrese$^{18,g}$,
+S.~Cali$^{20}$,
+R.~Calladine$^{49}$,
+M.~Calvi$^{22,i}$,
+M.~Calvo~Gomez$^{42,m}$,
+A.~Camboni$^{42,m}$,
+P.~Campana$^{20}$,
+D.H.~Campora~Perez$^{44}$,
+L.~Capriotti$^{17,e}$,
+A.~Carbone$^{17,e}$,
+G.~Carboni$^{27}$,
+R.~Cardinale$^{21}$,
+A.~Cardini$^{24}$,
+P.~Carniti$^{22,i}$,
+K.~Carvalho~Akiba$^{2}$,
+G.~Casse$^{56}$,
+M.~Cattaneo$^{44}$,
+G.~Cavallero$^{21}$,
+R.~Cenci$^{26,p}$,
+M.G.~Chapman$^{50}$,
+M.~Charles$^{10,44}$,
+Ph.~Charpentier$^{44}$,
+G.~Chatzikonstantinidis$^{49}$,
+M.~Chefdeville$^{6}$,
+V.~Chekalina$^{39}$,
+C.~Chen$^{3}$,
+S.~Chen$^{24}$,
+S.-G.~Chitic$^{44}$,
+V.~Chobanova$^{43}$,
+M.~Chrzaszcz$^{44}$,
+A.~Chubykin$^{35}$,
+P.~Ciambrone$^{20}$,
+X.~Cid~Vidal$^{43}$,
+G.~Ciezarek$^{44}$,
+F.~Cindolo$^{17}$,
+P.E.L.~Clarke$^{54}$,
+M.~Clemencic$^{44}$,
+H.V.~Cliff$^{51}$,
+J.~Closier$^{44}$,
+V.~Coco$^{44}$,
+J.A.B.~Coelho$^{9}$,
+J.~Cogan$^{8}$,
+E.~Cogneras$^{7}$,
+L.~Cojocariu$^{34}$,
+P.~Collins$^{44}$,
+T.~Colombo$^{44}$,
+A.~Comerma-Montells$^{14}$,
+A.~Contu$^{24}$,
+G.~Coombs$^{44}$,
+S.~Coquereau$^{42}$,
+G.~Corti$^{44}$,
+C.M.~Costa~Sobral$^{52}$,
+B.~Couturier$^{44}$,
+G.A.~Cowan$^{54}$,
+D.C.~Craik$^{60}$,
+A.~Crocombe$^{52}$,
+M.~Cruz~Torres$^{1}$,
+R.~Currie$^{54}$,
+C.L.~Da~Silva$^{78}$,
+E.~Dall'Occo$^{29}$,
+J.~Dalseno$^{43,v}$,
+C.~D'Ambrosio$^{44}$,
+A.~Danilina$^{36}$,
+P.~d'Argent$^{14}$,
+A.~Davis$^{58}$,
+O.~De~Aguiar~Francisco$^{44}$,
+K.~De~Bruyn$^{44}$,
+S.~De~Capua$^{58}$,
+M.~De~Cian$^{45}$,
+J.M.~De~Miranda$^{1}$,
+L.~De~Paula$^{2}$,
+M.~De~Serio$^{16,d}$,
+P.~De~Simone$^{20}$,
+J.A.~de~Vries$^{29}$,
+C.T.~Dean$^{55}$,
+W.~Dean$^{77}$,
+D.~Decamp$^{6}$,
+L.~Del~Buono$^{10}$,
+B.~Delaney$^{51}$,
+H.-P.~Dembinski$^{13}$,
+M.~Demmer$^{12}$,
+A.~Dendek$^{32}$,
+D.~Derkach$^{74}$,
+O.~Deschamps$^{7}$,
+F.~Desse$^{9}$,
+F.~Dettori$^{24}$,
+B.~Dey$^{68}$,
+A.~Di~Canto$^{44}$,
+P.~Di~Nezza$^{20}$,
+S.~Didenko$^{73}$,
+H.~Dijkstra$^{44}$,
+F.~Dordei$^{24}$,
+M.~Dorigo$^{26,y}$,
+A.C.~dos~Reis$^{1}$,
+A.~Dosil~Su{\'a}rez$^{43}$,
+L.~Douglas$^{55}$,
+A.~Dovbnya$^{47}$,
+K.~Dreimanis$^{56}$,
+L.~Dufour$^{44}$,
+G.~Dujany$^{10}$,
+P.~Durante$^{44}$,
+J.M.~Durham$^{78}$,
+D.~Dutta$^{58}$,
+R.~Dzhelyadin$^{41,\dagger}$,
+M.~Dziewiecki$^{14}$,
+A.~Dziurda$^{31}$,
+A.~Dzyuba$^{35}$,
+S.~Easo$^{53}$,
+U.~Egede$^{57}$,
+V.~Egorychev$^{36}$,
+S.~Eidelman$^{40,x}$,
+S.~Eisenhardt$^{54}$,
+U.~Eitschberger$^{12}$,
+R.~Ekelhof$^{12}$,
+L.~Eklund$^{55}$,
+S.~Ely$^{63}$,
+A.~Ene$^{34}$,
+S.~Escher$^{11}$,
+S.~Esen$^{29}$,
+T.~Evans$^{61}$,
+A.~Falabella$^{17}$,
+C.~F{\"a}rber$^{44}$,
+N.~Farley$^{49}$,
+S.~Farry$^{56}$,
+D.~Fazzini$^{22,i}$,
+M.~F{\'e}o$^{44}$,
+P.~Fernandez~Declara$^{44}$,
+A.~Fernandez~Prieto$^{43}$,
+F.~Ferrari$^{17,e}$,
+L.~Ferreira~Lopes$^{45}$,
+F.~Ferreira~Rodrigues$^{2}$,
+S.~Ferreres~Sole$^{29}$,
+M.~Ferro-Luzzi$^{44}$,
+S.~Filippov$^{38}$,
+R.A.~Fini$^{16}$,
+M.~Fiorini$^{18,g}$,
+M.~Firlej$^{32}$,
+C.~Fitzpatrick$^{44}$,
+T.~Fiutowski$^{32}$,
+F.~Fleuret$^{9,b}$,
+M.~Fontana$^{44}$,
+F.~Fontanelli$^{21,h}$,
+R.~Forty$^{44}$,
+V.~Franco~Lima$^{56}$,
+M.~Frank$^{44}$,
+C.~Frei$^{44}$,
+J.~Fu$^{23,q}$,
+W.~Funk$^{44}$,
+E.~Gabriel$^{54}$,
+A.~Gallas~Torreira$^{43}$,
+D.~Galli$^{17,e}$,
+S.~Gallorini$^{25}$,
+S.~Gambetta$^{54}$,
+Y.~Gan$^{3}$,
+M.~Gandelman$^{2}$,
+P.~Gandini$^{23}$,
+Y.~Gao$^{3}$,
+L.M.~Garcia~Martin$^{76}$,
+J.~Garc{\'\i}a~Pardi{\~n}as$^{46}$,
+B.~Garcia~Plana$^{43}$,
+J.~Garra~Tico$^{51}$,
+L.~Garrido$^{42}$,
+D.~Gascon$^{42}$,
+C.~Gaspar$^{44}$,
+G.~Gazzoni$^{7}$,
+D.~Gerick$^{14}$,
+E.~Gersabeck$^{58}$,
+M.~Gersabeck$^{58}$,
+T.~Gershon$^{52}$,
+D.~Gerstel$^{8}$,
+Ph.~Ghez$^{6}$,
+V.~Gibson$^{51}$,
+O.G.~Girard$^{45}$,
+P.~Gironella~Gironell$^{42}$,
+L.~Giubega$^{34}$,
+K.~Gizdov$^{54}$,
+V.V.~Gligorov$^{10}$,
+C.~G{\"o}bel$^{65}$,
+D.~Golubkov$^{36}$,
+A.~Golutvin$^{57,73}$,
+A.~Gomes$^{1,a}$,
+I.V.~Gorelov$^{37}$,
+C.~Gotti$^{22,i}$,
+E.~Govorkova$^{29}$,
+J.P.~Grabowski$^{14}$,
+R.~Graciani~Diaz$^{42}$,
+L.A.~Granado~Cardoso$^{44}$,
+E.~Graug{\'e}s$^{42}$,
+E.~Graverini$^{46}$,
+G.~Graziani$^{19}$,
+A.~Grecu$^{34}$,
+R.~Greim$^{29}$,
+P.~Griffith$^{24}$,
+L.~Grillo$^{58}$,
+L.~Gruber$^{44}$,
+B.R.~Gruberg~Cazon$^{59}$,
+C.~Gu$^{3}$,
+E.~Gushchin$^{38}$,
+A.~Guth$^{11}$,
+Yu.~Guz$^{41,44}$,
+T.~Gys$^{44}$,
+T.~Hadavizadeh$^{59}$,
+C.~Hadjivasiliou$^{7}$,
+G.~Haefeli$^{45}$,
+C.~Haen$^{44}$,
+S.C.~Haines$^{51}$,
+P.M.~Hamilton$^{62}$,
+Q.~Han$^{68}$,
+X.~Han$^{14}$,
+T.H.~Hancock$^{59}$,
+S.~Hansmann-Menzemer$^{14}$,
+N.~Harnew$^{59}$,
+T.~Harrison$^{56}$,
+C.~Hasse$^{44}$,
+M.~Hatch$^{44}$,
+J.~He$^{4}$,
+M.~Hecker$^{57}$,
+K.~Heinicke$^{12}$,
+A.~Heister$^{12}$,
+K.~Hennessy$^{56}$,
+L.~Henry$^{76}$,
+M.~He{\ss}$^{70}$,
+J.~Heuel$^{11}$,
+A.~Hicheur$^{64}$,
+R.~Hidalgo~Charman$^{58}$,
+D.~Hill$^{59}$,
+M.~Hilton$^{58}$,
+P.H.~Hopchev$^{45}$,
+J.~Hu$^{14}$,
+W.~Hu$^{68}$,
+W.~Huang$^{4}$,
+Z.C.~Huard$^{61}$,
+W.~Hulsbergen$^{29}$,
+T.~Humair$^{57}$,
+M.~Hushchyn$^{74}$,
+D.~Hutchcroft$^{56}$,
+D.~Hynds$^{29}$,
+P.~Ibis$^{12}$,
+M.~Idzik$^{32}$,
+P.~Ilten$^{49}$,
+A.~Inglessi$^{35}$,
+A.~Inyakin$^{41}$,
+K.~Ivshin$^{35}$,
+R.~Jacobsson$^{44}$,
+S.~Jakobsen$^{44}$,
+J.~Jalocha$^{59}$,
+E.~Jans$^{29}$,
+B.K.~Jashal$^{76}$,
+A.~Jawahery$^{62}$,
+F.~Jiang$^{3}$,
+M.~John$^{59}$,
+D.~Johnson$^{44}$,
+C.R.~Jones$^{51}$,
+C.~Joram$^{44}$,
+B.~Jost$^{44}$,
+N.~Jurik$^{59}$,
+S.~Kandybei$^{47}$,
+M.~Karacson$^{44}$,
+J.M.~Kariuki$^{50}$,
+S.~Karodia$^{55}$,
+N.~Kazeev$^{74}$,
+M.~Kecke$^{14}$,
+F.~Keizer$^{51}$,
+M.~Kelsey$^{63}$,
+M.~Kenzie$^{51}$,
+T.~Ketel$^{30}$,
+B.~Khanji$^{44}$,
+A.~Kharisova$^{75}$,
+C.~Khurewathanakul$^{45}$,
+K.E.~Kim$^{63}$,
+T.~Kirn$^{11}$,
+V.S.~Kirsebom$^{45}$,
+S.~Klaver$^{20}$,
+K.~Klimaszewski$^{33}$,
+S.~Koliiev$^{48}$,
+M.~Kolpin$^{14}$,
+R.~Kopecna$^{14}$,
+P.~Koppenburg$^{29}$,
+I.~Kostiuk$^{29,48}$,
+S.~Kotriakhova$^{35}$,
+M.~Kozeiha$^{7}$,
+L.~Kravchuk$^{38}$,
+M.~Kreps$^{52}$,
+F.~Kress$^{57}$,
+S.~Kretzschmar$^{11}$,
+P.~Krokovny$^{40,x}$,
+W.~Krupa$^{32}$,
+W.~Krzemien$^{33}$,
+W.~Kucewicz$^{31,l}$,
+M.~Kucharczyk$^{31}$,
+V.~Kudryavtsev$^{40,x}$,
+G.J.~Kunde$^{78}$,
+A.K.~Kuonen$^{45}$,
+T.~Kvaratskheliya$^{36}$,
+D.~Lacarrere$^{44}$,
+G.~Lafferty$^{58}$,
+A.~Lai$^{24}$,
+D.~Lancierini$^{46}$,
+G.~Lanfranchi$^{20}$,
+C.~Langenbruch$^{11}$,
+T.~Latham$^{52}$,
+C.~Lazzeroni$^{49}$,
+R.~Le~Gac$^{8}$,
+R.~Lef{\`e}vre$^{7}$,
+A.~Leflat$^{37}$,
+F.~Lemaitre$^{44}$,
+O.~Leroy$^{8}$,
+T.~Lesiak$^{31}$,
+B.~Leverington$^{14}$,
+H.~Li$^{66}$,
+P.-R.~Li$^{4,ab}$,
+X.~Li$^{78}$,
+Y.~Li$^{5}$,
+Z.~Li$^{63}$,
+X.~Liang$^{63}$,
+T.~Likhomanenko$^{72}$,
+R.~Lindner$^{44}$,
+F.~Lionetto$^{46}$,
+V.~Lisovskyi$^{9}$,
+G.~Liu$^{66}$,
+X.~Liu$^{3}$,
+D.~Loh$^{52}$,
+A.~Loi$^{24}$,
+I.~Longstaff$^{55}$,
+J.H.~Lopes$^{2}$,
+G.~Loustau$^{46}$,
+G.H.~Lovell$^{51}$,
+D.~Lucchesi$^{25,o}$,
+M.~Lucio~Martinez$^{43}$,
+Y.~Luo$^{3}$,
+A.~Lupato$^{25}$,
+E.~Luppi$^{18,g}$,
+O.~Lupton$^{52}$,
+A.~Lusiani$^{26}$,
+X.~Lyu$^{4}$,
+F.~Machefert$^{9}$,
+F.~Maciuc$^{34}$,
+V.~Macko$^{45}$,
+P.~Mackowiak$^{12}$,
+S.~Maddrell-Mander$^{50}$,
+O.~Maev$^{35,44}$,
+K.~Maguire$^{58}$,
+D.~Maisuzenko$^{35}$,
+M.W.~Majewski$^{32}$,
+S.~Malde$^{59}$,
+B.~Malecki$^{44}$,
+A.~Malinin$^{72}$,
+T.~Maltsev$^{40,x}$,
+H.~Malygina$^{14}$,
+G.~Manca$^{24,f}$,
+G.~Mancinelli$^{8}$,
+D.~Marangotto$^{23,q}$,
+J.~Maratas$^{7,w}$,
+J.F.~Marchand$^{6}$,
+U.~Marconi$^{17}$,
+C.~Marin~Benito$^{9}$,
+M.~Marinangeli$^{45}$,
+P.~Marino$^{45}$,
+J.~Marks$^{14}$,
+P.J.~Marshall$^{56}$,
+G.~Martellotti$^{28}$,
+M.~Martinelli$^{44,22,i}$,
+D.~Martinez~Santos$^{43}$,
+F.~Martinez~Vidal$^{76}$,
+A.~Massafferri$^{1}$,
+M.~Materok$^{11}$,
+R.~Matev$^{44}$,
+A.~Mathad$^{46}$,
+Z.~Mathe$^{44}$,
+V.~Matiunin$^{36}$,
+C.~Matteuzzi$^{22}$,
+K.R.~Mattioli$^{77}$,
+A.~Mauri$^{46}$,
+E.~Maurice$^{9,b}$,
+B.~Maurin$^{45}$,
+M.~McCann$^{57,44}$,
+A.~McNab$^{58}$,
+R.~McNulty$^{15}$,
+J.V.~Mead$^{56}$,
+B.~Meadows$^{61}$,
+C.~Meaux$^{8}$,
+N.~Meinert$^{70}$,
+D.~Melnychuk$^{33}$,
+M.~Merk$^{29}$,
+A.~Merli$^{23,q}$,
+E.~Michielin$^{25}$,
+D.A.~Milanes$^{69}$,
+E.~Millard$^{52}$,
+M.-N.~Minard$^{6}$,
+O.~Mineev$^{36}$,
+L.~Minzoni$^{18,g}$,
+D.S.~Mitzel$^{14}$,
+A.~M{\"o}dden$^{12}$,
+A.~Mogini$^{10}$,
+R.D.~Moise$^{57}$,
+T.~Momb{\"a}cher$^{12}$,
+I.A.~Monroy$^{69}$,
+S.~Monteil$^{7}$,
+M.~Morandin$^{25}$,
+G.~Morello$^{20}$,
+M.J.~Morello$^{26,t}$,
+J.~Moron$^{32}$,
+A.B.~Morris$^{8}$,
+R.~Mountain$^{63}$,
+F.~Muheim$^{54}$,
+M.~Mukherjee$^{68}$,
+M.~Mulder$^{29}$,
+D.~M{\"u}ller$^{44}$,
+J.~M{\"u}ller$^{12}$,
+K.~M{\"u}ller$^{46}$,
+V.~M{\"u}ller$^{12}$,
+C.H.~Murphy$^{59}$,
+D.~Murray$^{58}$,
+P.~Naik$^{50}$,
+T.~Nakada$^{45}$,
+R.~Nandakumar$^{53}$,
+A.~Nandi$^{59}$,
+T.~Nanut$^{45}$,
+I.~Nasteva$^{2}$,
+M.~Needham$^{54}$,
+N.~Neri$^{23,q}$,
+S.~Neubert$^{14}$,
+N.~Neufeld$^{44}$,
+R.~Newcombe$^{57}$,
+T.D.~Nguyen$^{45}$,
+C.~Nguyen-Mau$^{45,n}$,
+S.~Nieswand$^{11}$,
+R.~Niet$^{12}$,
+N.~Nikitin$^{37}$,
+N.S.~Nolte$^{44}$,
+A.~Oblakowska-Mucha$^{32}$,
+V.~Obraztsov$^{41}$,
+S.~Ogilvy$^{55}$,
+D.P.~O'Hanlon$^{17}$,
+R.~Oldeman$^{24,f}$,
+C.J.G.~Onderwater$^{71}$,
+J. D.~Osborn$^{77}$,
+A.~Ossowska$^{31}$,
+J.M.~Otalora~Goicochea$^{2}$,
+T.~Ovsiannikova$^{36}$,
+P.~Owen$^{46}$,
+A.~Oyanguren$^{76}$,
+P.R.~Pais$^{45}$,
+T.~Pajero$^{26,t}$,
+A.~Palano$^{16}$,
+M.~Palutan$^{20}$,
+G.~Panshin$^{75}$,
+A.~Papanestis$^{53}$,
+M.~Pappagallo$^{54}$,
+L.L.~Pappalardo$^{18,g}$,
+W.~Parker$^{62}$,
+C.~Parkes$^{58,44}$,
+G.~Passaleva$^{19,44}$,
+A.~Pastore$^{16}$,
+M.~Patel$^{57}$,
+C.~Patrignani$^{17,e}$,
+A.~Pearce$^{44}$,
+A.~Pellegrino$^{29}$,
+G.~Penso$^{28}$,
+M.~Pepe~Altarelli$^{44}$,
+S.~Perazzini$^{17}$,
+D.~Pereima$^{36}$,
+P.~Perret$^{7}$,
+L.~Pescatore$^{45}$,
+K.~Petridis$^{50}$,
+A.~Petrolini$^{21,h}$,
+A.~Petrov$^{72}$,
+S.~Petrucci$^{54}$,
+M.~Petruzzo$^{23,q}$,
+B.~Pietrzyk$^{6}$,
+G.~Pietrzyk$^{45}$,
+M.~Pikies$^{31}$,
+M.~Pili$^{59}$,
+D.~Pinci$^{28}$,
+J.~Pinzino$^{44}$,
+F.~Pisani$^{44}$,
+A.~Piucci$^{14}$,
+V.~Placinta$^{34}$,
+S.~Playfer$^{54}$,
+J.~Plews$^{49}$,
+M.~Plo~Casasus$^{43}$,
+F.~Polci$^{10}$,
+M.~Poli~Lener$^{20}$,
+M.~Poliakova$^{63}$,
+A.~Poluektov$^{8}$,
+N.~Polukhina$^{73,c}$,
+I.~Polyakov$^{63}$,
+E.~Polycarpo$^{2}$,
+G.J.~Pomery$^{50}$,
+S.~Ponce$^{44}$,
+A.~Popov$^{41}$,
+D.~Popov$^{49,13}$,
+S.~Poslavskii$^{41}$,
+E.~Price$^{50}$,
+C.~Prouve$^{43}$,
+V.~Pugatch$^{48}$,
+A.~Puig~Navarro$^{46}$,
+H.~Pullen$^{59}$,
+G.~Punzi$^{26,p}$,
+W.~Qian$^{4}$,
+J.~Qin$^{4}$,
+R.~Quagliani$^{10}$,
+B.~Quintana$^{7}$,
+N.V.~Raab$^{15}$,
+B.~Rachwal$^{32}$,
+J.H.~Rademacker$^{50}$,
+M.~Rama$^{26}$,
+M.~Ramos~Pernas$^{43}$,
+M.S.~Rangel$^{2}$,
+F.~Ratnikov$^{39,74}$,
+G.~Raven$^{30}$,
+M.~Ravonel~Salzgeber$^{44}$,
+M.~Reboud$^{6}$,
+F.~Redi$^{45}$,
+S.~Reichert$^{12}$,
+F.~Reiss$^{10}$,
+C.~Remon~Alepuz$^{76}$,
+Z.~Ren$^{3}$,
+V.~Renaudin$^{59}$,
+S.~Ricciardi$^{53}$,
+S.~Richards$^{50}$,
+K.~Rinnert$^{56}$,
+P.~Robbe$^{9}$,
+A.~Robert$^{10}$,
+A.B.~Rodrigues$^{45}$,
+E.~Rodrigues$^{61}$,
+J.A.~Rodriguez~Lopez$^{69}$,
+M.~Roehrken$^{44}$,
+S.~Roiser$^{44}$,
+A.~Rollings$^{59}$,
+V.~Romanovskiy$^{41}$,
+A.~Romero~Vidal$^{43}$,
+J.D.~Roth$^{77}$,
+M.~Rotondo$^{20}$,
+M.S.~Rudolph$^{63}$,
+T.~Ruf$^{44}$,
+J.~Ruiz~Vidal$^{76}$,
+J.J.~Saborido~Silva$^{43}$,
+N.~Sagidova$^{35}$,
+B.~Saitta$^{24,f}$,
+V.~Salustino~Guimaraes$^{65}$,
+C.~Sanchez~Gras$^{29}$,
+C.~Sanchez~Mayordomo$^{76}$,
+B.~Sanmartin~Sedes$^{43}$,
+R.~Santacesaria$^{28}$,
+C.~Santamarina~Rios$^{43}$,
+M.~Santimaria$^{20,44}$,
+E.~Santovetti$^{27,j}$,
+G.~Sarpis$^{58}$,
+A.~Sarti$^{20,k}$,
+C.~Satriano$^{28,s}$,
+A.~Satta$^{27}$,
+M.~Saur$^{4}$,
+D.~Savrina$^{36,37}$,
+S.~Schael$^{11}$,
+M.~Schellenberg$^{12}$,
+M.~Schiller$^{55}$,
+H.~Schindler$^{44}$,
+M.~Schmelling$^{13}$,
+T.~Schmelzer$^{12}$,
+B.~Schmidt$^{44}$,
+O.~Schneider$^{45}$,
+A.~Schopper$^{44}$,
+H.F.~Schreiner$^{61}$,
+M.~Schubiger$^{45}$,
+S.~Schulte$^{45}$,
+M.H.~Schune$^{9}$,
+R.~Schwemmer$^{44}$,
+B.~Sciascia$^{20}$,
+A.~Sciubba$^{28,k}$,
+A.~Semennikov$^{36}$,
+E.S.~Sepulveda$^{10}$,
+A.~Sergi$^{49,44}$,
+N.~Serra$^{46}$,
+J.~Serrano$^{8}$,
+L.~Sestini$^{25}$,
+A.~Seuthe$^{12}$,
+P.~Seyfert$^{44}$,
+M.~Shapkin$^{41}$,
+T.~Shears$^{56}$,
+L.~Shekhtman$^{40,x}$,
+V.~Shevchenko$^{72}$,
+E.~Shmanin$^{73}$,
+B.G.~Siddi$^{18}$,
+R.~Silva~Coutinho$^{46}$,
+L.~Silva~de~Oliveira$^{2}$,
+G.~Simi$^{25,o}$,
+S.~Simone$^{16,d}$,
+I.~Skiba$^{18}$,
+N.~Skidmore$^{14}$,
+T.~Skwarnicki$^{63}$,
+M.W.~Slater$^{49}$,
+J.G.~Smeaton$^{51}$,
+E.~Smith$^{11}$,
+I.T.~Smith$^{54}$,
+M.~Smith$^{57}$,
+M.~Soares$^{17}$,
+l.~Soares~Lavra$^{1}$,
+M.D.~Sokoloff$^{61}$,
+F.J.P.~Soler$^{55}$,
+B.~Souza~De~Paula$^{2}$,
+B.~Spaan$^{12}$,
+E.~Spadaro~Norella$^{23,q}$,
+P.~Spradlin$^{55}$,
+F.~Stagni$^{44}$,
+M.~Stahl$^{14}$,
+S.~Stahl$^{44}$,
+P.~Stefko$^{45}$,
+S.~Stefkova$^{57}$,
+O.~Steinkamp$^{46}$,
+S.~Stemmle$^{14}$,
+O.~Stenyakin$^{41}$,
+M.~Stepanova$^{35}$,
+H.~Stevens$^{12}$,
+A.~Stocchi$^{9}$,
+S.~Stone$^{63}$,
+S.~Stracka$^{26}$,
+M.E.~Stramaglia$^{45}$,
+M.~Straticiuc$^{34}$,
+U.~Straumann$^{46}$,
+S.~Strokov$^{75}$,
+J.~Sun$^{3}$,
+L.~Sun$^{67}$,
+Y.~Sun$^{62}$,
+K.~Swientek$^{32}$,
+A.~Szabelski$^{33}$,
+T.~Szumlak$^{32}$,
+M.~Szymanski$^{4}$,
+Z.~Tang$^{3}$,
+T.~Tekampe$^{12}$,
+G.~Tellarini$^{18}$,
+F.~Teubert$^{44}$,
+E.~Thomas$^{44}$,
+M.J.~Tilley$^{57}$,
+V.~Tisserand$^{7}$,
+S.~T'Jampens$^{6}$,
+M.~Tobin$^{5}$,
+S.~Tolk$^{44}$,
+L.~Tomassetti$^{18,g}$,
+D.~Tonelli$^{26}$,
+D.Y.~Tou$^{10}$,
+R.~Tourinho~Jadallah~Aoude$^{1}$,
+E.~Tournefier$^{6}$,
+M.~Traill$^{55}$,
+M.T.~Tran$^{45}$,
+A.~Trisovic$^{51}$,
+A.~Tsaregorodtsev$^{8}$,
+G.~Tuci$^{26,44,p}$,
+A.~Tully$^{51}$,
+N.~Tuning$^{29}$,
+A.~Ukleja$^{33}$,
+A.~Usachov$^{9}$,
+A.~Ustyuzhanin$^{39,74}$,
+U.~Uwer$^{14}$,
+A.~Vagner$^{75}$,
+V.~Vagnoni$^{17}$,
+A.~Valassi$^{44}$,
+S.~Valat$^{44}$,
+G.~Valenti$^{17}$,
+M.~van~Beuzekom$^{29}$,
+H.~Van~Hecke$^{78}$,
+E.~van~Herwijnen$^{44}$,
+C.B.~Van~Hulse$^{15}$,
+J.~van~Tilburg$^{29}$,
+M.~van~Veghel$^{29}$,
+R.~Vazquez~Gomez$^{44}$,
+P.~Vazquez~Regueiro$^{43}$,
+C.~V{\'a}zquez~Sierra$^{29}$,
+S.~Vecchi$^{18}$,
+J.J.~Velthuis$^{50}$,
+M.~Veltri$^{19,r}$,
+A.~Venkateswaran$^{63}$,
+M.~Vernet$^{7}$,
+M.~Veronesi$^{29}$,
+M.~Vesterinen$^{52}$,
+J.V.~Viana~Barbosa$^{44}$,
+D.~Vieira$^{4}$,
+M.~Vieites~Diaz$^{43}$,
+H.~Viemann$^{70}$,
+X.~Vilasis-Cardona$^{42,m}$,
+A.~Vitkovskiy$^{29}$,
+M.~Vitti$^{51}$,
+V.~Volkov$^{37}$,
+A.~Vollhardt$^{46}$,
+D.~Vom~Bruch$^{10}$,
+B.~Voneki$^{44}$,
+A.~Vorobyev$^{35}$,
+V.~Vorobyev$^{40,x}$,
+N.~Voropaev$^{35}$,
+R.~Waldi$^{70}$,
+J.~Walsh$^{26}$,
+J.~Wang$^{5}$,
+M.~Wang$^{3}$,
+Y.~Wang$^{68}$,
+Z.~Wang$^{46}$,
+D.R.~Ward$^{51}$,
+H.M.~Wark$^{56}$,
+N.K.~Watson$^{49}$,
+D.~Websdale$^{57}$,
+A.~Weiden$^{46}$,
+C.~Weisser$^{60}$,
+M.~Whitehead$^{11}$,
+G.~Wilkinson$^{59}$,
+M.~Wilkinson$^{63}$,
+I.~Williams$^{51}$,
+M.~Williams$^{60}$,
+M.R.J.~Williams$^{58}$,
+T.~Williams$^{49}$,
+F.F.~Wilson$^{53}$,
+M.~Winn$^{9}$,
+W.~Wislicki$^{33}$,
+M.~Witek$^{31}$,
+G.~Wormser$^{9}$,
+S.A.~Wotton$^{51}$,
+K.~Wyllie$^{44}$,
+D.~Xiao$^{68}$,
+Y.~Xie$^{68}$,
+H.~Xing$^{66}$,
+A.~Xu$^{3}$,
+M.~Xu$^{68}$,
+Q.~Xu$^{4}$,
+Z.~Xu$^{6}$,
+Z.~Xu$^{3}$,
+Z.~Yang$^{3}$,
+Z.~Yang$^{62}$,
+Y.~Yao$^{63}$,
+L.E.~Yeomans$^{56}$,
+H.~Yin$^{68}$,
+J.~Yu$^{68,aa}$,
+X.~Yuan$^{63}$,
+O.~Yushchenko$^{41}$,
+K.A.~Zarebski$^{49}$,
+M.~Zavertyaev$^{13,c}$,
+M.~Zeng$^{3}$,
+D.~Zhang$^{68}$,
+L.~Zhang$^{3}$,
+W.C.~Zhang$^{3,z}$,
+Y.~Zhang$^{44}$,
+A.~Zhelezov$^{14}$,
+Y.~Zheng$^{4}$,
+X.~Zhu$^{3}$,
+V.~Zhukov$^{11,37}$,
+J.B.~Zonneveld$^{54}$,
+S.~Zucchelli$^{17,e}$.\bigskip
+
+{\footnotesize \it
+
+$ ^{1}$Centro Brasileiro de Pesquisas F{\'\i}sicas (CBPF), Rio de Janeiro, Brazil\\
+$ ^{2}$Universidade Federal do Rio de Janeiro (UFRJ), Rio de Janeiro, Brazil\\
+$ ^{3}$Center for High Energy Physics, Tsinghua University, Beijing, China\\
+$ ^{4}$University of Chinese Academy of Sciences, Beijing, China\\
+$ ^{5}$Institute Of High Energy Physics (ihep), Beijing, China\\
+$ ^{6}$Univ. Grenoble Alpes, Univ. Savoie Mont Blanc, CNRS, IN2P3-LAPP, Annecy, France\\
+$ ^{7}$Universit{\'e} Clermont Auvergne, CNRS/IN2P3, LPC, Clermont-Ferrand, France\\
+$ ^{8}$Aix Marseille Univ, CNRS/IN2P3, CPPM, Marseille, France\\
+$ ^{9}$LAL, Univ. Paris-Sud, CNRS/IN2P3, Universit{\'e} Paris-Saclay, Orsay, France\\
+$ ^{10}$LPNHE, Sorbonne Universit{\'e}, Paris Diderot Sorbonne Paris Cit{\'e}, CNRS/IN2P3, Paris, France\\
+$ ^{11}$I. Physikalisches Institut, RWTH Aachen University, Aachen, Germany\\
+$ ^{12}$Fakult{\"a}t Physik, Technische Universit{\"a}t Dortmund, Dortmund, Germany\\
+$ ^{13}$Max-Planck-Institut f{\"u}r Kernphysik (MPIK), Heidelberg, Germany\\
+$ ^{14}$Physikalisches Institut, Ruprecht-Karls-Universit{\"a}t Heidelberg, Heidelberg, Germany\\
+$ ^{15}$School of Physics, University College Dublin, Dublin, Ireland\\
+$ ^{16}$INFN Sezione di Bari, Bari, Italy\\
+$ ^{17}$INFN Sezione di Bologna, Bologna, Italy\\
+$ ^{18}$INFN Sezione di Ferrara, Ferrara, Italy\\
+$ ^{19}$INFN Sezione di Firenze, Firenze, Italy\\
+$ ^{20}$INFN Laboratori Nazionali di Frascati, Frascati, Italy\\
+$ ^{21}$INFN Sezione di Genova, Genova, Italy\\
+$ ^{22}$INFN Sezione di Milano-Bicocca, Milano, Italy\\
+$ ^{23}$INFN Sezione di Milano, Milano, Italy\\
+$ ^{24}$INFN Sezione di Cagliari, Monserrato, Italy\\
+$ ^{25}$INFN Sezione di Padova, Padova, Italy\\
+$ ^{26}$INFN Sezione di Pisa, Pisa, Italy\\
+$ ^{27}$INFN Sezione di Roma Tor Vergata, Roma, Italy\\
+$ ^{28}$INFN Sezione di Roma La Sapienza, Roma, Italy\\
+$ ^{29}$Nikhef National Institute for Subatomic Physics, Amsterdam, Netherlands\\
+$ ^{30}$Nikhef National Institute for Subatomic Physics and VU University Amsterdam, Amsterdam, Netherlands\\
+$ ^{31}$Henryk Niewodniczanski Institute of Nuclear Physics  Polish Academy of Sciences, Krak{\'o}w, Poland\\
+$ ^{32}$AGH - University of Science and Technology, Faculty of Physics and Applied Computer Science, Krak{\'o}w, Poland\\
+$ ^{33}$National Center for Nuclear Research (NCBJ), Warsaw, Poland\\
+$ ^{34}$Horia Hulubei National Institute of Physics and Nuclear Engineering, Bucharest-Magurele, Romania\\
+$ ^{35}$Petersburg Nuclear Physics Institute NRC Kurchatov Institute (PNPI NRC KI), Gatchina, Russia\\
+$ ^{36}$Institute of Theoretical and Experimental Physics NRC Kurchatov Institute (ITEP NRC KI), Moscow, Russia, Moscow, Russia\\
+$ ^{37}$Institute of Nuclear Physics, Moscow State University (SINP MSU), Moscow, Russia\\
+$ ^{38}$Institute for Nuclear Research of the Russian Academy of Sciences (INR RAS), Moscow, Russia\\
+$ ^{39}$Yandex School of Data Analysis, Moscow, Russia\\
+$ ^{40}$Budker Institute of Nuclear Physics (SB RAS), Novosibirsk, Russia\\
+$ ^{41}$Institute for High Energy Physics NRC Kurchatov Institute (IHEP NRC KI), Protvino, Russia, Protvino, Russia\\
+$ ^{42}$ICCUB, Universitat de Barcelona, Barcelona, Spain\\
+$ ^{43}$Instituto Galego de F{\'\i}sica de Altas Enerx{\'\i}as (IGFAE), Universidade de Santiago de Compostela, Santiago de Compostela, Spain\\
+$ ^{44}$European Organization for Nuclear Research (CERN), Geneva, Switzerland\\
+$ ^{45}$Institute of Physics, Ecole Polytechnique  F{\'e}d{\'e}rale de Lausanne (EPFL), Lausanne, Switzerland\\
+$ ^{46}$Physik-Institut, Universit{\"a}t Z{\"u}rich, Z{\"u}rich, Switzerland\\
+$ ^{47}$NSC Kharkiv Institute of Physics and Technology (NSC KIPT), Kharkiv, Ukraine\\
+$ ^{48}$Institute for Nuclear Research of the National Academy of Sciences (KINR), Kyiv, Ukraine\\
+$ ^{49}$University of Birmingham, Birmingham, United Kingdom\\
+$ ^{50}$H.H. Wills Physics Laboratory, University of Bristol, Bristol, United Kingdom\\
+$ ^{51}$Cavendish Laboratory, University of Cambridge, Cambridge, United Kingdom\\
+$ ^{52}$Department of Physics, University of Warwick, Coventry, United Kingdom\\
+$ ^{53}$STFC Rutherford Appleton Laboratory, Didcot, United Kingdom\\
+$ ^{54}$School of Physics and Astronomy, University of Edinburgh, Edinburgh, United Kingdom\\
+$ ^{55}$School of Physics and Astronomy, University of Glasgow, Glasgow, United Kingdom\\
+$ ^{56}$Oliver Lodge Laboratory, University of Liverpool, Liverpool, United Kingdom\\
+$ ^{57}$Imperial College London, London, United Kingdom\\
+$ ^{58}$School of Physics and Astronomy, University of Manchester, Manchester, United Kingdom\\
+$ ^{59}$Department of Physics, University of Oxford, Oxford, United Kingdom\\
+$ ^{60}$Massachusetts Institute of Technology, Cambridge, MA, United States\\
+$ ^{61}$University of Cincinnati, Cincinnati, OH, United States\\
+$ ^{62}$University of Maryland, College Park, MD, United States\\
+$ ^{63}$Syracuse University, Syracuse, NY, United States\\
+$ ^{64}$Laboratory of Mathematical and Subatomic Physics , Constantine, Algeria, associated to $^{2}$\\
+$ ^{65}$Pontif{\'\i}cia Universidade Cat{\'o}lica do Rio de Janeiro (PUC-Rio), Rio de Janeiro, Brazil, associated to $^{2}$\\
+$ ^{66}$South China Normal University, Guangzhou, China, associated to $^{3}$\\
+$ ^{67}$School of Physics and Technology, Wuhan University, Wuhan, China, associated to $^{3}$\\
+$ ^{68}$Institute of Particle Physics, Central China Normal University, Wuhan, Hubei, China, associated to $^{3}$\\
+$ ^{69}$Departamento de Fisica , Universidad Nacional de Colombia, Bogota, Colombia, associated to $^{10}$\\
+$ ^{70}$Institut f{\"u}r Physik, Universit{\"a}t Rostock, Rostock, Germany, associated to $^{14}$\\
+$ ^{71}$Van Swinderen Institute, University of Groningen, Groningen, Netherlands, associated to $^{29}$\\
+$ ^{72}$National Research Centre Kurchatov Institute, Moscow, Russia, associated to $^{36}$\\
+$ ^{73}$National University of Science and Technology ``MISIS'', Moscow, Russia, associated to $^{36}$\\
+$ ^{74}$National Research University Higher School of Economics, Moscow, Russia, associated to $^{39}$\\
+$ ^{75}$National Research Tomsk Polytechnic University, Tomsk, Russia, associated to $^{36}$\\
+$ ^{76}$Instituto de Fisica Corpuscular, Centro Mixto Universidad de Valencia - CSIC, Valencia, Spain, associated to $^{42}$\\
+$ ^{77}$University of Michigan, Ann Arbor, United States, associated to $^{63}$\\
+$ ^{78}$Los Alamos National Laboratory (LANL), Los Alamos, United States, associated to $^{63}$\\
+\bigskip
+$^{a}$Universidade Federal do Tri{\^a}ngulo Mineiro (UFTM), Uberaba-MG, Brazil\\
+$^{b}$Laboratoire Leprince-Ringuet, Palaiseau, France\\
+$^{c}$P.N. Lebedev Physical Institute, Russian Academy of Science (LPI RAS), Moscow, Russia\\
+$^{d}$Universit{\`a} di Bari, Bari, Italy\\
+$^{e}$Universit{\`a} di Bologna, Bologna, Italy\\
+$^{f}$Universit{\`a} di Cagliari, Cagliari, Italy\\
+$^{g}$Universit{\`a} di Ferrara, Ferrara, Italy\\
+$^{h}$Universit{\`a} di Genova, Genova, Italy\\
+$^{i}$Universit{\`a} di Milano Bicocca, Milano, Italy\\
+$^{j}$Universit{\`a} di Roma Tor Vergata, Roma, Italy\\
+$^{k}$Universit{\`a} di Roma La Sapienza, Roma, Italy\\
+$^{l}$AGH - University of Science and Technology, Faculty of Computer Science, Electronics and Telecommunications, Krak{\'o}w, Poland\\
+$^{m}$LIFAELS, La Salle, Universitat Ramon Llull, Barcelona, Spain\\
+$^{n}$Hanoi University of Science, Hanoi, Vietnam\\
+$^{o}$Universit{\`a} di Padova, Padova, Italy\\
+$^{p}$Universit{\`a} di Pisa, Pisa, Italy\\
+$^{q}$Universit{\`a} degli Studi di Milano, Milano, Italy\\
+$^{r}$Universit{\`a} di Urbino, Urbino, Italy\\
+$^{s}$Universit{\`a} della Basilicata, Potenza, Italy\\
+$^{t}$Scuola Normale Superiore, Pisa, Italy\\
+$^{u}$Universit{\`a} di Modena e Reggio Emilia, Modena, Italy\\
+$^{v}$H.H. Wills Physics Laboratory, University of Bristol, Bristol, United Kingdom\\
+$^{w}$MSU - Iligan Institute of Technology (MSU-IIT), Iligan, Philippines\\
+$^{x}$Novosibirsk State University, Novosibirsk, Russia\\
+$^{y}$Sezione INFN di Trieste, Trieste, Italy\\
+$^{z}$School of Physics and Information Technology, Shaanxi Normal University (SNNU), Xi'an, China\\
+$^{aa}$Physics and Micro Electronic College, Hunan University, Changsha City, China\\
+$^{ab}$Lanzhou University, Lanzhou, China\\
+\medskip
+$ ^{\dagger}$Deceased
+}
+\end{flushleft} \end{document}
