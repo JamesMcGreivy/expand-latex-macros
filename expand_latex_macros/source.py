@@ -14,25 +14,6 @@ def parse_macros(latex_source):
     return command_mappings
 
 def sub_command_for_def(string, command, definition):
-    pattern = re.escape(f"{command}") + r"((?:\s*\{[^}]+\})*)"
-    args = re.findall(pattern, string)
-    pattern = r"\{([^}]+)\}"
-    expanded_args = []
-    for arg in args:
-        expanded_args.append(re.findall(pattern, arg))
-
-    for i, arg in enumerate(args):
-        command_call = f"{command}" + arg
-        sub_for_args = {}
-        for j, expanded_arg in enumerate(expanded_args[i]):
-            sub_for_args[f"#{j+1}"] = expanded_arg
-        pattern = re.compile("|".join(re.escape(key) for key in sub_for_args.keys()))
-        subbed_definition = pattern.sub(lambda match: sub_for_args[match.group(0)], definition)
-        string = string.replace(command_call, subbed_definition)
-
-    return string
-
-def sub_command_for_def(string, command, definition):
     # Check if command definition uses args
     # If yes args
     if re.search(r"#\d+", definition):
