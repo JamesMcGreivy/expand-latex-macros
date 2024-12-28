@@ -1,15 +1,29 @@
 import regex as re
 
+def remove_macro_specific_commands(input_string):
+    # Removes \ensuremath{...} which is often used within macros
+    pattern = r"\\ensuremath\s*({(?:[^{}]*+|(?1))*})"
+    while re.search(pattern, input_string):
+        match = re.search(pattern, input_string)[1][1:-1].replace("\\", "\\\\")
+        input_string = re.sub(pattern, match, input_string)
+    
+    # Removes \xspace, which is usually used to fix spacing issues within macros
+    pattern = r"\\xspace"
+    while re.search(pattern, input_string):
+        input_string = re.sub(pattern, "", input_string)
+    
+    return input_string
+
 def parse_macros(latex_source):
     # Find all \def definitions with or without arguments
     pattern = r"\\def\s*\\(\w+)\s*(?:#\d\s*)*\s*({(?:[^{}]*+|(?2))*})"
     matches = re.findall(pattern, latex_source)
-    command_mappings = {f"\\{name}" : definition[1:-1] for name, definition in matches}
+    command_mappings = {f"\\{name}" : remove_macro_specific_commands(definition[1:-1]) for name, definition in matches}
 
     # Find all \newcommand definitions
     pattern = r"\\newcommand\*?\s*{?\s*\\(\w+)\s*}?\s*(?:\[\s*\d+\s*\])*\s*({(?:[^{}]*+|(?2))*})"
     matches = re.findall(pattern, latex_source)
-    command_mappings.update({f"\\{name}" : definition[1:-1] for name, definition in matches})
+    command_mappings.update({f"\\{name}" : remove_macro_specific_commands(definition[1:-1]) for name, definition in matches})
 
     return command_mappings
 
@@ -38,7 +52,7 @@ def sub_command_for_def(string, command, definition):
         definition = definition.replace('\\', '\\\\')
         return re.sub(pattern, definition, string)
 
-def expand_nested_macros(command_mappings):
+def expand_nested_macros(command_mappings, verbose=False):
     # since some user-defined commands may make reference to other user-defined
     # commands, loop through the dictionary until all commands are expanded back into raw LaTeX
     changed = True
@@ -58,7 +72,8 @@ def expand_nested_macros(command_mappings):
                 nested_command = f"\\{nested_command}"
                 # This module cannot handle recursive commands
                 if nested_command == command:
-                    print(f"Cannot handle recursively defined macro {command}. Not attempting.")
+                    if verbose:
+                        print(f"Cannot handle recursively defined macro {command}. Not attempting.")
                     recursive_commands.append(command)
                 # replace all nested user-defined commands
                 elif nested_command in command_mappings.keys():
@@ -84,9 +99,10 @@ def sub_macros_for_defs(latex_source, command_mappings):
         latex_source = sub_command_for_def(latex_source, command, definition)
     return latex_source
 
-def expand_latex_macros(latex_source, *args):
+def expand_latex_macros(latex_source, *args, **kwargs):
+    verbose = kwargs.get('verbose', True)
     macros_source = latex_source
     for extra_macros_source in args:
         macros_source += open(extra_macros_source).read()
-    command_mappings = expand_nested_macros(parse_macros(macros_source))
+    command_mappings = expand_nested_macros(parse_macros(macros_source), verbose=verbose)
     return sub_macros_for_defs(latex_source, command_mappings)
