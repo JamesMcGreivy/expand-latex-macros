@@ -1,11 +1,13 @@
+Removes all user-defined macros -- \newcommand or \def -- in latex_source.tex and substitutes back in their raw definition. Helpful for pre-processing LaTeX source before training NLP models.
+
 ```bash
 pip install expand-latex-macros
 ```
 
-Exposes the function 
 ```python
+import expand_latex_macros
+
 latex_source = open("path/to/latex_source.tex").read()
-expand_latex_macros(latex_source)
+expand_latex_macros.expand_latex_macros(latex_source)
 ```
-which removes all user-defined macros in latex_source.tex and substitutes back in their definitions. Helpful for pre-processing LaTeX source to train NLP models.
 
