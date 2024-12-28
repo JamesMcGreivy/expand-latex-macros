@@ -8,6 +8,6 @@ pip install expand-latex-macros
 import expand_latex_macros
 
 latex_source = open("path/to/latex_source.tex").read()
-expand_latex_macros(latex_source)
+expand_latex_macros.expand_latex_macros(latex_source)
 ```
 
