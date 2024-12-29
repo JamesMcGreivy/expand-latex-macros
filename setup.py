@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '1.0.2' 
+VERSION = '1.0.3' 
 DESCRIPTION = 'Removes all user-defined macros in a .tex file and substitutes their definitions back in.'
 LONG_DESCRIPTION = 'Provides the function expand_latex_macros(latex_source). Removes all user-defined macros in latex_source -- which should be a latex.tex file read into python using open(latex_source_path).read() -- and substitutes back in their definitions. Helpful for pre-processing LaTeX source to train NLP models.'
 # Setting up
