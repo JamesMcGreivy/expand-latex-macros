@@ -1,4 +1,5 @@
 import regex as re
+import time
 
 def remove_macro_specific_commands(input_string):
     # Removes \ensuremath{...} which is often used within macros
@@ -47,12 +48,18 @@ def sub_command_for_def(string, command, definition, num_args):
     if num_args > 0:
         pattern = re.escape(command)
         for i in range(num_args):
-            pattern += r"\s*({(?:[^{}]|(?" + f"{i+1}" + r"))*})"
+            pattern += r"\s*({(?:[^{}]|(?" + f"{i+1}" + r"))*}|\\\w+|\s*[^{}])"
         args = re.findall(pattern, string)
         for i, arg in enumerate(args):
+            if num_args == 1:
+                arg = [arg]
+                args[i] = arg
             sub_for_args = {}
             for j, arg_j in enumerate(arg):
-                sub_for_args[f"#{j+1}"] = arg_j[1:-1]
+                if arg_j[0] == "{" and arg_j[-1] == "}":
+                    sub_for_args[f"#{j+1}"] = arg_j[1:-1]
+                else:
+                    sub_for_args[f"#{j+1}"] = arg_j
             pattern = re.compile("|".join(re.escape(key) for key in sub_for_args.keys()))
             subbed_definition = pattern.sub(lambda match: sub_for_args[match.group(0)], definition)
             pattern = re.escape(command)
@@ -67,11 +74,14 @@ def sub_command_for_def(string, command, definition, num_args):
         definition = definition.replace('\\', '\\\\')
         return re.sub(pattern, definition, string)
 
-def expand_nested_macros(command_mappings, verbose=False):
+def expand_nested_macros(command_mappings, verbose=False, timeout=10):
+    start_time = time.time()
     # since some user-defined commands may make reference to other user-defined
     # commands, loop through the dictionary until all commands are expanded back into raw LaTeX
     changed = True
     while changed:
+        if time.time() - start_time > 10:
+            raise Exception("timeout while expanding nested macros")
         # assume no changes need to be made
         changed = False
 
@@ -93,8 +103,8 @@ def expand_nested_macros(command_mappings, verbose=False):
                 # replace all nested user-defined commands
                 elif nested_command in command_mappings.keys():
                     nested_definition = command_mappings[nested_command]['definition']
-                    nested_args = command_mappings[nested_command]['num_args']
-                    definition = sub_command_for_def(definition, nested_command, nested_definition, nested_args)
+                    nested_num_args = command_mappings[nested_command]['num_args']
+                    definition = sub_command_for_def(definition, nested_command, nested_definition, nested_num_args)
                     changed = True
             if changed:
                 command_mappings[command]['definition'] = definition
@@ -116,10 +126,4 @@ def sub_macros_for_defs(latex_source, command_mappings):
         latex_source = sub_command_for_def(latex_source, command, definition, args)
     return latex_source
 
-def expand_latex_macros(latex_source, *args, **kwargs):
-    verbose = kwargs.get('verbose', True)
-    macros_source = latex_source
-    for extra_macros_source in args:
-        macros_source += open(extra_macros_source).read()
-    command_mappings = expand_nested_macros(parse_macros(macros_source), verbose=verbose)
-    return sub_macros_for_defs(latex_source, command_mappings)
+def expand_latex_macros(latex_source, *a

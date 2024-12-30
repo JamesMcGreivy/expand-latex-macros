@@ -1,0 +1,2136 @@
+\pdfoutput=1
+
+
+\documentclass[12pt,a4paper]{article}
+
+
+\usepackage{ifthen} \newboolean{pdflatex}
+\setboolean{pdflatex}{true} 
+
+\newboolean{articletitles}
+\setboolean{articletitles}{true} 
+
+\newboolean{uprightparticles}
+\setboolean{uprightparticles}{false} 
+
+\newboolean{inbibliography}
+\setboolean{inbibliography}{false} 
+
+
+
+\textheight=230mm
+\textwidth=160mm
+\oddsidemargin=7mm
+\evensidemargin=-10mm
+\topmargin=-10mm
+\headsep=20mm
+\columnsep=5mm
+\addtolength{\belowcaptionskip}{0.5em}
+
+\renewcommand{\textfraction}{0.01}
+\renewcommand{\floatpagefraction}{0.99}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+
+
+\setlength{\hoffset}{-2cm}
+\setlength{\voffset}{-2cm}
+\topmargin=0.5cm
+\oddsidemargin=2.5cm
+\textwidth=16cm
+\textheight=22cm
+\raggedbottom
+\sloppy
+
+\usepackage{microtype}
+\usepackage{lineno}  \usepackage{xspace} 
+
+\usepackage{caption} \renewcommand{\captionfont}{\small}
+\renewcommand{\captionlabelfont}{\small}
+ 
+\usepackage{graphicx}  \usepackage{color}
+\usepackage{colortbl}
+\graphicspath{{./}} 
+
+\usepackage{amsmath} \usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{upgreek} 
+
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{\expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+\expandafter\let\csname oldend#1\expandafter\endcsname\csname
+end#1\endcsname
+ \renewenvironment{#1}{\linenomath\csname old#1\endcsname}{\csname oldend#1\endcsname\endlinenomath}}
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{\patchAmsMathEnvironmentForLineno{#1}\patchAmsMathEnvironmentForLineno{#1*}}
+\AtBeginDocument{\patchBothAmsMathEnvironmentsForLineno{equation}\patchBothAmsMathEnvironmentsForLineno{align}\patchBothAmsMathEnvironmentsForLineno{flalign}\patchBothAmsMathEnvironmentsForLineno{alignat}\patchBothAmsMathEnvironmentsForLineno{gather}\patchBothAmsMathEnvironmentsForLineno{multline}}
+
+\usepackage{hyperref}    \usepackage[all]{hypcap} 
+
+
+
+
+
+
+
+\def\lhcb {LHCb\xspace}
+\def\ux85 {UX85\xspace}
+\def\cern {CERN\xspace}
+\def\lhc {LHC\xspace}
+\def\atlas {ATLAS\xspace}
+\def\cms {CMS\xspace}
+\def\babar  {BaBar\xspace}
+\def\belle  {Belle\xspace}
+\def\aleph  {ALEPH\xspace}
+\def\delphi {DELPHI\xspace}
+\def\opal   {OPAL\xspace}
+\def\lthree {L3\xspace}
+\def\lep    {LEP\xspace}
+\def\cdf    {CDF\xspace}
+\def\dzero  {D0\xspace}
+\def\sld    {SLD\xspace}
+\def\cleo   {CLEO\xspace}
+\def\uaone  {UA1\xspace}
+\def\uatwo  {UA2\xspace}
+\def\tevatron {TEVATRON\xspace}
+
+
+
+\def\pu     {PU\xspace}
+\def\velo   {VELO\xspace}
+\def\rich   {RICH\xspace}
+\def\richone {RICH1\xspace}
+\def\richtwo {RICH2\xspace}
+\def\ttracker {TT\xspace}
+\def\intr   {IT\xspace}
+\def\st     {ST\xspace}
+\def\ot     {OT\xspace}
+\def\Tone   {T1\xspace}
+\def\Ttwo   {T2\xspace}
+\def\Tthree {T3\xspace}
+\def\Mone   {M1\xspace}
+\def\Mtwo   {M2\xspace}
+\def\Mthree {M3\xspace}
+\def\Mfour  {M4\xspace}
+\def\Mfive  {M5\xspace}
+\def\ecal   {ECAL\xspace}
+\def\spd    {SPD\xspace}
+\def\presh  {PS\xspace}
+\def\hcal   {HCAL\xspace}
+\def\bcm    {BCM\xspace}
+
+\def\ode    {ODE\xspace}
+\def\daq    {DAQ\xspace}
+\def\tfc    {TFC\xspace}
+\def\ecs    {ECS\xspace}
+\def\lone   {L0\xspace}
+\def\hlt    {HLT\xspace}
+\def\hltone {HLT1\xspace}
+\def\hlttwo {HLT2\xspace}
+
+
+
+\ifthenelse{\boolean{uprightparticles}}{\def\Palpha      {\ensuremath{\upalpha}\xspace}
+ \def\Pbeta       {\ensuremath{\upbeta}\xspace}
+ \def\Pgamma      {\ensuremath{\upgamma}\xspace}                 
+ \def\Pdelta      {\ensuremath{\updelta}\xspace}                 
+ \def\Pepsilon    {\ensuremath{\upepsilon}\xspace}                 
+ \def\Pvarepsilon {\ensuremath{\upvarepsilon}\xspace}                 
+ \def\Pzeta       {\ensuremath{\upzeta}\xspace}                 
+ \def\Peta        {\ensuremath{\upeta}\xspace}                 
+ \def\Ptheta      {\ensuremath{\uptheta}\xspace}                 
+ \def\Pvartheta   {\ensuremath{\upvartheta}\xspace}                 
+ \def\Piota       {\ensuremath{\upiota}\xspace}                 
+ \def\Pkappa      {\ensuremath{\upkappa}\xspace}                 
+ \def\Plambda     {\ensuremath{\uplambda}\xspace}                 
+ \def\Pmu         {\ensuremath{\upmu}\xspace}                 
+ \def\Pnu         {\ensuremath{\upnu}\xspace}                 
+ \def\Pxi         {\ensuremath{\upxi}\xspace}                 
+ \def\Ppi         {\ensuremath{\uppi}\xspace}                 
+ \def\Pvarpi      {\ensuremath{\upvarpi}\xspace}                 
+ \def\Prho        {\ensuremath{\uprho}\xspace}                 
+ \def\Pvarrho     {\ensuremath{\upvarrho}\xspace}                 
+ \def\Ptau        {\ensuremath{\uptau}\xspace}                 
+ \def\Pupsilon    {\ensuremath{\upupsilon}\xspace}                 
+ \def\Pphi        {\ensuremath{\upphi}\xspace}                 
+ \def\Pvarphi     {\ensuremath{\upvarphi}\xspace}                 
+ \def\Pchi        {\ensuremath{\upchi}\xspace}                 
+ \def\Ppsi        {\ensuremath{\uppsi}\xspace}                 
+ \def\Pomega      {\ensuremath{\upomega}\xspace}                 
+
+ \def\PDelta      {\ensuremath{\Delta}\xspace}                 
+ \def\PXi      {\ensuremath{\Xi}\xspace}                 
+ \def\PLambda      {\ensuremath{\Lambda}\xspace}                 
+ \def\PSigma      {\ensuremath{\Sigma}\xspace}                 
+ \def\POmega      {\ensuremath{\Omega}\xspace}                 
+ \def\PUpsilon      {\ensuremath{\Upsilon}\xspace}                 
+ 
+
+
+
+ \def\PA      {\ensuremath{\mathrm{A}}\xspace}                 
+ \def\PB      {\ensuremath{\mathrm{B}}\xspace}                 
+ \def\PC      {\ensuremath{\mathrm{C}}\xspace}                 
+ \def\PD      {\ensuremath{\mathrm{D}}\xspace}                 
+ \def\PE      {\ensuremath{\mathrm{E}}\xspace}                 
+ \def\PF      {\ensuremath{\mathrm{F}}\xspace}                 
+ \def\PG      {\ensuremath{\mathrm{G}}\xspace}                 
+ \def\PH      {\ensuremath{\mathrm{H}}\xspace}                 
+ \def\PI      {\ensuremath{\mathrm{I}}\xspace}                 
+ \def\PJ      {\ensuremath{\mathrm{J}}\xspace}                 
+ \def\PK      {\ensuremath{\mathrm{K}}\xspace}                 
+ \def\PL      {\ensuremath{\mathrm{L}}\xspace}                 
+ \def\PM      {\ensuremath{\mathrm{M}}\xspace}                 
+ \def\PN      {\ensuremath{\mathrm{N}}\xspace}                 
+ \def\PO      {\ensuremath{\mathrm{O}}\xspace}                 
+ \def\PP      {\ensuremath{\mathrm{P}}\xspace}                 
+ \def\PQ      {\ensuremath{\mathrm{Q}}\xspace}                 
+ \def\PR      {\ensuremath{\mathrm{R}}\xspace}                 
+ \def\PS      {\ensuremath{\mathrm{S}}\xspace}                 
+ \def\PT      {\ensuremath{\mathrm{T}}\xspace}                 
+ \def\PU      {\ensuremath{\mathrm{U}}\xspace}                 
+ \def\PV      {\ensuremath{\mathrm{V}}\xspace}                 
+ \def\PW      {\ensuremath{\mathrm{W}}\xspace}                 
+ \def\PX      {\ensuremath{\mathrm{X}}\xspace}                 
+ \def\PY      {\ensuremath{\mathrm{Y}}\xspace}                 
+ \def\PZ      {\ensuremath{\mathrm{Z}}\xspace}                 
+ \def\Pa      {\ensuremath{\mathrm{a}}\xspace}                 
+ \def\Pb      {\ensuremath{\mathrm{b}}\xspace}                 
+ \def\Pc      {\ensuremath{\mathrm{c}}\xspace}                 
+ \def\Pd      {\ensuremath{\mathrm{d}}\xspace}                 
+ \def\Pe      {\ensuremath{\mathrm{e}}\xspace}                 
+ \def\Pf      {\ensuremath{\mathrm{f}}\xspace}                 
+ \def\Pg      {\ensuremath{\mathrm{g}}\xspace}                 
+ \def\Ph      {\ensuremath{\mathrm{h}}\xspace}                 
+ \def\Pi      {\ensuremath{\mathrm{i}}\xspace}                 
+ \def\Pj      {\ensuremath{\mathrm{j}}\xspace}                 
+ \def\Pk      {\ensuremath{\mathrm{k}}\xspace}                 
+ \def\Pl      {\ensuremath{\mathrm{l}}\xspace}                 
+ \def\Pm      {\ensuremath{\mathrm{m}}\xspace}                 
+ \def\Pn      {\ensuremath{\mathrm{n}}\xspace}                 
+ \def\Po      {\ensuremath{\mathrm{o}}\xspace}                 
+ \def\Pp      {\ensuremath{\mathrm{p}}\xspace}                 
+ \def\Pq      {\ensuremath{\mathrm{q}}\xspace}                 
+ \def\Pr      {\ensuremath{\mathrm{r}}\xspace}                 
+ \def\Ps      {\ensuremath{\mathrm{s}}\xspace}                 
+ \def\Pt      {\ensuremath{\mathrm{t}}\xspace}                 
+ \def\Pu      {\ensuremath{\mathrm{u}}\xspace}                 
+ \def\Pv      {\ensuremath{\mathrm{v}}\xspace}                 
+ \def\Pw      {\ensuremath{\mathrm{w}}\xspace}                 
+ \def\Px      {\ensuremath{\mathrm{x}}\xspace}                 
+ \def\Py      {\ensuremath{\mathrm{y}}\xspace}                 
+ \def\Pz      {\ensuremath{\mathrm{z}}\xspace}                 
+}
+{\def\Palpha      {\ensuremath{\alpha}\xspace}
+ \def\Pbeta       {\ensuremath{\beta}\xspace}
+ \def\Pgamma      {\ensuremath{\gamma}\xspace}                 
+ \def\Pdelta      {\ensuremath{\delta}\xspace}                 
+ \def\Pepsilon    {\ensuremath{\epsilon}\xspace}                 
+ \def\Pvarepsilon {\ensuremath{\varepsilon}\xspace}                 
+ \def\Pzeta       {\ensuremath{\zeta}\xspace}                 
+ \def\Peta        {\ensuremath{\eta}\xspace}                 
+ \def\Ptheta      {\ensuremath{\theta}\xspace}                 
+ \def\Pvartheta   {\ensuremath{\vartheta}\xspace}                 
+ \def\Piota       {\ensuremath{\iota}\xspace}                 
+ \def\Pkappa      {\ensuremath{\kappa}\xspace}                 
+ \def\Plambda     {\ensuremath{\lambda}\xspace}                 
+ \def\Pmu         {\ensuremath{\mu}\xspace}                 
+ \def\Pnu         {\ensuremath{\nu}\xspace}                 
+ \def\Pxi         {\ensuremath{\xi}\xspace}                 
+ \def\Ppi         {\ensuremath{\pi}\xspace}                 
+ \def\Pvarpi      {\ensuremath{\varpi}\xspace}                 
+ \def\Prho        {\ensuremath{\rho}\xspace}                 
+ \def\Pvarrho     {\ensuremath{\varrho}\xspace}                 
+ \def\Ptau        {\ensuremath{\tau}\xspace}                 
+ \def\Pupsilon    {\ensuremath{\upsilon}\xspace}                 
+ \def\Pphi        {\ensuremath{\phi}\xspace}                 
+ \def\Pvarphi     {\ensuremath{\varphi}\xspace}                 
+ \def\Pchi        {\ensuremath{\chi}\xspace}                 
+ \def\Ppsi        {\ensuremath{\psi}\xspace}                 
+ \def\Pomega      {\ensuremath{\omega}\xspace}                 
+ \mathchardef\PDelta="7101
+ \mathchardef\PXi="7104
+ \mathchardef\PLambda="7103
+ \mathchardef\PSigma="7106
+ \mathchardef\POmega="710A
+ \mathchardef\PUpsilon="7107
+ \def\PA      {\ensuremath{A}\xspace}                 
+ \def\PB      {\ensuremath{B}\xspace}                 
+ \def\PC      {\ensuremath{C}\xspace}                 
+ \def\PD      {\ensuremath{D}\xspace}                 
+ \def\PE      {\ensuremath{E}\xspace}                 
+ \def\PF      {\ensuremath{F}\xspace}                 
+ \def\PG      {\ensuremath{G}\xspace}                 
+ \def\PH      {\ensuremath{H}\xspace}                 
+ \def\PI      {\ensuremath{I}\xspace}                 
+ \def\PJ      {\ensuremath{J}\xspace}                 
+ \def\PK      {\ensuremath{K}\xspace}                 
+ \def\PL      {\ensuremath{L}\xspace}                 
+ \def\PM      {\ensuremath{M}\xspace}                 
+ \def\PN      {\ensuremath{N}\xspace}                 
+ \def\PO      {\ensuremath{O}\xspace}                 
+ \def\PP      {\ensuremath{P}\xspace}                 
+ \def\PQ      {\ensuremath{Q}\xspace}                 
+ \def\PR      {\ensuremath{R}\xspace}                 
+ \def\PS      {\ensuremath{S}\xspace}                 
+ \def\PT      {\ensuremath{T}\xspace}                 
+ \def\PU      {\ensuremath{U}\xspace}                 
+ \def\PV      {\ensuremath{V}\xspace}                 
+ \def\PW      {\ensuremath{W}\xspace}                 
+ \def\PX      {\ensuremath{X}\xspace}                 
+ \def\PY      {\ensuremath{Y}\xspace}                 
+ \def\PZ      {\ensuremath{Z}\xspace}                 
+ \def\Pa      {\ensuremath{a}\xspace}                 
+ \def\Pb      {\ensuremath{b}\xspace}                 
+ \def\Pc      {\ensuremath{c}\xspace}                 
+ \def\Pd      {\ensuremath{d}\xspace}                 
+ \def\Pe      {\ensuremath{e}\xspace}                 
+ \def\Pf      {\ensuremath{f}\xspace}                 
+ \def\Pg      {\ensuremath{g}\xspace}                 
+ \def\Ph      {\ensuremath{h}\xspace}                 
+ \def\Pi      {\ensuremath{i}\xspace}                 
+ \def\Pj      {\ensuremath{j}\xspace}                 
+ \def\Pk      {\ensuremath{k}\xspace}                 
+ \def\Pl      {\ensuremath{l}\xspace}                 
+ \def\Pm      {\ensuremath{m}\xspace}                 
+ \def\Pn      {\ensuremath{n}\xspace}                 
+ \def\Po      {\ensuremath{o}\xspace}                 
+ \def\Pp      {\ensuremath{p}\xspace}                 
+ \def\Pq      {\ensuremath{q}\xspace}                 
+ \def\Pr      {\ensuremath{r}\xspace}                 
+ \def\Ps      {\ensuremath{s}\xspace}                 
+ \def\Pt      {\ensuremath{t}\xspace}                 
+ \def\Pu      {\ensuremath{u}\xspace}                 
+ \def\Pv      {\ensuremath{v}\xspace}                 
+ \def\Pw      {\ensuremath{w}\xspace}                 
+ \def\Px      {\ensuremath{x}\xspace}                 
+ \def\Py      {\ensuremath{y}\xspace}                 
+ \def\Pz      {\ensuremath{z}\xspace}                 
+}
+
+
+
+
+
+\let\emi\en
+\def\electron   {\ensuremath{\Pe}\xspace}
+\def\en         {\ensuremath{\Pe^-}\xspace}   \def\ep         {\ensuremath{\Pe^+}\xspace}
+\def\epm        {\ensuremath{\Pe^\pm}\xspace} 
+\def\epem       {\ensuremath{\Pe^+\Pe^-}\xspace}
+\def\ee         {\ensuremath{\Pe^-\Pe^-}\xspace}
+
+\def\mmu        {\ensuremath{\Pmu}\xspace}
+\def\mup        {\ensuremath{\Pmu^+}\xspace}
+\def\mun        {\ensuremath{\Pmu^-}\xspace} \def\mumu       {\ensuremath{\Pmu^+\Pmu^-}\xspace}
+\def\mtau       {\ensuremath{\Ptau}\xspace}
+
+\def\taup       {\ensuremath{\Ptau^+}\xspace}
+\def\taum       {\ensuremath{\Ptau^-}\xspace}
+\def\tautau     {\ensuremath{\Ptau^+\Ptau^-}\xspace}
+
+\def\ellm       {\ensuremath{\ell^-}\xspace}
+\def\ellp       {\ensuremath{\ell^+}\xspace}
+\def\ellell     {\ensuremath{\ell^+ \ell^-}\xspace}
+
+\def\neu        {\ensuremath{\Pnu}\xspace}
+\def\neub       {\ensuremath{\overline{\Pnu}}\xspace}
+\def\nuenueb    {\ensuremath{\neu\neub}\xspace}
+\def\neue       {\ensuremath{\neu_e}\xspace}
+\def\neueb      {\ensuremath{\neub_e}\xspace}
+\def\neueneueb  {\ensuremath{\neue\neueb}\xspace}
+\def\neum       {\ensuremath{\neu_\mu}\xspace}
+\def\neumb      {\ensuremath{\neub_\mu}\xspace}
+\def\neumneumb  {\ensuremath{\neum\neumb}\xspace}
+\def\neut       {\ensuremath{\neu_\tau}\xspace}
+\def\neutb      {\ensuremath{\neub_\tau}\xspace}
+\def\neutneutb  {\ensuremath{\neut\neutb}\xspace}
+\def\neul       {\ensuremath{\neu_\ell}\xspace}
+\def\neulb      {\ensuremath{\neub_\ell}\xspace}
+\def\neulneulb  {\ensuremath{\neul\neulb}\xspace}
+
+
+
+\def\g      {\ensuremath{\Pgamma}\xspace}
+\def\H      {\ensuremath{\PH^0}\xspace}
+\def\Hp     {\ensuremath{\PH^+}\xspace}
+\def\Hm     {\ensuremath{\PH^-}\xspace}
+\def\Hpm    {\ensuremath{\PH^\pm}\xspace}
+\def\W      {\ensuremath{\PW}\xspace}
+\def\Wp     {\ensuremath{\PW^+}\xspace}
+\def\Wm     {\ensuremath{\PW^-}\xspace}
+\def\Wpm    {\ensuremath{\PW^\pm}\xspace}
+\def\Z      {\ensuremath{\PZ^0}\xspace}
+
+
+
+\def\quark     {\ensuremath{\Pq}\xspace}
+\def\quarkbar  {\ensuremath{\overline \quark}\xspace}
+\def\qqbar     {\ensuremath{\quark\quarkbar}\xspace}
+\def\uquark    {\ensuremath{\Pu}\xspace}
+\def\uquarkbar {\ensuremath{\overline \uquark}\xspace}
+\def\uubar     {\ensuremath{\uquark\uquarkbar}\xspace}
+\def\dquark    {\ensuremath{\Pd}\xspace}
+\def\dquarkbar {\ensuremath{\overline \dquark}\xspace}
+\def\ddbar     {\ensuremath{\dquark\dquarkbar}\xspace}
+\def\squark    {\ensuremath{\Ps}\xspace}
+\def\squarkbar {\ensuremath{\overline \squark}\xspace}
+\def\ssbar     {\ensuremath{\squark\squarkbar}\xspace}
+\def\cquark    {\ensuremath{\Pc}\xspace}
+\def\cquarkbar {\ensuremath{\overline \cquark}\xspace}
+\def\ccbar     {\ensuremath{\cquark\cquarkbar}\xspace}
+\def\bquark    {\ensuremath{\Pb}\xspace}
+\def\bquarkbar {\ensuremath{\overline \bquark}\xspace}
+\def\bbbar     {\ensuremath{\bquark\bquarkbar}\xspace}
+\def\tquark    {\ensuremath{\Pt}\xspace}
+\def\tquarkbar {\ensuremath{\overline \tquark}\xspace}
+\def\ttbar     {\ensuremath{\tquark\tquarkbar}\xspace}
+
+
+
+\def\pion  {\ensuremath{\Ppi}\xspace}
+\def\piz   {\ensuremath{\pion^0}\xspace}
+\def\pizs  {\ensuremath{\pion^0\mbox\,\rm{s}}\xspace}
+\def\ppz   {\ensuremath{\pion^0\pion^0}\xspace}
+\def\pip   {\ensuremath{\pion^+}\xspace}
+\def\pim   {\ensuremath{\pion^-}\xspace}
+\def\pipi  {\ensuremath{\pion^+\pion^-}\xspace}
+\def\pipm  {\ensuremath{\pion^\pm}\xspace}
+\def\pimp  {\ensuremath{\pion^\mp}\xspace}
+
+\def\kaon  {\ensuremath{\PK}\xspace}
+\def\Kbar  {\kern 0.2em\overline{\kern -0.2em \PK}{}\xspace}
+\def\Kb    {\ensuremath{\Kbar}\xspace}
+\def\Kz    {\ensuremath{\kaon^0}\xspace}
+\def\Kzb   {\ensuremath{\Kbar^0}\xspace}
+\def\KzKzb {\ensuremath{\Kz \kern -0.16em \Kzb}\xspace}
+\def\Kp    {\ensuremath{\kaon^+}\xspace}
+\def\Km    {\ensuremath{\kaon^-}\xspace}
+\def\Kpm   {\ensuremath{\kaon^\pm}\xspace}
+\def\Kmp   {\ensuremath{\kaon^\mp}\xspace}
+\def\KpKm  {\ensuremath{\Kp \kern -0.16em \Km}\xspace}
+\def\KS    {\ensuremath{\kaon^0_{\rm\scriptscriptstyle S}}\xspace} 
+\def\KL    {\ensuremath{\kaon^0_{\rm\scriptscriptstyle L}}\xspace} 
+\def\Kstarz  {\ensuremath{\kaon^{*0}}\xspace}
+\def\Kstarzb {\ensuremath{\Kbar^{*0}}\xspace}
+\def\Kstar   {\ensuremath{\kaon^*}\xspace}
+\def\Kstarb  {\ensuremath{\Kbar^*}\xspace}
+\def\Kstarp  {\ensuremath{\kaon^{*+}}\xspace}
+\def\Kstarm  {\ensuremath{\kaon^{*-}}\xspace}
+\def\Kstarpm {\ensuremath{\kaon^{*\pm}}\xspace}
+\def\Kstarmp {\ensuremath{\kaon^{*\mp}}\xspace}
+
+\newcommand{\etapr}{\ensuremath{\Peta^{\prime}}\xspace}
+
+
+
+\def\Dbar    {\kern 0.2em\overline{\kern -0.2em \PD}{}\xspace}
+\def\D       {\ensuremath{\PD}\xspace}
+\def\Db      {\ensuremath{\Dbar}\xspace}
+\def\Dz      {\ensuremath{\D^0}\xspace}
+\def\Dzb     {\ensuremath{\Dbar^0}\xspace}
+\def\DzDzb   {\ensuremath{\Dz {\kern -0.16em \Dzb}}\xspace}
+\def\Dp      {\ensuremath{\D^+}\xspace}
+\def\Dm      {\ensuremath{\D^-}\xspace}
+\def\Dpm     {\ensuremath{\D^\pm}\xspace}
+\def\Dmp     {\ensuremath{\D^\mp}\xspace}
+\def\DpDm    {\ensuremath{\Dp {\kern -0.16em \Dm}}\xspace}
+\def\Dstar   {\ensuremath{\D^*}\xspace}
+\def\Dstarb  {\ensuremath{\Dbar^*}\xspace}
+\def\Dstarz  {\ensuremath{\D^{*0}}\xspace}
+\def\Dstarzb {\ensuremath{\Dbar^{*0}}\xspace}
+\def\Dstarp  {\ensuremath{\D^{*+}}\xspace}
+\def\Dstarm  {\ensuremath{\D^{*-}}\xspace}
+\def\Dstarpm {\ensuremath{\D^{*\pm}}\xspace}
+\def\Dstarmp {\ensuremath{\D^{*\mp}}\xspace}
+\def\Ds      {\ensuremath{\D^+_\squark}\xspace}
+\def\Dsp     {\ensuremath{\D^+_\squark}\xspace}
+\def\Dsm     {\ensuremath{\D^-_\squark}\xspace}
+\def\Dspm    {\ensuremath{\D^{\pm}_\squark}\xspace}
+\def\Dss     {\ensuremath{\D^{*+}_\squark}\xspace}
+\def\Dssp    {\ensuremath{\D^{*+}_\squark}\xspace}
+\def\Dssm    {\ensuremath{\D^{*-}_\squark}\xspace}
+\def\Dsspm   {\ensuremath{\D^{*\pm}_\squark}\xspace}
+
+\def\B       {\ensuremath{\PB}\xspace}
+\def\Bbar    {\kern 0.18em\overline{\kern -0.18em \PB}{}\xspace}
+\def\Bb      {\ensuremath{\Bbar}\xspace}
+\def\BBbar   {\ensuremath{\B\Bbar}\xspace} 
+\def\Bz      {\ensuremath{\B^0}\xspace}
+\def\Bzb     {\ensuremath{\Bbar^0}\xspace}
+\def\Bu      {\ensuremath{\B^+}\xspace}
+\def\Bub     {\ensuremath{\B^-}\xspace}
+\def\Bp      {\ensuremath{\Bu}\xspace}
+\def\Bm      {\ensuremath{\Bub}\xspace}
+\def\Bpm     {\ensuremath{\B^\pm}\xspace}
+\def\Bmp     {\ensuremath{\B^\mp}\xspace}
+\def\Bd      {\ensuremath{\B^0}\xspace}
+\def\Bs      {\ensuremath{\B^0_\squark}\xspace}
+\def\Bsb     {\ensuremath{\Bbar^0_\squark}\xspace}
+\def\Bdb     {\ensuremath{\Bbar^0}\xspace}
+\def\Bc      {\ensuremath{\B_\cquark^+}\xspace}
+\def\Bcp     {\ensuremath{\B_\cquark^+}\xspace}
+\def\Bcm     {\ensuremath{\B_\cquark^-}\xspace}
+\def\Bcpm    {\ensuremath{\B_\cquark^\pm}\xspace}
+
+
+
+\def\jpsi     {\ensuremath{{\PJ\mskip -3mu/\mskip -2mu\Ppsi\mskip 2mu}}\xspace}
+\def\psitwos  {\ensuremath{\Ppsi{(2S)}}\xspace}
+\def\psiprpr  {\ensuremath{\Ppsi(3770)}\xspace}
+\def\etac     {\ensuremath{\Peta_\cquark}\xspace}
+\def\chiczero {\ensuremath{\Pchi_{\cquark 0}}\xspace}
+\def\chicone  {\ensuremath{\Pchi_{\cquark 1}}\xspace}
+\def\chictwo  {\ensuremath{\Pchi_{\cquark 2}}\xspace}
+\def\Y#1S{\ensuremath{\PUpsilon{(#1S)}}\xspace}\def\OneS  {\Y1S}
+\def\TwoS  {\Y2S}
+\def\ThreeS{\Y3S}
+\def\FourS {\Y4S}
+\def\FiveS {\Y5S}
+
+\def\chic  {\ensuremath{\Pchi_{c}}\xspace}
+
+
+
+\def\proton      {\ensuremath{\Pp}\xspace}
+\def\antiproton  {\ensuremath{\overline \proton}\xspace}
+\def\neutron     {\ensuremath{\Pn}\xspace}
+\def\antineutron {\ensuremath{\overline \neutron}\xspace}
+
+\def\Deltares {\ensuremath{\PDelta}\xspace}
+\def\Deltaresbar{\ensuremath{\overline \Deltares}\xspace}
+\def\Xires {\ensuremath{\PXi}\xspace}
+\def\Xiresbar{\ensuremath{\overline \Xires}\xspace}
+\def\L {\ensuremath{\PLambda}\xspace}
+\def\Lbar{\ensuremath{\overline \L}\xspace}
+\def\Lambdares {\ensuremath{\PLambda}\xspace}
+\def\Lambdaresbar{\ensuremath{\overline \Lambdares}\xspace}
+\def\Sigmares {\ensuremath{\PSigma}\xspace}
+\def\Sigmaresbar{\ensuremath{\overline \Sigmares}\xspace}
+\def\Omegares {\ensuremath{\POmega}\xspace}
+\def\Omegaresbar{\ensuremath{\overline \Omegares}\xspace}
+
+
+
+\def\Lb      {\ensuremath{\L_\bquark}\xspace}
+\def\Lbbar   {\ensuremath{\Lbar_\bquark}\xspace}
+\def\Lc      {\ensuremath{\L_\cquark}\xspace}
+\def\Lcbar   {\ensuremath{\Lbar_\cquark}\xspace}
+
+
+
+\def\BF         {{\ensuremath{\cal B}\xspace}}
+\def\BRvis      {{\ensuremath{\BR_{\rm{vis}}}}}
+\def\BR         {\BF}
+\newcommand{\decay}[2]{\ensuremath{#1\!\to #2}\xspace}         \def\ra                 {\ensuremath{\rightarrow}\xspace}
+\def\to                 {\ensuremath{\rightarrow}\xspace}
+
+\newcommand{\tauBs}{\ensuremath{\tau_{\Bs}}\xspace}
+\newcommand{\tauBd}{\ensuremath{\tau_{\Bd}}\xspace}
+\newcommand{\tauBz}{\ensuremath{\tau_{\Bz}}\xspace}
+\newcommand{\tauBu}{\ensuremath{\tau_{\Bp}}\xspace}
+\newcommand{\tauDp}{\ensuremath{\tau_{\Dp}}\xspace}
+\newcommand{\tauDz}{\ensuremath{\tau_{\Dz}}\xspace}
+\newcommand{\tauL}{\ensuremath{\tau_{\rm L}}\xspace}
+\newcommand{\tauH}{\ensuremath{\tau_{\rm H}}\xspace}
+
+\newcommand{\mBd}{\ensuremath{m_{\Bd}}\xspace}
+\newcommand{\mBp}{\ensuremath{m_{\Bp}}\xspace}
+\newcommand{\mBs}{\ensuremath{m_{\Bs}}\xspace}
+\newcommand{\mBc}{\ensuremath{m_{\Bc}}\xspace}
+\newcommand{\mLb}{\ensuremath{m_{\Lb}}\xspace}
+
+\def\grpsuthree {\ensuremath{\mathrm{SU}(3)}\xspace}
+\def\grpsutw    {\ensuremath{\mathrm{SU}(2)}\xspace}
+\def\grpuone    {\ensuremath{\mathrm{U}(1)}\xspace}
+
+\def\ssqtw {\ensuremath{\sin^{2}\!\theta_{\mathrm{W}}}\xspace}
+\def\csqtw {\ensuremath{\cos^{2}\!\theta_{\mathrm{W}}}\xspace}
+\def\stw   {\ensuremath{\sin\theta_{\mathrm{W}}}\xspace}
+\def\ctw   {\ensuremath{\cos\theta_{\mathrm{W}}}\xspace}
+\def\ssqtwef {\ensuremath{{\sin}^{2}\theta_{\mathrm{W}}^{\mathrm{eff}}}\xspace}
+\def\csqtwef {\ensuremath{{\cos}^{2}\theta_{\mathrm{W}}^{\mathrm{eff}}}\xspace}
+\def\stwef {\ensuremath{\sin\theta_{\mathrm{W}}^{\mathrm{eff}}}\xspace}
+\def\ctwef {\ensuremath{\cos\theta_{\mathrm{W}}^{\mathrm{eff}}}\xspace}
+\def\gv    {\ensuremath{g_{\mbox{\tiny V}}}\xspace}
+\def\ga    {\ensuremath{g_{\mbox{\tiny A}}}\xspace}
+
+\def\order   {\ensuremath{\mathcal{O}}\xspace}
+\def\ordalph {\ensuremath{\mathcal{O}(\alpha)}\xspace}
+\def\ordalsq {\ensuremath{\mathcal{O}(\alpha^{2})}\xspace}
+\def\ordalcb {\ensuremath{\mathcal{O}(\alpha^{3})}\xspace}
+
+\newcommand{\as}{\ensuremath{\alpha_{\scriptscriptstyle S}}\xspace}
+\newcommand{\MSb}{\ensuremath{\overline{\mathrm{MS}}}\xspace}
+\newcommand{\lqcd}{\ensuremath{\Lambda_{\mathrm{QCD}}}\xspace}
+\def\qsq       {\ensuremath{q^2}\xspace}
+
+
+
+\def\eps   {\ensuremath{\varepsilon}\xspace}
+\def\epsK  {\ensuremath{\varepsilon_K}\xspace}
+\def\epsB  {\ensuremath{\varepsilon_B}\xspace}
+\def\epsp  {\ensuremath{\varepsilon^\prime_K}\xspace}
+
+\def\CP                {\ensuremath{C\!P}\xspace}
+\def\CPT               {\ensuremath{C\!PT}\xspace}
+
+\def\rhobar {\ensuremath{\overline \rho}\xspace}
+\def\etabar {\ensuremath{\overline \eta}\xspace}
+
+\def\Vud  {\ensuremath{|V_{\uquark\dquark}|}\xspace}
+\def\Vcd  {\ensuremath{|V_{\cquark\dquark}|}\xspace}
+\def\Vtd  {\ensuremath{|V_{\tquark\dquark}|}\xspace}
+\def\Vus  {\ensuremath{|V_{\uquark\squark}|}\xspace}
+\def\Vcs  {\ensuremath{|V_{\cquark\squark}|}\xspace}
+\def\Vts  {\ensuremath{|V_{\tquark\squark}|}\xspace}
+\def\Vub  {\ensuremath{|V_{\uquark\bquark}|}\xspace}
+\def\Vcb  {\ensuremath{|V_{\cquark\bquark}|}\xspace}
+\def\Vtb  {\ensuremath{|V_{\tquark\bquark}|}\xspace}
+
+
+
+\newcommand{\dm}{\ensuremath{\Delta m}\xspace}
+\newcommand{\dms}{\ensuremath{\Delta m_{\squark}}\xspace}
+\newcommand{\dmd}{\ensuremath{\Delta m_{\dquark}}\xspace}
+\newcommand{\DG}{\ensuremath{\Delta\Gamma}\xspace}
+\newcommand{\DGs}{\ensuremath{\Delta\Gamma_{\squark}}\xspace}
+\newcommand{\DGd}{\ensuremath{\Delta\Gamma_{\dquark}}\xspace}
+\newcommand{\Gs}{\ensuremath{\Gamma_{\squark}}\xspace}
+\newcommand{\Gd}{\ensuremath{\Gamma_{\dquark}}\xspace}
+
+\newcommand{\MBq}{\ensuremath{M_{\B_\quark}}\xspace}
+\newcommand{\DGq}{\ensuremath{\Delta\Gamma_{\quark}}\xspace}
+\newcommand{\Gq}{\ensuremath{\Gamma_{\quark}}\xspace}
+\newcommand{\dmq}{\ensuremath{\Delta m_{\quark}}\xspace}
+\newcommand{\GL}{\ensuremath{\Gamma_{\rm L}}\xspace}
+\newcommand{\GH}{\ensuremath{\Gamma_{\rm H}}\xspace}
+
+\newcommand{\DGsGs}{\ensuremath{\Delta\Gamma_{\squark}/\Gamma_{\squark}}\xspace}
+\newcommand{\Delm}{\mbox{$\Delta m $}\xspace}
+\newcommand{\ACP}{\ensuremath{{\cal A}^{\rm CP}}\xspace}
+\newcommand{\Adir}{\ensuremath{{\cal A}^{\rm dir}}\xspace}
+\newcommand{\Amix}{\ensuremath{{\cal A}^{\rm mix}}\xspace}
+\newcommand{\ADelta}{\ensuremath{{\cal A}^\Delta}\xspace}
+\newcommand{\phid}{\ensuremath{\phi_{\dquark}}\xspace}
+\newcommand{\sinphid}{\ensuremath{\sin\!\phid}\xspace}
+\newcommand{\phis}{\ensuremath{\phi_{\squark}}\xspace}
+\newcommand{\betas}{\ensuremath{\beta_{\squark}}\xspace}
+\newcommand{\sbetas}{\ensuremath{\sigma(\beta_{\squark})}\xspace}
+\newcommand{\stbetas}{\ensuremath{\sigma(2\beta_{\squark})}\xspace}
+\newcommand{\stphis}{\ensuremath{\sigma(\phi_{\squark})}\xspace}
+\newcommand{\sinphis}{\ensuremath{\sin\!\phis}\xspace}
+
+\newcommand{\edet}{{\ensuremath{\varepsilon_{\rm det}}}\xspace}
+\newcommand{\erec}{{\ensuremath{\varepsilon_{\rm rec/det}}}\xspace}
+\newcommand{\esel}{{\ensuremath{\varepsilon_{\rm sel/rec}}}\xspace}
+\newcommand{\etrg}{{\ensuremath{\varepsilon_{\rm trg/sel}}}\xspace}
+\newcommand{\etot}{{\ensuremath{\varepsilon_{\rm tot}}}\xspace}
+
+\newcommand{\mistag}{\ensuremath{\omega}\xspace}
+\newcommand{\wcomb}{\ensuremath{\omega^{\rm comb}}\xspace}
+\newcommand{\etag}{{\ensuremath{\varepsilon_{\rm tag}}}\xspace}
+\newcommand{\etagcomb}{{\ensuremath{\varepsilon_{\rm tag}^{\rm comb}}}\xspace}
+\newcommand{\effeff}{\ensuremath{\varepsilon_{\rm eff}}\xspace}
+\newcommand{\effeffcomb}{\ensuremath{\varepsilon_{\rm eff}^{\rm comb}}\xspace}
+\newcommand{\efftag}{{\ensuremath{\etag(1-2\omega)^2}}\xspace}
+\newcommand{\effD}{{\ensuremath{\etag D^2}}\xspace}
+
+\newcommand{\etagprompt}{{\ensuremath{\varepsilon_{\rm tag}^{\rm Pr}}}\xspace}
+\newcommand{\etagLL}{{\ensuremath{\varepsilon_{\rm tag}^{\rm LL}}}\xspace}
+
+
+
+\def\BdToKstmm    {\decay{\Bd}{\Kstarz\mup\mun}}
+\def\BdbToKstmm   {\decay{\Bdb}{\Kstarzb\mup\mun}}
+
+\def\BsToJPsiPhi  {\decay{\Bs}{\jpsi\phi}}
+\def\BdToJPsiKst  {\decay{\Bd}{\jpsi\Kstarz}}
+\def\BdbToJPsiKst {\decay{\Bdb}{\jpsi\Kstarzb}}
+
+\def\BsPhiGam     {\decay{\Bd}{\phi \g}}
+\def\BdKstGam     {\decay{\Bd}{\Kstarz \g}}
+
+\def\BTohh        {\decay{\B}{\Ph^+ \Ph'^-}}
+\def\BdTopipi     {\decay{\Bd}{\pip\pim}}
+\def\BdToKpi      {\decay{\Bd}{\Kp\pim}}
+\def\BsToKK       {\decay{\Bs}{\Kp\Km}}
+\def\BsTopiK      {\decay{\Bs}{\pip\Km}}
+
+\def\BdKstee  {\decay{\Bd}{\Kstarz\epem}}
+\def\BdbKstee {\decay{\Bdb}{\Kstarzb\epem}}
+\def\bsll     {\decay{\bquark}{\squark \ell^+ \ell^-}}
+\def\AFB      {\ensuremath{A_{\mathrm{FB}}}\xspace}
+\def\FL       {\ensuremath{F_{\mathrm{L}}}\xspace}
+\def\AT#1     {\ensuremath{A_{\mathrm{T}}^{#1}}\xspace}           \def\btosgam  {\decay{\bquark}{\squark \g}}
+\def\btodgam  {\decay{\bquark}{\dquark \g}}
+\def\Bsmm     {\decay{\Bs}{\mup\mun}}
+\def\Bdmm     {\decay{\Bd}{\mup\mun}}
+\def\ctl       {\ensuremath{\cos{\theta_l}}\xspace}
+\def\ctk       {\ensuremath{\cos{\theta_K}}\xspace}
+
+\def\C#1      {\ensuremath{\mathcal{C}_{#1}}\xspace}                       \def\Cp#1     {\ensuremath{\mathcal{C}_{#1}^{'}}\xspace}                    \def\Ceff#1   {\ensuremath{\mathcal{C}_{#1}^{\mathrm{(eff)}}}\xspace}        \def\Cpeff#1  {\ensuremath{\mathcal{C}_{#1}^{'\mathrm{(eff)}}}\xspace}       \def\Ope#1    {\ensuremath{\mathcal{O}_{#1}}\xspace}                       \def\Opep#1   {\ensuremath{\mathcal{O}_{#1}^{'}}\xspace}                    
+
+
+
+\def\xprime     {\ensuremath{x^{\prime}}\xspace}
+\def\yprime     {\ensuremath{y^{\prime}}\xspace}
+\def\ycp        {\ensuremath{y_{CP}}\xspace}
+\def\agamma     {\ensuremath{A_{\Gamma}}\xspace}
+\def\kpi        {\ensuremath{\PK\Ppi}\xspace}
+\def\kk         {\ensuremath{\PK\PK}\xspace}
+\def\dkpi       {\decay{\PD}{\PK\Ppi}}
+\def\dkk        {\decay{\PD}{\PK\PK}}
+\def\dkpicf     {\decay{\Dz}{\Km\pip}}
+
+\newcommand{\bra}[1]{\ensuremath{\langle #1|}}             \newcommand{\ket}[1]{\ensuremath{|#1\rangle}}              \newcommand{\braket}[2]{\ensuremath{\langle #1|#2\rangle}} 
+
+\newcommand{\unit}[1]{\ensuremath{\rm\,#1}\xspace}          
+
+\newcommand{\tev}{\ensuremath{\mathrm{\,Te\kern -0.1em V}}\xspace}
+\newcommand{\gev}{\ensuremath{\mathrm{\,Ge\kern -0.1em V}}\xspace}
+\newcommand{\mev}{\ensuremath{\mathrm{\,Me\kern -0.1em V}}\xspace}
+\newcommand{\kev}{\ensuremath{\mathrm{\,ke\kern -0.1em V}}\xspace}
+\newcommand{\ev}{\ensuremath{\mathrm{\,e\kern -0.1em V}}\xspace}
+\newcommand{\gevc}{\ensuremath{{\mathrm{\,Ge\kern -0.1em V\!/}c}}\xspace}
+\newcommand{\mevc}{\ensuremath{{\mathrm{\,Me\kern -0.1em V\!/}c}}\xspace}
+\newcommand{\gevcc}{\ensuremath{{\mathrm{\,Ge\kern -0.1em V\!/}c^2}}\xspace}
+\newcommand{\gevgevcccc}{\ensuremath{{\mathrm{\,Ge\kern -0.1em V^2\!/}c^4}}\xspace}
+\newcommand{\mevcc}{\ensuremath{{\mathrm{\,Me\kern -0.1em V\!/}c^2}}\xspace}
+
+\def\km   {\ensuremath{\rm \,km}\xspace}
+\def\m    {\ensuremath{\rm \,m}\xspace}
+\def\cm   {\ensuremath{\rm \,cm}\xspace}
+\def\cma  {\ensuremath{{\rm \,cm}^2}\xspace}
+\def\mm   {\ensuremath{\rm \,mm}\xspace}
+\def\mma  {\ensuremath{{\rm \,mm}^2}\xspace}
+\def\mum  {\ensuremath{\,\upmu\rm m}\xspace}
+\def\muma {\ensuremath{\,\upmu\rm m^2}\xspace}
+\def\nm   {\ensuremath{\rm \,nm}\xspace}
+\def\fm   {\ensuremath{\rm \,fm}\xspace}
+\def\barn{\ensuremath{\rm \,b}\xspace}
+\def\barnhyph{\ensuremath{\rm -b}\xspace}
+\def\mbarn{\ensuremath{\rm \,mb}\xspace}
+\def\mub{\ensuremath{\rm \,\upmu b}\xspace}
+\def\mbarnhyph{\ensuremath{\rm -mb}\xspace}
+\def\nb {\ensuremath{\rm \,nb}\xspace}
+\def\invnb {\ensuremath{\mbox{\,nb}^{-1}}\xspace}
+\def\pb {\ensuremath{\rm \,pb}\xspace}
+\def\invpb {\ensuremath{\mbox{\,pb}^{-1}}\xspace}
+\def\fb   {\ensuremath{\mbox{\,fb}}\xspace}
+\def\invfb   {\ensuremath{\mbox{\,fb}^{-1}}\xspace}
+
+\def\sec  {\ensuremath{\rm {\,s}}\xspace}
+\def\ms   {\ensuremath{{\rm \,ms}}\xspace}
+\def\mus  {\ensuremath{\,\upmu{\rm s}}\xspace}
+\def\ns   {\ensuremath{{\rm \,ns}}\xspace}
+\def\ps   {\ensuremath{{\rm \,ps}}\xspace}
+\def\fs   {\ensuremath{\rm \,fs}\xspace}
+
+\def\mhz  {\ensuremath{{\rm \,MHz}}\xspace}
+\def\khz  {\ensuremath{{\rm \,kHz}}\xspace}
+\def\hz   {\ensuremath{{\rm \,Hz}}\xspace}
+
+\def\invps{\ensuremath{{\rm \,ps^{-1}}}\xspace}
+
+\def\yr   {\ensuremath{\rm \,yr}\xspace}
+\def\hr   {\ensuremath{\rm \,hr}\xspace}
+
+\def\degc {\ensuremath{^\circ}{C}\xspace}
+\def\degk {\ensuremath {\rm K}\xspace}
+
+\def\Xrad {\ensuremath{X_0}\xspace}
+\def\NIL{\ensuremath{\lambda_{int}}\xspace}
+\def\mip {MIP\xspace}
+\def\neutroneq {\ensuremath{\rm \,n_{eq}}\xspace}
+\def\neqcmcm {\ensuremath{\rm \,n_{eq} / cm^2}\xspace}
+\def\kRad {\ensuremath{\rm \,kRad}\xspace}
+\def\MRad {\ensuremath{\rm \,MRad}\xspace}
+\def\ci {\ensuremath{\rm \,Ci}\xspace}
+\def\mci {\ensuremath{\rm \,mCi}\xspace}
+
+\def\sx    {\ensuremath{\sigma_x}\xspace}    
+\def\sy    {\ensuremath{\sigma_y}\xspace}   
+\def\sz    {\ensuremath{\sigma_z}\xspace}    
+
+\newcommand{\stat}{\ensuremath{\mathrm{(stat)}}\xspace}
+\newcommand{\syst}{\ensuremath{\mathrm{(syst)}}\xspace}
+
+
+
+\def\order{{\ensuremath{\cal O}}\xspace}
+\newcommand{\chisq}{\ensuremath{\chi^2}\xspace}
+
+\def\deriv {\ensuremath{\mathrm{d}}}
+
+\def\gsim{{~\raise.15em\hbox{$>$}\kern-.85em
+          \lower.35em\hbox{$\sim$}~}\xspace}
+\def\lsim{{~\raise.15em\hbox{$<$}\kern-.85em
+          \lower.35em\hbox{$\sim$}~}\xspace}
+
+\newcommand{\mean}[1]{\ensuremath{\left\langle #1 \right\rangle}} \newcommand{\abs}[1]{\ensuremath{\left\|#1\right\|}} \newcommand{\Real}{\ensuremath{\mathcal{R}e}\xspace}
+\newcommand{\Imag}{\ensuremath{\mathcal{I}m}\xspace}
+
+\def\PDF {PDF\xspace}
+
+
+\def\Ebeam {\ensuremath{E_{\mbox{\tiny BEAM}}}\xspace}
+\def\sqs   {\ensuremath{\protect\sqrt{s}}\xspace}
+
+\def\ptot       {\mbox{$p$}\xspace}
+\def\pt         {\mbox{$p_{\rm T}$}\xspace}
+\def\et         {\mbox{$E_{\rm T}$}\xspace}
+\def\dpp        {\ensuremath{\mathrm{d}\hspace{-0.1em}p/p}\xspace}
+
+\newcommand{\dedx}{\ensuremath{\mathrm{d}\hspace{-0.1em}E/\mathrm{d}x}\xspace}
+
+
+
+\def\dllkpi     {\ensuremath{\mathrm{DLL}_{\kaon\pion}}\xspace}
+\def\dllppi     {\ensuremath{\mathrm{DLL}_{\proton\pion}}\xspace}
+\def\dllepi     {\ensuremath{\mathrm{DLL}_{\electron\pion}}\xspace}
+\def\dllmupi    {\ensuremath{\mathrm{DLL}_{\mmu\pi}}\xspace}
+
+\def\mphi       {\mbox{$\phi$}\xspace}
+\def\mtheta     {\mbox{$\theta$}\xspace}
+\def\ctheta     {\mbox{$\cos\theta$}\xspace}
+\def\stheta     {\mbox{$\sin\theta$}\xspace}
+\def\ttheta     {\mbox{$\tan\theta$}\xspace}
+
+\def\degrees{\ensuremath{^{\circ}}\xspace}
+\def\krad {\ensuremath{\rm \,krad}\xspace}
+\def\mrad{\ensuremath{\rm \,mrad}\xspace}
+\def\rad{\ensuremath{\rm \,rad}\xspace}
+
+\def\betastar {\ensuremath{\beta^*}}
+\newcommand{\lum} {\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\intlum}[1]{\ensuremath{\int\lum=#1\xspace}}  
+
+
+
+\def\evtgen     {\mbox{\textsc{EvtGen}}\xspace}
+\def\pythia     {\mbox{\textsc{Pythia}}\xspace}
+\def\fluka      {\mbox{\textsc{Fluka}}\xspace}
+\def\tosca      {\mbox{\textsc{Tosca}}\xspace}
+\def\ansys      {\mbox{\textsc{Ansys}}\xspace}
+\def\spice      {\mbox{\textsc{Spice}}\xspace}
+\def\garfield   {\mbox{\textsc{Garfield}}\xspace}
+\def\geant      {\mbox{\textsc{Geant4}}\xspace}
+\def\hepmc      {\mbox{\textsc{HepMC}}\xspace}
+\def\gauss      {\mbox{\textsc{Gauss}}\xspace}
+\def\gaudi      {\mbox{\textsc{Gaudi}}\xspace}
+\def\boole      {\mbox{\textsc{Boole}}\xspace}
+\def\brunel     {\mbox{\textsc{Brunel}}\xspace}
+\def\davinci    {\mbox{\textsc{DaVinci}}\xspace}
+\def\erasmus    {\mbox{\textsc{Erasmus}}\xspace}
+\def\moore      {\mbox{\textsc{Moore}}\xspace}
+\def\ganga      {\mbox{\textsc{Ganga}}\xspace}
+\def\dirac      {\mbox{\textsc{Dirac}}\xspace}
+\def\root       {\mbox{\textsc{Root}}\xspace}
+\def\roofit     {\mbox{\textsc{RooFit}}\xspace}
+\def\pyroot     {\mbox{\textsc{PyRoot}}\xspace}
+
+\def\cpp        {\mbox{\textsc{C\raisebox{0.1em}{{\footnotesize{++}}}}}\xspace}
+\def\python     {\mbox{\textsc{Python}}\xspace}
+\def\ruby       {\mbox{\textsc{Ruby}}\xspace}
+\def\fortran    {\mbox{\textsc{Fortran}}\xspace}
+\def\svn        {\mbox{\textsc{SVN}}\xspace}
+
+\def\kbytes     {\ensuremath{{\rm \,kbytes}}\xspace}
+\def\kbsps      {\ensuremath{{\rm \,kbytes/s}}\xspace}
+\def\kbits      {\ensuremath{{\rm \,kbits}}\xspace}
+\def\kbsps      {\ensuremath{{\rm \,kbits/s}}\xspace}
+\def\mbsps      {\ensuremath{{\rm \,Mbits/s}}\xspace}
+\def\mbytes     {\ensuremath{{\rm \,Mbytes}}\xspace}
+\def\mbps       {\ensuremath{{\rm \,Mbyte/s}}\xspace}
+\def\mbsps      {\ensuremath{{\rm \,Mbytes/s}}\xspace}
+\def\gbsps      {\ensuremath{{\rm \,Gbits/s}}\xspace}
+\def\gbytes     {\ensuremath{{\rm \,Gbytes}}\xspace}
+\def\gbsps      {\ensuremath{{\rm \,Gbytes/s}}\xspace}
+\def\tbytes     {\ensuremath{{\rm \,Tbytes}}\xspace}
+\def\tbpy       {\ensuremath{{\rm \,Tbytes/yr}}\xspace}
+
+\def\dst        {DST\xspace}
+
+
+
+\def\nonn {\ensuremath{\rm {\it{n^+}}\mbox{-}on\mbox{-}{\it{n}}}\xspace}
+\def\ponn {\ensuremath{\rm {\it{p^+}}\mbox{-}on\mbox{-}{\it{n}}}\xspace}
+\def\nonp {\ensuremath{\rm {\it{n^+}}\mbox{-}on\mbox{-}{\it{p}}}\xspace}
+\def\cvd  {CVD\xspace}
+\def\mwpc {MWPC\xspace}
+\def\gem  {GEM\xspace}
+
+\def\tell1  {TELL1\xspace}
+\def\ukl1   {UKL1\xspace}
+\def\beetle {Beetle\xspace}
+\def\otis   {OTIS\xspace}
+\def\croc   {CROC\xspace}
+\def\carioca {CARIOCA\xspace}
+\def\dialog {DIALOG\xspace}
+\def\sync   {SYNC\xspace}
+\def\cardiac {CARDIAC\xspace}
+\def\gol    {GOL\xspace}
+\def\vcsel  {VCSEL\xspace}
+\def\ttc    {TTC\xspace}
+\def\ttcrx  {TTCrx\xspace}
+\def\hpd    {HPD\xspace}
+\def\pmt    {PMT\xspace}
+\def\specs  {SPECS\xspace}
+\def\elmb   {ELMB\xspace}
+\def\fpga   {FPGA\xspace}
+\def\plc    {PLC\xspace}
+\def\rasnik {RASNIK\xspace}
+\def\elmb   {ELMB\xspace}
+\def\can    {CAN\xspace}
+\def\lvds   {LVDS\xspace}
+\def\ntc    {NTC\xspace}
+\def\adc    {ADC\xspace}
+\def\led    {LED\xspace}
+\def\ccd    {CCD\xspace}
+\def\hv     {HV\xspace}
+\def\lv     {LV\xspace}
+\def\pvss   {PVSS\xspace}
+\def\cmos   {CMOS\xspace}
+\def\fifo   {FIFO\xspace}
+\def\ccpc   {CCPC\xspace}
+
+\def\cfourften     {\ensuremath{\rm C_4 F_{10}}\xspace}
+\def\cffour        {\ensuremath{\rm CF_4}\xspace}
+\def\cotwo         {\ensuremath{\rm CO_2}\xspace} 
+\def\csixffouteen  {\ensuremath{\rm C_6 F_{14}}\xspace} 
+\def\mgftwo     {\ensuremath{\rm Mg F_2}\xspace} 
+\def\siotwo     {\ensuremath{\rm SiO_2}\xspace} 
+
+\newcommand{\eg}{\mbox{\itshape e.g.}\xspace}
+\newcommand{\ie}{\mbox{\itshape i.e.}}
+\newcommand{\etal}{{\slshape et al.\/}\xspace}
+\newcommand{\etc}{\mbox{\itshape etc.}\xspace}
+\newcommand{\cf}{\mbox{\itshape cf.}\xspace}
+\newcommand{\ffp}{\mbox{\itshape ff.}\xspace}
+ \usepackage{cite} \usepackage{setspace}
+\usepackage{mciteplus}
+
+
+
+\begin{document}
+
+
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{1}
+
+\begin{titlepage}
+\pagenumbering{roman}
+
+\vspace*{-1.5cm}
+\centerline{\large EUROPEAN ORGANIZATION FOR NUCLEAR RESEARCH (CERN)}
+\vspace*{1.5cm}
+\hspace*{-5mm}\begin{tabular*}{16cm}{lc@{\extracolsep{\fill}}r}
+\vspace*{-12mm}\mbox{\!\!\!\includegraphics[width=.12\textwidth]{lhcb-logo}}& & \\ 
+& & CERN-PH-EP-2014-002\\
+& & LHCb-PAPER-2013-064\\  & &\today \\ \end{tabular*}
+
+
+\vspace*{3.0cm}
+
+{\bf\boldmath\huge
+\begin{center}
+Search for Majorana neutrinos in $\Bm \to \pip\mun\mun$ decays 
+\end{center}
+}
+
+\vspace*{2.0cm}
+
+\begin{center}
+The LHCb collaboration\footnote{Authors are listed on the following pages.}
+\end{center}
+
+\vspace{\fill}
+
+\begin{abstract}
+  \noindent
+A search for heavy Majorana neutrinos produced in the $\Bm \to \pip\mun\mun$ decay mode is performed using 3 \invfb  of integrated luminosity collected with the LHCb detector in $pp$ collisions at center-of-mass energies of 7 TeV and 8 TeV at the LHC. Neutrinos with masses in the range $250-5000$~MeV and  lifetimes from zero to 1000~ps are probed. In the absence of a signal, upper limits are set on
+ the branching fraction ${\cal{B}}(\Bm \to \pip\mun\mun)$ as functions of neutrino mass and lifetime. These limits are on the order of $10^{-9}$  for short neutrino lifetimes of 1~ps or less. Limits are also set on the coupling between the muon and a possible fourth-generation neutrino. 
+\end{abstract}
+
+\vspace*{2.0cm}
+
+\begin{center}
+  Submitted to Phys.~Rev.~Lett. 
+\end{center}
+
+\vspace{\fill}
+
+{\footnotesize 
+\centerline{\copyright~CERN on behalf of the \lhcb collaboration, license \href{http://creativecommons.org/licenses/by/3.0/}{CC-BY-3.0}.}}
+\vspace*{2mm}
+
+\end{titlepage}
+
+\newpage
+\setcounter{page}{2}
+\mbox{~}
+
+
+\centerline{\large\bf LHCb collaboration}
+\begin{flushleft}
+\small
+R.~Aaij$^{40}$, 
+B.~Adeva$^{36}$, 
+M.~Adinolfi$^{45}$, 
+A.~Affolder$^{51}$, 
+Z.~Ajaltouni$^{5}$, 
+J.~Albrecht$^{9}$, 
+F.~Alessio$^{37}$, 
+M.~Alexander$^{50}$, 
+S.~Ali$^{40}$, 
+G.~Alkhazov$^{29}$, 
+P.~Alvarez~Cartelle$^{36}$, 
+A.A.~Alves~Jr$^{24}$, 
+S.~Amato$^{2}$, 
+S.~Amerio$^{21}$, 
+Y.~Amhis$^{7}$, 
+L.~Anderlini$^{17,g}$, 
+J.~Anderson$^{39}$, 
+R.~Andreassen$^{56}$, 
+M.~Andreotti$^{16,f}$, 
+J.E.~Andrews$^{57}$, 
+R.B.~Appleby$^{53}$, 
+O.~Aquines~Gutierrez$^{10}$, 
+F.~Archilli$^{37}$, 
+A.~Artamonov$^{34}$, 
+M.~Artuso$^{58}$, 
+E.~Aslanides$^{6}$, 
+G.~Auriemma$^{24,n}$, 
+M.~Baalouch$^{5}$, 
+S.~Bachmann$^{11}$, 
+J.J.~Back$^{47}$, 
+A.~Badalov$^{35}$, 
+V.~Balagura$^{30}$, 
+W.~Baldini$^{16}$, 
+R.J.~Barlow$^{53}$, 
+C.~Barschel$^{38}$, 
+S.~Barsuk$^{7}$, 
+W.~Barter$^{46}$, 
+V.~Batozskaya$^{27}$, 
+Th.~Bauer$^{40}$, 
+A.~Bay$^{38}$, 
+J.~Beddow$^{50}$, 
+F.~Bedeschi$^{22}$, 
+I.~Bediaga$^{1}$, 
+S.~Belogurov$^{30}$, 
+K.~Belous$^{34}$, 
+I.~Belyaev$^{30}$, 
+E.~Ben-Haim$^{8}$, 
+G.~Bencivenni$^{18}$, 
+S.~Benson$^{49}$, 
+J.~Benton$^{45}$, 
+A.~Berezhnoy$^{31}$, 
+R.~Bernet$^{39}$, 
+M.-O.~Bettler$^{46}$, 
+M.~van~Beuzekom$^{40}$, 
+A.~Bien$^{11}$, 
+S.~Bifani$^{44}$, 
+T.~Bird$^{53}$, 
+A.~Bizzeti$^{17,i}$, 
+P.M.~Bj\o rnstad$^{53}$, 
+T.~Blake$^{47}$, 
+F.~Blanc$^{38}$, 
+J.~Blouw$^{10}$, 
+S.~Blusk$^{58}$, 
+V.~Bocci$^{24}$, 
+A.~Bondar$^{33}$, 
+N.~Bondar$^{29}$, 
+W.~Bonivento$^{15,37}$, 
+S.~Borghi$^{53}$, 
+A.~Borgia$^{58}$, 
+M.~Borsato$^{7}$, 
+T.J.V.~Bowcock$^{51}$, 
+E.~Bowen$^{39}$, 
+C.~Bozzi$^{16}$, 
+T.~Brambach$^{9}$, 
+J.~van~den~Brand$^{41}$, 
+J.~Bressieux$^{38}$, 
+D.~Brett$^{53}$, 
+M.~Britsch$^{10}$, 
+T.~Britton$^{58}$, 
+N.H.~Brook$^{45}$, 
+H.~Brown$^{51}$, 
+A.~Bursche$^{39}$, 
+G.~Busetto$^{21,r}$, 
+J.~Buytaert$^{37}$, 
+S.~Cadeddu$^{15}$, 
+R.~Calabrese$^{16,f}$, 
+O.~Callot$^{7}$, 
+M.~Calvi$^{20,k}$, 
+M.~Calvo~Gomez$^{35,p}$, 
+A.~Camboni$^{35}$, 
+P.~Campana$^{18,37}$, 
+D.~Campora~Perez$^{37}$, 
+A.~Carbone$^{14,d}$, 
+G.~Carboni$^{23,l}$, 
+R.~Cardinale$^{19,j}$, 
+A.~Cardini$^{15}$, 
+H.~Carranza-Mejia$^{49}$, 
+L.~Carson$^{49}$, 
+K.~Carvalho~Akiba$^{2}$, 
+G.~Casse$^{51}$, 
+L.~Castillo~Garcia$^{37}$, 
+M.~Cattaneo$^{37}$, 
+Ch.~Cauet$^{9}$, 
+R.~Cenci$^{57}$, 
+M.~Charles$^{8}$, 
+Ph.~Charpentier$^{37}$, 
+S.-F.~Cheung$^{54}$, 
+N.~Chiapolini$^{39}$, 
+M.~Chrzaszcz$^{39,25}$, 
+K.~Ciba$^{37}$, 
+X.~Cid~Vidal$^{37}$, 
+G.~Ciezarek$^{52}$, 
+P.E.L.~Clarke$^{49}$, 
+M.~Clemencic$^{37}$, 
+H.V.~Cliff$^{46}$, 
+J.~Closier$^{37}$, 
+C.~Coca$^{28}$, 
+V.~Coco$^{37}$, 
+J.~Cogan$^{6}$, 
+E.~Cogneras$^{5}$, 
+P.~Collins$^{37}$, 
+A.~Comerma-Montells$^{35}$, 
+A.~Contu$^{15,37}$, 
+A.~Cook$^{45}$, 
+M.~Coombes$^{45}$, 
+S.~Coquereau$^{8}$, 
+G.~Corti$^{37}$, 
+I.~Counts$^{55}$, 
+B.~Couturier$^{37}$, 
+G.A.~Cowan$^{49}$, 
+D.C.~Craik$^{47}$, 
+M.~Cruz~Torres$^{59}$, 
+S.~Cunliffe$^{52}$, 
+R.~Currie$^{49}$, 
+C.~D'Ambrosio$^{37}$, 
+J.~Dalseno$^{45}$, 
+P.~David$^{8}$, 
+P.N.Y.~David$^{40}$, 
+A.~Davis$^{56}$, 
+I.~De~Bonis$^{4}$, 
+K.~De~Bruyn$^{40}$, 
+S.~De~Capua$^{53}$, 
+M.~De~Cian$^{11}$, 
+J.M.~De~Miranda$^{1}$, 
+L.~De~Paula$^{2}$, 
+W.~De~Silva$^{56}$, 
+P.~De~Simone$^{18}$, 
+D.~Decamp$^{4}$, 
+M.~Deckenhoff$^{9}$, 
+L.~Del~Buono$^{8}$, 
+N.~D\'{e}l\'{e}age$^{4}$, 
+D.~Derkach$^{54}$, 
+O.~Deschamps$^{5}$, 
+F.~Dettori$^{41}$, 
+A.~Di~Canto$^{11}$, 
+H.~Dijkstra$^{37}$, 
+S.~Donleavy$^{51}$, 
+F.~Dordei$^{11}$, 
+M.~Dorigo$^{38}$, 
+P.~Dorosz$^{25,o}$, 
+A.~Dosil~Su\'{a}rez$^{36}$, 
+D.~Dossett$^{47}$, 
+A.~Dovbnya$^{42}$, 
+F.~Dupertuis$^{38}$, 
+P.~Durante$^{37}$, 
+R.~Dzhelyadin$^{34}$, 
+A.~Dziurda$^{25}$, 
+A.~Dzyuba$^{29}$, 
+S.~Easo$^{48}$, 
+U.~Egede$^{52}$, 
+V.~Egorychev$^{30}$, 
+S.~Eidelman$^{33}$, 
+S.~Eisenhardt$^{49}$, 
+U.~Eitschberger$^{9}$, 
+R.~Ekelhof$^{9}$, 
+L.~Eklund$^{50,37}$, 
+I.~El~Rifai$^{5}$, 
+Ch.~Elsasser$^{39}$, 
+A.~Falabella$^{16,f}$, 
+C.~F\"{a}rber$^{11}$, 
+C.~Farinelli$^{40}$, 
+S.~Farry$^{51}$, 
+D.~Ferguson$^{49}$, 
+V.~Fernandez~Albor$^{36}$, 
+F.~Ferreira~Rodrigues$^{1}$, 
+M.~Ferro-Luzzi$^{37}$, 
+S.~Filippov$^{32}$, 
+M.~Fiore$^{16,f}$, 
+M.~Fiorini$^{16,f}$, 
+C.~Fitzpatrick$^{37}$, 
+M.~Fontana$^{10}$, 
+F.~Fontanelli$^{19,j}$, 
+R.~Forty$^{37}$, 
+O.~Francisco$^{2}$, 
+M.~Frank$^{37}$, 
+C.~Frei$^{37}$, 
+M.~Frosini$^{17,37,g}$, 
+E.~Furfaro$^{23,l}$, 
+A.~Gallas~Torreira$^{36}$, 
+D.~Galli$^{14,d}$, 
+M.~Gandelman$^{2}$, 
+P.~Gandini$^{58}$, 
+Y.~Gao$^{3}$, 
+J.~Garofoli$^{58}$, 
+J.~Garra~Tico$^{46}$, 
+L.~Garrido$^{35}$, 
+C.~Gaspar$^{37}$, 
+R.~Gauld$^{54}$, 
+E.~Gersabeck$^{11}$, 
+M.~Gersabeck$^{53}$, 
+T.~Gershon$^{47}$, 
+Ph.~Ghez$^{4}$, 
+A.~Gianelle$^{21}$, 
+V.~Gibson$^{46}$, 
+L.~Giubega$^{28}$, 
+V.V.~Gligorov$^{37}$, 
+C.~G\"{o}bel$^{59}$, 
+D.~Golubkov$^{30}$, 
+A.~Golutvin$^{52,30,37}$, 
+A.~Gomes$^{1,a}$, 
+H.~Gordon$^{37}$, 
+M.~Grabalosa~G\'{a}ndara$^{5}$, 
+R.~Graciani~Diaz$^{35}$, 
+L.A.~Granado~Cardoso$^{37}$, 
+E.~Graug\'{e}s$^{35}$, 
+G.~Graziani$^{17}$, 
+A.~Grecu$^{28}$, 
+E.~Greening$^{54}$, 
+S.~Gregson$^{46}$, 
+P.~Griffith$^{44}$, 
+L.~Grillo$^{11}$, 
+O.~Gr\"{u}nberg$^{60}$, 
+B.~Gui$^{58}$, 
+E.~Gushchin$^{32}$, 
+Yu.~Guz$^{34,37}$, 
+T.~Gys$^{37}$, 
+C.~Hadjivasiliou$^{58}$, 
+G.~Haefeli$^{38}$, 
+C.~Haen$^{37}$, 
+T.W.~Hafkenscheid$^{62}$, 
+S.C.~Haines$^{46}$, 
+S.~Hall$^{52}$, 
+B.~Hamilton$^{57}$, 
+T.~Hampson$^{45}$, 
+S.~Hansmann-Menzemer$^{11}$, 
+N.~Harnew$^{54}$, 
+S.T.~Harnew$^{45}$, 
+J.~Harrison$^{53}$, 
+T.~Hartmann$^{60}$, 
+J.~He$^{37}$, 
+T.~Head$^{37}$, 
+V.~Heijne$^{40}$, 
+K.~Hennessy$^{51}$, 
+P.~Henrard$^{5}$, 
+J.A.~Hernando~Morata$^{36}$, 
+E.~van~Herwijnen$^{37}$, 
+M.~He\ss$^{60}$, 
+A.~Hicheur$^{1}$, 
+D.~Hill$^{54}$, 
+M.~Hoballah$^{5}$, 
+C.~Hombach$^{53}$, 
+W.~Hulsbergen$^{40}$, 
+P.~Hunt$^{54}$, 
+T.~Huse$^{51}$, 
+N.~Hussain$^{54}$, 
+D.~Hutchcroft$^{51}$, 
+D.~Hynds$^{50}$, 
+V.~Iakovenko$^{43}$, 
+M.~Idzik$^{26}$, 
+P.~Ilten$^{55}$, 
+R.~Jacobsson$^{37}$, 
+A.~Jaeger$^{11}$, 
+E.~Jans$^{40}$, 
+P.~Jaton$^{38}$, 
+A.~Jawahery$^{57}$, 
+F.~Jing$^{3}$, 
+M.~John$^{54}$, 
+D.~Johnson$^{54}$, 
+C.R.~Jones$^{46}$, 
+C.~Joram$^{37}$, 
+B.~Jost$^{37}$, 
+N.~Jurik$^{58}$, 
+M.~Kaballo$^{9}$, 
+S.~Kandybei$^{42}$, 
+W.~Kanso$^{6}$, 
+M.~Karacson$^{37}$, 
+T.M.~Karbach$^{37}$, 
+I.R.~Kenyon$^{44}$, 
+T.~Ketel$^{41}$, 
+B.~Khanji$^{20}$, 
+C.~Khurewathanakul$^{38}$, 
+S.~Klaver$^{53}$, 
+O.~Kochebina$^{7}$, 
+I.~Komarov$^{38}$, 
+R.F.~Koopman$^{41}$, 
+P.~Koppenburg$^{40}$, 
+M.~Korolev$^{31}$, 
+A.~Kozlinskiy$^{40}$, 
+L.~Kravchuk$^{32}$, 
+K.~Kreplin$^{11}$, 
+M.~Kreps$^{47}$, 
+G.~Krocker$^{11}$, 
+P.~Krokovny$^{33}$, 
+F.~Kruse$^{9}$, 
+M.~Kucharczyk$^{20,25,37,k}$, 
+V.~Kudryavtsev$^{33}$, 
+K.~Kurek$^{27}$, 
+T.~Kvaratskheliya$^{30,37}$, 
+V.N.~La~Thi$^{38}$, 
+D.~Lacarrere$^{37}$, 
+G.~Lafferty$^{53}$, 
+A.~Lai$^{15}$, 
+D.~Lambert$^{49}$, 
+R.W.~Lambert$^{41}$, 
+E.~Lanciotti$^{37}$, 
+G.~Lanfranchi$^{18}$, 
+C.~Langenbruch$^{37}$, 
+T.~Latham$^{47}$, 
+C.~Lazzeroni$^{44}$, 
+R.~Le~Gac$^{6}$, 
+J.~van~Leerdam$^{40}$, 
+J.-P.~Lees$^{4}$, 
+R.~Lef\`{e}vre$^{5}$, 
+A.~Leflat$^{31}$, 
+J.~Lefran\c{c}ois$^{7}$, 
+S.~Leo$^{22}$, 
+O.~Leroy$^{6}$, 
+T.~Lesiak$^{25}$, 
+B.~Leverington$^{11}$, 
+Y.~Li$^{3}$, 
+M.~Liles$^{51}$, 
+R.~Lindner$^{37}$, 
+C.~Linn$^{11}$, 
+F.~Lionetto$^{39}$, 
+B.~Liu$^{15}$, 
+G.~Liu$^{37}$, 
+S.~Lohn$^{37}$, 
+I.~Longstaff$^{50}$, 
+J.H.~Lopes$^{2}$, 
+N.~Lopez-March$^{38}$, 
+P.~Lowdon$^{39}$, 
+H.~Lu$^{3}$, 
+D.~Lucchesi$^{21,r}$, 
+J.~Luisier$^{38}$, 
+H.~Luo$^{49}$, 
+E.~Luppi$^{16,f}$, 
+O.~Lupton$^{54}$, 
+F.~Machefert$^{7}$, 
+I.V.~Machikhiliyan$^{30}$, 
+F.~Maciuc$^{28}$, 
+O.~Maev$^{29,37}$, 
+S.~Malde$^{54}$, 
+G.~Manca$^{15,e}$, 
+G.~Mancinelli$^{6}$, 
+M.~Manzali$^{16,f}$, 
+J.~Maratas$^{5}$, 
+U.~Marconi$^{14}$, 
+P.~Marino$^{22,t}$, 
+R.~M\"{a}rki$^{38}$, 
+J.~Marks$^{11}$, 
+G.~Martellotti$^{24}$, 
+A.~Martens$^{8}$, 
+A.~Mart\'{i}n~S\'{a}nchez$^{7}$, 
+M.~Martinelli$^{40}$, 
+D.~Martinez~Santos$^{41}$, 
+D.~Martins~Tostes$^{2}$, 
+A.~Massafferri$^{1}$, 
+R.~Matev$^{37}$, 
+Z.~Mathe$^{37}$, 
+C.~Matteuzzi$^{20}$, 
+A.~Mazurov$^{16,37,f}$, 
+M.~McCann$^{52}$, 
+J.~McCarthy$^{44}$, 
+A.~McNab$^{53}$, 
+R.~McNulty$^{12}$, 
+B.~McSkelly$^{51}$, 
+B.~Meadows$^{56,54}$, 
+F.~Meier$^{9}$, 
+M.~Meissner$^{11}$, 
+M.~Merk$^{40}$, 
+D.A.~Milanes$^{8}$, 
+M.-N.~Minard$^{4}$, 
+J.~Molina~Rodriguez$^{59}$, 
+S.~Monteil$^{5}$, 
+D.~Moran$^{53}$, 
+M.~Morandin$^{21}$, 
+P.~Morawski$^{25}$, 
+A.~Mord\`{a}$^{6}$, 
+M.J.~Morello$^{22,t}$, 
+R.~Mountain$^{58}$, 
+I.~Mous$^{40}$, 
+F.~Muheim$^{49}$, 
+K.~M\"{u}ller$^{39}$, 
+R.~Muresan$^{28}$, 
+B.~Muryn$^{26}$, 
+B.~Muster$^{38}$, 
+P.~Naik$^{45}$, 
+T.~Nakada$^{38}$, 
+R.~Nandakumar$^{48}$, 
+I.~Nasteva$^{1}$, 
+M.~Needham$^{49}$, 
+S.~Neubert$^{37}$, 
+N.~Neufeld$^{37}$, 
+A.D.~Nguyen$^{38}$, 
+T.D.~Nguyen$^{38}$, 
+C.~Nguyen-Mau$^{38,q}$, 
+M.~Nicol$^{7}$, 
+V.~Niess$^{5}$, 
+R.~Niet$^{9}$, 
+N.~Nikitin$^{31}$, 
+T.~Nikodem$^{11}$, 
+A.~Novoselov$^{34}$, 
+A.~Oblakowska-Mucha$^{26}$, 
+V.~Obraztsov$^{34}$, 
+S.~Oggero$^{40}$, 
+S.~Ogilvy$^{50}$, 
+O.~Okhrimenko$^{43}$, 
+R.~Oldeman$^{15,e}$, 
+G.~Onderwater$^{62}$, 
+M.~Orlandea$^{28}$, 
+J.M.~Otalora~Goicochea$^{2}$, 
+P.~Owen$^{52}$, 
+A.~Oyanguren$^{35}$, 
+B.K.~Pal$^{58}$, 
+A.~Palano$^{13,c}$, 
+M.~Palutan$^{18}$, 
+J.~Panman$^{37}$, 
+A.~Papanestis$^{48,37}$, 
+M.~Pappagallo$^{50}$, 
+L.~Pappalardo$^{16}$, 
+C.~Parkes$^{53}$, 
+C.J.~Parkinson$^{9}$, 
+G.~Passaleva$^{17}$, 
+G.D.~Patel$^{51}$, 
+M.~Patel$^{52}$, 
+C.~Patrignani$^{19,j}$, 
+C.~Pavel-Nicorescu$^{28}$, 
+A.~Pazos~Alvarez$^{36}$, 
+A.~Pearce$^{53}$, 
+A.~Pellegrino$^{40}$, 
+G.~Penso$^{24,m}$, 
+M.~Pepe~Altarelli$^{37}$, 
+S.~Perazzini$^{14,d}$, 
+E.~Perez~Trigo$^{36}$, 
+P.~Perret$^{5}$, 
+M.~Perrin-Terrin$^{6}$, 
+L.~Pescatore$^{44}$, 
+E.~Pesen$^{63}$, 
+G.~Pessina$^{20}$, 
+K.~Petridis$^{52}$, 
+A.~Petrolini$^{19,j}$, 
+E.~Picatoste~Olloqui$^{35}$, 
+B.~Pietrzyk$^{4}$, 
+T.~Pila\v{r}$^{47}$, 
+D.~Pinci$^{24}$, 
+A.~Pistone$^{19}$, 
+S.~Playfer$^{49}$, 
+M.~Plo~Casasus$^{36}$, 
+F.~Polci$^{8}$, 
+G.~Polok$^{25}$, 
+A.~Poluektov$^{47,33}$, 
+E.~Polycarpo$^{2}$, 
+A.~Popov$^{34}$, 
+D.~Popov$^{10}$, 
+B.~Popovici$^{28}$, 
+C.~Potterat$^{35}$, 
+A.~Powell$^{54}$, 
+J.~Prisciandaro$^{38}$, 
+A.~Pritchard$^{51}$, 
+C.~Prouve$^{45}$, 
+V.~Pugatch$^{43}$, 
+A.~Puig~Navarro$^{38}$, 
+G.~Punzi$^{22,s}$, 
+W.~Qian$^{4}$, 
+B.~Rachwal$^{25}$, 
+J.H.~Rademacker$^{45}$, 
+B.~Rakotomiaramanana$^{38}$, 
+M.~Rama$^{18}$, 
+M.S.~Rangel$^{2}$, 
+I.~Raniuk$^{42}$, 
+N.~Rauschmayr$^{37}$, 
+G.~Raven$^{41}$, 
+S.~Redford$^{54}$, 
+S.~Reichert$^{53}$, 
+M.M.~Reid$^{47}$, 
+A.C.~dos~Reis$^{1}$, 
+S.~Ricciardi$^{48}$, 
+A.~Richards$^{52}$, 
+K.~Rinnert$^{51}$, 
+V.~Rives~Molina$^{35}$, 
+D.A.~Roa~Romero$^{5}$, 
+P.~Robbe$^{7}$, 
+D.A.~Roberts$^{57}$, 
+A.B.~Rodrigues$^{1}$, 
+E.~Rodrigues$^{53}$, 
+P.~Rodriguez~Perez$^{36}$, 
+S.~Roiser$^{37}$, 
+V.~Romanovsky$^{34}$, 
+A.~Romero~Vidal$^{36}$, 
+M.~Rotondo$^{21}$, 
+J.~Rouvinet$^{38}$, 
+T.~Ruf$^{37}$, 
+F.~Ruffini$^{22}$, 
+H.~Ruiz$^{35}$, 
+P.~Ruiz~Valls$^{35}$, 
+G.~Sabatino$^{24,l}$, 
+J.J.~Saborido~Silva$^{36}$, 
+N.~Sagidova$^{29}$, 
+P.~Sail$^{50}$, 
+B.~Saitta$^{15,e}$, 
+V.~Salustino~Guimaraes$^{2}$, 
+B.~Sanmartin~Sedes$^{36}$, 
+R.~Santacesaria$^{24}$, 
+C.~Santamarina~Rios$^{36}$, 
+E.~Santovetti$^{23,l}$, 
+M.~Sapunov$^{6}$, 
+A.~Sarti$^{18}$, 
+C.~Satriano$^{24,n}$, 
+A.~Satta$^{23}$, 
+M.~Savrie$^{16,f}$, 
+D.~Savrina$^{30,31}$, 
+M.~Schiller$^{41}$, 
+H.~Schindler$^{37}$, 
+M.~Schlupp$^{9}$, 
+M.~Schmelling$^{10}$, 
+B.~Schmidt$^{37}$, 
+O.~Schneider$^{38}$, 
+A.~Schopper$^{37}$, 
+M.-H.~Schune$^{7}$, 
+R.~Schwemmer$^{37}$, 
+B.~Sciascia$^{18}$, 
+A.~Sciubba$^{24}$, 
+M.~Seco$^{36}$, 
+A.~Semennikov$^{30}$, 
+K.~Senderowska$^{26}$, 
+I.~Sepp$^{52}$, 
+N.~Serra$^{39}$, 
+J.~Serrano$^{6}$, 
+P.~Seyfert$^{11}$, 
+M.~Shapkin$^{34}$, 
+I.~Shapoval$^{16,42,f}$, 
+Y.~Shcheglov$^{29}$, 
+T.~Shears$^{51}$, 
+L.~Shekhtman$^{33}$, 
+O.~Shevchenko$^{42}$, 
+V.~Shevchenko$^{61}$, 
+A.~Shires$^{9}$, 
+R.~Silva~Coutinho$^{47}$, 
+G.~Simi$^{21}$, 
+M.~Sirendi$^{46}$, 
+N.~Skidmore$^{45}$, 
+T.~Skwarnicki$^{58}$, 
+N.A.~Smith$^{51}$, 
+E.~Smith$^{54,48}$, 
+E.~Smith$^{52}$, 
+J.~Smith$^{46}$, 
+M.~Smith$^{53}$, 
+H.~Snoek$^{40}$, 
+M.D.~Sokoloff$^{56}$, 
+F.J.P.~Soler$^{50}$, 
+F.~Soomro$^{38}$, 
+D.~Souza$^{45}$, 
+B.~Souza~De~Paula$^{2}$, 
+B.~Spaan$^{9}$, 
+A.~Sparkes$^{49}$, 
+F.~Spinella$^{22}$, 
+P.~Spradlin$^{50}$, 
+F.~Stagni$^{37}$, 
+S.~Stahl$^{11}$, 
+O.~Steinkamp$^{39}$, 
+S.~Stevenson$^{54}$, 
+S.~Stoica$^{28}$, 
+S.~Stone$^{58}$, 
+B.~Storaci$^{39}$, 
+S.~Stracka$^{22,37}$, 
+M.~Straticiuc$^{28}$, 
+U.~Straumann$^{39}$, 
+R.~Stroili$^{21}$, 
+V.K.~Subbiah$^{37}$, 
+L.~Sun$^{56}$, 
+W.~Sutcliffe$^{52}$, 
+S.~Swientek$^{9}$, 
+V.~Syropoulos$^{41}$, 
+M.~Szczekowski$^{27}$, 
+P.~Szczypka$^{38,37}$, 
+D.~Szilard$^{2}$, 
+T.~Szumlak$^{26}$, 
+S.~T'Jampens$^{4}$, 
+M.~Teklishyn$^{7}$, 
+G.~Tellarini$^{16,f}$, 
+E.~Teodorescu$^{28}$, 
+F.~Teubert$^{37}$, 
+C.~Thomas$^{54}$, 
+E.~Thomas$^{37}$, 
+J.~van~Tilburg$^{11}$, 
+V.~Tisserand$^{4}$, 
+M.~Tobin$^{38}$, 
+S.~Tolk$^{41}$, 
+L.~Tomassetti$^{16,f}$, 
+D.~Tonelli$^{37}$, 
+S.~Topp-Joergensen$^{54}$, 
+N.~Torr$^{54}$, 
+E.~Tournefier$^{4,52}$, 
+S.~Tourneur$^{38}$, 
+M.T.~Tran$^{38}$, 
+M.~Tresch$^{39}$, 
+A.~Tsaregorodtsev$^{6}$, 
+P.~Tsopelas$^{40}$, 
+N.~Tuning$^{40}$, 
+M.~Ubeda~Garcia$^{37}$, 
+A.~Ukleja$^{27}$, 
+A.~Ustyuzhanin$^{61}$, 
+U.~Uwer$^{11}$, 
+V.~Vagnoni$^{14}$, 
+G.~Valenti$^{14}$, 
+A.~Vallier$^{7}$, 
+R.~Vazquez~Gomez$^{18}$, 
+P.~Vazquez~Regueiro$^{36}$, 
+C.~V\'{a}zquez~Sierra$^{36}$, 
+S.~Vecchi$^{16}$, 
+J.J.~Velthuis$^{45}$, 
+M.~Veltri$^{17,h}$, 
+G.~Veneziano$^{38}$, 
+M.~Vesterinen$^{11}$, 
+B.~Viaud$^{7}$, 
+D.~Vieira$^{2}$, 
+X.~Vilasis-Cardona$^{35,p}$, 
+A.~Vollhardt$^{39}$, 
+D.~Volyanskyy$^{10}$, 
+D.~Voong$^{45}$, 
+A.~Vorobyev$^{29}$, 
+V.~Vorobyev$^{33}$, 
+C.~Vo\ss$^{60}$, 
+H.~Voss$^{10}$, 
+J.A.~de~Vries$^{40}$, 
+R.~Waldi$^{60}$, 
+C.~Wallace$^{47}$, 
+R.~Wallace$^{12}$, 
+S.~Wandernoth$^{11}$, 
+J.~Wang$^{58}$, 
+D.R.~Ward$^{46}$, 
+N.K.~Watson$^{44}$, 
+A.D.~Webber$^{53}$, 
+D.~Websdale$^{52}$, 
+M.~Whitehead$^{47}$, 
+J.~Wicht$^{37}$, 
+J.~Wiechczynski$^{25}$, 
+D.~Wiedner$^{11}$, 
+L.~Wiggers$^{40}$, 
+G.~Wilkinson$^{54}$, 
+M.P.~Williams$^{47,48}$, 
+M.~Williams$^{55}$, 
+F.F.~Wilson$^{48}$, 
+J.~Wimberley$^{57}$, 
+J.~Wishahi$^{9}$, 
+W.~Wislicki$^{27}$, 
+M.~Witek$^{25}$, 
+G.~Wormser$^{7}$, 
+S.A.~Wotton$^{46}$, 
+S.~Wright$^{46}$, 
+S.~Wu$^{3}$, 
+K.~Wyllie$^{37}$, 
+Y.~Xie$^{49,37}$, 
+Z.~Xing$^{58}$, 
+Z.~Yang$^{3}$, 
+X.~Yuan$^{3}$, 
+O.~Yushchenko$^{34}$, 
+M.~Zangoli$^{14}$, 
+M.~Zavertyaev$^{10,b}$, 
+F.~Zhang$^{3}$, 
+L.~Zhang$^{58}$, 
+W.C.~Zhang$^{12}$, 
+Y.~Zhang$^{3}$, 
+A.~Zhelezov$^{11}$, 
+A.~Zhokhov$^{30}$, 
+L.~Zhong$^{3}$, 
+A.~Zvyagin$^{37}$.\bigskip
+
+{\footnotesize \it
+$ ^{1}$Centro Brasileiro de Pesquisas F\'{i}sicas (CBPF), Rio de Janeiro, Brazil\\
+$ ^{2}$Universidade Federal do Rio de Janeiro (UFRJ), Rio de Janeiro, Brazil\\
+$ ^{3}$Center for High Energy Physics, Tsinghua University, Beijing, China\\
+$ ^{4}$LAPP, Universit\'{e} de Savoie, CNRS/IN2P3, Annecy-Le-Vieux, France\\
+$ ^{5}$Clermont Universit\'{e}, Universit\'{e} Blaise Pascal, CNRS/IN2P3, LPC, Clermont-Ferrand, France\\
+$ ^{6}$CPPM, Aix-Marseille Universit\'{e}, CNRS/IN2P3, Marseille, France\\
+$ ^{7}$LAL, Universit\'{e} Paris-Sud, CNRS/IN2P3, Orsay, France\\
+$ ^{8}$LPNHE, Universit\'{e} Pierre et Marie Curie, Universit\'{e} Paris Diderot, CNRS/IN2P3, Paris, France\\
+$ ^{9}$Fakult\"{a}t Physik, Technische Universit\"{a}t Dortmund, Dortmund, Germany\\
+$ ^{10}$Max-Planck-Institut f\"{u}r Kernphysik (MPIK), Heidelberg, Germany\\
+$ ^{11}$Physikalisches Institut, Ruprecht-Karls-Universit\"{a}t Heidelberg, Heidelberg, Germany\\
+$ ^{12}$School of Physics, University College Dublin, Dublin, Ireland\\
+$ ^{13}$Sezione INFN di Bari, Bari, Italy\\
+$ ^{14}$Sezione INFN di Bologna, Bologna, Italy\\
+$ ^{15}$Sezione INFN di Cagliari, Cagliari, Italy\\
+$ ^{16}$Sezione INFN di Ferrara, Ferrara, Italy\\
+$ ^{17}$Sezione INFN di Firenze, Firenze, Italy\\
+$ ^{18}$Laboratori Nazionali dell'INFN di Frascati, Frascati, Italy\\
+$ ^{19}$Sezione INFN di Genova, Genova, Italy\\
+$ ^{20}$Sezione INFN di Milano Bicocca, Milano, Italy\\
+$ ^{21}$Sezione INFN di Padova, Padova, Italy\\
+$ ^{22}$Sezione INFN di Pisa, Pisa, Italy\\
+$ ^{23}$Sezione INFN di Roma Tor Vergata, Roma, Italy\\
+$ ^{24}$Sezione INFN di Roma La Sapienza, Roma, Italy\\
+$ ^{25}$Henryk Niewodniczanski Institute of Nuclear Physics  Polish Academy of Sciences, Krak\'{o}w, Poland\\
+$ ^{26}$AGH - University of Science and Technology, Faculty of Physics and Applied Computer Science, Krak\'{o}w, Poland\\
+$ ^{27}$National Center for Nuclear Research (NCBJ), Warsaw, Poland\\
+$ ^{28}$Horia Hulubei National Institute of Physics and Nuclear Engineering, Bucharest-Magurele, Romania\\
+$ ^{29}$Petersburg Nuclear Physics Institute (PNPI), Gatchina, Russia\\
+$ ^{30}$Institute of Theoretical and Experimental Physics (ITEP), Moscow, Russia\\
+$ ^{31}$Institute of Nuclear Physics, Moscow State University (SINP MSU), Moscow, Russia\\
+$ ^{32}$Institute for Nuclear Research of the Russian Academy of Sciences (INR RAN), Moscow, Russia\\
+$ ^{33}$Budker Institute of Nuclear Physics (SB RAS) and Novosibirsk State University, Novosibirsk, Russia\\
+$ ^{34}$Institute for High Energy Physics (IHEP), Protvino, Russia\\
+$ ^{35}$Universitat de Barcelona, Barcelona, Spain\\
+$ ^{36}$Universidad de Santiago de Compostela, Santiago de Compostela, Spain\\
+$ ^{37}$European Organization for Nuclear Research (CERN), Geneva, Switzerland\\
+$ ^{38}$Ecole Polytechnique F\'{e}d\'{e}rale de Lausanne (EPFL), Lausanne, Switzerland\\
+$ ^{39}$Physik-Institut, Universit\"{a}t Z\"{u}rich, Z\"{u}rich, Switzerland\\
+$ ^{40}$Nikhef National Institute for Subatomic Physics, Amsterdam, The Netherlands\\
+$ ^{41}$Nikhef National Institute for Subatomic Physics and VU University Amsterdam, Amsterdam, The Netherlands\\
+$ ^{42}$NSC Kharkiv Institute of Physics and Technology (NSC KIPT), Kharkiv, Ukraine\\
+$ ^{43}$Institute for Nuclear Research of the National Academy of Sciences (KINR), Kyiv, Ukraine\\
+$ ^{44}$University of Birmingham, Birmingham, United Kingdom\\
+$ ^{45}$H.H. Wills Physics Laboratory, University of Bristol, Bristol, United Kingdom\\
+$ ^{46}$Cavendish Laboratory, University of Cambridge, Cambridge, United Kingdom\\
+$ ^{47}$Department of Physics, University of Warwick, Coventry, United Kingdom\\
+$ ^{48}$STFC Rutherford Appleton Laboratory, Didcot, United Kingdom\\
+$ ^{49}$School of Physics and Astronomy, University of Edinburgh, Edinburgh, United Kingdom\\
+$ ^{50}$School of Physics and Astronomy, University of Glasgow, Glasgow, United Kingdom\\
+$ ^{51}$Oliver Lodge Laboratory, University of Liverpool, Liverpool, United Kingdom\\
+$ ^{52}$Imperial College London, London, United Kingdom\\
+$ ^{53}$School of Physics and Astronomy, University of Manchester, Manchester, United Kingdom\\
+$ ^{54}$Department of Physics, University of Oxford, Oxford, United Kingdom\\
+$ ^{55}$Massachusetts Institute of Technology, Cambridge, MA, United States\\
+$ ^{56}$University of Cincinnati, Cincinnati, OH, United States\\
+$ ^{57}$University of Maryland, College Park, MD, United States\\
+$ ^{58}$Syracuse University, Syracuse, NY, United States\\
+$ ^{59}$Pontif\'{i}cia Universidade Cat\'{o}lica do Rio de Janeiro (PUC-Rio), Rio de Janeiro, Brazil, associated to $^{2}$\\
+$ ^{60}$Institut f\"{u}r Physik, Universit\"{a}t Rostock, Rostock, Germany, associated to $^{11}$\\
+$ ^{61}$National Research Centre Kurchatov Institute, Moscow, Russia, associated to $^{30}$\\
+$ ^{62}$KVI - University of Groningen, Groningen, The Netherlands, associated to $^{40}$\\
+$ ^{63}$Celal Bayar University, Manisa, Turkey, associated to $^{37}$\\
+\bigskip
+$ ^{a}$Universidade Federal do Tri\^{a}ngulo Mineiro (UFTM), Uberaba-MG, Brazil\\
+$ ^{b}$P.N. Lebedev Physical Institute, Russian Academy of Science (LPI RAS), Moscow, Russia\\
+$ ^{c}$Universit\`{a} di Bari, Bari, Italy\\
+$ ^{d}$Universit\`{a} di Bologna, Bologna, Italy\\
+$ ^{e}$Universit\`{a} di Cagliari, Cagliari, Italy\\
+$ ^{f}$Universit\`{a} di Ferrara, Ferrara, Italy\\
+$ ^{g}$Universit\`{a} di Firenze, Firenze, Italy\\
+$ ^{h}$Universit\`{a} di Urbino, Urbino, Italy\\
+$ ^{i}$Universit\`{a} di Modena e Reggio Emilia, Modena, Italy\\
+$ ^{j}$Universit\`{a} di Genova, Genova, Italy\\
+$ ^{k}$Universit\`{a} di Milano Bicocca, Milano, Italy\\
+$ ^{l}$Universit\`{a} di Roma Tor Vergata, Roma, Italy\\
+$ ^{m}$Universit\`{a} di Roma La Sapienza, Roma, Italy\\
+$ ^{n}$Universit\`{a} della Basilicata, Potenza, Italy\\
+$ ^{o}$AGH - University of Science and Technology, Faculty of Computer Science, Electronics and Telecommunications, Krak\'{o}w, Poland\\
+$ ^{p}$LIFAELS, La Salle, Universitat Ramon Llull, Barcelona, Spain\\
+$ ^{q}$Hanoi University of Science, Hanoi, Viet Nam\\
+$ ^{r}$Universit\`{a} di Padova, Padova, Italy\\
+$ ^{s}$Universit\`{a} di Pisa, Pisa, Italy\\
+$ ^{t}$Scuola Normale Superiore, Pisa, Italy\\
+}
+\end{flushleft}
+ 
+\cleardoublepage
+
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+
+
+
+
+
+\pagestyle{plain} \setcounter{page}{1}
+\pagenumbering{arabic}  \noindent 
+
+Neutrinos can either be their own anti-particles, in which case they are called ``Majorana" particles \cite{Majorana}, or Dirac fermions.  Heavy Majorana neutrinos can be sought in heavy flavor decays and couplings to a single fourth neutrino generation can be determined, or limits imposed, as in previous measurements \cite{Aaij:2012zr,*Aaij:2011ex,Lees:2013pxa,*Seon:2011ni,*Weir:1989sq}. The lepton number violating process $B^-\to\pi^+\mu^-\mu^-$, shown in Fig.~\ref{fig:Majorana-feyn}, is forbidden in the Standard Model, but  can proceed via the production of on-shell Majorana neutrinos. It is one of the most sensitive ways of looking for these particles in $B$ meson decays, and has been modeled by Atre \etal \cite{Atre:2009rg}.  Note that it is possible for virtual Majorana neutrinos of any mass to contribute to this decay.   We investigate the $B^-\to\pi^+\mu^-\mu^-$ decay using 3~fb$^{-1}$ of data acquired by the LHCb experiment in $pp$ collisions. (In this Letter mention of a particular decay implies the use of the charge-conjugate decay as well.) One third of the data was recorded at 7 TeV center-of-mass energy, and the remainder at 8 TeV.  
+
+The search strategy is based on our previous analysis \cite{Aaij:2012zr},  but extends the sensitivity 
+to neutrino lifetimes, $\tau_N$, from the picosecond range up to about 1000~ps. The selection is aimed at maximizing the efficiency squared divided by the background yield.  For lifetimes $\gtrsim$1~ps, the $\pi^+\mu^-$ decay products can appear as significantly detached from the $B^-$ decay vertex. Therefore, we use two distinct strategies, one for short $\tau_N$ ($\cal{S}$) and another for $\tau_N$  up to 1000 ps ($\cal{L}$).
+ 
+The \lhcb detector is a single-arm forward
+spectrometer covering the \mbox{pseudorapidity} range $2<\eta <5$, designed
+for the study of particles containing \bquark or \cquark quarks \cite{LHCb-det}. The detector includes a high precision tracking system consisting of a silicon-strip vertex detector surrounding the $pp$ interaction region (VELO),
+a large-area silicon-strip detector located upstream of a dipole
+magnet with a bending power of about $4{\rm\,Tm}$, and three stations
+of silicon-strip detectors and straw drift tubes placed
+downstream. The combined tracking system provides a momentum ($p$) measurement with
+relative uncertainty that varies from 0.4\% at 5~GeV to 0.6\% at 100~GeV. (We use natural units where $c$=1.)
+The impact parameter (IP) is defined as the minimum track distance with respect to the primary vertex (PV). For tracks with large transverse momentum (\pt) with respect to the proton beam direction, the IP resolution is approximately 20\mum. Charged hadrons are identified using two ring-imaging Cherenkov (RICH) detectors. Photon, electron and hadron candidates are identified by a calorimeter system consisting of scintillating-pad and pre-shower detectors, an electromagnetic calorimeter and a hadronic calorimeter. Muons are identified by a system composed of alternating layers of iron and multiwire proportional chambers. 
+
+\begin{figure}[b!]
+\begin{center}
+\includegraphics[width=3.9 in]{Majorana-feyn}
+\end{center}
+\vspace{-10pt}
+\caption{Feynman diagram for $\Bm\to\pi^+\mu^-\mu^-$ decay via a Majorana neutrino labelled $N$.} 
+\label{fig:Majorana-feyn}
+\end{figure}
+ 
+ The LHCb trigger \cite{Aaij:2012me} consists of a hardware stage, based on information from the
+calorimeter and muon systems, followed by a software stage that performs full event reconstruction. The hardware trigger selects either a  single muon candidate with $\pt>1.64$~GeV, or two muons with the product of their \pt values being greater than 1.69~GeV$^2$.  In the subsequent software stage  a muon candidate must form a vertex with one or two additional tracks that are detached from the PV.  The trigger efficiency decreases for large lifetime Majorana neutrinos. 
+Simulations are performed using \pythia \cite{Sjostrand:2006za} with the specific
+tuning given in Ref. \cite{LHCb-PROC-2011-005}, and the LHCb detector description based on \geant \cite{Allison:2006ve,*Agostinelli:2002hh}
+described in Ref. \cite{LHCb-PROC-2011-006}. Decays of $b$ hadrons are based on \evtgen \cite{Lange:2001uf}. Simulation of $\Bm\to\pi^+\mu^-\mu^-$ is carried out in two steps, the first being the two body decay $\Bm\to N\mu^-$, where $N$ is a putative Majorana neutrino, and the second $N\to\pi^+\mu^-$.
+
+
+
+ In both categories $\cal{S}$ and $\cal{L}$,  only tracks that start in the VELO are used. We require muon candidates to have $p>3$~GeV and $\pt>0.75$~GeV, as muon detection provides fewer fakes above these values.  The hadron must have $p>2$~GeV and $\pt>1.1$~GeV, in order to be tracked well.  Muon candidate tracks are required to have hits in the muon chambers. The same criteria apply for the channel we use for normalization purposes, $B^-\to\jpsi K^-$ with $\jpsi\to\mu^+\mu^-$. Pion and kaon candidates must be positively identified in the RICH systems.  
+ For the $\cal{S}$ case and the normalization channel,  candidate \Bm combinations must form a common vertex with a $\chi^2$ per number of degrees of freedom (ndf) less than 4. For the $\cal{L}$ candidates we require that the $\pi^+\mu^-$ tracks form a neutrino candidate ($N$) decay vertex with a $\chi^2<10$. A \Bm candidate decay vertex is searched for by extrapolating the $N$ trajectory back to a near approach with another $\mu^-$ candidate, which 
+must form a vertex with the other muon having a $\chi^2 <4$. The distance between the $\pi^+\mu^-$ and the primary vertex divided by its uncertainty must be greater than 10. The \pt of the $\pi^+\mu^-$ pair must also exceed 700~MeV. For both $\cal{S}$ and $\cal{L}$ cases, we require that the cosine of the angle between the \Bm candidate momentum vector and the line from the PV to the \Bm vertex  be greater than 0.99999. 
+  The two cases are not exclusive, with 16\% of the event candidates appearing in both.
+
+The mass spectra of the selected candidates are shown in Fig.~\ref{fig:zero_B_mass_fit}. An extended unbinned likelihood fit is performed to the  $\jpsi K^-$ mass spectrum with a double-Crystal Ball function \cite{Skwarnicki:1986xj} plus a triple-Gaussian background to account for partially reconstructed $B$ decays and a linear function for combinatoric background. We find $282\,774\pm543$ signal events in the normalization channel. Backgrounds in the $\pi^+\mu^-\mu^-$ final state come from $B$ decays to charmonium and combinatoric sources. Charmonium  backgrounds are estimated using fully reconstructed $\jpsi K^-(\pi^-)$ and  $\psi(2S) K^-(\pi^-)$ events and are indicated by shaded regions; they can peak at the \Bm mass. No signal is observed in either the ${\cal{S}}$ or ${\cal{L}}$ samples.
+
+We use the  $\text{CL}_{\text{s}}$ method to set upper limits \cite{CLS}, which requires the  determination of the expected background yields and total number of events in the signal region. We define the signal region as the mass interval within $\pm 2\sigma$ of the \Bm mass where $\sigma$ is the mass resolution, specifically $5238.6 - 5319.8$~MeV. Peaking background shapes and normalizations are fixed from exclusive reconstructions in data.
+We fit the distributions outside of the \Bm signal region with a sum of the peaking background tails, where both shape and normalization are fixed, and linear functions to account for the combinatorial backgrounds. The interpolated combinatoric background in each signal region is combined with the peaking background to determine the total background. 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=6.0 in]{hmumu-mass-all}
+\end{center}
+\vspace{-15pt}
+\caption{Invariant mass distributions with fits overlaid of candidate mass spectra for  (a) $\jpsi K^-$, (b) $\pip\mun\mun$ ($\cal{S}$) , and (c) $\pip\mun\mun$ ($\cal{L}$). Backgrounds are (green) shaded; they peak under the signal in (b) and (c).
+ The dotted lines show the combinatorial backgrounds only. The solid line shows the sum of both backgrounds.} 
+\label{fig:zero_B_mass_fit}
+\end{figure}
+
+
+
+ In the signal $B$ mass range there are 19 events  in the $\cal{S}$ sample and 60 events in the $\cal{L}$  sample.  The $\cal{S}$ and $\cal{L}$ background fit yields are 17.8$\pm$3.2, and 54.5$\pm$5.4, respectively,  in the same region.
+
+The detection efficiency varies as a function of neutrino mass, $m_N$, and changes for the $\cal{L}$ sample with  $\tau_N$. To quote an upper limit on the branching fraction for the $\cal{S}$ sample we take the average detection efficiency, as determined by simulation, with respect to the normalization mode of 0.687$\pm$0.001.  In computing the limit we include 
+the uncertainties on background yields obtained from the fit to the $m(\pip\mun\mun)$ distribution, and the systematic uncertainty described below.
+The normalization is obtained from the number of $\jpsi K^-$ events and the known rate of ${\cal{B}}(\B^-\to\jpsi K^-,~\jpsi\to\mu^+\mu^-)=(6.04 \pm 0.26) \times 10^{-5}$ \cite{Aaij:2013orb,PDG2012}.  We find
+\begin{equation}
+\nonumber
+ {\cal{B}}(\Bm \to \pip \mun \mun) < 4.0 \times 10^{-9} \rm{~at~}95\%\rm{~confidence~level~( C.L.)}
+ \end{equation} 
+ This limit is applicable for $\tau_N$ $\lesssim 1$~ps.  The total systematic uncertainty is 6.6\%.
+ The largest source  is ${\cal{B}}(B^-\to\jpsi K^-)$ (4.2\%), followed by modeling of the efficiency ratio (3.5\%) and backgrounds (3.5\%), relative particle identification efficiencies (0.5\%),  tracking efficiency differences for kaons versus  pions (0.5\%), and yield of the normalization channel (0.4\%). 
+
+
+We also search for signals as a function of $m_N$. The $\pi^+\mu^-$ mass spectra are shown in Fig.~\ref{fig:detached_narrow_B_mass} for both $\cal{S}$ and $\cal{L}$ selections, requiring that  the $\pi^+\mu^-\mu^-$ mass be restricted to the  \Bm signal range. There is an obvious peak around 3100~MeV from misidentified $\jpsi K^-$ (or $\pi^-$) events.
+The $\pi^+\mu^-$ mass spectra are fitted with a function derived from fitting the upper \Bm sideband regions, from $5319.8-5400.0$~MeV, for the combinatoric background, and  peaking background components obtained from simulation.  
+
+
+
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=6.0 in]{A_mN_fit-all}
+\end{center}
+\vspace{-20pt}
+\caption{Invariant $\pip \mun$ mass distribution for  $\pip\mun\mun$ candidates with masses restricted to  $\pm2\sigma$ of $\Bm$ mass for the (a) $\cal{S}$ and (b) $\cal{L}$ selections. The shaded regions indicate the estimated peaking backgrounds. Backgrounds that peak under the signal in (a) and (b) are (green) shaded. The dotted lines show the combinatorial backgrounds only. The solid line the sum of both backgrounds. (In (a) there are two combinations per event.)} 
+\label{fig:detached_narrow_B_mass}
+\end{figure}
+As there is no evidence for a signal, upper limits are set by scanning across the $m_N$ spectrum. At every 5 MeV step beginning at 
+250~MeV and ending at 5000 MeV we define a $\pm 3\sigma$ search region, where $\sigma$ ranges from approximately 3~MeV at low mass to 24~MeV at high mass. The mass resolution is determined from fitting signals in other LHCb data \cite{Aaij:2012zr}. The fitted background is then subtracted from the event yields in each interval. The upper limit at $95\%$ C.L. of ${\cal{B}}(\Bm \to \pip \mun \mun)$  at each mass value is computed using the CL$_s$ method.  The simulated efficiency ratio to the normalization mode averages about 0.8 up to 4000 MeV, and then approaching the phase space boundary, sharply decreases to 0.2 at 5000 MeV. The results of this scan are shown in Fig.~\ref{fig:upper_lismit_scan}.
+
+\begin{figure}[b]
+\begin{center}
+\includegraphics[width=3.9 in]{A_upper_lismit_scan_CLS}
+\end{center}
+\vspace{-15pt}
+\caption{Upper limit on ${\cal{B}}(\Bm \to \pip \mun \mun)$ at $95\%$ C.L. as a function of $m_N$ in 5~MeV intervals for $\cal{S}$  selected events.} 
+\label{fig:upper_lismit_scan}
+\end{figure}
+
+The efficiency is highest for $\tau_N$ of a few ps, and decreases rapidly until about 200 ps when it levels off until about 1000 ps, beyond which it slowly vanishes as most of the decays occur outside of the vertex detector.
+For $\cal{L}$  candidates, we set upper limits as a function of both $m_N$ and lifetime by performing the same scan in mass as before, but applying efficiencies appropriate for individual lifetime values between 1 and 1000~ps.  The number of background events is extracted from the sum of combinatorial and peaking backgrounds in the fit to the $m(\pip\mun)$  distribution in the same manner as for the  $\cal{S}$ sample. The estimated signal yield is the difference between the total number of events computed by counting the number in the interval and the fitted background yield. We take the $\tau_N$ dependence into account by using different efficiencies for each lifetime step. 
+The two-dimensional plot of the upper limit on ${\cal{B}}(\Bm \to \pip \mun \mun)$, computed using the $\text{CL}_{\text{s}}$ method, is shown in Fig.~\ref{fig:UL-mass-lifetime}. 
+
+\begin{figure}[b]
+\begin{center}
+\vspace{-5mm}
+\includegraphics[width=4.9 in]{UL-mass-lifetime}
+\end{center}
+\vspace{-20pt}
+\caption{Upper limits on ${\cal{B}}(\Bm \to \pip \mun \mun)$ at 95\% C.L.  as a function of $m_N$,  in 5~MeV intervals, for specific values of $\tau_N$.} 
+\label{fig:UL-mass-lifetime}
+\end{figure}
+
+Model dependent upper limits on the coupling of a single fourth-generation Majorana neutrino to muons, $|V_{\mu 4}|$, for each value of $m_N$  are extracted using the formula from Atre \etal \cite{Atre:2009rg}
+ \begin{equation}
+ \label{Eq:BrV}
+{\cal{B}}(\Bm \to \pip \mun \mun)=\frac{G_{F}^4 f_{B}^2 f_{\pi}^2m_{B}^{5}}{128 \pi^2\hbar}  
+{|V_{ub}V_{ud}|^2 }\tau_B \left(1-\frac{m^2_N}{m_B^2}\right) \frac{m_N}{\Gamma_N}|V_{\mu4}|^{4}, 
+\end{equation}
+ with $G_{F}=1.166377\times10^{-5} \gev^{-2}$, $f_{B}=0.19 \gev$, $f_{\pi}=0.131 \gev$, $|V_{ub}|=0.004$, $|V_{ud}|=0.9738$, $m_{B}=5.279 \gev$, $\tau_B=1.671$~ps, and $\hbar=6.582\times 10^{-25} \gev\,\sec$ \cite{PDG2012}. The  total neutrino decay width, $\Gamma_N$, is a function of $m_N$ and proportional to $|V_{\mu 4}|^2$. In order to set limits on $|V_{\mu4}|^{2}$ a model for $\Gamma_N$ is required. The purely leptonic modes are specified in Ref.~\cite{Atre:2009rg}. For the hadronic modes we use the fraction of times the charged current manifests itself as a single charged pion in $\tau^-$ and \Bm decays, giving an additional $m^3_N$ dependent factor in $\Gamma_N$. The total width for Majorana neutrino decay then is
+ \begin{equation}
+ \Gamma_N=\left[3.95 m^3_N+2.00 m^5_N(1.44m^3_N+1.14)\right]10^{-13}|V_{\mu 4}|^2,
+ \end{equation}
+where $m_N$  and $\Gamma_N$  are in units of GeV.
+The first term corresponds to fully leptonic three-body decays, while the second is for decays into one lepton and hadrons. 
+ 
+ To obtain upper limits on $|V_{\mu4}|^2$ for each value of $m_N$ we assume a value for  $|V_{\mu4}|$, and calculate $\Gamma_N$. This allows us to determine the $\tau_N$ dependent detection efficiency.  We then use Eq.~(\ref{Eq:BrV}) to find the branching fraction. The value of $|V_{\mu4}|$ is adjusted to match the previously determined upper limit value (see Fig.~\ref{fig:UL-mass-lifetime}).
+ The resulting 95\% C.L. limit on $|V_{\mu4}|^2$ is shown in Fig.~\ref{fig:Vmu4modified} as a function of $m_N$. Limits have been derived  by Atre \etal \cite{Atre:2009rg} for other experiments using different assumptions about the dependence of $\Gamma_N$ with $m_N$, and thus cannot be directly compared. 
+ More searches exist for higher mass neutrinos \cite{Chatrchyan:2012fla,*Aad:2011vj,*ATLAS:2012ak}.
+The results presented here supersede previous LHCb results \cite{Aaij:2012zr,*Aaij:2011ex}, significantly improve the limits on the $\B^-\to\pi^+\mu^-\mu^-$ branching fraction and extend the lifetime range of the Majorana neutrino search from a few picoseconds to one nanosecond. 
+
+\begin{figure}[b]
+\begin{center}
+\includegraphics[width=5.9 in]{V_mu4_modified}
+\end{center}
+\vspace{-4mm}
+\caption{Upper limits at 95\% C.L. on $|V_{\mu4}|^2$ are shown as a function of  $m_N$ for ${\cal{L}}$ events.} 
+\label{fig:Vmu4modified}
+\end{figure}
+
+In conclusion, we have searched for on-shell Majorana neutrinos coupling to muons in the $\Bm \to \pip \mun \mun$ decay channel as a function of $m_N$ between $250-5000$~MeV and for lifetimes up to $\approx$1000~ps. In the absence of a significant signal, we set upper limits on the $\Bm \to \pip \mun \mun$  branching fraction and the coupling  $|V_{\mu 4}|^2$ as a function of the neutrino mass.  
+
+We express our gratitude to our colleagues in the CERN
+accelerator departments for the excellent performance of the LHC. We
+thank the technical and administrative staff at the LHCb
+institutes. We acknowledge support from CERN and from the national
+agencies: CAPES, CNPq, FAPERJ and FINEP (Brazil); NSFC (China);
+CNRS/IN2P3 and Region Auvergne (France); BMBF, DFG, HGF and MPG
+(Germany); SFI (Ireland); INFN (Italy); FOM and NWO (The Netherlands);
+SCSR (Poland); MEN/IFA (Romania); MinES, Rosatom, RFBR and NRC
+``Kurchatov Institute'' (Russia); MinECo, XuntaGal and GENCAT (Spain);
+SNSF and SER (Switzerland); NAS Ukraine (Ukraine); STFC (United
+Kingdom); NSF (USA). We also acknowledge the support received from the
+ERC under FP7. The Tier1 computing centres are supported by IN2P3
+(France), KIT and BMBF (Germany), INFN (Italy), NWO and SURF (The
+Netherlands), PIC (Spain), GridPP (United Kingdom). We are indebted to the communities behind the multiple open source software packages we depend on. We are also thankful for the computing resources and the access to software R\&D tools provided by Yandex LLC (Russia).
+
+
+\newpage
+\addcontentsline{toc}{section}{References}
+\ifx\mcitethebibliography\mciteundefinedmacro
+\PackageError{LHCb.bst}{mciteplus.sty has not been loaded}
+{This bibstyle requires the use of the mciteplus package.}\fi
+\providecommand{\href}[2]{#2}
+\begin{mcitethebibliography}{10}
+\mciteSetBstSublistMode{n}
+\mciteSetBstMaxWidthForm{subitem}{\alph{mcitesubitemcount})}
+\mciteSetBstSublistLabelBeginEnd{\mcitemaxwidthsubitemform\space}
+{\relax}{\relax}
+
+\bibitem{Majorana}
+E.~Majorana, \ifthenelse{\boolean{articletitles}}{{\it {Teoria simmetrica
+  dell$\,'\!$elettrone e del positrone}}, }{}Nuovo Cim.\  {\bf 14} (1937)
+  171\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Aaij:2012zr}
+LHCb collaboration, R.~Aaij {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Searches for Majorana neutrinos in
+  $B^-$ decays}}, }{}\href{http://dx.doi.org/10.1103/PhysRevD.85.112004}{Phys.\
+  Rev.\  {\bf D85} (2012) 112004}, \href{http://arxiv.org/abs/1201.5600}{{\tt
+  arXiv:1201.5600}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Aaij:2011ex}
+LHCb collaboration, R.~Aaij {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Search for the lepton number
+  violating decays $B^{+}\rightarrow \pi^- \mu^+ \mu^+$ and $B^{+}\rightarrow
+  K^- \mu^+ \mu^+$}},
+  }{}\href{http://dx.doi.org/10.1103/PhysRevLett.108.101601}{Phys.\ Rev.\
+  Lett.\  {\bf 108} (2012) 101601}, \href{http://arxiv.org/abs/1110.0730}{{\tt
+  arXiv:1110.0730}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Lees:2013pxa}
+BaBar collaboration, J.~P. Lees {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Search for lepton-number violating
+  $B^+ \to X^-\ell^+ \ell^+$ decays}},
+  }{}\href{http://arxiv.org/abs/1310.8238}{{\tt arXiv:1310.8238}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Seon:2011ni}
+BELLE collaboration, O.~Seon {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Search for lepton-number-violating
+  $B^+\to D^-\ell^+\ell^{'+}$ decays}},
+  }{}\href{http://dx.doi.org/10.1103/PhysRevD.84.071106}{Phys.\ Rev.\  {\bf
+  D84} (2011) 071106}, \href{http://arxiv.org/abs/1107.0642}{{\tt
+  arXiv:1107.0642}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Weir:1989sq}
+MARK II collaboration, A.~J. Weir {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Upper limits on $D^{\pm}$ and
+  $B^{\pm}$ decays to two leptons plus $\pi^{\pm}$ or $K^{\pm}$}},
+  }{}\href{http://dx.doi.org/10.1103/PhysRevD.41.1384}{Phys.\ Rev.\  {\bf D41}
+  (1990) 1384}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Atre:2009rg}
+A.~Atre, T.~Han, S.~Pascoli, and B.~Zhang,
+  \ifthenelse{\boolean{articletitles}}{{\it {The search for heavy Majorana
+  neutrinos}}, }{}\href{http://dx.doi.org/10.1088/1126-6708/2009/05/030}{JHEP
+  {\bf 05} (2009) 030}, \href{http://arxiv.org/abs/0901.3589}{{\tt
+  arXiv:0901.3589}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{LHCb-det}
+LHCb collaboration, A.~A. Alves~Jr. {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {The LHCb detector at the LHC}},
+  }{}\href{http://dx.doi.org/10.1088/1748-0221/3/08/S08005}{JINST {\bf 3}
+  (2008) S08005}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Aaij:2012me}
+R.~Aaij {\em et~al.}, \ifthenelse{\boolean{articletitles}}{{\it {The LHCb
+  trigger and its performance in 2011}},
+  }{}\href{http://dx.doi.org/10.1088/1748-0221/8/04/P04022}{JINST {\bf 8}
+  (2013) P04022}, \href{http://arxiv.org/abs/1211.3055}{{\tt
+  arXiv:1211.3055}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Sjostrand:2006za}
+T.~Sj{\"{o}}strand, S.~Mrenna, and P.~Z. Skands,
+  \ifthenelse{\boolean{articletitles}}{{\it {PYTHIA 6.4 Physics and Manual}},
+  }{}\href{http://dx.doi.org/10.1088/1126-6708/2006/05/026}{JHEP {\bf 0605}
+  (2006) 026}, \href{http://arxiv.org/abs/hep-ph/0603175}{{\tt
+  arXiv:hep-ph/0603175}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{LHCb-PROC-2011-005}
+I.~Belyaev {\em et~al.}, \ifthenelse{\boolean{articletitles}}{{\it {Handling of
+  the generation of primary events in \gauss, the \lhcb simulation framework}},
+  }{}\href{http://dx.doi.org/10.1109/NSSMIC.2010.5873949}{Nuclear Science
+  Symposium Conference Record (NSS/MIC) {\bf IEEE} (2010) 1155}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Allison:2006ve}
+GEANT4 collaboration, J.~Allison {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Geant4 developments and
+  applications}}, }{}\href{http://dx.doi.org/10.1109/TNS.2006.869826}{IEEE
+  Trans.\ Nucl.\ Sci.\  {\bf 53} (2006) 270}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Agostinelli:2002hh}
+GEANT4 collaboration, S.~Agostinelli {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {GEANT4: a simulation toolkit}},
+  }{}\href{http://dx.doi.org/10.1016/S0168-9002(03)01368-8}{Nucl.\ Instrum.\
+  Meth.\  {\bf A506} (2003) 250}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{LHCb-PROC-2011-006}
+M.~Clemencic {\em et~al.}, \ifthenelse{\boolean{articletitles}}{{\it {The \lhcb
+  simulation application, \gauss: design, evolution and experience}},
+  }{}\href{http://dx.doi.org/10.1088/1742-6596/331/3/032023}{{J.\ Phys.\ Conf.\
+  Ser.\ } {\bf 331} (2011) 032023}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Lange:2001uf}
+D.~Lange, \ifthenelse{\boolean{articletitles}}{{\it {The EvtGen particle decay
+  simulation package}},
+  }{}\href{http://dx.doi.org/10.1016/S0168-9002(01)00089-4}{Nucl.\ Instrum.\
+  Meth.\  {\bf A462} (2001) 152}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Skwarnicki:1986xj}
+T.~Skwarnicki, {\em {A study of the radiative cascade transitions between the
+  Upsilon-prime and Upsilon resonances}}, PhD thesis, Institute of Nuclear
+  Physics, Krakow, 1986,
+  {\href{http://inspirehep.net/record/230779/files/230779.pdf}{DESY-F31-86-02}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{CLS}
+T.~Junk, \ifthenelse{\boolean{articletitles}}{{\it {Confidence level
+  computation for combining searches with small statistics}}, }{}Nucl.\
+  Instrum.\ Meth.\  {\bf A434} (1999) 1435\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Aaij:2013orb}
+LHCb collaboration, R.~Aaij {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Amplitude analysis and branching
+  fraction measurement of $\Bsb\to\jpsi\KpKm$}},
+  }{}\href{http://dx.doi.org/10.1103/PhysRevD.87.072004}{Phys.\ Rev.\  {\bf
+  D87} (2013) 072004}, \href{http://arxiv.org/abs/1302.1213}{{\tt
+  arXiv:1302.1213}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{PDG2012}
+{Particle Data Group}, J.~Beringer {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Review of particle properties}},
+  }{}Phys.\ Rev.\  {\bf D86} (2012) 010001, and 2013 partial update for the
+  2014 edition\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Chatrchyan:2012fla}
+CMS collaboration, S.~Chatrchyan {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Search for heavy Majorana
+  neutrinos in $\mu^+\mu^+[\mu^-\mu^-]$ and $e^+e^+[e^-e^-]$ events in $pp$
+  collisions at $\sqrt{s} = 7$ TeV}},
+  }{}\href{http://dx.doi.org/10.1016/j.physletb.2012.09.012}{Phys.\ Lett.\
+  {\bf B717} (2012) 109}, \href{http://arxiv.org/abs/1207.6079}{{\tt
+  arXiv:1207.6079}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{Aad:2011vj}
+ATLAS collaboration, G.~Aad {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Inclusive search for same-sign
+  dilepton signatures in $pp$ collisions at $\sqrt{s}=7$ TeV with the ATLAS
+  detector}}, }{}\href{http://dx.doi.org/10.1007/JHEP10(2011)107}{JHEP {\bf
+  1110} (2011) 107}, \href{http://arxiv.org/abs/1108.0366}{{\tt
+  arXiv:1108.0366}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem{ATLAS:2012ak}
+ATLAS collaboration, G.~Aad {\em et~al.},
+  \ifthenelse{\boolean{articletitles}}{{\it {Search for heavy neutrinos and
+  right-handed $W$ bosons in events with two leptons and jets in $pp$
+  collisions at $\sqrt{s}=7$ TeV with the ATLAS detector}},
+  }{}\href{http://dx.doi.org/10.1140/epjc/s10052-012-2056-4}{Eur.\ Phys.\ J.\
+  {\bf C72} (2012) 2056}, \href{http://arxiv.org/abs/1203.5420}{{\tt
+  arXiv:1203.5420}}\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\end{mcitethebibliography}
+ 
+\end{document}
