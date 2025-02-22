@@ -1,44 +1,65 @@
 import regex as re
 
+# Removes \ensuremath{...} and \xspace from LaTeX macros.
 def remove_macro_specific_commands(input_string):
-    # Removes \ensuremath{...} which is often used within macros
-    pattern = r"\\ensuremath\s*({(?:[^{}]*+|(?1))*})"
-    while re.search(pattern, input_string):
-        match = re.search(pattern, input_string)[1][1:-1].replace("\\", "\\\\")
-        input_string = re.sub(pattern, match, input_string)
-    
-    # Removes \xspace, which is usually used to fix spacing issues within macros
-    pattern = r"\\xspace"
-    while re.search(pattern, input_string):
-        input_string = re.sub(pattern, "", input_string)
-    
+    for pattern in [r"\\ensuremath{", r"\\mathrm\s*{", r"\\textrm\s*{", r"\\mbox\s*{"]:
+        while re.search(pattern, input_string):
+            match = re.search(pattern, input_string)
+            command_start = match.start()
+            command_end = match.end()
+            end = find_matching_brace(input_string, command_end)
+            if end:
+                content = input_string[command_end:end]
+                input_string = input_string[:command_start] + content + input_string[end + 1:]
+
+    input_string = re.sub(r"\\xspace", "", input_string)
+    input_string = re.sub(r"\\rm\s", "", input_string)
+    input_string = re.sub(r"\\[,!;.:]", "", input_string)
     return input_string
 
+# Finds the matching closing brace for a given opening brace index.
+def find_matching_brace(text, start_index):
+    brace_count = 1
+    for i in range(start_index, len(text)):
+        if text[i] == '{':
+            brace_count += 1
+        elif text[i] == '}':
+            brace_count -= 1
+            if brace_count == 0:
+                return i
+    return None  # No matching brace found
+
+# Counts the number of arguments (#1, #2, ...) in a \def macro.
 def def_args_to_num_args(args):
-    pattern = r"#\d"
-    matches = re.findall(pattern, args)
-    return len(matches)
+    return len(re.findall(r"#\d", args))
 
+# Counts the number of arguments from a \newcommand declaration.
 def newcommand_args_to_num_args(args):
-    pattern = r"\[(\d+)\]"
-    matches = re.findall(pattern, args)
-    if len(matches) > 0:
-        return int(matches[0])
-    else:
-        return 0
+    match = re.search(r"\[(\d+)\]", args)
+    return int(match.group(1)) if match else 0
 
+# Extracts macro definitions using a stack-based approach for nested {} handling.
+def extract_definitions(text, pattern, args_to_num_args):
+    matches = {}
+    for match in re.finditer(pattern, text):
+        name, args = match.group(1), match.group(2)
+        start = match.end()
+        end = find_matching_brace(text, start)
+        if end:
+            definition = text[start:end]
+            matches[f"\\{name}"] = {
+                "num_args": args_to_num_args(args),
+                "definition": remove_macro_specific_commands(definition)
+            }
+    return matches
 
+# Parses \def and \newcommand macros from LaTeX source.
 def parse_macros(latex_source):
-    # Find all \def definitions with or without arguments
-    pattern = r"\\def\s*\\(\w+)\s*((?:#\d\s*)*)\s*({(?:[^{}]*+|(?3))*})"
-    matches = re.findall(pattern, latex_source)
-    command_mappings = {f"\\{name}" : {"num_args": def_args_to_num_args(args), "definition" : remove_macro_specific_commands(definition[1:-1])} for name, args, definition in matches}
-
-    # Find all \newcommand definitions
-    pattern = r"\\newcommand\*?\s*{?\s*\\(\w+)\s*}?\s*((?:\[\s*\d+\s*\])*)\s*({(?:[^{}]*+|(?3))*})"
-    matches = re.findall(pattern, latex_source)
-    command_mappings.update({f"\\{name}" : {"num_args": newcommand_args_to_num_args(args), "definition" : remove_macro_specific_commands(definition[1:-1])} for name, args, definition in matches})
-
+    # Patterns for \def and \newcommand
+    def_pattern = r"\\def\s*\\(\w+)\s*((?:#\d\s*)*)\s*{"
+    newcommand_pattern = r"\\newcommand\*?\s*{?\s*\\(\w+)\s*}?\s*((?:\[\s*\d+\s*\])*)\s*{"
+    command_mappings = extract_definitions(latex_source, def_pattern, def_args_to_num_args)
+    command_mappings.update(extract_definitions(latex_source, newcommand_pattern, newcommand_args_to_num_args))
     return command_mappings
 
 def sub_command_for_def(string, command, definition, num_args):
@@ -67,7 +88,7 @@ def sub_command_for_def(string, command, definition, num_args):
         definition = definition.replace('\\', '\\\\')
         return re.sub(pattern, definition, string)
 
-def expand_nested_macros(command_mappings, verbose=False):
+def expand_nested_macros(command_mappings):
     # since some user-defined commands may make reference to other user-defined
     # commands, loop through the dictionary until all commands are expanded back into raw LaTeX
     changed = True
@@ -87,8 +108,7 @@ def expand_nested_macros(command_mappings, verbose=False):
                 nested_command = f"\\{nested_command}"
                 # This module cannot handle recursive commands
                 if nested_command == command:
-                    if verbose:
-                        print(f"Cannot handle recursively defined macro {command}. Not attempting.")
+                    #print(f"Cannot handle recursively defined macro {command}. Not attempting.")
                     recursive_commands.append(command)
                 # replace all nested user-defined commands
                 elif nested_command in command_mappings.keys():
@@ -116,10 +136,12 @@ def sub_macros_for_defs(latex_source, command_mappings):
         latex_source = sub_command_for_def(latex_source, command, definition, args)
     return latex_source
 
-def expand_latex_macros(latex_source, *args, **kwargs):
-    verbose = kwargs.get('verbose', True)
+def expand_latex_macros(latex_source, extra_macro_sources=[], commands_dont_expand=[]):
     macros_source = latex_source
-    for extra_macros_source in args:
-        macros_source += open(extra_macros_source).read()
-    command_mappings = expand_nested_macros(parse_macros(macros_source), verbose=verbose)
+    for source in extra_macro_sources:
+        macros_source += source
+    command_mappings = parse_macros(macros_source)
+    for command in commands_dont_expand:
+        command_mappings.pop(command, None)
+    command_mappings = expand_nested_macros(command_mappings)
     return sub_macros_for_defs(latex_source, command_mappings)
