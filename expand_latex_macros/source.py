@@ -64,16 +64,24 @@ def parse_macros(latex_source):
 
 def sub_command_for_def(string, command, definition, num_args):
     # Check if command definition uses args
+    
     # If yes args
     if num_args > 0:
         pattern = re.escape(command)
         for i in range(num_args):
             pattern += r"\s*({(?:[^{}]|(?" + f"{i+1}" + r"))*})"
+       
         args = re.findall(pattern, string)
         for i, arg in enumerate(args):
+            
             sub_for_args = {}
-            for j, arg_j in enumerate(arg):
-                sub_for_args[f"#{j+1}"] = arg_j[1:-1]
+            if num_args > 1:
+                for j, arg_j in enumerate(arg):
+                    print(j, arg_j)
+                    sub_for_args[f"#{j+1}"] = arg_j[1:-1]
+            else:
+                sub_for_args[f"#{1}"] = arg[1:-1]
+            
             pattern = re.compile("|".join(re.escape(key) for key in sub_for_args.keys()))
             subbed_definition = pattern.sub(lambda match: sub_for_args[match.group(0)], definition)
             pattern = re.escape(command)
@@ -81,7 +89,9 @@ def sub_command_for_def(string, command, definition, num_args):
                 pattern += r"\s*" + re.escape(arg_j)
             subbed_definition = subbed_definition.replace('\\', '\\\\')
             string = re.sub(pattern, subbed_definition, string)
+        
         return string
+    
     # If no args
     else:
         pattern = re.escape(command) + r"\b"
