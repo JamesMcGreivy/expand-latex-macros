@@ -77,7 +77,6 @@ def sub_command_for_def(string, command, definition, num_args):
             sub_for_args = {}
             if num_args > 1:
                 for j, arg_j in enumerate(arg):
-                    print(j, arg_j)
                     sub_for_args[f"#{j+1}"] = arg_j[1:-1]
             else:
                 sub_for_args[f"#{1}"] = arg[1:-1]
