@@ -1,0 +1,3002 @@
+\pdfoutput=1
+\documentclass[12pt,a4paper]{article}
+
+
+\usepackage{ifthen} \newboolean{pdflatex}
+\setboolean{pdflatex}{true} 
+
+\newboolean{articletitles}
+\setboolean{articletitles}{true} 
+
+\newboolean{uprightparticles}
+\setboolean{uprightparticles}{false} 
+
+
+
+\def\paperauthors{LHCb collaboration} \def\paperasciititle{Direct CP violation in charmless three-body decays of B mesons} \def\papertitle{Direct \CP violation in charmless three-body decays of $B^{\pm}$ mesons} \def\paperkeywords{{High Energy Physics}, {LHCb}} \def\papercopyright{\the\year\ CERN for the benefit of the LHCb collaboration} \def\paperlicence{CC BY 4.0 licence}
+\def\paperlicenceurl{https://creativecommons.org/licenses/by/4.0/}
+
+
+
+
+\usepackage[top=1in, bottom=1.25in, left=1in, right=1in]{geometry}
+
+
+
+\columnsep=5mm
+\addtolength{\belowcaptionskip}{0.5em}
+
+\renewcommand{\textfraction}{0.01}
+\renewcommand{\floatpagefraction}{0.8} \renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+
+\raggedbottom
+\sloppy
+
+\usepackage{microtype}
+\usepackage{lineno}  \usepackage{xspace} \usepackage{caption} \renewcommand{\captionfont}{\small}
+\renewcommand{\captionlabelfont}{\small}
+
+\usepackage{graphicx}  \usepackage{color}
+\usepackage{colortbl}
+\graphicspath{{./figs/}} 
+
+\usepackage{amsmath} \usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{upgreek} 
+
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{\expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+\expandafter\let\csname oldend#1\expandafter\endcsname\csname
+end#1\endcsname
+ \renewenvironment{#1}{\linenomath\csname old#1\endcsname}{\csname oldend#1\endcsname\endlinenomath}}
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{\patchAmsMathEnvironmentForLineno{#1}\patchAmsMathEnvironmentForLineno{#1*}}
+\AtBeginDocument{\patchBothAmsMathEnvironmentsForLineno{equation}\patchBothAmsMathEnvironmentsForLineno{align}\patchBothAmsMathEnvironmentsForLineno{flalign}\patchBothAmsMathEnvironmentsForLineno{alignat}\patchBothAmsMathEnvironmentsForLineno{gather}\patchBothAmsMathEnvironmentsForLineno{multline}\patchBothAmsMathEnvironmentsForLineno{eqnarray}}
+
+
+
+\usepackage{hyperxmp}
+
+\usepackage[pdftex,
+            pdfauthor={\paperauthors},
+            pdftitle={\paperasciititle},
+            pdfkeywords={\paperkeywords},
+            pdfcopyright={Copyright (C) \papercopyright},
+            pdflicenseurl={\paperlicenceurl}]{hyperref}
+
+
+\usepackage[colorinlistoftodos,textsize=scriptsize]{todonotes}
+
+\usepackage[bottom,flushmargin,hang,multiple]{footmisc}
+
+\usepackage[all]{hypcap} 
+
+\usepackage{xspace} 
+\usepackage{upgreek}
+
+
+
+
+\def\lhcb   {\mbox{LHCb}\xspace}
+\def\atlas  {\mbox{ATLAS}\xspace}
+\def\cms    {\mbox{CMS}\xspace}
+\def\alice  {\mbox{ALICE}\xspace}
+\def\babar  {\mbox{BaBar}\xspace}
+\def\belle  {\mbox{Belle}\xspace}
+\def\belletwo {\mbox{Belle~II}\xspace}
+\def\besiii {\mbox{BESIII}\xspace}
+\def\cleo   {\mbox{CLEO}\xspace}
+\def\cdf    {\mbox{CDF}\xspace}
+\def\dzero  {\mbox{D0}\xspace}
+\def\aleph  {\mbox{ALEPH}\xspace}
+\def\delphi {\mbox{DELPHI}\xspace}
+\def\opal   {\mbox{OPAL}\xspace}
+\def\lthree {\mbox{L3}\xspace}
+\def\sld    {\mbox{SLD}\xspace}
+\def\cern {\mbox{CERN}\xspace}
+\def\lhc    {\mbox{LHC}\xspace}
+\def\lep    {\mbox{LEP}\xspace}
+\def\tevatron {Tevatron\xspace}
+\def\bfactories {\mbox{\B Factories}\xspace}
+\def\bfactory   {\mbox{\B Factory}\xspace}
+\def\upgradeone {\mbox{Upgrade~I}\xspace}
+\def\upgradetwo {\mbox{Upgrade~II}\xspace}
+
+
+
+\def\velo   {VELO\xspace}
+\def\rich   {RICH\xspace}
+\def\richone {RICH1\xspace}
+\def\richtwo {RICH2\xspace}
+\def\ttracker {TT\xspace}
+\def\intr   {IT\xspace}
+\def\st     {ST\xspace}
+\def\ot     {OT\xspace}
+\def\herschel {\mbox{\textsc{HeRSCheL}}\xspace}
+\def\spd    {SPD\xspace}
+\def\presh  {PS\xspace}
+\def\ecal   {ECAL\xspace}
+\def\hcal   {HCAL\xspace}
+\def\MagUp {\mbox{\em Mag\kern -0.05em Up}\xspace}
+\def\MagDown {\mbox{\em MagDown}\xspace}
+
+\def\ode    {ODE\xspace}
+\def\daq    {DAQ\xspace}
+\def\tfc    {TFC\xspace}
+\def\ecs    {ECS\xspace}
+\def\lone   {L0\xspace}
+\def\hlt    {HLT\xspace}
+\def\hltone {HLT1\xspace}
+\def\hlttwo {HLT2\xspace}
+
+
+
+\ifthenelse{\boolean{uprightparticles}}{\def\Palpha      {\ensuremath{\upalpha}\xspace}
+ \def\Pbeta       {\ensuremath{\upbeta}\xspace}
+ \def\Pgamma      {\ensuremath{\upgamma}\xspace}                 
+ \def\Pdelta      {\ensuremath{\updelta}\xspace}                 
+ \def\Pepsilon    {\ensuremath{\upepsilon}\xspace}                 
+ \def\Pvarepsilon {\ensuremath{\upvarepsilon}\xspace}                 
+ \def\Pzeta       {\ensuremath{\upzeta}\xspace}                 
+ \def\Peta        {\ensuremath{\upeta}\xspace}
+ \def\Ptheta      {\ensuremath{\uptheta}\xspace}                 
+ \def\Pvartheta   {\ensuremath{\upvartheta}\xspace}                 
+ \def\Piota       {\ensuremath{\upiota}\xspace}                 
+ \def\Pkappa      {\ensuremath{\upkappa}\xspace}                 
+ \def\Plambda     {\ensuremath{\uplambda}\xspace}                 
+ \def\Pmu         {\ensuremath{\upmu}\xspace}                 
+ \def\Pnu         {\ensuremath{\upnu}\xspace}                 
+ \def\Pxi         {\ensuremath{\upxi}\xspace}                 
+ \def\Ppi         {\ensuremath{\uppi}\xspace}                 
+ \def\Pvarpi      {\ensuremath{\upvarpi}\xspace}                 
+ \def\Prho        {\ensuremath{\uprho}\xspace}                 
+ \def\Pvarrho     {\ensuremath{\upvarrho}\xspace}                 
+ \def\Ptau        {\ensuremath{\uptau}\xspace}                 
+ \def\Pupsilon    {\ensuremath{\upupsilon}\xspace}                 
+ \def\Pphi        {\ensuremath{\upphi}\xspace}                 
+ \def\Pvarphi     {\ensuremath{\upvarphi}\xspace}                 
+ \def\Pchi        {\ensuremath{\upchi}\xspace}                 
+ \def\Ppsi        {\ensuremath{\uppsi}\xspace}                 
+ \def\Pomega      {\ensuremath{\upomega}\xspace}                 
+
+ \def\PDelta      {\ensuremath{\Delta}\xspace}                 
+ \def\PXi         {\ensuremath{\Xi}\xspace}                 
+ \def\PLambda     {\ensuremath{\Lambda}\xspace}                 
+ \def\PSigma      {\ensuremath{\Sigma}\xspace}                 
+ \def\POmega      {\ensuremath{\Omega}\xspace}                 
+ \def\PUpsilon    {\ensuremath{\Upsilon}\xspace}                 
+
+ \def\PA      {\ensuremath{\mathrm{A}}\xspace}                 
+ \def\PB      {\ensuremath{\mathrm{B}}\xspace}                 
+ \def\PC      {\ensuremath{\mathrm{C}}\xspace}                 
+ \def\PD      {\ensuremath{\mathrm{D}}\xspace}                 
+ \def\PE      {\ensuremath{\mathrm{E}}\xspace}                 
+ \def\PF      {\ensuremath{\mathrm{F}}\xspace}                 
+ \def\PG      {\ensuremath{\mathrm{G}}\xspace}                 
+ \def\PH      {\ensuremath{\mathrm{H}}\xspace}                 
+ \def\PI      {\ensuremath{\mathrm{I}}\xspace}                 
+ \def\PJ      {\ensuremath{\mathrm{J}}\xspace}                 
+ \def\PK      {\ensuremath{\mathrm{K}}\xspace}                 
+ \def\PL      {\ensuremath{\mathrm{L}}\xspace}                 
+ \def\PM      {\ensuremath{\mathrm{M}}\xspace}                 
+ \def\PN      {\ensuremath{\mathrm{N}}\xspace}                 
+ \def\PO      {\ensuremath{\mathrm{O}}\xspace}                 
+ \def\PP      {\ensuremath{\mathrm{P}}\xspace}                 
+ \def\PQ      {\ensuremath{\mathrm{Q}}\xspace}                 
+ \def\PR      {\ensuremath{\mathrm{R}}\xspace}                 
+ \def\PS      {\ensuremath{\mathrm{S}}\xspace}                 
+ \def\PT      {\ensuremath{\mathrm{T}}\xspace}                 
+ \def\PU      {\ensuremath{\mathrm{U}}\xspace}                 
+ \def\PV      {\ensuremath{\mathrm{V}}\xspace}                 
+ \def\PW      {\ensuremath{\mathrm{W}}\xspace}                 
+ \def\PX      {\ensuremath{\mathrm{X}}\xspace}                 
+ \def\PY      {\ensuremath{\mathrm{Y}}\xspace}                 
+ \def\PZ      {\ensuremath{\mathrm{Z}}\xspace}                 
+ \def\Pa      {\ensuremath{\mathrm{a}}\xspace}                 
+ \def\Pb      {\ensuremath{\mathrm{b}}\xspace}                 
+ \def\Pc      {\ensuremath{\mathrm{c}}\xspace}                 
+ \def\Pd      {\ensuremath{\mathrm{d}}\xspace}                 
+ \def\Pe      {\ensuremath{\mathrm{e}}\xspace}                 
+ \def\Pf      {\ensuremath{\mathrm{f}}\xspace}                 
+ \def\Pg      {\ensuremath{\mathrm{g}}\xspace}                 
+ \def\Ph      {\ensuremath{\mathrm{h}}\xspace}                 
+ \def\Pi      {\ensuremath{\mathrm{i}}\xspace}                 
+ \def\Pj      {\ensuremath{\mathrm{j}}\xspace}                 
+ \def\Pk      {\ensuremath{\mathrm{k}}\xspace}                 
+ \def\Pl      {\ensuremath{\mathrm{l}}\xspace}                 
+ \def\Pm      {\ensuremath{\mathrm{m}}\xspace}                 
+ \def\Pn      {\ensuremath{\mathrm{n}}\xspace}                 
+ \def\Po      {\ensuremath{\mathrm{o}}\xspace}                 
+ \def\Pp      {\ensuremath{\mathrm{p}}\xspace}                 
+ \def\Pq      {\ensuremath{\mathrm{q}}\xspace}                 
+ \def\Pr      {\ensuremath{\mathrm{r}}\xspace}                 
+ \def\Ps      {\ensuremath{\mathrm{s}}\xspace}                 
+ \def\Pt      {\ensuremath{\mathrm{t}}\xspace}                 
+ \def\Pu      {\ensuremath{\mathrm{u}}\xspace}                 
+ \def\Pv      {\ensuremath{\mathrm{v}}\xspace}                 
+ \def\Pw      {\ensuremath{\mathrm{w}}\xspace}                 
+ \def\Px      {\ensuremath{\mathrm{x}}\xspace}                 
+ \def\Py      {\ensuremath{\mathrm{y}}\xspace}                 
+ \def\Pz      {\ensuremath{\mathrm{z}}\xspace}                 
+ \def\thebaroffset{0.0em}
+}
+{\def\Palpha      {\ensuremath{\alpha}\xspace}
+ \def\Pbeta       {\ensuremath{\beta}\xspace}
+ \def\Pgamma      {\ensuremath{\gamma}\xspace}                 
+ \def\Pdelta      {\ensuremath{\delta}\xspace}                 
+ \def\Pepsilon    {\ensuremath{\epsilon}\xspace}                 
+ \def\Pvarepsilon {\ensuremath{\varepsilon}\xspace}                 
+ \def\Pzeta       {\ensuremath{\zeta}\xspace}                 
+ \def\Peta        {\ensuremath{\eta}\xspace}                 
+ \def\Ptheta      {\ensuremath{\theta}\xspace}                 
+ \def\Pvartheta   {\ensuremath{\vartheta}\xspace}                 
+ \def\Piota       {\ensuremath{\iota}\xspace}                 
+ \def\Pkappa      {\ensuremath{\kappa}\xspace}                 
+ \def\Plambda     {\ensuremath{\lambda}\xspace}                 
+ \def\Pmu         {\ensuremath{\mu}\xspace}                 
+ \def\Pnu         {\ensuremath{\nu}\xspace}                 
+ \def\Pxi         {\ensuremath{\xi}\xspace}                 
+ \def\Ppi         {\ensuremath{\pi}\xspace}                 
+ \def\Pvarpi      {\ensuremath{\varpi}\xspace}                 
+ \def\Prho        {\ensuremath{\rho}\xspace}                 
+ \def\Pvarrho     {\ensuremath{\varrho}\xspace}                 
+ \def\Ptau        {\ensuremath{\tau}\xspace}                 
+ \def\Pupsilon    {\ensuremath{\upsilon}\xspace}                 
+ \def\Pphi        {\ensuremath{\phi}\xspace}                 
+ \def\Pvarphi     {\ensuremath{\varphi}\xspace}                 
+ \def\Pchi        {\ensuremath{\chi}\xspace}                 
+ \def\Ppsi        {\ensuremath{\psi}\xspace}                 
+ \def\Pomega      {\ensuremath{\omega}\xspace}                 
+ \mathchardef\PDelta="7101
+ \mathchardef\PXi="7104
+ \mathchardef\PLambda="7103
+ \mathchardef\PSigma="7106
+ \mathchardef\POmega="710A
+ \mathchardef\PUpsilon="7107
+ \def\PA      {\ensuremath{A}\xspace}                 
+ \def\PB      {\ensuremath{B}\xspace}                 
+ \def\PC      {\ensuremath{C}\xspace}                 
+ \def\PD      {\ensuremath{D}\xspace}                 
+ \def\PE      {\ensuremath{E}\xspace}                 
+ \def\PF      {\ensuremath{F}\xspace}                 
+ \def\PG      {\ensuremath{G}\xspace}                 
+ \def\PH      {\ensuremath{H}\xspace}                 
+ \def\PI      {\ensuremath{I}\xspace}                 
+ \def\PJ      {\ensuremath{J}\xspace}                 
+ \def\PK      {\ensuremath{K}\xspace}                 
+ \def\PL      {\ensuremath{L}\xspace}                 
+ \def\PM      {\ensuremath{M}\xspace}                 
+ \def\PN      {\ensuremath{N}\xspace}                 
+ \def\PO      {\ensuremath{O}\xspace}                 
+ \def\PP      {\ensuremath{P}\xspace}                 
+ \def\PQ      {\ensuremath{Q}\xspace}                 
+ \def\PR      {\ensuremath{R}\xspace}                 
+ \def\PS      {\ensuremath{S}\xspace}                 
+ \def\PT      {\ensuremath{T}\xspace}                 
+ \def\PU      {\ensuremath{U}\xspace}                 
+ \def\PV      {\ensuremath{V}\xspace}                 
+ \def\PW      {\ensuremath{W}\xspace}                 
+ \def\PX      {\ensuremath{X}\xspace}                 
+ \def\PY      {\ensuremath{Y}\xspace}                 
+ \def\PZ      {\ensuremath{Z}\xspace}                 
+ \def\Pa      {\ensuremath{a}\xspace}                 
+ \def\Pb      {\ensuremath{b}\xspace}                 
+ \def\Pc      {\ensuremath{c}\xspace}                 
+ \def\Pd      {\ensuremath{d}\xspace}                 
+ \def\Pe      {\ensuremath{e}\xspace}                 
+ \def\Pf      {\ensuremath{f}\xspace}                 
+ \def\Pg      {\ensuremath{g}\xspace}                 
+ \def\Ph      {\ensuremath{h}\xspace}                 
+ \def\Pi      {\ensuremath{i}\xspace}                 
+ \def\Pj      {\ensuremath{j}\xspace}                 
+ \def\Pk      {\ensuremath{k}\xspace}                 
+ \def\Pl      {\ensuremath{l}\xspace}                 
+ \def\Pm      {\ensuremath{m}\xspace}                 
+ \def\Pn      {\ensuremath{n}\xspace}                 
+ \def\Po      {\ensuremath{o}\xspace}                 
+ \def\Pp      {\ensuremath{p}\xspace}                 
+ \def\Pq      {\ensuremath{q}\xspace}                 
+ \def\Pr      {\ensuremath{r}\xspace}                 
+ \def\Ps      {\ensuremath{s}\xspace}                 
+ \def\Pt      {\ensuremath{t}\xspace}                 
+ \def\Pu      {\ensuremath{u}\xspace}                 
+ \def\Pv      {\ensuremath{v}\xspace}                 
+ \def\Pw      {\ensuremath{w}\xspace}                 
+ \def\Px      {\ensuremath{x}\xspace}                 
+ \def\Py      {\ensuremath{y}\xspace}                 
+ \def\Pz      {\ensuremath{z}\xspace}
+ \def\thebaroffset{0.18em}
+}
+\newcommand{\offsetoverline}[2][\thebaroffset]{\kern #1\overline{\kern -#1 #2}}
+
+\makeatletter
+\ifcase \@ptsize \relax \newcommand{\miniscule}{\@setfontsize\miniscule{4}{5}}\or \newcommand{\miniscule}{\@setfontsize\miniscule{5}{6}}\or \newcommand{\miniscule}{\@setfontsize\miniscule{5}{6}}\fi
+\makeatother
+
+
+\DeclareRobustCommand{\optbar}[1]{\shortstack{{\miniscule (\rule[.5ex]{1.25em}{.18mm})}
+  \\ [-.7ex] $#1$}}
+
+
+
+
+\let\emi\en
+\def\electron   {{\ensuremath{\Pe}}\xspace}
+\def\en         {{\ensuremath{\Pe^-}}\xspace}   \def\ep         {{\ensuremath{\Pe^+}}\xspace}
+\def\epm        {{\ensuremath{\Pe^\pm}}\xspace} 
+\def\emp        {{\ensuremath{\Pe^\mp}}\xspace} 
+\def\epem       {{\ensuremath{\Pe^+\Pe^-}}\xspace}
+
+
+\def\muon       {{\ensuremath{\Pmu}}\xspace}
+\def\mup        {{\ensuremath{\Pmu^+}}\xspace}
+\def\mun        {{\ensuremath{\Pmu^-}}\xspace} \def\mupm       {{\ensuremath{\Pmu^\pm}}\xspace} 
+\def\mump       {{\ensuremath{\Pmu^\mp}}\xspace} 
+\def\mumu       {{\ensuremath{\Pmu^+\Pmu^-}}\xspace}
+
+\def\tauon      {{\ensuremath{\Ptau}}\xspace}
+\def\taup       {{\ensuremath{\Ptau^+}}\xspace}
+\def\taum       {{\ensuremath{\Ptau^-}}\xspace}
+\def\taupm      {{\ensuremath{\Ptau^\pm}}\xspace}
+\def\taump      {{\ensuremath{\Ptau^\mp}}\xspace}
+\def\tautau     {{\ensuremath{\Ptau^+\Ptau^-}}\xspace}
+
+\def\lepton     {{\ensuremath{\ell}}\xspace}
+\def\ellm       {{\ensuremath{\ell^-}}\xspace}
+\def\ellp       {{\ensuremath{\ell^+}}\xspace}
+\def\ellpm      {{\ensuremath{\ell^\pm}}\xspace}
+\def\ellmp      {{\ensuremath{\ell^\mp}}\xspace}
+\def\ellell     {\ensuremath{\ell^+ \ell^-}\xspace}
+
+\def\neu        {{\ensuremath{\Pnu}}\xspace}
+\def\neub       {{\ensuremath{\overline{\Pnu}}}\xspace}
+\def\neue       {{\ensuremath{\neu_e}}\xspace}
+\def\neueb      {{\ensuremath{\neub_e}}\xspace}
+\def\neum       {{\ensuremath{\neu_\mu}}\xspace}
+\def\neumb      {{\ensuremath{\neub_\mu}}\xspace}
+\def\neut       {{\ensuremath{\neu_\tau}}\xspace}
+\def\neutb      {{\ensuremath{\neub_\tau}}\xspace}
+\def\neul       {{\ensuremath{\neu_\ell}}\xspace}
+\def\neulb      {{\ensuremath{\neub_\ell}}\xspace}
+
+
+
+
+\def\g      {{\ensuremath{\Pgamma}}\xspace}
+\def\H      {{\ensuremath{\PH^0}}\xspace}
+\def\Hp     {{\ensuremath{\PH^+}}\xspace}
+\def\Hm     {{\ensuremath{\PH^-}}\xspace}
+\def\Hpm    {{\ensuremath{\PH^\pm}}\xspace}
+\def\W      {{\ensuremath{\PW}}\xspace}
+\def\Wp     {{\ensuremath{\PW^+}}\xspace}
+\def\Wm     {{\ensuremath{\PW^-}}\xspace}
+\def\Wpm    {{\ensuremath{\PW^\pm}}\xspace}
+\def\Z      {{\ensuremath{\PZ}}\xspace}
+
+
+
+\def\quark     {{\ensuremath{\Pq}}\xspace}
+\def\quarkbar  {{\ensuremath{\overline \quark}}\xspace}
+\def\qqbar     {{\ensuremath{\quark\quarkbar}}\xspace}
+\def\uquark    {{\ensuremath{\Pu}}\xspace}
+\def\uquarkbar {{\ensuremath{\overline \uquark}}\xspace}
+\def\uubar     {{\ensuremath{\uquark\uquarkbar}}\xspace}
+\def\dquark    {{\ensuremath{\Pd}}\xspace}
+\def\dquarkbar {{\ensuremath{\overline \dquark}}\xspace}
+\def\ddbar     {{\ensuremath{\dquark\dquarkbar}}\xspace}
+\def\squark    {{\ensuremath{\Ps}}\xspace}
+\def\squarkbar {{\ensuremath{\overline \squark}}\xspace}
+\def\ssbar     {{\ensuremath{\squark\squarkbar}}\xspace}
+\def\cquark    {{\ensuremath{\Pc}}\xspace}
+\def\cquarkbar {{\ensuremath{\overline \cquark}}\xspace}
+\def\ccbar     {{\ensuremath{\cquark\cquarkbar}}\xspace}
+\def\bquark    {{\ensuremath{\Pb}}\xspace}
+\def\bquarkbar {{\ensuremath{\overline \bquark}}\xspace}
+\def\bbbar     {{\ensuremath{\bquark\bquarkbar}}\xspace}
+\def\tquark    {{\ensuremath{\Pt}}\xspace}
+\def\tquarkbar {{\ensuremath{\overline \tquark}}\xspace}
+\def\ttbar     {{\ensuremath{\tquark\tquarkbar}}\xspace}
+
+
+
+\def\hadron {{\ensuremath{\Ph}}\xspace}
+\def\pion   {{\ensuremath{\Ppi}}\xspace}
+\def\piz    {{\ensuremath{\pion^0}}\xspace}
+\def\pip    {{\ensuremath{\pion^+}}\xspace}
+\def\pim    {{\ensuremath{\pion^-}}\xspace}
+\def\pipm   {{\ensuremath{\pion^\pm}}\xspace}
+\def\pimp   {{\ensuremath{\pion^\mp}}\xspace}
+
+\def\rhomeson {{\ensuremath{\Prho}}\xspace}
+\def\rhoz     {{\ensuremath{\rhomeson^0}}\xspace}
+\def\rhop     {{\ensuremath{\rhomeson^+}}\xspace}
+\def\rhom     {{\ensuremath{\rhomeson^-}}\xspace}
+\def\rhopm    {{\ensuremath{\rhomeson^\pm}}\xspace}
+\def\rhomp    {{\ensuremath{\rhomeson^\mp}}\xspace}
+
+\def\kaon    {{\ensuremath{\PK}}\xspace}
+\def\Kbar    {{\ensuremath{\offsetoverline{\PK}}}\xspace}
+\def\Kb      {{\ensuremath{\Kbar}}\xspace}
+\def\KorKbar {\kern \thebaroffset\optbar{\kern -\thebaroffset \PK}{}\xspace}
+\def\Kz      {{\ensuremath{\kaon^0}}\xspace}
+\def\Kzb     {{\ensuremath{\Kbar{}^0}}\xspace}
+\def\Kp      {{\ensuremath{\kaon^+}}\xspace}
+\def\Km      {{\ensuremath{\kaon^-}}\xspace}
+\def\Kpm     {{\ensuremath{\kaon^\pm}}\xspace}
+\def\Kmp     {{\ensuremath{\kaon^\mp}}\xspace}
+\def\KS      {{\ensuremath{\kaon^0_{\mathrm{S}}}}\xspace}
+\def\Vzero   {{\ensuremath{V^0}}\xspace}
+\def\KL      {{\ensuremath{\kaon^0_{\mathrm{L}}}}\xspace}
+\def\Kstarz  {{\ensuremath{\kaon^{*0}}}\xspace}
+\def\Kstarzb {{\ensuremath{\Kbar{}^{*0}}}\xspace}
+\def\Kstar   {{\ensuremath{\kaon^*}}\xspace}
+\def\Kstarb  {{\ensuremath{\Kbar{}^*}}\xspace}
+\def\Kstarp  {{\ensuremath{\kaon^{*+}}}\xspace}
+\def\Kstarm  {{\ensuremath{\kaon^{*-}}}\xspace}
+\def\Kstarpm {{\ensuremath{\kaon^{*\pm}}}\xspace}
+\def\Kstarmp {{\ensuremath{\kaon^{*\mp}}}\xspace}
+\def\KorKbarz {\ensuremath{\KorKbar^0}\xspace}
+
+\newcommand{\etaz}{\ensuremath{\Peta}\xspace}
+\newcommand{\etapr}{\ensuremath{\Peta^{\prime}}\xspace}
+\newcommand{\phiz}{\ensuremath{\Pphi}\xspace}
+\newcommand{\omegaz}{\ensuremath{\Pomega}\xspace}
+
+
+
+\def\Dbar    {{\ensuremath{\offsetoverline{\PD}}}\xspace}
+\def\D       {{\ensuremath{\PD}}\xspace}
+\def\Db      {{\ensuremath{\Dbar}}\xspace}
+\def\DorDbar {\kern \thebaroffset\optbar{\kern -\thebaroffset \PD}\xspace}
+\def\Dz      {{\ensuremath{\D^0}}\xspace}
+\def\Dzb     {{\ensuremath{\Dbar{}^0}}\xspace}
+\def\Dp      {{\ensuremath{\D^+}}\xspace}
+\def\Dm      {{\ensuremath{\D^-}}\xspace}
+\def\Dpm     {{\ensuremath{\D^\pm}}\xspace}
+\def\Dmp     {{\ensuremath{\D^\mp}}\xspace}
+\def\DpDm    {\ensuremath{\Dp {\kern -0.16em \Dm}}\xspace}
+\def\Dstar   {{\ensuremath{\D^*}}\xspace}
+\def\Dstarb  {{\ensuremath{\Dbar{}^*}}\xspace}
+\def\Dstarz  {{\ensuremath{\D^{*0}}}\xspace}
+\def\Dstarzb {{\ensuremath{\Dbar{}^{*0}}}\xspace}
+\def\theDstarz{{\ensuremath{\D^{*}(2007)^{0}}}\xspace}
+\def\theDstarzb{{\ensuremath{\Dbar^{*}(2007)^{0}}}\xspace}
+\def\Dstarp  {{\ensuremath{\D^{*+}}}\xspace}
+\def\Dstarm  {{\ensuremath{\D^{*-}}}\xspace}
+\def\Dstarpm {{\ensuremath{\D^{*\pm}}}\xspace}
+\def\Dstarmp {{\ensuremath{\D^{*\mp}}}\xspace}
+\def\theDstarp{{\ensuremath{\D^{*}(2010)^{+}}}\xspace}
+\def\theDstarm{{\ensuremath{\D^{*}(2010)^{-}}}\xspace}
+\def\theDstarpm{{\ensuremath{\D^{*}(2010)^{\pm}}}\xspace}
+\def\theDstarmp{{\ensuremath{\D^{*}(2010)^{\mp}}}\xspace}
+\def\Ds      {{\ensuremath{\D^+_\squark}}\xspace}
+\def\Dsp     {{\ensuremath{\D^+_\squark}}\xspace}
+\def\Dsm     {{\ensuremath{\D^-_\squark}}\xspace}
+\def\Dspm    {{\ensuremath{\D^{\pm}_\squark}}\xspace}
+\def\Dsmp    {{\ensuremath{\D^{\mp}_\squark}}\xspace}
+\def\Dss     {{\ensuremath{\D^{*+}_\squark}}\xspace}
+\def\Dssp    {{\ensuremath{\D^{*+}_\squark}}\xspace}
+\def\Dssm    {{\ensuremath{\D^{*-}_\squark}}\xspace}
+\def\Dsspm   {{\ensuremath{\D^{*\pm}_\squark}}\xspace}
+\def\Dssmp   {{\ensuremath{\D^{*\mp}_\squark}}\xspace}
+\def\DporDsp {{\ensuremath{\D_{(\squark)}^+}}\xspace}
+\def\DmorDsm {{\ensuremath{\D{}_{(\squark)}^-}}\xspace}
+\def\DpmorDspm {{\ensuremath{\D{}_{(\squark)}^\pm}}\xspace}
+
+\def\B       {{\ensuremath{\PB}}\xspace}
+\def\Bbar    {{\ensuremath{\offsetoverline{\PB}}}\xspace}
+\def\Bb      {{\ensuremath{\Bbar}}\xspace}
+\def\BorBbar {\kern \thebaroffset\optbar{\kern -\thebaroffset \PB}\xspace}
+\def\Bz      {{\ensuremath{\B^0}}\xspace}
+\def\Bzb     {{\ensuremath{\Bbar{}^0}}\xspace}
+\def\Bd      {{\ensuremath{\B^0}}\xspace}
+\def\Bdb     {{\ensuremath{\Bbar{}^0}}\xspace}
+\def\BdorBdbar {\kern \thebaroffset\optbar{\kern -\thebaroffset \Bd}\xspace}
+\def\Bu      {{\ensuremath{\B^+}}\xspace}
+\def\Bub     {{\ensuremath{\B^-}}\xspace}
+\def\Bp      {{\ensuremath{\Bu}}\xspace}
+\def\Bm      {{\ensuremath{\Bub}}\xspace}
+\def\Bpm     {{\ensuremath{\B^\pm}}\xspace}
+\def\Bmp     {{\ensuremath{\B^\mp}}\xspace}
+\def\Bs      {{\ensuremath{\B^0_\squark}}\xspace}
+\def\Bsb     {{\ensuremath{\Bbar{}^0_\squark}}\xspace}
+\def\BsorBsbar {\kern \thebaroffset\optbar{\kern -\thebaroffset \Bs}\xspace}
+\def\Bc      {{\ensuremath{\B_\cquark^+}}\xspace}
+\def\Bcp     {{\ensuremath{\B_\cquark^+}}\xspace}
+\def\Bcm     {{\ensuremath{\B_\cquark^-}}\xspace}
+\def\Bcpm    {{\ensuremath{\B_\cquark^\pm}}\xspace}
+\def\Bds     {{\ensuremath{\B_{(\squark)}^0}}\xspace}
+\def\Bdsb    {{\ensuremath{\Bbar{}_{(\squark)}^0}}\xspace}
+\def\BdorBs  {\Bds}
+\def\BdorBsbar  {\Bdsb}
+
+
+
+\def\jpsi     {{\ensuremath{{\PJ\mskip -3mu/\mskip -2mu\Ppsi}}}\xspace}
+\def\psitwos  {{\ensuremath{\Ppsi{(2S)}}}\xspace}
+\def\psiprpr  {{\ensuremath{\Ppsi(3770)}}\xspace}
+\def\etac     {{\ensuremath{\Peta_\cquark}}\xspace}
+\def\psires  {{\ensuremath{\Ppsi}}\xspace}
+\def\chic     {{\ensuremath{\Pchi_\cquark}}\xspace}
+\def\chiczero {{\ensuremath{\Pchi_{\cquark 0}}}\xspace}
+\def\chicone  {{\ensuremath{\Pchi_{\cquark 1}}}\xspace}
+\def\chictwo  {{\ensuremath{\Pchi_{\cquark 2}}}\xspace}
+\def\chicJ    {{\ensuremath{\Pchi_{\cquark J}}}\xspace}
+\def\Upsilonres  {{\ensuremath{\PUpsilon}}\xspace}
+\def\Y#1S{\ensuremath{\PUpsilon{(#1S)}}\xspace}
+\def\OneS  {{\Y1S}}
+\def\TwoS  {{\Y2S}}
+\def\ThreeS{{\Y3S}}
+\def\FourS {{\Y4S}}
+\def\FiveS {{\Y5S}}
+\def\chib     {{\ensuremath{\Pchi_{b}}}\xspace}
+\def\chibzero {{\ensuremath{\Pchi_{\bquark 0}}}\xspace}
+\def\chibone  {{\ensuremath{\Pchi_{\bquark 1}}}\xspace}
+\def\chibtwo  {{\ensuremath{\Pchi_{\bquark 2}}}\xspace}
+\def\chibJ    {{\ensuremath{\Pchi_{\bquark J}}}\xspace}
+\def\theX     {{\ensuremath{\Pchi_{c1}(3872)}}\xspace}
+
+
+
+\def\proton      {{\ensuremath{\Pp}}\xspace}
+\def\antiproton  {{\ensuremath{\overline \proton}}\xspace}
+\def\neutron     {{\ensuremath{\Pn}}\xspace}
+\def\antineutron {{\ensuremath{\overline \neutron}}\xspace}
+\def\Deltares    {{\ensuremath{\PDelta}}\xspace}
+\def\Deltaresbar {{\ensuremath{\overline \Deltares}}\xspace}
+\def\Lz          {{\ensuremath{\PLambda}}\xspace}
+\def\Lbar        {{\ensuremath{\offsetoverline{\PLambda}}}\xspace}
+\def\LorLbar     {\kern \thebaroffset\optbar{\kern -\thebaroffset \PLambda}\xspace}
+\def\Lambdares   {{\ensuremath{\PLambda}}\xspace}
+\def\Lambdaresbar{{\ensuremath{\Lbar}}\xspace}
+\def\Sigmares    {{\ensuremath{\PSigma}}\xspace}
+\def\Sigmaz      {{\ensuremath{\Sigmares{}^0}}\xspace}
+\def\Sigmap      {{\ensuremath{\Sigmares{}^+}}\xspace}
+\def\Sigmam      {{\ensuremath{\Sigmares{}^-}}\xspace}
+\def\Sigmaresbar {{\ensuremath{\offsetoverline{\Sigmares}}}\xspace}
+\def\Sigmabarz   {{\ensuremath{\Sigmaresbar{}^0}}\xspace}
+\def\Sigmabarp   {{\ensuremath{\Sigmaresbar{}^+}}\xspace}
+\def\Sigmabarm   {{\ensuremath{\Sigmaresbar{}^-}}\xspace}
+\def\Xires       {{\ensuremath{\PXi}}\xspace}
+\def\Xiz         {{\ensuremath{\Xires^0}}\xspace}
+\def\Xim         {{\ensuremath{\Xires^-}}\xspace}
+\def\Xiresbar       {{\ensuremath{\offsetoverline{\Xires}}}\xspace}
+\def\Xibarz      {{\ensuremath{\Xiresbar^0}}\xspace}
+\def\Xibarp      {{\ensuremath{\Xiresbar^+}}\xspace}
+\def\Omegares    {{\ensuremath{\POmega}}\xspace}
+\def\Omegaresbar {{\ensuremath{\offsetoverline{\POmega}}}\xspace}
+\def\Omegam      {{\ensuremath{\Omegares^-}}\xspace}
+\def\Omegabarp   {{\ensuremath{\Omegaresbar^+}}\xspace}
+
+\def\Lc          {{\ensuremath{\Lz^+_\cquark}}\xspace}
+\def\Lcbar       {{\ensuremath{\Lbar{}^-_\cquark}}\xspace}
+\def\Xic         {{\ensuremath{\Xires_\cquark}}\xspace}
+\def\Xicz        {{\ensuremath{\Xires^0_\cquark}}\xspace}
+\def\Xicp        {{\ensuremath{\Xires^+_\cquark}}\xspace}
+\def\Xicbar      {{\ensuremath{\Xiresbar{}_\cquark}}\xspace}
+\def\Xicbarz     {{\ensuremath{\Xiresbar{}_\cquark^0}}\xspace}
+\def\Xicbarm     {{\ensuremath{\Xiresbar{}_\cquark^-}}\xspace}
+\def\Omegac      {{\ensuremath{\Omegares^0_\cquark}}\xspace}
+\def\Omegacbar   {{\ensuremath{\Omegaresbar{}_\cquark^0}}\xspace}
+\def\Xicc        {{\ensuremath{\Xires_{\cquark\cquark}}}\xspace}
+\def\Xiccbar     {{\ensuremath{\Xiresbar{}_{\cquark\cquark}}}\xspace}
+\def\Xiccp       {{\ensuremath{\Xires^+_{\cquark\cquark}}}\xspace}
+\def\Xiccpp      {{\ensuremath{\Xires^{++}_{\cquark\cquark}}}\xspace}
+\def\Xiccbarm    {{\ensuremath{\Xiresbar{}_{\cquark\cquark}^-}}\xspace}
+\def\Xiccbarmm   {{\ensuremath{\Xiresbar{}_{\cquark\cquark}^{--}}}\xspace}
+\def\Omegacc     {{\ensuremath{\Omegares^+_{\cquark\cquark}}}\xspace}
+\def\Omegaccbar  {{\ensuremath{\Omegaresbar{}_{\cquark\cquark}^-}}\xspace}
+\def\Omegaccc    {{\ensuremath{\Omegares^{++}_{\cquark\cquark\cquark}}}\xspace}
+\def\Omegacccbar {{\ensuremath{\Omegaresbar{}_{\cquark\cquark\cquark}^{--}}}\xspace}
+
+
+\def\Lb           {{\ensuremath{\Lz^0_\bquark}}\xspace}
+\def\Lbbar        {{\ensuremath{\Lbar{}^0_\bquark}}\xspace}
+\def\Sigmab       {{\ensuremath{\Sigmares_\bquark}}\xspace}
+\def\Sigmabp      {{\ensuremath{\Sigmares_\bquark^+}}\xspace}
+\def\Sigmabz      {{\ensuremath{\Sigmares_\bquark^0}}\xspace}
+\def\Sigmabm      {{\ensuremath{\Sigmares_\bquark^-}}\xspace}
+\def\Sigmabpm     {{\ensuremath{\Sigmares_\bquark^\pm}}\xspace}
+\def\Sigmabbar    {{\ensuremath{\Sigmaresbar_\bquark}}\xspace}
+\def\Sigmabbarp   {{\ensuremath{\Sigmaresbar_\bquark^+}}\xspace}
+\def\Sigmabbarz   {{\ensuremath{\Sigmaresbar_\bquark^0}}\xspace}
+\def\Sigmabbarm   {{\ensuremath{\Sigmaresbar_\bquark^-}}\xspace}
+\def\Sigmabbarpm  {{\ensuremath{\Sigmaresbar_\bquark^-}}\xspace}
+\def\Xib          {{\ensuremath{\Xires_\bquark}}\xspace}
+\def\Xibz         {{\ensuremath{\Xires^0_\bquark}}\xspace}
+\def\Xibm         {{\ensuremath{\Xires^-_\bquark}}\xspace}
+\def\Xibbar       {{\ensuremath{\Xiresbar{}_\bquark}}\xspace}
+\def\Xibbarz      {{\ensuremath{\Xiresbar{}_\bquark^0}}\xspace}
+\def\Xibbarp      {{\ensuremath{\Xiresbar{}_\bquark^+}}\xspace}
+\def\Omegab       {{\ensuremath{\Omegares^-_\bquark}}\xspace}
+\def\Omegabbar    {{\ensuremath{\Omegaresbar{}_\bquark^+}}\xspace}
+
+
+
+\def\BF         {{\ensuremath{\mathcal{B}}}\xspace}
+\def\BR         {\BF}
+\def\BRvis      {{\ensuremath{\BR_{\mathrm{{vis}}}}}}
+\newcommand{\decay}[2]{\ensuremath{#1\!\to #2}\xspace} 
+\def\ra                 {\ensuremath{\rightarrow}\xspace}
+\def\to                 {\ensuremath{\rightarrow}\xspace}
+
+\newcommand{\tauBs}{{\ensuremath{\tau_{\Bs}}}\xspace}
+\newcommand{\tauBd}{{\ensuremath{\tau_{\Bd}}}\xspace}
+\newcommand{\tauBz}{{\ensuremath{\tau_{\Bz}}}\xspace}
+\newcommand{\tauBu}{{\ensuremath{\tau_{\Bp}}}\xspace}
+\newcommand{\tauDp}{{\ensuremath{\tau_{\Dp}}}\xspace}
+\newcommand{\tauDz}{{\ensuremath{\tau_{\Dz}}}\xspace}
+\newcommand{\tauL}{{\ensuremath{\tau_{\mathrm{ L}}}}\xspace}
+\newcommand{\tauH}{{\ensuremath{\tau_{\mathrm{ H}}}}\xspace}
+
+\newcommand{\mBd}{{\ensuremath{m_{\Bd}}}\xspace}
+\newcommand{\mBp}{{\ensuremath{m_{\Bp}}}\xspace}
+\newcommand{\mBs}{{\ensuremath{m_{\Bs}}}\xspace}
+\newcommand{\mBc}{{\ensuremath{m_{\Bc}}}\xspace}
+\newcommand{\mLb}{{\ensuremath{m_{\Lb}}}\xspace}
+
+\def\grpsuthree {{\ensuremath{\mathrm{SU}(3)}}\xspace}
+\def\grpsutw    {{\ensuremath{\mathrm{SU}(2)}}\xspace}
+\def\grpuone    {{\ensuremath{\mathrm{U}(1)}}\xspace}
+
+\def\ssqtw   {{\ensuremath{\sin^{2}\!\theta_{\mathrm{W}}}}\xspace}
+\def\csqtw   {{\ensuremath{\cos^{2}\!\theta_{\mathrm{W}}}}\xspace}
+\def\stw     {{\ensuremath{\sin\theta_{\mathrm{W}}}}\xspace}
+\def\ctw     {{\ensuremath{\cos\theta_{\mathrm{W}}}}\xspace}
+\def\ssqtwef {{\ensuremath{{\sin}^{2}\theta_{\mathrm{W}}^{\mathrm{eff}}}}\xspace}
+\def\csqtwef {{\ensuremath{{\cos}^{2}\theta_{\mathrm{W}}^{\mathrm{eff}}}}\xspace}
+\def\stwef   {{\ensuremath{\sin\theta_{\mathrm{W}}^{\mathrm{eff}}}}\xspace}
+\def\ctwef   {{\ensuremath{\cos\theta_{\mathrm{W}}^{\mathrm{eff}}}}\xspace}
+\def\gv      {{\ensuremath{g_{\mbox{\tiny V}}}}\xspace}
+\def\ga      {{\ensuremath{g_{\mbox{\tiny A}}}}\xspace}
+
+\def\order   {{\ensuremath{\mathcal{O}}}\xspace}
+\def\ordalph {{\ensuremath{\mathcal{O}(\alpha)}}\xspace}
+\def\ordalsq {{\ensuremath{\mathcal{O}(\alpha^{2})}}\xspace}
+\def\ordalcb {{\ensuremath{\mathcal{O}(\alpha^{3})}}\xspace}
+
+\newcommand{\as}{{\ensuremath{\alpha_s}}\xspace}
+\newcommand{\MSb}{{\ensuremath{\overline{\mathrm{MS}}}}\xspace}
+\newcommand{\lqcd}{{\ensuremath{\Lambda_{\mathrm{QCD}}}}\xspace}
+\def\qsq       {{\ensuremath{q^2}}\xspace}
+
+
+
+\def\eps   {{\ensuremath{\varepsilon}}\xspace}
+\def\epsK  {{\ensuremath{\varepsilon_K}}\xspace}
+\def\epsB  {{\ensuremath{\varepsilon_B}}\xspace}
+\def\epsp  {{\ensuremath{\varepsilon^\prime_K}}\xspace}
+
+\def\CP                {{\ensuremath{C\!P}}\xspace}
+\def\CPT               {{\ensuremath{C\!PT}}\xspace}
+\def\T                 {{\ensuremath{T}}\xspace}
+
+\def\rhobar {{\ensuremath{\overline \rho}}\xspace}
+\def\etabar {{\ensuremath{\overline \eta}}\xspace}
+
+\def\Vud  {{\ensuremath{V_{\uquark\dquark}^{\phantom{\ast}}}}\xspace}
+\def\Vcd  {{\ensuremath{V_{\cquark\dquark}^{\phantom{\ast}}}}\xspace}
+\def\Vtd  {{\ensuremath{V_{\tquark\dquark}^{\phantom{\ast}}}}\xspace}
+\def\Vus  {{\ensuremath{V_{\uquark\squark}^{\phantom{\ast}}}}\xspace}
+\def\Vcs  {{\ensuremath{V_{\cquark\squark}^{\phantom{\ast}}}}\xspace}
+\def\Vts  {{\ensuremath{V_{\tquark\squark}^{\phantom{\ast}}}}\xspace}
+\def\Vub  {{\ensuremath{V_{\uquark\bquark}^{\phantom{\ast}}}}\xspace}
+\def\Vcb  {{\ensuremath{V_{\cquark\bquark}^{\phantom{\ast}}}}\xspace}
+\def\Vtb  {{\ensuremath{V_{\tquark\bquark}^{\phantom{\ast}}}}\xspace}
+\def\Vuds  {{\ensuremath{V_{\uquark\dquark}^\ast}}\xspace}
+\def\Vcds  {{\ensuremath{V_{\cquark\dquark}^\ast}}\xspace}
+\def\Vtds  {{\ensuremath{V_{\tquark\dquark}^\ast}}\xspace}
+\def\Vuss  {{\ensuremath{V_{\uquark\squark}^\ast}}\xspace}
+\def\Vcss  {{\ensuremath{V_{\cquark\squark}^\ast}}\xspace}
+\def\Vtss  {{\ensuremath{V_{\tquark\squark}^\ast}}\xspace}
+\def\Vubs  {{\ensuremath{V_{\uquark\bquark}^\ast}}\xspace}
+\def\Vcbs  {{\ensuremath{V_{\cquark\bquark}^\ast}}\xspace}
+\def\Vtbs  {{\ensuremath{V_{\tquark\bquark}^\ast}}\xspace}
+
+
+
+\newcommand{\dm}{{\ensuremath{\Delta m}}\xspace}
+\newcommand{\dms}{{\ensuremath{\Delta m_{\squark}}}\xspace}
+\newcommand{\dmd}{{\ensuremath{\Delta m_{\dquark}}}\xspace}
+\newcommand{\DG}{{\ensuremath{\Delta\Gamma}}\xspace}
+\newcommand{\DGs}{{\ensuremath{\Delta\Gamma_{\squark}}}\xspace}
+\newcommand{\DGd}{{\ensuremath{\Delta\Gamma_{\dquark}}}\xspace}
+\newcommand{\Gs}{{\ensuremath{\Gamma_{\squark}}}\xspace}
+\newcommand{\Gd}{{\ensuremath{\Gamma_{\dquark}}}\xspace}
+\newcommand{\MBq}{{\ensuremath{M_{\B_\quark}}}\xspace}
+\newcommand{\DGq}{{\ensuremath{\Delta\Gamma_{\quark}}}\xspace}
+\newcommand{\Gq}{{\ensuremath{\Gamma_{\quark}}}\xspace}
+\newcommand{\dmq}{{\ensuremath{\Delta m_{\quark}}}\xspace}
+\newcommand{\GL}{{\ensuremath{\Gamma_{\mathrm{ L}}}}\xspace}
+\newcommand{\GH}{{\ensuremath{\Gamma_{\mathrm{ H}}}}\xspace}
+\newcommand{\DGsGs}{{\ensuremath{\Delta\Gamma_{\squark}/\Gamma_{\squark}}}\xspace}
+\newcommand{\Delm}{{\mbox{$\Delta m $}}\xspace}
+\newcommand{\ACP}{{\ensuremath{{\mathcal{A}}^{\CP}}}\xspace}
+\newcommand{\Adir}{{\ensuremath{{\mathcal{A}}^{\mathrm{ dir}}}}\xspace}
+\newcommand{\Amix}{{\ensuremath{{\mathcal{A}}^{\mathrm{ mix}}}}\xspace}
+\newcommand{\ADelta}{{\ensuremath{{\mathcal{A}}^\Delta}}\xspace}
+\newcommand{\phid}{{\ensuremath{\phi_{\dquark}}}\xspace}
+\newcommand{\sinphid}{{\ensuremath{\sin\!\phid}}\xspace}
+\newcommand{\phis}{{\ensuremath{\phi_{\squark}}}\xspace}
+\newcommand{\betas}{{\ensuremath{\beta_{\squark}}}\xspace}
+\newcommand{\sbetas}{{\ensuremath{\sigma(\beta_{\squark})}}\xspace}
+\newcommand{\stbetas}{{\ensuremath{\sigma(2\beta_{\squark})}}\xspace}
+\newcommand{\stphis}{{\ensuremath{\sigma(\phi_{\squark})}}\xspace}
+\newcommand{\sinphis}{{\ensuremath{\sin\!\phis}}\xspace}
+
+\newcommand{\edet}{{\ensuremath{\varepsilon_{\mathrm{ det}}}}\xspace}
+\newcommand{\erec}{{\ensuremath{\varepsilon_{\mathrm{ rec/det}}}}\xspace}
+\newcommand{\esel}{{\ensuremath{\varepsilon_{\mathrm{ sel/rec}}}}\xspace}
+\newcommand{\etrg}{{\ensuremath{\varepsilon_{\mathrm{ trg/sel}}}}\xspace}
+\newcommand{\etot}{{\ensuremath{\varepsilon_{\mathrm{ tot}}}}\xspace}
+
+\newcommand{\mistag}{\ensuremath{\omega}\xspace}
+\newcommand{\wcomb}{\ensuremath{\omega^{\mathrm{comb}}}\xspace}
+\newcommand{\etag}{{\ensuremath{\varepsilon_{\mathrm{tag}}}}\xspace}
+\newcommand{\etagcomb}{{\ensuremath{\varepsilon_{\mathrm{tag}}^{\mathrm{comb}}}}\xspace}
+\newcommand{\effeff}{\ensuremath{\varepsilon_{\mathrm{eff}}}\xspace}
+\newcommand{\effeffcomb}{\ensuremath{\varepsilon_{\mathrm{eff}}^{\mathrm{comb}}}\xspace}
+\newcommand{\efftag}{{\ensuremath{\etag(1-2\omega)^2}}\xspace}
+\newcommand{\effD}{{\ensuremath{\etag D^2}}\xspace}
+
+\newcommand{\etagprompt}{{\ensuremath{\varepsilon_{\mathrm{ tag}}^{\mathrm{Pr}}}}\xspace}
+\newcommand{\etagLL}{{\ensuremath{\varepsilon_{\mathrm{ tag}}^{\mathrm{LL}}}}\xspace}
+
+
+
+\def\BdToKstmm    {\decay{\Bd}{\Kstarz\mup\mun}}
+\def\BdbToKstmm   {\decay{\Bdb}{\Kstarzb\mup\mun}}
+
+\def\BsToJPsiPhi  {\decay{\Bs}{\jpsi\phi}}
+\def\BdToJPsiKst  {\decay{\Bd}{\jpsi\Kstarz}}
+\def\BdbToJPsiKst {\decay{\Bdb}{\jpsi\Kstarzb}}
+\def\BsPhiGam     {\decay{\Bs}{\phi \g}}
+\def\BdKstGam     {\decay{\Bd}{\Kstarz \g}}
+
+\def\BTohh        {\decay{\B}{\Ph^+ \Ph'^-}}
+
+\def\Bhhh        {\decay{\Bpm}{\Ph^{\pm} \Ph'^+\Ph'^-}}
+\def\Bjpsik      {\decay{\Bpm}{\jpsi\Kpm}}
+\def\Bppp        {\decay{\Bpm}{\pipm \pip\pim}}
+\def\Bkpp        {\decay{\Bpm}{\Kpm \pip\pim}}
+\def\Bkkp        {\decay{\Bpm}{\Kpm \Kp\pim}}
+\def\Bkkk        {\decay{\Bpm}{\Kpm \Kp\Km}}
+
+\def\BdTopipi     {\decay{\Bd}{\pip\pim}}
+\def\BdToKpi      {\decay{\Bd}{\Kp\pim}}
+\def\BsToKK       {\decay{\Bs}{\Kp\Km}}
+\def\BsTopiK      {\decay{\Bs}{\pip\Km}}
+\def\Cpipi        {\ensuremath{C_{\pip\pim}}\xspace}
+\def\Spipi        {\ensuremath{S_{\pip\pim}}\xspace}
+\def\CKK          {\ensuremath{C_{\Kp\Km}}\xspace}
+\def\SKK          {\ensuremath{S_{\Kp\Km}}\xspace}
+\def\ADGKK        {\ensuremath{A^{\DG}_{\Kp\Km}}\xspace}
+
+\def\BdKstee  {\decay{\Bd}{\Kstarz\epem}}
+\def\BdbKstee {\decay{\Bdb}{\Kstarzb\epem}}
+\def\bsll     {\decay{\bquark}{\squark \ell^+ \ell^-}}
+\def\AFB      {\ensuremath{A_{\mathrm{FB}}}\xspace}
+\def\FL       {\ensuremath{F_{\mathrm{L}}}\xspace}
+\def\AT#1     {\ensuremath{A_{\mathrm{T}}^{#1}}\xspace}           \def\btosgam  {\decay{\bquark}{\squark \g}}
+\def\btodgam  {\decay{\bquark}{\dquark \g}}
+\def\Bsmm     {\decay{\Bs}{\mup\mun}}
+\def\Bdmm     {\decay{\Bd}{\mup\mun}}
+\def\Bsee     {\decay{\Bs}{\epem}}
+\def\Bdee     {\decay{\Bd}{\epem}}
+\def\ctl       {\ensuremath{\cos{\theta_\ell}}\xspace}
+\def\ctk       {\ensuremath{\cos{\theta_K}}\xspace}
+
+\def\C#1      {\ensuremath{\mathcal{C}_{#1}}\xspace}                       \def\Cp#1     {\ensuremath{\mathcal{C}_{#1}^{'}}\xspace}                    \def\Ceff#1   {\ensuremath{\mathcal{C}_{#1}^{\mathrm{(eff)}}}\xspace}        \def\Cpeff#1  {\ensuremath{\mathcal{C}_{#1}^{'\mathrm{(eff)}}}\xspace}       \def\Ope#1    {\ensuremath{\mathcal{O}_{#1}}\xspace}                       \def\Opep#1   {\ensuremath{\mathcal{O}_{#1}^{'}}\xspace}                    
+
+
+
+\def\xprime     {\ensuremath{x^{\prime}}\xspace}
+\def\yprime     {\ensuremath{y^{\prime}}\xspace}
+\def\ycp        {\ensuremath{y_{\CP}}\xspace}
+\def\agamma     {\ensuremath{A_{\Gamma}}\xspace}
+\def\dkpicf     {\decay{\Dz}{\Km\pip}}
+
+\newcommand{\bra}[1]{\ensuremath{\langle #1|}}             \newcommand{\ket}[1]{\ensuremath{|#1\rangle}}              \newcommand{\braket}[2]{\ensuremath{\langle #1|#2\rangle}} 
+
+\newcommand{\nospaceunit}[1]{\ensuremath{\text{#1}}}       
+\newcommand{\aunit}[1]{\ensuremath{\text{\,#1}}}       
+\newcommand{\unit}[1]{\aunit{#1}\xspace}                   
+
+\newcommand{\tev}{\aunit{Te\kern -0.1em V}\xspace}
+\newcommand{\gev}{\aunit{Ge\kern -0.1em V}\xspace}
+\newcommand{\mev}{\aunit{Me\kern -0.1em V}\xspace}
+\newcommand{\kev}{\aunit{ke\kern -0.1em V}\xspace}
+\newcommand{\ev}{\aunit{e\kern -0.1em V}\xspace}
+\newcommand{\gevgev}{\ensuremath{\gev^2}\xspace} 
+\newcommand{\mevc}{\ensuremath{\aunit{Me\kern -0.1em V\!/}c}\xspace}
+\newcommand{\gevc}{\ensuremath{\aunit{Ge\kern -0.1em V\!/}c}\xspace}
+\newcommand{\mevcc}{\ensuremath{\aunit{Me\kern -0.1em V\!/}c^2}\xspace}
+\newcommand{\gevcc}{\ensuremath{\aunit{Ge\kern -0.1em V\!/}c^2}\xspace}
+\newcommand{\gevgevcc}{\ensuremath{\gev^2\!/c^2}\xspace} \newcommand{\gevgevcccc}{\ensuremath{\gev^2\!/c^4}\xspace} 
+
+\def\km   {\aunit{km}\xspace}
+\def\m    {\aunit{m}\xspace}
+\def\ma   {\ensuremath{\aunit{m}^2}\xspace}
+\def\cm   {\aunit{cm}\xspace}
+\def\cma  {\ensuremath{\aunit{cm}^2}\xspace}
+\def\mm   {\aunit{mm}\xspace}
+\def\mma  {\ensuremath{\aunit{mm}^2}\xspace}
+\def\mum  {\ensuremath{\,\upmu\nospaceunit{m}}\xspace}
+\def\muma {\ensuremath{\,\upmu\nospaceunit{m}^2}\xspace}
+\def\nm   {\aunit{nm}\xspace}
+\def\fm   {\aunit{fm}\xspace}
+\def\barn{\aunit{b}\xspace}
+\def\mbarn{\aunit{mb}\xspace}
+\def\mub{\ensuremath{\,\upmu\nospaceunit{b}}\xspace}
+\def\nb {\aunit{nb}\xspace}
+\def\invnb {\ensuremath{\nb^{-1}}\xspace}
+\def\pb {\aunit{pb}\xspace}
+\def\invpb {\ensuremath{\pb^{-1}}\xspace}
+\def\fb   {\ensuremath{\aunit{fb}}\xspace}
+\def\invfb   {\ensuremath{\fb^{-1}}\xspace}
+\def\ab   {\ensuremath{\aunit{ab}}\xspace}
+\def\invab   {\ensuremath{\ab^{-1}}\xspace}
+
+\def\sec  {\ensuremath{\aunit{s}}\xspace}
+\def\ms   {\ensuremath{\aunit{ms}}\xspace}
+\def\mus  {\ensuremath{\,\upmu\nospaceunit{s}}\xspace}
+\def\ns   {\ensuremath{\aunit{ns}}\xspace}
+\def\ps   {\ensuremath{\aunit{ps}}\xspace}
+\def\fs   {\aunit{fs}}
+
+\def\mhz  {\ensuremath{\aunit{MHz}}\xspace}
+\def\khz  {\ensuremath{\aunit{kHz}}\xspace}
+\def\hz   {\ensuremath{\aunit{Hz}}\xspace}
+
+\def\invps{\ensuremath{\ps^{-1}}\xspace}
+\def\invns{\ensuremath{\ns^{-1}}\xspace}
+
+\def\yr   {\aunit{yr}\xspace}
+\def\hr   {\aunit{hr}\xspace}
+
+\def\degc {\ensuremath{^\circ}{\text{C}}\xspace}
+\def\degk {\aunit{K}\xspace}
+
+\def\Xrad {\ensuremath{X_0}\xspace}
+\def\NIL{\ensuremath{\lambda_{\rm int}}\xspace}
+\def\mip {MIP\xspace}
+\def\neutroneq {\ensuremath{n_\nospaceunit{eq}}\xspace}
+\def\neqcmcm {\ensuremath{\neutroneq/\nospaceunit{cm}^2}\xspace}
+\def\kRad {\aunit{kRad}\xspace}
+\def\MRad {\aunit{MRad}\xspace}
+\def\ci {\aunit{Ci}\xspace}
+\def\mci {\aunit{mCi}\xspace}
+
+\def\sx    {\ensuremath{\sigma_x}\xspace}    
+\def\sy    {\ensuremath{\sigma_y}\xspace}   
+\def\sz    {\ensuremath{\sigma_z}\xspace}    
+
+\newcommand{\stat}{\aunit{(stat)}\xspace}
+\newcommand{\syst}{\aunit{(syst)}\xspace}
+\newcommand{\lumi}{\aunit{(lumi)}\xspace}
+
+
+
+\def\order{{\ensuremath{\mathcal{O}}}\xspace}
+\newcommand{\chisq}{\ensuremath{\chi^2}\xspace}
+\newcommand{\chisqndf}{\ensuremath{\chi^2/\mathrm{ndf}}\xspace}
+\newcommand{\chisqip}{\ensuremath{\chi^2_{\text{IP}}}\xspace}
+\newcommand{\chisqvs}{\ensuremath{\chi^2_{\text{VS}}}\xspace}
+\newcommand{\chisqvtx}{\ensuremath{\chi^2_{\text{vtx}}}\xspace}
+\newcommand{\chisqvtxndf}{\ensuremath{\chi^2_{\text{vtx}}/\mathrm{ndf}}\xspace}
+
+\def\deriv {\ensuremath{\mathrm{d}}}
+
+\def\gsim{{~\raise.15em\hbox{$>$}\kern-.85em
+          \lower.35em\hbox{$\sim$}~}\xspace}
+\def\lsim{{~\raise.15em\hbox{$<$}\kern-.85em
+          \lower.35em\hbox{$\sim$}~}\xspace}
+
+\newcommand{\mean}[1]{\ensuremath{\left\langle #1 \right\rangle}} \newcommand{\abs}[1]{\ensuremath{\left\|#1\right\|}} \newcommand{\Real}{\ensuremath{\mathcal{R}e}\xspace}
+\newcommand{\Imag}{\ensuremath{\mathcal{I}m}\xspace}
+
+\def\PDF {PDF\xspace}
+
+\def\sPlot{\mbox{\em sPlot}\xspace}
+\def\sFit{\mbox{\em sFit}\xspace}
+
+
+
+
+\def\Ebeam {\ensuremath{E_{\mbox{\tiny BEAM}}}\xspace}
+\def\sqs   {\ensuremath{\protect\sqrt{s}}\xspace}
+\def\sqsnn {\ensuremath{\protect\sqrt{s_{\scriptscriptstyle\text{NN}}}}\xspace}
+\def\pt         {\ensuremath{p_{\mathrm{T}}}\xspace}
+\def\ptsq       {\ensuremath{p_{\mathrm{T}}^2}\xspace}
+\def\ptot       {\ensuremath{p}\xspace}
+\def\et         {\ensuremath{E_{\mathrm{T}}}\xspace}
+\def\mt         {\ensuremath{M_{\mathrm{T}}}\xspace}
+\def\dpp        {\ensuremath{\Delta p/p}\xspace}
+\def\msq        {\ensuremath{m^2}\xspace}
+\newcommand{\dedx}{\ensuremath{\mathrm{d}\hspace{-0.1em}E/\mathrm{d}x}\xspace}
+\def\dllkpi     {\ensuremath{\mathrm{DLL}_{\kaon\pion}}\xspace}
+\def\dllppi     {\ensuremath{\mathrm{DLL}_{\proton\pion}}\xspace}
+\def\dllepi     {\ensuremath{\mathrm{DLL}_{\electron\pion}}\xspace}
+\def\dllmupi    {\ensuremath{\mathrm{DLL}_{\muon\pi}}\xspace}
+
+
+\def\degrees{\ensuremath{^{\circ}}\xspace}
+\def\murad{\ensuremath{\,\upmu\nospaceunit{rad}}\xspace}
+\def\mrad{\aunit{mrad}\xspace}
+\def\rad{\aunit{rad}\xspace}
+
+\def\betastar {\ensuremath{\beta^*}}
+\newcommand{\lum} {\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\intlum}[1]{\ensuremath{\int\lum=#1}\xspace}  
+
+
+
+\def\bcvegpy    {\mbox{\textsc{Bcvegpy}}\xspace}
+\def\boole      {\mbox{\textsc{Boole}}\xspace}
+\def\brunel     {\mbox{\textsc{Brunel}}\xspace}
+\def\davinci    {\mbox{\textsc{DaVinci}}\xspace}
+\def\dirac      {\mbox{\textsc{Dirac}}\xspace}
+\def\evtgen     {\mbox{\textsc{EvtGen}}\xspace}
+\def\fewz       {\mbox{\textsc{Fewz}}\xspace}
+\def\fluka      {\mbox{\textsc{Fluka}}\xspace}
+\def\ganga      {\mbox{\textsc{Ganga}}\xspace}
+\def\gaudi      {\mbox{\textsc{Gaudi}}\xspace}
+\def\gauss      {\mbox{\textsc{Gauss}}\xspace}
+\def\geant      {\mbox{\textsc{Geant4}}\xspace}
+\def\hepmc      {\mbox{\textsc{HepMC}}\xspace}
+\def\herwig     {\mbox{\textsc{Herwig}}\xspace}
+\def\moore      {\mbox{\textsc{Moore}}\xspace}
+\def\neurobayes {\mbox{\textsc{NeuroBayes}}\xspace}
+\def\photos     {\mbox{\textsc{Photos}}\xspace}
+\def\powheg     {\mbox{\textsc{Powheg}}\xspace}
+\def\pythia     {\mbox{\textsc{Pythia}}\xspace}
+\def\resbos     {\mbox{\textsc{ResBos}}\xspace}
+\def\roofit     {\mbox{\textsc{RooFit}}\xspace}
+\def\root       {\mbox{\textsc{Root}}\xspace}
+\def\spice      {\mbox{\textsc{Spice}}\xspace}
+\def\urania     {\mbox{\textsc{Urania}}\xspace}
+
+\def\cpp        {\mbox{\textsc{C\raisebox{0.1em}{{\footnotesize{++}}}}}\xspace}
+\def\ruby       {\mbox{\textsc{Ruby}}\xspace}
+\def\fortran    {\mbox{\textsc{Fortran}}\xspace}
+\def\svn        {\mbox{\textsc{svn}}\xspace}
+\def\git        {\mbox{\textsc{git}}\xspace}
+\def\latex      {\mbox{\LaTeX}\xspace}
+
+\def\kbit          {\aunit{kbit}\xspace}
+\def\kbps        {\aunit{kbit/s}\xspace}
+\def\kbytes     {\aunit{kB}\xspace}
+\def\kbyps      {\aunit{kB/s}\xspace}
+\def\mbit          {\aunit{Mbit}\xspace}
+\def\mbps        {\aunit{Mbit/s}\xspace}
+\def\mbytes     {\aunit{MB}\xspace}
+\def\mbyps      {\aunit{MB/s}\xspace}
+\def\gbit          {\aunit{Gbit}\xspace}
+\def\gbps        {\aunit{Gbit/s}\xspace}
+\def\gbytes     {\aunit{GB}\xspace}
+\def\gbyps      {\aunit{GB/s}\xspace}
+\def\tbit          {\aunit{Tbit}\xspace}
+\def\tbps        {\aunit{Tbit/s}\xspace}
+\def\tbytes     {\aunit{TB}\xspace}
+\def\tbyps      {\aunit{TB/s}\xspace}
+\def\dst        {DST\xspace}
+
+
+
+\def\nonn {\ensuremath{\mathrm{{ \mathit{n^+}} \mbox{-} on\mbox{-}{ \mathit{n}}}}\xspace}
+\def\ponn {\ensuremath{\mathrm{{ \mathit{p^+}} \mbox{-} on\mbox{-}{ \mathit{n}}}}\xspace}
+\def\nonp {\ensuremath{\mathrm{{ \mathit{n^+}} \mbox{-} on\mbox{-}{ \mathit{p}}}}\xspace}
+\def\cvd  {CVD\xspace}
+\def\mwpc {MWPC\xspace}
+\def\gem  {GEM\xspace}
+
+\def\tell1  {TELL1\xspace}
+\def\ukl1   {UKL1\xspace}
+\def\beetle {Beetle\xspace}
+\def\otis   {OTIS\xspace}
+\def\croc   {CROC\xspace}
+\def\carioca {CARIOCA\xspace}
+\def\dialog {DIALOG\xspace}
+\def\sync   {SYNC\xspace}
+\def\cardiac {CARDIAC\xspace}
+\def\gol    {GOL\xspace}
+\def\vcsel  {VCSEL\xspace}
+\def\ttc    {TTC\xspace}
+\def\ttcrx  {TTCrx\xspace}
+\def\hpd    {HPD\xspace}
+\def\pmt    {PMT\xspace}
+\def\specs  {SPECS\xspace}
+\def\elmb   {ELMB\xspace}
+\def\fpga   {FPGA\xspace}
+\def\plc    {PLC\xspace}
+\def\rasnik {RASNIK\xspace}
+\def\elmb   {ELMB\xspace}
+\def\can    {CAN\xspace}
+\def\lvds   {LVDS\xspace}
+\def\ntc    {NTC\xspace}
+\def\adc    {ADC\xspace}
+\def\led    {LED\xspace}
+\def\ccd    {CCD\xspace}
+\def\hv     {HV\xspace}
+\def\lv     {LV\xspace}
+\def\pvss   {PVSS\xspace}
+\def\cmos   {CMOS\xspace}
+\def\fifo   {FIFO\xspace}
+\def\ccpc   {CCPC\xspace}
+
+\def\cfourften     {\ensuremath{\mathrm{ C_4 F_{10}}}\xspace}
+\def\cffour        {\ensuremath{\mathrm{ CF_4}}\xspace}
+\def\cotwo         {\ensuremath{\mathrm{ CO_2}}\xspace} 
+\def\csixffouteen  {\ensuremath{\mathrm{ C_6 F_{14}}}\xspace} 
+\def\mgftwo     {\ensuremath{\mathrm{ Mg F_2}}\xspace} 
+\def\siotwo     {\ensuremath{\mathrm{ SiO_2}}\xspace} 
+
+\newcommand{\eg}{\mbox{\itshape e.g.}\xspace}
+\newcommand{\ie}{\mbox{\itshape i.e.}\xspace}
+\newcommand{\etal}{\mbox{\itshape et al.}\xspace}
+\newcommand{\etc}{\mbox{\itshape etc.}\xspace}
+\newcommand{\cf}{\mbox{\itshape cf.}\xspace}
+\newcommand{\ffp}{\mbox{\itshape ff.}\xspace}
+\newcommand{\vs}{\mbox{\itshape vs.}\xspace}
+\newcommand{\phz}{\phantom{0}}
+
+\newcommand{\lhcborcid}[1]{\href{https://orcid.org/#1}{\hspace*{0.1em}\raisebox{-0.45ex}{\includegraphics[width=1em]{orcidIcon.pdf}}}}
+
+ 
+
+
+
+\def\hhh {\ensuremath{{\Bpm \to h^{\pm} h^+ h^-}}\xspace}
+\def\hhk {\ensuremath{{\Bpm \to K^{\pm} h^+ h^-}}\xspace}
+\def\hhpi {\ensuremath{{\Bpm \to \pi^{\pm} h^+ h^-}}\xspace}
+\def\pph {\ensuremath{{\Bpm \to h^{\pm} p\bar{p}}}\xspace}
+\def\pipipi {\ensuremath{{\Bpm \to \pipm \pip \pim}}\xspace}
+\def\kpipi {\ensuremath{{\Bpm \to \Kpm \pip \pim}}\xspace}
+\def\pipik {\ensuremath{{\Bpm \to \pi^{\pm} \pi^{\mp} \Kpm}}\xspace}
+\def\pikpi {\ensuremath{{\Bpm \to \pi^{\pm} \Kpm \pi^{\mp}}}\xspace}
+\def\kkpi {\ensuremath{{\Bpm \to \pipm \Kp \Km }}\xspace}
+\def\kkk {\ensuremath{{\Bpm \to \Kpm \Kp \Km}}\xspace}
+\def\pppi {\ensuremath{{\Bpm \to p \bar{p} \pi^{\pm}}}\xspace}
+\def\ppk {\ensuremath{{\Bpm \to p \bar{p} K^{\pm}}}\xspace}
+\def\jpsik {\ensuremath{{\Bpm \to \jpsi \Kpm}}\xspace}
+\def\jpsimumu {\ensuremath{{\jpsi \to \mup\mun}}\xspace}
+\def\dpi {\ensuremath{{\Bpm \to {\Dz} \pipm}}\xspace}
+\def\pipipipiz {\ensuremath{{\pipm \pip \pim \piz}}\xspace}
+\def\Kpipipiz {\ensuremath{{\Kpm \pip \pim \piz}}\xspace}
+
+\def\kpipip {\ensuremath{{\Bp \to \Kp \pip \pim}}\xspace}
+\def\kpipim {\ensuremath{{\Bm \to \Km \pip \pim}}\xspace}
+\def\kkkp {\ensuremath{{\Bp \to \Kp \Kp \Km}}\xspace}
+\def\kkkm {\ensuremath{{\Bm \to \Km \Kp \Km}}\xspace}
+\def\kkpip {\ensuremath{{\Bp \to \Kp \Km \pip}}\xspace}
+\def\kkpim {\ensuremath{{\Bm \to \Kp \Km \pim}}\xspace}
+\def\pipipip {\ensuremath{{\Bp \to \pip \pip \pim}}\xspace}
+\def\pipipim {\ensuremath{{\Bm \to \pim \pip \pim}}\xspace}
+
+
+
+\def\rhoI   {\ensuremath{\rho(770)^0}\xspace}
+\def\rhoII  {\ensuremath{\rho(1450)^0}\xspace}
+\def\rhoIII {\ensuremath{\rho_3(1690)^0}\xspace}
+\def\rhoIV  {\ensuremath{\rho(1700)^0}\xspace}
+\def\omegaI {\ensuremath{\omega(782)}\xspace}
+\def\sigmaI {\ensuremath{f_0(500)}\xspace}
+\def\fI     {\ensuremath{f_0(980)}\xspace}
+\def\fII    {\ensuremath{f_2(1270)}\xspace}
+\def\fIII   {\ensuremath{f_0(1370)}\xspace}
+\def\fIV    {\ensuremath{f_0(1500)}\xspace}
+\def\fV     {\ensuremath{f_0(1710)}\xspace}
+\def\fX     {\ensuremath{f_2(X)}\xspace}
+
+\def\mmkpi {\ensuremath{m^2_{\Kpm \pimp}}\xspace}                    \def\mpipi {\ensuremath{m_{\pi \pi}}\xspace}                        \def\mmpipi {\ensuremath{m^2_{\pip \pim}}\xspace}                        \def\mmkk {\ensuremath{m^2_{\Kp \Km}}\xspace}                            \def\mkk {\ensuremath{m_{K K}}\xspace}                            \def\mkpi {\ensuremath{m_{K \pi}}\xspace}                            \def\mpik {\ensuremath{m_{\pi K}}\xspace}                            \def\mmkklow {\ensuremath{m^2_{\Kp \Km\,{\rm low}}}\xspace}     \def\mmkkhi {\ensuremath{m^2_{\Kp \Km\,{\rm high}}}\xspace}      \def\mkklow {\ensuremath{m_{\Kp \Km\,{\rm low}}}\xspace}     \def\mkkhi {\ensuremath{m_{\Kp \Km\,{\rm high}}}\xspace}      \def\mmpipilow {\ensuremath{m^2_{\pip \pim\,{\rm low}}}\xspace} \def\mmpipihi {\ensuremath{m^2_{\pip \pim\,{\rm high}}}\xspace}   \def\mpipilow {\ensuremath{m_{\pip \pim\,{\rm low}}}\xspace} \def\mpipihi {\ensuremath{m_{\pip \pim\,{\rm high}}}\xspace}   \def\mcor {\ensuremath{M^{\rm COR}}\xspace}                                \def\pointing {\ensuremath{\theta_{\rm{pointing}}}\xspace}             
+
+\def\mpr {\ensuremath{m^\prime}\xspace}
+\def\thpr {\ensuremath{\theta^\prime}\xspace}
+\def\FF {\ensuremath{{\rm FF}}\xspace}
+
+
+\def\acp {\ensuremath{A_{\CP}}\xspace}
+\newcommand{\acpkyt}[2]{\ensuremath{A_{\CP}(Khh\,^{#1}_{#2})}\xspace}
+\newcommand{\acpky}[1]{\ensuremath{A_{\CP}(Khh\,^{#1})}\xspace}
+\newcommand{\acppiyt}[2]{\ensuremath{A_{\CP}(\pi hh\,^{#1}_{#2})}\xspace}
+\newcommand{\acppiy}[1]{\ensuremath{A_{\CP}(\pi hh\,^{#1})}\xspace}
+\def\acpraw {\ensuremath{A_{\rm raw}}\xspace}
+\def\acprawfit {\ensuremath{A_{\rm RAW}^{\rm fit}}\xspace}
+\def\acprawacc {\ensuremath{A_{\rm raw}^{\rm corr}}\xspace}
+\def\acprawaccfit {\ensuremath{\left(A_{\rm RAW}^{\rm ACC}\right)_{Fit}}\xspace}
+\def\acprawaccbin {\ensuremath{\left(A_{\rm RAW}^{\rm ACC}\right)_{Bin}}\xspace}
+\def\acpn {\ensuremath{A_{\CP}^{N}}\xspace}
+\def\acpbin {\ensuremath{A_{\CP}^{bin}}\xspace}
+\def\dacp {\ensuremath{\Delta A_{\CP}}\xspace}
+\def\aprod {\ensuremath{A_{\rm P}}\xspace}
+\def\adet {\ensuremath{A_{\rm D}}\xspace}
+\def\adetk {\ensuremath{A_{\rm D}^{K}}\xspace}
+\def\adetpi {\ensuremath{A_{\rm D}^{\pi}}\xspace}
+
+
+\def\acpp {\ensuremath{A^{P}}\xspace}
+\def\acps {\ensuremath{A_{RAW}^{signal}}\xspace}
+\def\acpb {\ensuremath{A_{RAW}^{bkg_{i}}}\xspace}
+\def\acpc {\ensuremath{A_{RAW}^{comb}}\xspace}
+\def\corrp {\ensuremath{\left(1-\acps\right)}\xspace}
+\def\corrm {\ensuremath{\left(1+\acps\right)}\xspace}
+\def\corrpb {\ensuremath{\left(1-\acpb\right)}\xspace}
+\def\corrmb {\ensuremath{\left(1+\acpb\right)}\xspace}
+\def\corrpc {\ensuremath{\left(1-\acpc\right)}\xspace}
+\def\corrmc {\ensuremath{\left(1+\acpc\right)}\xspace}
+\def\corrmp {\ensuremath{\left(1\mp\acps\right)}\xspace}
+\def\corrmpb {\ensuremath{\left(1\mp\acpb\right)}\xspace}
+\def\corrmpc {\ensuremath{\left(1\mp\acpc\right)}\xspace}
+\def\nbkgi {\ensuremath{\left(f_{bkg_{i}} N_{S}\right)}\xspace}
+\def\ntot {\ensuremath{\mathcal{N}}\xspace}
+
+\def\kkpiplots {figs/phaseSpace}
+\def\pipipiplots {figs/phaseSpace}
+\def\tbikkpiplots {figs/phaseSpace}
+\def\tbipipipiplots {figs/phaseSpace}
+
+
+
+\newcommand{\approptoinn}[2]{\mathrel{\vcenter{
+  \offinterlineskip\halign{\hfil$##$\cr
+    #1\propto\cr\noalign{\kern2pt}#1\sim\cr\noalign{\kern-2pt}}}}}
+
+\newcommand{\appropto}{\mathpalette\approptoinn\relax}
+
+
+
+\def\ponevalacprawkpipi  {\ensuremath{0.020}\xspace}
+\def\poneerracprawkpipi  {\ensuremath{0.007}\xspace}
+\def\ponevalnsignalkpipi {\ensuremath{35901}\xspace}
+\def\poneerrnsignalkpipi {\ensuremath{327}\xspace}
+\def\ptwovalacprawpipipi  {\ensuremath{0.124}\xspace}
+\def\ptwoerracprawpipipi  {\ensuremath{0.020}\xspace}
+\def\ptwovalnsignalpipipi {\ensuremath{4904}\xspace}
+\def\ptwoerrnsignalpipipi {\ensuremath{148}\xspace}
+\def\ptwovalacprawkkpi  {\ensuremath{-0.143}\xspace}
+\def\ptwoerracprawkkpi  {\ensuremath{0.040}\xspace}
+\def\ptwovalnsignalkkpi {\ensuremath{1870}\xspace}
+\def\ptwoerrnsignalkkpi {\ensuremath{133}\xspace}
+\def\pfourvalacprawallkpipionze  {\ensuremath{0.0115}\xspace}
+\def\pfourerracprawallkpipionze  {\ensuremath{0.0048}\xspace}
+\def\pfourvalnsignalallkpipionze {\ensuremath{53544}\xspace}
+\def\pfourerrnsignalallkpipionze {\ensuremath{^{(-281,}_{+302)}}\xspace}
+\def\pfourvalacprawtoskpipionze  {\ensuremath{0.0056}\xspace}
+\def\pfourerracprawtoskpipionze  {\ensuremath{^{(-0.0061,}_{+0.0060)}}\xspace}
+\def\pfourvalnsignaltoskpipionze {\ensuremath{36106}\xspace}
+\def\pfourerrnsignaltoskpipionze {\ensuremath{^{(-217,}_{+219)}}\xspace}
+\def\pfourvalacprawtisNotToskpipionze  {\ensuremath{0.0235}\xspace}
+\def\pfourerracprawtisNotToskpipionze  {\ensuremath{^{(-0.0088,}_{+0.0087)}}\xspace}
+\def\pfourvalnsignaltisNotToskpipionze {\ensuremath{17478}\xspace}
+\def\pfourerrnsignaltisNotToskpipionze {\ensuremath{^{(-155,}_{+155)}}\xspace}
+\def\pfourvalacprawallkpipidoze  {\ensuremath{0.0093}\xspace}
+\def\pfourerracprawallkpipidoze  {\ensuremath{0.0031}\xspace}
+\def\pfourvalnsignalallkpipidoze {\ensuremath{123917}\xspace}
+\def\pfourerrnsignalallkpipidoze {\ensuremath{404}\xspace}
+\def\pfourvalacprawtoskpipidoze  {\ensuremath{0.0118}\xspace}
+\def\pfourerracprawtoskpipidoze  {\ensuremath{^{(-0.0041,}_{+0.0040)}}\xspace}
+\def\pfourvalnsignaltoskpipidoze {\ensuremath{81683}\xspace}
+\def\pfourerrnsignaltoskpipidoze {\ensuremath{^{(-331,}_{+332)}}\xspace}
+\def\pfourvalacprawtisNotToskpipidoze  {\ensuremath{0.0048}\xspace}
+\def\pfourerracprawtisNotToskpipidoze  {\ensuremath{^{(-0.0057,}_{+0.0057)}}\xspace}
+\def\pfourvalnsignaltisNotToskpipidoze {\ensuremath{42310}\xspace}
+\def\pfourerrnsignaltisNotToskpipidoze {\ensuremath{^{(-242,}_{+243)}}\xspace}
+\def\pfourvalacprawallpipipionze  {\ensuremath{0.082}\xspace}
+\def\pfourerracprawallpipipionze  {\ensuremath{^{(-0.013,}_{+0.013)}}\xspace}
+\def\pfourvalnsignalallpipipionze {\ensuremath{7845}\xspace}
+\def\pfourerrnsignalallpipipionze {\ensuremath{^{(-121,}_{+121)}}\xspace}
+\def\pfourvalacprawtospipipionze  {\ensuremath{0.0076}\xspace}
+\def\pfourerracprawtospipipionze  {\ensuremath{^{(-0.016,}_{+0.016)}}\xspace}
+\def\pfourvalnsignaltospipipionze {\ensuremath{5022}\xspace}
+\def\pfourerrnsignaltospipipionze {\ensuremath{^{(-83,}_{+84)}}\xspace}
+\def\pfourvalacprawtispipipionze  {\ensuremath{0.098}\xspace}
+\def\pfourerracprawtispipipionze  {\ensuremath{^{(-0.019,}_{+0.019)}}\xspace}
+\def\pfourvalnsignaltispipipionze {\ensuremath{4182}\xspace}
+\def\pfourerrnsignaltispipipionze {\ensuremath{^{(-80,}_{+81)}}\xspace}
+\def\pfourvalacprawtisNotTospipipionze  {\ensuremath{0.0924}\xspace}
+\def\pfourerracprawtisNotTospipipionze  {\ensuremath{^{(-0.023,}_{+0.023)}}\xspace}
+\def\pfourvalnsignaltisNotTospipipionze {\ensuremath{2831}\xspace}
+\def\pfourerrnsignaltisNotTospipipionze {\ensuremath{^{(-67,}_{+69)}}\xspace}
+\def\pfourvalacprawallpipipidoze  {\ensuremath{0.0710}\xspace}
+\def\pfourerracprawallpipipidoze  {\ensuremath{^{(-0.0092,}_{+0.0092)}}\xspace}
+\def\pfourvalnsignalallpipipidoze {\ensuremath{17081}\xspace}
+\def\pfourerrnsignalallpipipidoze {\ensuremath{^{(-186,}_{+185)}}\xspace}
+\def\pfourvalacprawtospipipidoze  {\ensuremath{0.073}\xspace}
+\def\pfourerracprawtospipipidoze  {\ensuremath{^{(-0.011,}_{+0.011)}}\xspace}
+\def\pfourvalnsignaltospipipidoze {\ensuremath{10458}\xspace}
+\def\pfourerrnsignaltospipipidoze {\ensuremath{^{(-122,}_{+122)}}\xspace}
+\def\pfourvalacprawtispipipidoze  {\ensuremath{0.059}\xspace}
+\def\pfourerracprawtispipipidoze  {\ensuremath{^{(-0.013,}_{+0.013)}}\xspace}
+\def\pfourvalnsignaltispipipidoze {\ensuremath{9355}\xspace}
+\def\pfourerrnsignaltispipipidoze {\ensuremath{^{(-122,}_{+123)}}\xspace}
+\def\pfourvalacprawtisNotTospipipidoze  {\ensuremath{0.069}\xspace}
+\def\pfourerracprawtisNotTospipipidoze  {\ensuremath{^{(-0.015,}_{+0.015)}}\xspace}
+\def\pfourvalnsignaltisNotTospipipidoze {\ensuremath{6628}\xspace}
+\def\pfourerrnsignaltisNotTospipipidoze {\ensuremath{^{(-104,}_{+105)}}\xspace}
+
+ 
+\usepackage{cite} \usepackage{mciteplus}
+ \usepackage{longtable} 
+
+\usepackage{overpic}
+\usepackage{amsmath}
+\usepackage{placeins}
+
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+
+
+\usepackage{microtype}
+\usepackage{lineno}  \usepackage{xspace} \usepackage{caption} 
+
+\usepackage{cite} \usepackage{mciteplus}
+\renewcommand*\thetable{\Roman{table}}
+\renewcommand{\thesection}{\Roman{section}} 
+
+\begin{document}
+
+
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\setcounter{footnote}{1}
+
+
+
+\begin{titlepage}
+\pagenumbering{roman}
+
+\vspace*{-1.5cm}
+\centerline{\large EUROPEAN ORGANIZATION FOR NUCLEAR RESEARCH (CERN)}
+\vspace*{1.5cm}
+\noindent
+\begin{tabular*}{\linewidth}{lc@{\extracolsep{\fill}}r@{\extracolsep{0pt}}}
+\ifthenelse{\boolean{pdflatex}}{\vspace*{-1.5cm}\mbox{\!\!\!\includegraphics[width=.14\textwidth]{lhcb-logo.pdf}} & &}{\vspace*{-1.2cm}\mbox{\!\!\!\includegraphics[width=.12\textwidth]{figs/lhcb-logo.eps}} & &}\\
+ & & CERN-EP-2022-100 \\  & & LHCb-PAPER-2021-049 \\  & & \today \\ & & \\
+\end{tabular*}
+
+\vspace*{3.0cm}
+
+{\normalfont\bfseries\boldmath\huge
+\begin{center}
+\papertitle 
+\end{center}
+}
+
+\vspace*{2.0cm}
+
+\begin{center}
+\paperauthors\footnote{Authors are listed at the end of this paper.}
+\end{center}
+
+\vspace{\fill}
+
+\begin{abstract}
+\noindent Measurements of \CP asymmetries in charmless three-body decays of $B^\pm$ mesons are reported using proton-proton collision data collected by the LHCb detector, corresponding to an integrated luminosity of 5.9\invfb. 
+The previously observed \CP asymmetry in \kkpi decays is confirmed, and \CP asymmetries are observed with a significance of more than five standard deviations in the \pipipi and \kkk decays, while the \CP asymmetry of \kpipi decays is confirmed to be compatible with zero. The distributions of these asymmetries are also studied as a function of the three-body phase space and suggest contributions from rescattering and resonance interference processes. An indication of the presence of the decays $B^\pm \to \pi^\pm \chi_{c0}(1P)$ in both \pipipi and \kkpi decays is observed, as is \CP violation involving these amplitudes.
+  
+\end{abstract}
+
+\vspace*{2.0cm}
+
+\begin{center}
+  Published in Phys. Rev. D108 (2023) 012008
+\end{center}
+
+\vspace{\fill}
+
+{\footnotesize 
+\centerline{\copyright~\papercopyright. \href{\paperlicenceurl}{\paperlicence}.}}
+\vspace*{2mm}
+
+\end{titlepage}
+
+
+
+
+\newpage
+\setcounter{page}{2}
+\mbox{~}
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{footnote}{0}
+
+\cleardoublepage
+
+
+
+
+\pagestyle{plain} \setcounter{page}{1}
+\pagenumbering{arabic}
+
+
+
+
+
+\section{Introduction}
+\label{sec:introduction}
+
+The violation of charge-parity (\CP) symmetry has been observed in $B^+$, $B^0$ and $B^0_s$ decays, and yet our understanding of the dynamics involved in these asymmetries is incomplete. Some crucial questions remain to be understood: what is the dynamical origin of the weak phase associated to the decay amplitudes? Why has \CP violation not been observed so far in baryon decays? What is the primary source of the strong phase difference in the observed \CP asymmetries~\cite{BediagaGobel}?
+
+The last question is directly related to the longstanding debate about the role of short- and long-distance contributions to the
+generation of the strong-phase differences, needed for direct \CP violation to occur, and three-body decays of $B$ mesons offer a way of finding the answer. 
+A recent amplitude analysis found a large \CP asymmetry related to the interference between the \textit{S}- and \textit{P}-wave contributions in \pipipi decays~\cite{LHCb-PAPER-2019-017,LHCb-PAPER-2019-018}. 
+In a similar  analysis, large \CP violation involving $\pi\pi \to KK$ rescattering was observed in \kkpi decays~\cite{LHCb-PAPER-2018-051}.
+The patterns of localized \CP asymmetries in the four charmless decay modes \pipipi, \kkk, \kkpi and \kpipi, reported in Refs.~\cite{LHCb-PAPER-2013-051,LHCb-PAPER-2014-044}, can be interpreted as originating from long-distance hadronic interactions~\cite{BediagaGobel}.
+
+Heavy meson three-body decays can be understood in terms of a superposition of intermediate states involving resonances. From this perspective, the phase-space-integrated \CP asymmetries (\acp) observed in charmless three-body decays of $B^{\pm}$ decays are the sum of the asymmetries of each intermediate state. In the \kkpi decay~\cite{LHCb-PAPER-2014-044}, the observed \CP asymmetry would result predominantly from the $\pi\pi \to KK$ rescattering amplitude, weighted by its fit fraction~\cite{LHCb-PAPER-2018-051}. 
+The same can be seen from the recent amplitude analysis of the \pipipi decay \cite{LHCb-PAPER-2019-017,LHCb-PAPER-2019-018}. The sum of the \CP asymmetries for the $B^{\pm} \to \sigma \pi^{\pm}$ and  $B^{\pm} \to f_2(1270) \pi^{\pm}$ decays weighted by their respective fractions is almost equal to the inclusive \CP asymmetry observed for the \pipipi decay~\cite{LHCb-PAPER-2014-044}.
+
+Another approach considers the global properties of the three-body amplitudes.
+The authors of Refs.~\cite{Gronau2003,Gronau2013,Gronau2014} use U-spin symmetry to relate the \CP asymmetries and partial decay widths of $B^\pm \to h^\pm h'^+ h'^-$ decays. U-spin symmetry predicts that the ratios \mbox{$\Delta\Gamma(B^\pm \to K^\pm \pi^+ \pi^-) / \Delta\Gamma(B^\pm \to \pi^\pm K^+ K^-)$} and \mbox{$\Delta\Gamma(B^\pm \to K^\pm K^+ K^-) / \Delta\Gamma(B^\pm \to \pi^\pm \pi^+ \pi^-)$}, where $\Delta \Gamma$ is the partial decay width difference between $B^-$ and $B^+$, must be close to $-1$. These predictions, based on a general three-body decay approach, are supported by experimental measurements, within the  uncertainties~\cite{LHCb-PAPER-2014-044, Gronau2013,Xu2013, Pat2021}.
+
+These two approaches are complementary and the role of each one must be determined from experimental results, such as the \CP asymmetries and the branching fractions of charmless three-body \Bpm decays, recently presented by the LHCb collaboration~\cite{LHCb-PAPER-2020-031}.
+
+In this article, \CP violation is studied in four charmless $B^{\pm}$ meson decays into three charged pseudoscalar particles: \kpipi, \kkk, \kkpi and \pipipi. 
+The analysis is based on proton-proton ($pp$) collision data at a center-of-mass energy of 13\tev, corresponding to an integrated luminosity of 5.9\invfb, recorded with the LHCb detector between 2015 and 2018. 
+Phase-space integrated \CP asymmetries are measured, as well as \CP asymmetries in specific regions of the Dalitz plots. The analysis uses the decay $B^\pm \to J/\psi(\to \mu^+ \mu^-) K^\pm$ as a control channel, in order to take into account the production asymmetry of the $B^{\pm}$ mesons.
+
+
+
+\section{LHCb detector, dataset and simulation}
+\label{sec:detector}
+
+The LHCb detector~\cite{LHCb-DP-2008-001, LHCb-DP-2014-002} 
+is a single-arm forward spectrometer covering the pseudorapidity range $2 < \eta < 5$, designed for the study of particles containing $b$ or $c$ quarks. The detector includes a high-precision tracking system consisting of a silicon-strip vertex  detector surrounding the $pp$ interaction region, a large-area silicon-strip detector located upstream of a dipole magnet with a bending power of about 4 Tm, and three stations of silicon-strip detectors and straw drift tubes placed downstream of the magnet. The tracking system provides a measurement of the momentum, $p$, of charged particles with a relative uncertainty that varies from 0.5\% at low momentum ($\sim$ 2\gevc) to 1.0\% at 200\gevc. 
+The minimum distance of a track to a primary $pp$ collision vertex (PV), the impact parameter (IP), is measured with a resolution of (15 + 29/\pt)\,$\upmu$m, where \pt is the component of the momentum transverse to the beam, in\,\gevc. Different types of charged hadrons are distinguished using information from two ring-imaging Cherenkov detectors. The corresponding efficiencies and misidentification rates are given in Ref.\cite{Calabrese:2811056}. Photons, electrons and hadrons are identified by a calorimeter system consisting of scintillating-pad and preshower detectors, an electromagnetic and a hadronic calorimeter. Muons are identified by a system composed of alternating layers of iron and multiwire proportional chambers.
+
+The online event selection is performed by a trigger, which consists of a hardware stage, based on information from the calorimeter system, followed by a software stage, which applies a full event reconstruction. 
+At the hardware trigger stage, events are selected if a transverse energy, typically larger than 3.5\gev, is deposited in the calorimeters by at least one hadron from the $B^{\pm}\to h^{\pm}h'^+h'^-$ candidates.
+For the control channel, it is required that the hardware trigger decision must also be due to at least one muon with high \pt. In all final states, events are also selected if the trigger decision is independent of the signal.
+
+The software trigger requires a two-, three- or four-track vertex with a significant displacement from any PV. At least one charged particle must have a large \pt and be inconsistent with originating from any PV\@. A multivariate algorithm is used for the identification of displaced vertices consistent with the decay of a {\it b}-hadron \cite{LHCb-DP-2019-001}.
+
+Samples of simulated events are used to model the effects of the detector efficiency and the selection requirements, to determine the fit models and to evaluate efficiencies. In the simulation, $pp$ collisions are generated using \pythia 8 \cite{Sj_strand_2015} with a specific LHCb configuration \cite{LHCb-PROC-2010-056}. Decays of unstable particles are described by \evtgen \cite{Lange:2001uf}, in which final-state radiation is generated using \photos \cite{davidson2015photos}. The interaction of the generated particles with the detector, and its response, are implemented using the \geant toolkit \cite{Agostinelli:2002hh,Allison:2006ve} as described in Ref. \cite{LHCb-PROC-2011-006}.
+
+
+
+\section{Candidate selection}
+\label{sec:selection}
+
+The selection of the four \Bhhh samples is based on simulations and data-driven methods. The analyzed  decay modes share the same topology and similar kinematics, leading to a common strategy for the selection. Requirements are made on the quality of the three-track vertices: the decay vertex must be detached from the PV, and the momentum vector of the reconstructed \Bpm candidate must point back to the PV\@. The final-state particles must have a significant IP with respect to the PV\@.
+
+The combinatorial background is reduced by a multivariate analysis of a set of ten topological and kinematic variables, using boosted decision trees (BDT)~\cite{Breiman} as classifiers. 
+Samples of simulated events are used to describe the signal, whereas candidates satisfying $m(h^\pm h^{'+} h^{'-})>5.4\gevcc$, are used to represent the combinatorial background. The BDT classifier is trained separately for each decay mode. 
+A requirement on the BDT response for each mode is chosen to maximise the ratio $\varepsilon_{\textrm{sim}}/\sqrt{(S+B)_{\textrm{data}}}$, where $\varepsilon_{\textrm{sim}}$ is the signal efficiency from simulation and $(S+B)_{\textrm{data}}$ is obtained by counting the candidates from data with invariant mass in the interval of $\pm$40\mevcc centred on the known $B^+$ mass~\cite{PDG2020}. The most discriminating BDT variables are related to the $B^{\pm}$ candidate distance of closest approach to the PV, pointing angle, decay vertex quality, and IP of each final-state particle.
+
+Particle identification (PID) requirements are made on all three final-state particles, reducing the contamination from other \Bhhh decays to the per cent level. This background is due mainly to $K-\pi$  misidentification. 
+The analysis is restricted to particles with momentum below 100\gevc, since above this limit the discrimination power of the PID system is limited. In order to avoid the contamination from semileptonic decays, a muon veto is placed on all decay products by applying requirements on track reconstruction and trigger decisions. Finally, a method based on Artificial Neural Network is employed to remove electrons~\cite{LHCb-DP-2018-001}. 
+
+More stringent PID requirements are applied to the \mbox{\pipipi} and \mbox{\kkpi} decays. These decays have lower branching fractions compared to the \mbox{\kpipi} and \mbox{\kkk} decays and are therefore more severely affected by the cross-feed from other \Bhhh decays.
+
+There are significant backgrounds from two-body decays of \Bpm mesons into a \Dz or \Dzb meson and a pseudoscalar particle, followed by the two-body decay of the \Dz meson into pions and kaons. This background is removed by excluding candidates for which the two-body invariant masses $m(\pi^+\pi^-)$, $m(K^{\pm}\pi^{\mp})$ or $m(K^+K^-)$ are within  $\pm30$\mevcc of the known \Dz mass~\cite{PDG2020}.
+
+After the final selection, approximately 0.5\% of the events contain more than one signal candidate. One candidate is chosen randomly in these cases.
+
+The decay \Bjpsik, with subsequent decay \jpsi$\to \mu^+\mu^-$ is used to measure the \Bpm production asymmetry. The sample is selected with the same requirements as the \Bkpp decay, with three exceptions: the particle identification, in which the pion PID is substituted by that of muon; the use of events for which the hardware trigger decision is due to a muon with high \pt; the requirement of the \jpsi candidate mass within the interval $3.05<m(\mu^+\mu^-)<3.15\gevcc$.
+
+
+
+\section{Invariant mass fits}
+\label{sec:massfits}
+
+\begin{figure}[tb]
+\begin{overpic}[width=0.49\linewidth]{Fig1a.pdf}
+ \put(11,44){\scriptsize{(a)}}
+\end{overpic}
+\begin{overpic}[width=0.47\linewidth]{Fig1b.pdf}
+ \put(11,47){\scriptsize{(b)}}
+\end{overpic}\\
+\begin{overpic}[width=0.49\linewidth]{Fig1c.pdf}
+ \put(11,47){\scriptsize{(c)}}
+\end{overpic}
+\begin{overpic}[width=0.49\linewidth]{Fig1d.pdf}
+  \put(11,47){\scriptsize{(d)}}
+\end{overpic}
+\caption{Invariant mass spectra of (a)\,\kpipi, (b)\,\kkk, (c)\,\pipipi and (d)\,\kkpi decays in the mass range [5050--5650]\mevcc.
+The left panel in each figure shows the \Bm candidates and the right panel shows the \Bp candidates.
+The results of the unbinned maximum likelihood fits are overlaid.
+}
+\label{fig:MassFit}
+\end{figure}
+
+The yield and raw asymmetry of each decay channel are extracted from simultaneous unbinned extended maximum-likelihood fits to the \Bm and \Bp invariant mass distributions, as shown in Fig.~\ref{fig:MassFit}. 
+The signal components in each of the four channels are parameterized by a sum of a Gaussian and two Crystal Ball functions~\cite{das2016simple} with a common mean and different widths and tails on either side of the peak, accounting for asymmetric effects such as quark final-state radiation. 
+The combinatorial backgrounds is described by an exponential function. The slopes and charge asymmetry of the combinatorial background are free parameters in the fit, the latter being compatible with zero when systematic uncertainties, production and detection asymmetries are taken into account.
+The background due to partially reconstructed four-body \B decays, in which one particle is not reconstructed, is parameterized by an ARGUS function~\cite{Argus} convolved with a Gaussian resolution function. A contribution from four-body \Bs decays is also present in the \kkpi sample. 
+
+The dominant peaking backgrounds in the signal regions arise from other three-body \B decays with one or more misidentified final-state particles. 
+For \kpipi decays, the largest contribution comes from \pipipi with the pion misidentified as kaon, followed by the partially reconstructed decay $\Bpm\to \eta'(\rho^{0} \gamma)\Kpm $, in which the photon is undetected. 
+Conversely, the only peaking contribution to the \pipipi spectrum comes from \kpipi decays. 
+The peaking background to \kkk is the result of single or double misidentification of pions as kaons from \kkpi and \kpipi decays. 
+The \kkpi decay has the largest number of significant peaking background contributions due to its lower branching fraction and both $K\to\pi$ and $\pi\to K$ misidentification possibilities, which is why the three other channels can contribute to its spectrum. 
+
+The shapes and fractions of peaking backgrounds relative to the signal yield are obtained from simulation of the relevant decay modes and fixed in the fits, whereas the yields of the partially reconstructed background components vary freely in the fit. The resulting signal yields and raw asymmetries ($A_{\text{raw}}$) are listed in Table~\ref{tab:signalyields}.
+The data samples are larger than those presented in Ref.~\cite{LHCb-PAPER-2014-044} due to both an increase in the integrated luminosity and the production cross-section, and the use of a more efficient selection.
+
+\begin{table}[tb]
+\caption{Total signal yields, raw asymmetries and average efficiency ratio $R$ of charmless three-body \Bpm decays for the inclusive data set.}
+\centering
+\begin{tabular}{lccc}
+\hline
+Decay mode & Total yield &  $A_{\text{raw}}$ & $R = \,<\epsilon^->/<\epsilon^+>$ \\ \hline
+
+
+\kpipi     & $499\,200 \pm 900 \phantom{0}$            & $+0.006 \pm 0.002$ & $1.0038 \pm 0.0027$ \\
+\kkk       & $365\,000 \pm 1000 $                      & $-0.052 \pm 0.002$ & $0.9846 \pm 0.0024$\\
+\pipipi    & $101\,000 \pm 500 \phantom{0}$            & $+0.090 \pm 0.004$ & $1.0354 \pm 0.0037$\\
+\kkpi      & $\phantom{3} 32\,470 \pm 300 \phantom{0}$ & $-0.132 \pm 0.007$ & $0.9777 \pm 0.0032$ \\ \hline
+\end{tabular}
+\label{tab:signalyields}
+\end{table}
+
+
+
+\section{\boldmath Phase-space integrated \CP asymmetries}
+\label{sec:global}
+
+Neither the selection efficiencies nor the observed raw asymmetries are uniform across the Dalitz plot, and efficiencies may differ for \Bp and \Bm.
+Therefore, the efficiency of selecting a signal decay is parameterized in the two-dimensional square Dalitz plot separately for \Bp and \Bm.
+Such a transformation improves the resolution in the regions with high sensitivity by expanding the corners and the borders of the nominal Dalitz plot relative to the sparsely populated central region.
+These maps are primarily obtained using simulated decays; however, effects arising from the hardware trigger and PID efficiency are determined using data calibration samples. The efficiency shows a variation from 0.9\% to 1.7\% for \kkk, 0.1\% to 0.6\% for \kkpi, 0.1\% to 1\% for \kpipi and 0.1\% to 1.2\% for \pipipi.
+The efficiency correction applied to the integrated raw asymmetries is determined from the ratio between the \Bm and \Bp average efficiencies, as listed in Table~\ref{tab:signalyields}. 
+These averages reflect the data distributions across the phase space by weighting the efficiency maps by the data events.
+
+The phase-space integrated \CP asymmetries \acp are obtained by correcting the raw asymmetry for selection efficiency effects to get the efficiency-corrected raw asymmetries \acprawacc, and for the production  asymmetry $\aprod$. The efficiency-corrected raw asymmetry is defined as
+\begin{equation}
+\acprawacc \equiv \dfrac{N_{B^-}^{\rm corr} - N_{B^+}^{\rm corr}}{N_{B^-}^{\rm corr} + N_{B^+}^{\rm corr}} = \dfrac{(N_{B^-}/R) - N_{B^+}}{(N_{B^-}/R) + N_{B^+}}, 
+\label{eq:acprawaccdef}
+\end{equation}
+where $N_{B^-}^{\rm corr}$ and $N_{B^+}^{\rm corr}$ are the number of \Bm and \Bp signal events obtained from the invariant mass fit, $N_{B^-}$ and $N_{B^+}$, corrected for the efficiency. 
+They are related to the asymmetries by
+\begin{eqnarray}
+N_{\Bm}^{\rm corr} &=& \dfrac{N_{\Bm}^{\rm corr}+N_{\Bp}^{\rm corr}}{2} (1+\acp)(1+\aprod)\, , \label{eq:nbmacc} \\
+N_{\Bp}^{\rm corr} &=& \dfrac{N_{\Bm}^{\rm corr}+N_{\Bp}^{\rm corr}}{2} (1-\acp)(1-\aprod).
+\label{eq:nbpacc}  
+\end{eqnarray}
+Substituting Eqs.~\eqref{eq:nbmacc} and~\eqref{eq:nbpacc} into Eq.~\eqref{eq:acprawaccdef}, the physical \CP asymmetry can be expressed in terms of \acprawacc and \aprod:
+\begin{equation}
+\acp = \frac{ \acprawacc - \aprod }{ 1 - \acprawacc \aprod }.
+\label{eq:acpNoAdet}
+\end{equation} 
+
+To obtain \aprod, the decay \jpsik is used as a control channel and its raw asymmetry is obtained from a fit to the invariant mass distribution. This decay has larger signal yield and lower background contributions compared to \Bhhh decays. 
+Its background is parameterized as the sum of a combinatorial component, represented by a single exponential, and partially-reconstructed $B\to \jpsi K^*(892)^{\pm,0}$ decay, described by an ARGUS function. 
+The \jpsik model is parameterized with the same function used for the \Bhhh channels. 
+Systematic uncertainties of the raw asymmetry are obtained by varying the signal fit model, leaving the background asymmetry to vary in the fit, and looking at variations from different trigger samples of the data. The total systematic uncertainty is taken as the sum in quadrature of the individual uncertainties. 
+The raw asymmetry of the control channel is measured to be $\acpraw(\jpsik) =-0.0118 \pm 0.0008 \,^{+0.0007}_{-0.0008}$, where the first uncertainty is statistical and the second systematic.
+
+To obtain the $B^{\pm}$ production asymmetry, this raw asymmetry is corrected by its efficiency ratio, calculated using a sample of simulated events produced without any $B^{\pm}$ production asymmetry, to obtain \acprawacc as before, and the world average value of the \jpsik\ \CP asymmetry, $0.0018 \pm 0.0030$~\cite{PDG2020}, is subtracted
+\begin{equation}
+\aprod = \acprawacc(\jpsik)-\acp(\jpsik).
+\label{eq:aprod}
+\end{equation} 
+The measured \B meson production asymmetry is \mbox{$\aprod = -0.0070 \pm 0.0008\,^{+0.0007}_{-0.0008} \pm 0.0030$}, where the last uncertainty is due to the \CP asymmetry of \jpsik decays~\cite{PDG2020}. 
+
+Finally, the \CP asymmetries of the four \Bhhh modes are measured to be
+\begin{align}
+\acp(\kpipi)  = +0.011 \pm 0.002, \nonumber \\
+\acp(\kkk)    = -0.037 \pm 0.002, \nonumber \\
+\acp(\pipipi) = +0.080 \pm 0.004, \nonumber \\
+\acp(\kkpi)   = -0.114 \pm 0.007, \nonumber
+\end{align}
+where the statistical uncertainties are  obtained from propagation of Eq.~\eqref{eq:acpNoAdet}, assuming no correlation term. 
+
+
+
+\section{Systematic uncertainties and results}
+\label{sec:systematics}
+
+Several sources of systematic uncertainties are considered and can be broadly divided into three groups: potential mismodelling of the invariant mass distributions, phase-space efficiency corrections and knowledge of the $B^{\pm}$ production asymmetry. The systematic uncertainties due to the mass fit models are quantified by taking the difference in the \CP asymmetry resulting from variations of the model. The alternative fits have good quality and describe the data accurately. To estimate the uncertainty due to the choice of the signal mass function, the initial model is replaced by an alternative empirical distribution \cite{das2016simple}. 
+
+The contribution associated with the peaking background fractions reflects the uncertainties in the expected yields determined from simulation and it is evaluated by varying the fractions within their statistical uncertainties. 
+In addition, the systematic uncertainty associated to the fact that the peaking background asymmetry is fixed to zero is estimated by setting it to the value obtained in the previous analysis \cite{LHCb-PAPER-2014-044}, within the corresponding uncertainties. 
+The uncertainty due to the choice of an exponential function to model the combinatorial component is estimated by repeating the fit using a second order polynomial function.
+
+The systematic uncertainty related to the efficiency correction procedure consists of two parts: the statistical uncertainty in the detection efficiency due to the finite size of the simulated samples, and the uncertainty due to the finite size of the bins, which is evaluated by varying the binning used in the efficiency correction. The former term dominates for all decays.
+
+The systematic uncertainty due to the $B^{\pm}$ production asymmetry measurement using the \jpsik control channel is obtained by summing in quadrature the experimental statistical and systematic uncertainties of \aprod.
+
+\begin{table}[tb]
+{\small
+\begin{center}
+\caption{Individual components and total systematic uncertainties related to the mass fit model, efficiency corrections for the integrated phase space and $B^{\pm}$ production asymmetry. The total is the sum in quadrature of these components.}
+\begin{tabular}{lcccc}
+\hline
+Source of uncertainty & $K^{\pm}\pi^+\pi^-$ & $K^{\pm}K^+K^-$ & $\pi^{\pm}\pi^+\pi^-$ & $\pi^{\pm}K^+K^-$ \\ \hline
+Signal model                 & 0.0004  & 0.0007 & 0.0000  & 0.0001 \\
+Peaking background fraction  & 0.0005  & 0.0010 & 0.0002  & 0.0004 \\
+Peaking background asymmetry & 0.0022  & 0.0001 & 0.0005  & 0.0007 \\
+Combinatorial model          & 0.0002  & 0.0005 & 0.0015  & 0.0025 \\
+Efficiency correction        & 0.0014  & 0.0016 & 0.0018  & 0.0019 \\ 
+Production asymmetry           & 0.0011  & 0.0011 & 0.0011  & 0.0011 \\
+\hline
+Total                        & 0.0029  & 0.0024 & 0.0027  & 0.0035 \\
+\hline 
+\end{tabular}   
+\label{tab:syst_uncert}
+\end{center}}
+\end{table}
+The systematic uncertainties are summarized in Table \ref{tab:syst_uncert}, where the total is the sum in quadrature of the individual contributions. The results for the integrated \CP asymmetries are
+\begin{align}
+\acp(\kpipi)  = +0.011 \pm 0.002 \pm 0.003 \pm 0.003, \nonumber \\
+\acp(\kkk)    = -0.037 \pm 0.002 \pm 0.002 \pm 0.003, \nonumber \\
+\acp(\pipipi) = +0.080 \pm 0.004 \pm 0.003 \pm 0.003, \nonumber \\
+\acp(\kkpi)   = -0.114 \pm 0.007 \pm 0.003 \pm 0.003, \nonumber
+\end{align} 
+where the first uncertainty is statistical, the second is systematic and the third is due to the limited knowledge of the \CP asymmetry of the \jpsik control channel~\cite{PDG2020}. 
+
+The significance of the \CP asymmetries is computed by dividing the central values by the sum in quadrature of the uncertainties, yielding  8.5 standard deviations ($\sigma$) for \kkk decays, 14.1$\sigma$ for \pipipi decays and 13.6$\sigma$ for \kkpi decays. This is the first observation of \CP asymmetries in these channels. For the \kpipi decays, the significance of the \CP asymmetry is 2.4$\sigma$, consistent with \CP conservation.
+
+
+
+\section{\boldmath Localised \CP asymmetries}
+\label{sec:regional}
+
+\begin{figure}[tb]
+\centering
+\begin{overpic}[width=0.49\linewidth]{Fig2a.pdf}
+ \put(50,64){\scriptsize{(a)}}
+\end{overpic}
+\begin{overpic}[width=0.49\linewidth]{Fig2b.pdf}
+ \put(50,64){\scriptsize{(b)}}
+\end{overpic}
+
+\vspace{0.2cm}
+
+\begin{overpic}[width=0.49\linewidth]{Fig2c.pdf}
+ \put(50,64){\scriptsize{(c)}}
+\end{overpic}
+\begin{overpic}[width=0.49\linewidth]{Fig2d.pdf}
+  \put(50,64){\scriptsize{(d)}}
+\end{overpic}
+\caption{Dalitz plot distributions for (a)\,\pipipi, (b)\,\kpipi, (c)\,\kkpi and (d)\,\kkk decays. The colour scale indicates the number of events.
+}
+\label{fig:Dalitz}
+\end{figure}
+
+The two-dimensional phase space referred to as the Dalitz plot, formed by the invariant masses squared of two of the three possible particle pairs, reflects directly the dynamics of the decay and allows the study of the different resonant and nonresonant components to inspect \CP asymmetry effects. 
+The Dalitz plot distributions of signal yield, obtained with the \sPlot technique \cite{Pivk:2004ty}, for \pipipi, \kpipi, \kkpi and \kkk are shown in Fig.~\ref{fig:Dalitz}. In the symmetric channels, the phase space distribution and its projections are presented with the two axes being the squares of the low-mass $m_{\textrm{low}}$ and high-mass $m_{\textrm{high}}$ combinations of the opposite-sign particle pairs, for visualization purposes.
+
+Most of the candidates are concentrated in the low-mass regions, as expected for charmless decays dominated by resonant contributions. The gap from the vetoed potential $J/\psi$ contributions is visible in the \kpipi channel, as well as the gaps from $D^0$ regions excluded in all modes.
+
+In order to visualise localized asymmetries, the \acp in bins of the phase space~\cite{Miranda2} is constructed. Adaptive binning is employed, such that the efficiency-corrected signal yield, also obtained with the \sPlot technique, is approximately equal in all bins. There is no specific rule for choosing the best binning except for requiring a minimum bin occupancy. Figure~\ref{fig:Mirandizing} reveals a rich pattern of large and localized asymmetries which result from interference between the contributions, as well as possible $\pi\pi \to KK$ rescattering, as was observed in the amplitude analyses of Refs.~\cite{LHCb-PAPER-2019-017, LHCb-PAPER-2019-018, LHCb-PAPER-2018-051} and elastic scattering experiments~\cite{Pelaez2018,PhysRevD.22.2595}.
+
+\begin{figure}[tb]
+\begin{overpic}[width=0.49\linewidth]{Fig3a.pdf}
+ \put(74,59){\scriptsize{(a)}}
+\end{overpic}
+\begin{overpic}[width=0.49\linewidth]{Fig3b.pdf}
+ \put(74,59){\scriptsize{(b)}}
+\end{overpic}
+
+\vspace{0.2cm}
+
+\begin{overpic}[width=0.49\linewidth]{Fig3c.pdf}
+ \put(74,59){\scriptsize{(c)}}
+\end{overpic}
+\begin{overpic}[width=0.49\linewidth]{Fig3d.pdf}
+  \put(74,59){\scriptsize{(d)}}
+\end{overpic}
+
+\caption{Asymmetry distribution in bins of the Dalitz plot for (a) \pipipi, using 400 bins with approximately 229 events/bin; (b) \kpipi, using 1728 bins with approximately 276 events/bin; (c) \kkpi, using 256 bins with approximately 127 events/bin; and (d) \kkk, using 729 bins with approximately 461 events/bin.}
+\label{fig:Mirandizing}
+\end{figure}
+
+Different regions of the Dalitz plots in Fig.~\ref{fig:Mirandizing} are defined to study the localized \CP asymmetries.
+The rescattering region~\cite{Pelaez2018} is defined in the Dalitz plot in the two-kaon or two-pion invariant mass range 1.1--2.25\gevgevcccc for \kkk due to the presence of the $\phi(1020)$ resonance and 1.0--2.25\gevgevcccc for the other three channels, as listed in Table~\ref{table:table_regions}. The data are studied in intervals of the other two-body invariant mass. 
+The vertical axis projection depends on the decay channel, with two regions defined for \pipipi, \kpipi and \kkk, and one for \kkpi. There are also two other regions covering higher masses for \pipipi and \kkpi decays. All regions for the different decay channels are defined in Table~\ref{table:table_regions}.
+The invariant-mass fits used to compute \acp in each region follow the same fit procedure as described in Sec.~\ref{sec:massfits}, where the efficiency ratios are computed separately per region.
+
+\begin{table}
+\centering
+\caption{Definitions of phase-space regions in units of \gevgevcccc. In the \kkk channel, the $\phi(1020)$ vector meson is excluded by requiring $m^2(K^+K^-)_{\textrm{low}} > 1.1\gevgevcccc$.}
+\label{table:table_regions}
+\begin{tabular}{c c c c}
+\hline
+& & \pipipi & \\
+Region 1 & $\quad 1 < m^2(\pi^+ \pi^-)_{\textrm{low}} <$ 2.25 & and & $      3.5 < m^2(\pi^+ \pi^-)_{\textrm{high}} < 16$ \\
+Region 2 & $\quad 1 < m^2(\pi^+ \pi^-)_{\textrm{low}} <$ 2.25 & and & $\;    16  < m^2(\pi^+ \pi^-)_{\textrm{high}} < 23$ \\
+Region 3 & $4       < m^2(\pi^+ \pi^-)_{\textrm{low}} <$ 15   & and & $\quad 4   < m^2(\pi^+ \pi^-)_{\textrm{high}} < 16$ \\
+\hline
+
+& & \kpipi & \\
+Region 1 & $1 < m^2(\pi^+ \pi^-) < 2.25$ & and & $\; 3.5 < m^2(K^+ \pi^-) < 19.5$ \\
+Region 2 & $1 < m^2(\pi^+ \pi^-) < 2.25$ & and & $19.5 < m^2(K^+ \pi^-) < 25.5$ \\
+\hline
+
+& & \kkpi & \\
+Region 1 & $\quad 1 < m^2(K^+K^-) < 2.25$ & and & $4 < m^2(K^+ \pi^-) < 19$ \\
+Region 2 & $4 < m^2(K^+K^-) < 25$         & and & $3 < m^2(K^+ \pi^-) < 16$  \\
+\hline
+
+& & \kkk & \\
+Region 1 & $1.1 < m^2(K^+ K^-)_{\textrm{low}} < 2.25$  & and & $\; 4 < m^2(K^+ K^-)_{\textrm{high}} < 17$ \\
+Region 2 & $1.1 < m^2(K^+ K^-)_{\textrm{low}} < 2.25$  & and & $17 < m^2(K^+ K^-)_{\textrm{high}} < 23$ \\
+\hline
+\end{tabular}
+\end{table}
+
+Most of the rescattering regions give \CP asymmetry values in excess of at least five Gaussian standard deviations. For \pipipi decays, the rescattering region when analysed in the $m^2(\pi^+ \pi^-)_{\textrm{high}}$ projection presents a \CP asymmetry that is positive in region~1 and negative in region~2, as shown in Fig.~\ref{fig:pipipi_region1_results}. 
+ 
+For \kpipi decays, the two regions in the $m^2(K^+ \pi^-)$ axis reveal a flip of the asymmetry sign as shown in Fig.~\ref{fig:kpipi_region1_results}. Figure~\ref{fig:kkpi_region1_results} illustrates the $m^2(K^+ \pi^-)$ axis projection for the rescattering region for \kkpi decays, where a nearly constant \CP asymmetry is observed. The \kkk decays also reveal \CP asymmetries in the $m^2(K^+ K^-)_{\textrm{high}}$ projections in the rescattering region, as shown in Fig.~\ref{fig:kkk_region1_results}. Here, another change in the asymmetry sign is observed, in an opposite direction with respect to \kpipi decays. Region 2 of the \kkk decay is the only rescattering projection that shows small asymmetry.
+
+\begin{figure}[tb]
+\centering
+\begin{overpic}[width=0.49\linewidth]{Fig4a.pdf}
+ \put(90,51){\scriptsize{(a)}}
+\end{overpic}
+
+\vspace{0.2cm}
+
+\begin{overpic}[width=0.49\linewidth]{Fig4b.pdf}
+ \put(90,47){\scriptsize{(b)}}
+\end{overpic}
+\begin{overpic}[width=0.49\linewidth]{Fig4c.pdf}
+  \put(90,47){\scriptsize{(c)}}
+\end{overpic}
+\caption{(a) Projection of $m^2(\pi^+ \pi^-)_{\textrm{high}}$ for the rescattering region (black region inside the Dalitz plot) with the \pipipi mass fits for (b) region 1 and (c) region 2 (\Bm candidates on the left). Regions are separated by a black vertical line in (a), see Table~\ref{table:table_regions}.}
+\label{fig:pipipi_region1_results}
+\end{figure}
+
+\begin{figure}[tb]
+\centering
+\begin{overpic}[width=0.51\linewidth]{Fig5a.pdf}
+ \put(88,51){\scriptsize{(a)}}
+\end{overpic}
+
+\vspace{0.2cm}
+
+\begin{overpic}[width=0.49\linewidth]{Fig5b.pdf}
+ \put(90,47){\scriptsize{(b)}}
+ \end{overpic}
+\begin{overpic}[width=0.49\linewidth]{Fig5c.pdf}
+ \put(90,47){\scriptsize{(c)}}
+ \end{overpic}
+    \caption{(a) $m^2(K^+ \pi^-)$ projection for the rescattering region with the \kpipi mass fits for (b) region 1 and (c) region 2 (\Bm on the left). Regions are separated by a black vertical line in (a).}
+\label{fig:kpipi_region1_results}
+\end{figure}
+
+
+\begin{figure}[tb]
+\begin{overpic}[width=0.47\linewidth]{Fig6a.pdf}
+ \put(88,51){\scriptsize{(a)}}
+\end{overpic}
+\begin{overpic}[width=0.51\linewidth]{Fig6b.pdf}
+ \put(90,47){\scriptsize{(b)}}
+ \end{overpic}
+\caption{(a) $m^2(K^+ \pi^-)$ projection for the rescattering region with the \kkpi mass fits for (b) region 1 (\Bm on the left). }
+\label{fig:kkpi_region1_results}
+\end{figure}
+
+\begin{figure}[tb]
+\centering
+\begin{overpic}[width=0.51\linewidth]{Fig7a.pdf}
+ \put(88,51){\scriptsize{(a)}}
+\end{overpic}
+
+\vspace{0.2cm}
+
+\begin{overpic}[width=0.49\linewidth]{Fig7b.pdf}
+ \put(90,47){\scriptsize{(b)}}
+ \end{overpic}
+\begin{overpic}[width=0.49\linewidth]{Fig7c.pdf}
+ \put(90,47){\scriptsize{(c)}}
+ \end{overpic}
+\caption{(a) $m^2(K^+ K^-)_{\textrm{high}}$ projection for the rescattering region with the \kkk mass fits for (b) region 1 and (c) region 2 (\Bm on the left). Regions are separated by a black vertical line in (a).}
+\label{fig:kkk_region1_results}
+\end{figure}
+
+The high-mass regions of \pipipi and \kkpi as defined in Table~\ref{table:table_regions} are also analysed. For the latter mode, presented in Fig.~\ref{fig:kkpi_region2_results}, no significant asymmetry is observed in the integrated asymmetry. However a clear $\chi_{c0}(1P)$ contribution around $11.6 \gevgevcccc$ is visible. 
+For \pipipi decays, a large asymmetry is observed, shown in Fig.~\ref{fig:pipipi_region4_results}, as well as a $\chi_{c0}(1P)$ contribution around $11.6 \gevgevcccc$. The $\chi_{c0}(1P)$ contribution comes from the $B$ decay, as no such structure was observed in the invariant mass sidebands. The asymmetry results from the invariant mass fits for all regions are summarized in Table~\ref{table:table_results_regions}. 
+
+\begin{figure}[tb]
+\begin{overpic}[width=0.47\linewidth]{Fig8a.pdf}
+ \put(88,51){\scriptsize{(a)}}
+\end{overpic}
+\begin{overpic}[width=0.51\linewidth]{Fig8b.pdf}
+ \put(90,47){\scriptsize{(b)}}
+ \end{overpic}
+\caption{(a) $m^2(K^+ K^-)$ projection in the high-mass region (region 2) for \kkpi decays showing the $\chi_{c0}$ contribution. The mass fit for this region (\Bm on the left) is shown in (b).}
+\label{fig:kkpi_region2_results}
+\end{figure}
+
+\begin{figure}[tb]
+\begin{overpic}[width=0.47\linewidth]{Fig9a.pdf}
+ \put(88,51){\scriptsize{(a)}}
+\end{overpic}
+\begin{overpic}[width=0.51\linewidth]{Fig9b.pdf}
+ \put(90,47){\scriptsize{(b)}}
+ \end{overpic}
+ \caption{(a) $m^2(\pi^+ \pi^-)_{\textrm{high}}$ projection in the high-mass region (region 3) for \pipipi decays. The mass fit for this region (\Bm on the left) is shown in (b).} 
+\label{fig:pipipi_region4_results}
+\end{figure}
+
+\begin{table}[tb]
+\begin{center}
+{
+\footnotesize
+\centering
+\caption{Signal yield ($N_{\text{sig}}$), raw asymmetry ($A_{\text{raw}}$) and \acp corrected for production and detection asymmetries. The \acp uncertainties are statistical, systematic and associated to the control channel, respectively. }
+\label{table:table_results_regions}
+
+\begin{tabular}{c c c c}
+\hline 
+\pipipi & $N_{\text{sig}}$ & $A_{\text{raw}}$ & \acp \\
+Region 1 & $14\,330 \pm 150$ & $+$0.309 $\pm$ 0.009 & $+$0.303 $\pm$ 0.009 $\pm$ 0.004 $\pm$ 0.003 \\
+Region 2 &  $\,\;4\,850 \pm 130$ & $-$0.287 $\pm$ 0.017 & $-$0.284 $\pm$ 0.017 $\pm$ 0.007 $\pm$ 0.003 \\
+Region 3 &  $2\,270 \pm 60$  & $+$0.747 $\pm$ 0.027 & $+$0.745 $\pm$ 0.027 $\pm$ 0.018 $\pm$ 0.003 \\
+
+\hline
+
+\kpipi & & & \\
+Region 1 & $41\,980 \pm 280$  & $+$0.201 $\pm$ 0.005 & $+$0.217 $\pm$ 0.005 $\pm$ 0.005 $\pm$ 0.003 \\
+Region 2 & $27\,040 \pm 250$  & $-$0.149 $\pm$ 0.007 & $-$0.145 $\pm$ 0.007 $\pm$ 0.006 $\pm$ 0.003 \\
+\hline
+
+\kkpi & & & \\
+Region 1 & $11\,430 \pm 170$  & $-$0.363 $\pm$ 0.010 & $-$0.358 $\pm$ 0.010 $\pm$ 0.014 $\pm$ 0.003 \\
+Region 2 & $\,\;2\,600  \pm 120$  & $+$0.075 $\pm$ 0.031 & $+$0.097 $\pm$ 0.031 $\pm$ 0.005 $\pm$ 0.003 \\
+\hline
+
+\kkk & & & \\
+Region 1 & $76\,020 \pm 350$ & $-$0.189 $\pm$ 0.004 & $-$0.178 $\pm$ 0.004 $\pm$ 0.004 $\pm$ 0.003 \\
+Region 2 & $37\,440 \pm 320$ & $+$0.030 $\pm$ 0.005 & $+$0.043 $\pm$ 0.005 $\pm$ 0.004 $\pm$ 0.003 \\
+\hline
+
+\end{tabular}
+}
+\end{center}
+\end{table} 
+
+\FloatBarrier
+
+
+
+\section{Partial width difference}
+\label{sec:uspin}
+A relation between \CP violation in \kpipi and  \kkpi, as well as that between  \kkk and  \pipipi, based on U-spin symmetry~\cite{Gronau2003,Gronau2013,Gronau2014}, is investigated. This symmetry is an SU(2) subgroup of the flavour SU(3) group, under which the (\dquark,\squark) pairs of quarks form a doublet, similar to (\uquark,\dquark) in isospin symmetry. 
+
+U-spin symmetry predicts the relationship between the differences of the partial decay widths for the decays \kpipi and \kkpi to be 
+\begin{equation}
+\Delta\Gamma (\kkpi) = - \Delta\Gamma (\kpipi).
+\end{equation} 
+A similar prediction is made between the symmetric decay channels \pipipi and \kkk,
+\begin{equation}
+\Delta\Gamma (\pipipi) = -  \Delta\Gamma (\kkk).
+\end{equation} 
+These relations state that the difference in the number of events associated to \CP violation must be the same, independently of the branching fraction of each decay.
+
+The above relations can be rewritten in terms of the measured integrated asymmetries, branching fractions and the $B$ meson lifetime. For the \kkpi decay the result is
+
+\begin{equation}
+\Delta\Gamma (\kkpi) = \frac{\acp(\kkpi)\mathcal{B}(\kkpi)}{\tau(B^\pm)}\,,
+\end{equation} 
+where $\tau(B^\pm)$ is the $B^\pm$ lifetime and $\mathcal{B}$ is the average branching fraction. Using the measured values of the integrated asymmetry and branching fractions~\cite{LHCb-PAPER-2020-031}, the U-spin relationship between \kpipi and \kkpi is
+
+\begin{equation} \frac{\acp(\kkpi)\mathcal{B}(\kkpi)}{\acp(\kpipi)\mathcal{B}(\kpipi)} = -0.92 \pm 0.18\,. \nonumber
+\end{equation} 
+Similarly, the pair of \pipipi and \kkk decays give the result
+
+\begin{equation}
+\frac{\acp(\pipipi)\mathcal{B}(\pipipi)}{\acp(\kkk)\mathcal{B}(\kkk)} = -1.06 \pm 0.08\,. \nonumber
+\end{equation}
+Both results are consistent with $-1$ (uncertainties are statistical only), as predicted by the U-spin symmetry approach.
+Furthermore, Refs.~\cite{Xu2013, Pat2021} also predicted the relations \hbox{$\Delta\Gamma (\kkpi) = \Delta\Gamma (\kkk)$} and \hbox{$\Delta\Gamma (\kpipi) = \Delta\Gamma (\pipipi)$}. In this work the ratios are measured to be (uncertainties are statistical only):
+
+\begin{align}
+\frac{\acp(\kkpi)\mathcal{B}(\kkpi)}{\acp(\kkk)\mathcal{B}(\kkk)} = 0.47 \pm 0.04\,,\nonumber \\
+\frac{\acp(\kpipi)\mathcal{B}(\kpipi)}{\acp(\pipipi)\mathcal{B}(\pipipi)} = 0.48 \pm 0.09\,.\nonumber
+\end{align} 
+
+The results presented here reveal a central value with an opposite sign with respect to the U-spin prediction of $-1$. However, one may not forget that the U-spin symmetry prediction occurs in a scenario with momentum-independent amplitudes, in which no hadronic final-state interaction where two pairs of channels are coupled through the $\pi\pi \leftrightarrow KK$ interaction is considered. When those contributions are included, one may find ratios that differ from $-1$ without necessarily claiming the observation of U-spin symmetry breaking. All these implications are further discussed in Refs.~\cite{Xu2013, Pat2021}.
+
+
+
+\section{Summary and conclusions}
+\label{sec:conclusion}
+
+In summary,  the inclusive \CP asymmetries of the \kpipi, \kkpi, \kkk and \pipipi charmless three-body decays are measured with data corresponding to 5.9\invfb of integrated luminosity, collected by the LHCb detector between 2015 and 2018. 
+Significant inclusive \CP asymmetries are found for the latter three \B decay channels, the last two observed for the first time. 
+
+The asymmetry in localized regions of phase space shows that the \CP asymmetries are not uniformly distributed in the phase space, with positive and negative \acp appearing in the same charged \B decay channel. 
+The results of the previous LHCb analysis~\cite{LHCb-PAPER-2014-044} are confirmed with high localized \CP asymmetries in several regions of the Dalitz plot. It is also confirmed that, in the $\pi\pi \to KK$ rescattering region, between 1 and 2.25\gevgevcccc in both $\pi^+\pi^-$ and $K^+K^-$ invariant masses, significant \CP violation is present in the four analysed channels.
+For the \pipipi, \kpipi and \kkk decays, an \acp sign change is observed across the phase space. 
+
+Additionally, an indication of the $\chi_{c0}(1P)$ resonance is seen in the high \pip\pim and \Kp\Km invariant mass regions of \pipipi and \kkpi decays for the first time. There is an indication of \CP violation involving this resonance, as predicted several years ago in Refs.~\cite{Gronau1995,Bediaga1998}.
+The combination of the present \acp results with the recent LHCb relative branching fraction results for these decays, shows good agreement with the U-spin symmetry proposed in Refs.~\cite{Gronau2003,Gronau2013,Gronau2014}. 
+
+
+
+\section*{Acknowledgements}
+\noindent We express our gratitude to our colleagues in the CERN
+accelerator departments for the excellent performance of the LHC. We
+thank the technical and administrative staff at the LHCb
+institutes.
+We acknowledge support from CERN and from the national agencies:
+CAPES, CNPq, FAPERJ and FINEP (Brazil); 
+MOST and NSFC (China); 
+CNRS/IN2P3 (France); 
+BMBF, DFG and MPG (Germany); 
+INFN (Italy); 
+NWO (Netherlands); 
+MNiSW and NCN (Poland); 
+MEN/IFA (Romania); 
+MICINN (Spain); 
+SNSF and SER (Switzerland); 
+NASU (Ukraine); 
+STFC (United Kingdom); 
+DOE NP and NSF (USA).
+We acknowledge the computing resources that are provided by CERN, IN2P3
+(France), KIT and DESY (Germany), INFN (Italy), SURF (Netherlands),
+PIC (Spain), GridPP (United Kingdom), 
+CSCS (Switzerland), IFIN-HH (Romania), CBPF (Brazil),
+Polish WLCG  (Poland) and NERSC (USA).
+We are indebted to the communities behind the multiple open-source
+software packages on which we depend.
+Individual groups or members have received support from
+ARC and ARDC (Australia);
+Minciencias (Colombia);
+AvH Foundation (Germany);
+EPLANET, Marie Sk\l{}odowska-Curie Actions and ERC (European Union);
+A*MIDEX, ANR, IPhU and Labex P2IO, and R\'{e}gion Auvergne-Rh\^{o}ne-Alpes (France);
+Key Research Program of Frontier Sciences of CAS, CAS PIFI, CAS CCEPP, 
+Fundamental Research Funds for the Central Universities, 
+and Sci. \& Tech. Program of Guangzhou (China);
+GVA, XuntaGal and GENCAT (Spain);
+SRC (Sweden);
+the Leverhulme Trust, the Royal Society
+ and UKRI (United Kingdom).
+
+ 
+
+
+
+
+
+
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{LHCb}
+\bibliography{main,standard,LHCb-PAPER,LHCb-DP}
+
+
+\newpage
+\centerline
+{\large\bf LHCb collaboration}
+\begin
+{flushleft}
+\small
+R.~Aaij$^{32}$\lhcborcid{0000-0003-0533-1952},
+A.S.W.~Abdelmotteleb$^{50}$\lhcborcid{0000-0001-7905-0542},
+C.~Abellan~Beteta$^{44}$,
+F.~Abudin{\'e}n$^{50}$\lhcborcid{0000-0002-6737-3528},
+T.~Ackernley$^{54}$\lhcborcid{0000-0002-5951-3498},
+B.~Adeva$^{40}$\lhcborcid{0000-0001-9756-3712},
+M.~Adinolfi$^{48}$\lhcborcid{0000-0002-1326-1264},
+H.~Afsharnia$^{9}$,
+C.~Agapopoulou$^{13}$\lhcborcid{0000-0002-2368-0147},
+C.A.~Aidala$^{77}$\lhcborcid{0000-0001-9540-4988},
+S.~Aiola$^{25}$\lhcborcid{0000-0001-6209-7627},
+Z.~Ajaltouni$^{9}$,
+S.~Akar$^{59}$\lhcborcid{0000-0003-0288-9694},
+K.~Akiba$^{32}$\lhcborcid{0000-0002-6736-471X},
+J.~Albrecht$^{15}$\lhcborcid{0000-0001-8636-1621},
+F.~Alessio$^{42}$\lhcborcid{0000-0001-5317-1098},
+M.~Alexander$^{53}$\lhcborcid{0000-0002-8148-2392},
+A.~Alfonso~Albero$^{39}$\lhcborcid{0000-0001-6025-0675},
+Z.~Aliouche$^{56}$\lhcborcid{0000-0003-0897-4160},
+P.~Alvarez~Cartelle$^{49}$\lhcborcid{0000-0003-1652-2834},
+S.~Amato$^{2}$\lhcborcid{0000-0002-3277-0662},
+J.L.~Amey$^{48}$\lhcborcid{0000-0002-2597-3808},
+Y.~Amhis$^{11}$\lhcborcid{0000-0003-4282-1512},
+L.~An$^{42}$\lhcborcid{0000-0002-3274-5627},
+L.~Anderlini$^{22}$\lhcborcid{0000-0001-6808-2418},
+M.~Andersson$^{44}$\lhcborcid{0000-0003-3594-9163},
+A.~Andreianov$^{38}$\lhcborcid{0000-0002-6273-0506},
+M.~Andreotti$^{21}$\lhcborcid{0000-0003-2918-1311},
+D.~Ao$^{6}$\lhcborcid{0000-0003-1647-4238},
+F.~Archilli$^{17}$\lhcborcid{0000-0002-1779-6813},
+A.~Artamonov$^{38}$\lhcborcid{0000-0002-2785-2233},
+M.~Artuso$^{62}$\lhcborcid{0000-0002-5991-7273},
+K.~Arzymatov$^{38}$,
+E.~Aslanides$^{10}$\lhcborcid{0000-0003-3286-683X},
+M.~Atzeni$^{44}$\lhcborcid{0000-0002-3208-3336},
+B.~Audurier$^{12}$\lhcborcid{0000-0001-9090-4254},
+S.~Bachmann$^{17}$\lhcborcid{0000-0002-1186-3894},
+M.~Bachmayer$^{43}$\lhcborcid{0000-0001-5996-2747},
+J.J.~Back$^{50}$\lhcborcid{0000-0001-7791-4490},
+A.~Bailly-reyre$^{13}$,
+P.~Baladron~Rodriguez$^{40}$\lhcborcid{0000-0003-4240-2094},
+V.~Balagura$^{12}$\lhcborcid{0000-0002-1611-7188},
+W.~Baldini$^{21}$\lhcborcid{0000-0001-7658-8777},
+J.~Baptista~de~Souza~Leite$^{1}$\lhcborcid{0000-0002-4442-5372},
+M.~Barbetti$^{22,j}$\lhcborcid{0000-0002-6704-6914},
+R.J.~Barlow$^{56}$\lhcborcid{0000-0002-8295-8612},
+S.~Barsuk$^{11}$\lhcborcid{0000-0002-0898-6551},
+W.~Barter$^{55}$\lhcborcid{0000-0002-9264-4799},
+M.~Bartolini$^{49}$\lhcborcid{0000-0002-8479-5802},
+F.~Baryshnikov$^{38}$\lhcborcid{0000-0002-6418-6428},
+J.M.~Basels$^{14}$\lhcborcid{0000-0001-5860-8770},
+G.~Bassi$^{29,q}$\lhcborcid{0000-0002-2145-3805},
+B.~Batsukh$^{4}$\lhcborcid{0000-0003-1020-2549},
+A.~Battig$^{15}$\lhcborcid{0009-0001-6252-960X},
+A.~Bay$^{43}$\lhcborcid{0000-0002-4862-9399},
+A.~Beck$^{50}$\lhcborcid{0000-0003-4872-1213},
+M.~Becker$^{15}$\lhcborcid{0000-0002-7972-8760},
+F.~Bedeschi$^{29}$\lhcborcid{0000-0002-8315-2119},
+I.B.~Bediaga$^{1}$\lhcborcid{0000-0001-7806-5283},
+A.~Beiter$^{62}$,
+V.~Belavin$^{38}$,
+S.~Belin$^{27}$\lhcborcid{0000-0001-7154-1304},
+V.~Bellee$^{44}$\lhcborcid{0000-0001-5314-0953},
+K.~Belous$^{38}$\lhcborcid{0000-0003-0014-2589},
+I.~Belov$^{38}$\lhcborcid{0000-0003-1699-9202},
+I.~Belyaev$^{38}$\lhcborcid{0000-0002-7458-7030},
+G.~Bencivenni$^{23}$\lhcborcid{0000-0002-5107-0610},
+E.~Ben-Haim$^{13}$\lhcborcid{0000-0002-9510-8414},
+A.~Berezhnoy$^{38}$\lhcborcid{0000-0002-4431-7582},
+R.~Bernet$^{44}$\lhcborcid{0000-0002-4856-8063},
+D.~Berninghoff$^{17}$,
+H.C.~Bernstein$^{62}$,
+C.~Bertella$^{56}$\lhcborcid{0000-0002-3160-147X},
+A.~Bertolin$^{28}$\lhcborcid{0000-0003-1393-4315},
+C.~Betancourt$^{44}$\lhcborcid{0000-0001-9886-7427},
+F.~Betti$^{42}$\lhcborcid{0000-0002-2395-235X},
+Ia.~Bezshyiko$^{44}$\lhcborcid{0000-0002-4315-6414},
+S.~Bhasin$^{48}$\lhcborcid{0000-0002-0146-0717},
+J.~Bhom$^{35}$\lhcborcid{0000-0002-9709-903X},
+L.~Bian$^{67}$\lhcborcid{0000-0001-5209-5097},
+M.S.~Bieker$^{15}$\lhcborcid{0000-0001-7113-7862},
+N.V.~Biesuz$^{21}$\lhcborcid{0000-0003-3004-0946},
+S.~Bifani$^{47}$\lhcborcid{0000-0001-7072-4854},
+P.~Billoir$^{13}$\lhcborcid{0000-0001-5433-9876},
+A.~Biolchini$^{32}$\lhcborcid{0000-0001-6064-9993},
+M.~Birch$^{55}$\lhcborcid{0000-0001-9157-4461},
+F.C.R.~Bishop$^{49}$\lhcborcid{0000-0002-0023-3897},
+A.~Bitadze$^{56}$\lhcborcid{0000-0001-7979-1092},
+A.~Bizzeti$^{}$\lhcborcid{0000-0001-5729-5530},
+M.~Bj{\o}rn$^{57}$,
+M.P.~Blago$^{49}$\lhcborcid{0000-0001-7542-2388},
+T.~Blake$^{50}$\lhcborcid{0000-0002-0259-5891},
+F.~Blanc$^{43}$\lhcborcid{0000-0001-5775-3132},
+S.~Blusk$^{62}$\lhcborcid{0000-0001-9170-684X},
+D.~Bobulska$^{53}$\lhcborcid{0000-0002-3003-9980},
+J.A.~Boelhauve$^{15}$\lhcborcid{0000-0002-3543-9959},
+O.~Boente~Garcia$^{40}$\lhcborcid{0000-0003-0261-8085},
+T.~Boettcher$^{59}$\lhcborcid{0000-0002-2439-9955},
+A.~Boldyrev$^{38}$\lhcborcid{0000-0002-7872-6819},
+N.~Bondar$^{38,42}$\lhcborcid{0000-0003-2714-9879},
+S.~Borghi$^{56}$\lhcborcid{0000-0001-5135-1511},
+M.~Borisyak$^{38}$,
+M.~Borsato$^{17}$\lhcborcid{0000-0001-5760-2924},
+J.T.~Borsuk$^{35}$\lhcborcid{0000-0002-9065-9030},
+S.A.~Bouchiba$^{43}$\lhcborcid{0000-0002-0044-6470},
+T.J.V.~Bowcock$^{54,42}$\lhcborcid{0000-0002-3505-6915},
+A.~Boyer$^{42}$\lhcborcid{0000-0002-9909-0186},
+C.~Bozzi$^{21}$\lhcborcid{0000-0001-6782-3982},
+M.J.~Bradley$^{55}$,
+S.~Braun$^{60}$\lhcborcid{0000-0002-4489-1314},
+A.~Brea~Rodriguez$^{40}$\lhcborcid{0000-0001-5650-445X},
+J.~Brodzicka$^{35}$\lhcborcid{0000-0002-8556-0597},
+A.~Brossa~Gonzalo$^{50}$\lhcborcid{0000-0002-4442-1048},
+D.~Brundu$^{27}$\lhcborcid{0000-0003-4457-5896},
+A.~Buonaura$^{44}$\lhcborcid{0000-0003-4907-6463},
+L.~Buonincontri$^{28}$\lhcborcid{0000-0002-1480-454X},
+A.T.~Burke$^{56}$\lhcborcid{0000-0003-0243-0517},
+C.~Burr$^{42}$\lhcborcid{0000-0002-5155-1094},
+A.~Bursche$^{66}$,
+A.~Butkevich$^{38}$\lhcborcid{0000-0001-9542-1411},
+J.S.~Butter$^{32}$\lhcborcid{0000-0002-1816-536X},
+J.~Buytaert$^{42}$\lhcborcid{0000-0002-7958-6790},
+W.~Byczynski$^{42}$\lhcborcid{0009-0008-0187-3395},
+S.~Cadeddu$^{27}$\lhcborcid{0000-0002-7763-500X},
+H.~Cai$^{67}$,
+R.~Calabrese$^{21,i}$\lhcborcid{0000-0002-1354-5400},
+L.~Calefice$^{15,13}$\lhcborcid{0000-0001-6401-1583},
+S.~Cali$^{23}$\lhcborcid{0000-0001-9056-0711},
+R.~Calladine$^{47}$,
+M.~Calvi$^{26,m}$\lhcborcid{0000-0002-8797-1357},
+M.~Calvo~Gomez$^{75}$\lhcborcid{0000-0001-5588-1448},
+P.~Camargo~Magalhaes$^{48}$\lhcborcid{0000-0003-3641-8110},
+P.~Campana$^{23}$\lhcborcid{0000-0001-8233-1951},
+A.F.~Campoverde~Quezada$^{6}$\lhcborcid{0000-0003-1968-1216},
+S.~Capelli$^{26,m}$\lhcborcid{0000-0002-8444-4498},
+L.~Capriotti$^{20,g}$\lhcborcid{0000-0003-4899-0587},
+A.~Carbone$^{20,g}$\lhcborcid{0000-0002-7045-2243},
+G.~Carboni$^{31}$\lhcborcid{0000-0003-1128-8276},
+R.~Cardinale$^{24,k}$\lhcborcid{0000-0002-7835-7638},
+A.~Cardini$^{27}$\lhcborcid{0000-0002-6649-0298},
+I.~Carli$^{4}$\lhcborcid{0000-0002-0411-1141},
+P.~Carniti$^{26,m}$\lhcborcid{0000-0002-7820-2732},
+L.~Carus$^{14}$,
+A.~Casais~Vidal$^{40}$\lhcborcid{0000-0003-0469-2588},
+R.~Caspary$^{17}$\lhcborcid{0000-0002-1449-1619},
+G.~Casse$^{54}$\lhcborcid{0000-0002-8516-237X},
+M.~Cattaneo$^{42}$\lhcborcid{0000-0001-7707-169X},
+G.~Cavallero$^{42}$\lhcborcid{0000-0002-8342-7047},
+V.~Cavallini$^{21,i}$\lhcborcid{0000-0001-7601-129X},
+S.~Celani$^{43}$\lhcborcid{0000-0003-4715-7622},
+J.~Cerasoli$^{10}$\lhcborcid{0000-0001-9777-881X},
+D.~Cervenkov$^{57}$\lhcborcid{0000-0002-1865-741X},
+A.J.~Chadwick$^{54}$\lhcborcid{0000-0003-3537-9404},
+M.G.~Chapman$^{48}$,
+M.~Charles$^{13}$\lhcborcid{0000-0003-4795-498X},
+Ph.~Charpentier$^{42}$\lhcborcid{0000-0001-9295-8635},
+C.A.~Chavez~Barajas$^{54}$\lhcborcid{0000-0002-4602-8661},
+M.~Chefdeville$^{8}$\lhcborcid{0000-0002-6553-6493},
+C.~Chen$^{3}$\lhcborcid{0000-0002-3400-5489},
+S.~Chen$^{4}$\lhcborcid{0000-0002-8647-1828},
+A.~Chernov$^{35}$\lhcborcid{0000-0003-0232-6808},
+V.~Chobanova$^{40}$\lhcborcid{0000-0002-1353-6002},
+S.~Cholak$^{43}$\lhcborcid{0000-0001-8091-4766},
+M.~Chrzaszcz$^{35}$\lhcborcid{0000-0001-7901-8710},
+A.~Chubykin$^{38}$\lhcborcid{0000-0003-1061-9643},
+V.~Chulikov$^{38}$\lhcborcid{0000-0002-7767-9117},
+P.~Ciambrone$^{23}$\lhcborcid{0000-0003-0253-9846},
+M.F.~Cicala$^{50}$\lhcborcid{0000-0003-0678-5809},
+X.~Cid~Vidal$^{40}$\lhcborcid{0000-0002-0468-541X},
+G.~Ciezarek$^{42}$\lhcborcid{0000-0003-1002-8368},
+P.E.L.~Clarke$^{52}$\lhcborcid{0000-0003-3746-0732},
+M.~Clemencic$^{42}$\lhcborcid{0000-0003-1710-6824},
+H.V.~Cliff$^{49}$\lhcborcid{0000-0003-0531-0916},
+J.~Closier$^{42}$\lhcborcid{0000-0002-0228-9130},
+J.L.~Cobbledick$^{56}$\lhcborcid{0000-0002-5146-9605},
+V.~Coco$^{42}$\lhcborcid{0000-0002-5310-6808},
+J.A.B.~Coelho$^{11}$\lhcborcid{0000-0001-5615-3899},
+J.~Cogan$^{10}$\lhcborcid{0000-0001-7194-7566},
+E.~Cogneras$^{9}$\lhcborcid{0000-0002-8933-9427},
+L.~Cojocariu$^{37}$\lhcborcid{0000-0002-1281-5923},
+P.~Collins$^{42}$\lhcborcid{0000-0003-1437-4022},
+T.~Colombo$^{42}$\lhcborcid{0000-0002-9617-9687},
+L.~Congedo$^{19,f}$\lhcborcid{0000-0003-4536-4644},
+A.~Contu$^{27}$\lhcborcid{0000-0002-3545-2969},
+N.~Cooke$^{47}$\lhcborcid{0000-0002-4179-3700},
+G.~Coombs$^{53}$\lhcborcid{0000-0003-4621-2757},
+I.~Corredoira~$^{40}$\lhcborcid{0000-0002-6089-0899},
+G.~Corti$^{42}$\lhcborcid{0000-0003-2857-4471},
+C.M.~Costa~Sobral$^{50}$\lhcborcid{0000-0002-3899-4894},
+B.~Couturier$^{42}$\lhcborcid{0000-0001-6749-1033},
+D.C.~Craik$^{58}$\lhcborcid{0000-0002-3684-1560},
+J.~Crkovsk\'{a}$^{61}$\lhcborcid{0000-0002-7946-7580},
+M.~Cruz~Torres$^{1,e}$\lhcborcid{0000-0003-2607-131X},
+R.~Currie$^{52}$\lhcborcid{0000-0002-0166-9529},
+C.L.~Da~Silva$^{61}$\lhcborcid{0000-0003-4106-8258},
+S.~Dadabaev$^{38}$\lhcborcid{0000-0002-0093-3244},
+L.~Dai$^{65}$\lhcborcid{0000-0002-4070-4729},
+E.~Dall'Occo$^{15}$\lhcborcid{0000-0001-9313-4021},
+J.~Dalseno$^{40}$\lhcborcid{0000-0003-3288-4683},
+C.~D'Ambrosio$^{42}$\lhcborcid{0000-0003-4344-9994},
+A.~Danilina$^{38}$\lhcborcid{0000-0003-3121-2164},
+P.~d'Argent$^{42}$\lhcborcid{0000-0003-2380-8355},
+J.E.~Davies$^{56}$\lhcborcid{0000-0002-5382-8683},
+A.~Davis$^{56}$\lhcborcid{0000-0001-9458-5115},
+O.~De~Aguiar~Francisco$^{56}$\lhcborcid{0000-0003-2735-678X},
+J.~de~Boer$^{42}$\lhcborcid{0000-0002-6084-4294},
+K.~De~Bruyn$^{73}$\lhcborcid{0000-0002-0615-4399},
+S.~De~Capua$^{56}$\lhcborcid{0000-0002-6285-9596},
+M.~De~Cian$^{43}$\lhcborcid{0000-0002-1268-9621},
+U.~De~Freitas~Carneiro~Da~Graca$^{1}$\lhcborcid{0000-0003-0451-4028},
+E.~De~Lucia$^{23}$\lhcborcid{0000-0003-0793-0844},
+J.M.~De~Miranda$^{1}$\lhcborcid{0009-0003-2505-7337},
+L.~De~Paula$^{2}$\lhcborcid{0000-0002-4984-7734},
+M.~De~Serio$^{19,f}$\lhcborcid{0000-0003-4915-7933},
+D.~De~Simone$^{44}$\lhcborcid{0000-0001-8180-4366},
+P.~De~Simone$^{23}$\lhcborcid{0000-0001-9392-2079},
+F.~De~Vellis$^{15}$\lhcborcid{0000-0001-7596-5091},
+J.A.~de~Vries$^{74}$\lhcborcid{0000-0003-4712-9816},
+C.T.~Dean$^{61}$\lhcborcid{0000-0002-6002-5870},
+F.~Debernardis$^{19,f}$\lhcborcid{0009-0001-5383-4899},
+D.~Decamp$^{8}$\lhcborcid{0000-0001-9643-6762},
+V.~Dedu$^{10}$\lhcborcid{0000-0001-5672-8672},
+L.~Del~Buono$^{13}$\lhcborcid{0000-0003-4774-2194},
+B.~Delaney$^{49}$\lhcborcid{0009-0007-6371-8035},
+H.-P.~Dembinski$^{15}$\lhcborcid{0000-0003-3337-3850},
+V.~Denysenko$^{44}$\lhcborcid{0000-0002-0455-5404},
+O.~Deschamps$^{9}$\lhcborcid{0000-0002-7047-6042},
+F.~Dettori$^{27,h}$\lhcborcid{0000-0003-0256-8663},
+B.~Dey$^{71}$\lhcborcid{0000-0002-4563-5806},
+A.~Di~Cicco$^{23}$\lhcborcid{0000-0002-6925-8056},
+P.~Di~Nezza$^{23}$\lhcborcid{0000-0003-4894-6762},
+S.~Didenko$^{38}$\lhcborcid{0000-0001-5671-5863},
+L.~Dieste~Maronas$^{40}$,
+H.~Dijkstra$^{42}$,
+S.~Ding$^{62}$\lhcborcid{0000-0002-5946-581X},
+V.~Dobishuk$^{46}$\lhcborcid{0000-0001-9004-3255},
+C.~Dong$^{3}$\lhcborcid{0000-0003-3259-6323},
+A.M.~Donohoe$^{18}$\lhcborcid{0000-0002-4438-3950},
+F.~Dordei$^{27}$\lhcborcid{0000-0002-2571-5067},
+A.C.~dos~Reis$^{1}$\lhcborcid{0000-0001-7517-8418},
+L.~Douglas$^{53}$,
+A.G.~Downes$^{8}$\lhcborcid{0000-0003-0217-762X},
+M.W.~Dudek$^{35}$\lhcborcid{0000-0003-3939-3262},
+L.~Dufour$^{42}$\lhcborcid{0000-0002-3924-2774},
+V.~Duk$^{72}$\lhcborcid{0000-0001-6440-0087},
+P.~Durante$^{42}$\lhcborcid{0000-0002-1204-2270},
+J.M.~Durham$^{61}$\lhcborcid{0000-0002-5831-3398},
+D.~Dutta$^{56}$\lhcborcid{0000-0002-1191-3978},
+A.~Dziurda$^{35}$\lhcborcid{0000-0003-4338-7156},
+A.~Dzyuba$^{38}$\lhcborcid{0000-0003-3612-3195},
+S.~Easo$^{51}$\lhcborcid{0000-0002-4027-7333},
+U.~Egede$^{63}$\lhcborcid{0000-0001-5493-0762},
+V.~Egorychev$^{38}$\lhcborcid{0000-0002-2539-673X},
+S.~Eidelman$^{38,\dagger}$,
+S.~Eisenhardt$^{52}$\lhcborcid{0000-0002-4860-6779},
+S.~Ek-In$^{43}$\lhcborcid{0000-0002-2232-6760},
+L.~Eklund$^{76}$\lhcborcid{0000-0002-2014-3864},
+S.~Ely$^{62}$\lhcborcid{0000-0003-1618-3617},
+A.~Ene$^{37}$\lhcborcid{0000-0001-5513-0927},
+E.~Epple$^{61}$\lhcborcid{0000-0002-6312-3740},
+S.~Escher$^{14}$\lhcborcid{0009-0007-2540-4203},
+J.~Eschle$^{44}$\lhcborcid{0000-0002-7312-3699},
+S.~Esen$^{44}$\lhcborcid{0000-0003-2437-8078},
+T.~Evans$^{56}$\lhcborcid{0000-0003-3016-1879},
+L.N.~Falcao$^{1}$\lhcborcid{0000-0003-3441-583X},
+Y.~Fan$^{6}$\lhcborcid{0000-0002-3153-430X},
+B.~Fang$^{67}$\lhcborcid{0000-0003-0030-3813},
+S.~Farry$^{54}$\lhcborcid{0000-0001-5119-9740},
+D.~Fazzini$^{26,m}$\lhcborcid{0000-0002-5938-4286},
+M.~Feo$^{42}$\lhcborcid{0000-0001-5266-2442},
+A.~Fernandez~Prieto$^{40}$\lhcborcid{0000-0003-1984-6367},
+A.D.~Fernez$^{60}$\lhcborcid{0000-0001-9900-6514},
+F.~Ferrari$^{20}$\lhcborcid{0000-0002-3721-4585},
+L.~Ferreira~Lopes$^{43}$\lhcborcid{0009-0003-5290-823X},
+F.~Ferreira~Rodrigues$^{2}$\lhcborcid{0000-0002-4274-5583},
+S.~Ferreres~Sole$^{32}$\lhcborcid{0000-0003-3571-7741},
+M.~Ferrillo$^{44}$\lhcborcid{0000-0003-1052-2198},
+M.~Ferro-Luzzi$^{42}$\lhcborcid{0009-0008-1868-2165},
+S.~Filippov$^{38}$\lhcborcid{0000-0003-3900-3914},
+R.A.~Fini$^{19}$\lhcborcid{0000-0002-3821-3998},
+M.~Fiorini$^{21,i}$\lhcborcid{0000-0001-6559-2084},
+M.~Firlej$^{34}$\lhcborcid{0000-0002-1084-0084},
+K.M.~Fischer$^{57}$\lhcborcid{0009-0000-8700-9910},
+D.S.~Fitzgerald$^{77}$\lhcborcid{0000-0001-6862-6876},
+C.~Fitzpatrick$^{56}$\lhcborcid{0000-0003-3674-0812},
+T.~Fiutowski$^{34}$\lhcborcid{0000-0003-2342-8854},
+F.~Fleuret$^{12}$\lhcborcid{0000-0002-2430-782X},
+M.~Fontana$^{13}$\lhcborcid{0000-0003-4727-831X},
+F.~Fontanelli$^{24,k}$\lhcborcid{0000-0001-7029-7178},
+R.~Forty$^{42}$\lhcborcid{0000-0003-2103-7577},
+D.~Foulds-Holt$^{49}$\lhcborcid{0000-0001-9921-687X},
+V.~Franco~Lima$^{54}$\lhcborcid{0000-0002-3761-209X},
+M.~Franco~Sevilla$^{60}$\lhcborcid{0000-0002-5250-2948},
+M.~Frank$^{42}$\lhcborcid{0000-0002-4625-559X},
+E.~Franzoso$^{21,i}$\lhcborcid{0000-0003-2130-1593},
+G.~Frau$^{17}$\lhcborcid{0000-0003-3160-482X},
+C.~Frei$^{42}$\lhcborcid{0000-0001-5501-5611},
+D.A.~Friday$^{53}$\lhcborcid{0000-0001-9400-3322},
+J.~Fu$^{6}$\lhcborcid{0000-0003-3177-2700},
+Q.~Fuehring$^{15}$\lhcborcid{0000-0003-3179-2525},
+E.~Gabriel$^{32}$\lhcborcid{0000-0001-8300-5939},
+G.~Galati$^{19,f}$\lhcborcid{0000-0001-7348-3312},
+A.~Gallas~Torreira$^{40}$\lhcborcid{0000-0002-2745-7954},
+D.~Galli$^{20,g}$\lhcborcid{0000-0003-2375-6030},
+S.~Gambetta$^{52,42}$\lhcborcid{0000-0003-2420-0501},
+Y.~Gan$^{3}$\lhcborcid{0009-0006-6576-9293},
+M.~Gandelman$^{2}$\lhcborcid{0000-0001-8192-8377},
+P.~Gandini$^{25}$\lhcborcid{0000-0001-7267-6008},
+Y.~Gao$^{5}$\lhcborcid{0000-0003-1484-0943},
+M.~Garau$^{27}$\lhcborcid{0000-0002-0505-9584},
+L.M.~Garcia~Martin$^{50}$\lhcborcid{0000-0003-0714-8991},
+P.~Garcia~Moreno$^{39}$\lhcborcid{0000-0002-3612-1651},
+J.~Garc{\'\i}a~Pardi{\~n}as$^{26,m}$\lhcborcid{0000-0003-2316-8829},
+B.~Garcia~Plana$^{40}$,
+F.A.~Garcia~Rosales$^{12}$\lhcborcid{0000-0003-4395-0244},
+L.~Garrido$^{39}$\lhcborcid{0000-0001-8883-6539},
+C.~Gaspar$^{42}$\lhcborcid{0000-0002-8009-1509},
+R.E.~Geertsema$^{32}$\lhcborcid{0000-0001-6829-7777},
+D.~Gerick$^{17}$,
+L.L.~Gerken$^{15}$\lhcborcid{0000-0002-6769-3679},
+E.~Gersabeck$^{56}$\lhcborcid{0000-0002-2860-6528},
+M.~Gersabeck$^{56}$\lhcborcid{0000-0002-0075-8669},
+T.~Gershon$^{50}$\lhcborcid{0000-0002-3183-5065},
+D.~Gerstel$^{10}$,
+L.~Giambastiani$^{28}$\lhcborcid{0000-0002-5170-0635},
+V.~Gibson$^{49}$\lhcborcid{0000-0002-6661-1192},
+H.K.~Giemza$^{36}$\lhcborcid{0000-0003-2597-8796},
+A.L.~Gilman$^{57}$\lhcborcid{0000-0001-5934-7541},
+M.~Giovannetti$^{23,t}$\lhcborcid{0000-0003-2135-9568},
+A.~Giovent{\`u}$^{40}$\lhcborcid{0000-0001-5399-326X},
+P.~Gironella~Gironell$^{39}$\lhcborcid{0000-0001-5603-4750},
+C.~Giugliano$^{21,i}$\lhcborcid{0000-0002-6159-4557},
+K.~Gizdov$^{52}$\lhcborcid{0000-0002-3543-7451},
+E.L.~Gkougkousis$^{42}$\lhcborcid{0000-0002-2132-2071},
+V.V.~Gligorov$^{13,42}$\lhcborcid{0000-0002-8189-8267},
+C.~G{\"o}bel$^{64}$\lhcborcid{0000-0003-0523-495X},
+E.~Golobardes$^{75}$\lhcborcid{0000-0001-8080-0769},
+D.~Golubkov$^{38}$\lhcborcid{0000-0001-6216-1596},
+A.~Golutvin$^{55,38}$\lhcborcid{0000-0003-2500-8247},
+A.~Gomes$^{1,a}$\lhcborcid{0009-0005-2892-2968},
+S.~Gomez~Fernandez$^{39}$\lhcborcid{0000-0002-3064-9834},
+F.~Goncalves~Abrantes$^{57}$\lhcborcid{0000-0002-7318-482X},
+M.~Goncerz$^{35}$\lhcborcid{0000-0002-9224-914X},
+G.~Gong$^{3}$\lhcborcid{0000-0002-7822-3947},
+I.V.~Gorelov$^{38}$\lhcborcid{0000-0001-5570-0133},
+C.~Gotti$^{26}$\lhcborcid{0000-0003-2501-9608},
+J.P.~Grabowski$^{17}$\lhcborcid{0000-0001-8461-8382},
+T.~Grammatico$^{13}$\lhcborcid{0000-0002-2818-9744},
+L.A.~Granado~Cardoso$^{42}$\lhcborcid{0000-0003-2868-2173},
+E.~Graug{\'e}s$^{39}$\lhcborcid{0000-0001-6571-4096},
+E.~Graverini$^{43}$\lhcborcid{0000-0003-4647-6429},
+G.~Graziani$^{}$\lhcborcid{0000-0001-8212-846X},
+A. T.~Grecu$^{37}$\lhcborcid{0000-0002-7770-1839},
+L.M.~Greeven$^{32}$\lhcborcid{0000-0001-5813-7972},
+N.A.~Grieser$^{4}$\lhcborcid{0000-0003-0386-4923},
+L.~Grillo$^{56}$\lhcborcid{0000-0001-5360-0091},
+S.~Gromov$^{38}$\lhcborcid{0000-0002-8967-3644},
+B.R.~Gruberg~Cazon$^{57}$\lhcborcid{0000-0003-4313-3121},
+C. ~Gu$^{3}$\lhcborcid{0000-0001-5635-6063},
+M.~Guarise$^{21,i}$\lhcborcid{0000-0001-8829-9681},
+M.~Guittiere$^{11}$\lhcborcid{0000-0002-2916-7184},
+P. A.~G{\"u}nther$^{17}$\lhcborcid{0000-0002-4057-4274},
+E.~Gushchin$^{38}$\lhcborcid{0000-0001-8857-1665},
+A.~Guth$^{14}$,
+Y.~Guz$^{38}$\lhcborcid{0000-0001-7552-400X},
+T.~Gys$^{42}$\lhcborcid{0000-0002-6825-6497},
+T.~Hadavizadeh$^{63}$\lhcborcid{0000-0001-5730-8434},
+G.~Haefeli$^{43}$\lhcborcid{0000-0002-9257-839X},
+C.~Haen$^{42}$\lhcborcid{0000-0002-4947-2928},
+J.~Haimberger$^{42}$\lhcborcid{0000-0002-3363-7783},
+S.C.~Haines$^{49}$\lhcborcid{0000-0001-5906-391X},
+T.~Halewood-leagas$^{54}$\lhcborcid{0000-0001-9629-7029},
+M.M.~Halvorsen$^{42}$\lhcborcid{0000-0003-0959-3853},
+P.M.~Hamilton$^{60}$\lhcborcid{0000-0002-2231-1374},
+J.~Hammerich$^{54}$\lhcborcid{0000-0002-5556-1775},
+Q.~Han$^{7}$\lhcborcid{0000-0002-7958-2917},
+X.~Han$^{17}$\lhcborcid{0000-0001-7641-7505},
+E.B.~Hansen$^{56}$\lhcborcid{0000-0002-5019-1648},
+S.~Hansmann-Menzemer$^{17}$\lhcborcid{0000-0002-3804-8734},
+N.~Harnew$^{57}$\lhcborcid{0000-0001-9616-6651},
+T.~Harrison$^{54}$\lhcborcid{0000-0002-1576-9205},
+C.~Hasse$^{42}$\lhcborcid{0000-0002-9658-8827},
+M.~Hatch$^{42}$\lhcborcid{0009-0004-4850-7465},
+J.~He$^{6,c}$\lhcborcid{0000-0002-1465-0077},
+M.~Hecker$^{55}$,
+K.~Heijhoff$^{32}$\lhcborcid{0000-0001-5407-7466},
+K.~Heinicke$^{15}$\lhcborcid{0009-0003-8781-3425},
+R.D.L.~Henderson$^{63,50}$\lhcborcid{0000-0001-6445-4907},
+A.M.~Hennequin$^{42}$\lhcborcid{0009-0008-7974-3785},
+K.~Hennessy$^{54}$\lhcborcid{0000-0002-1529-8087},
+L.~Henry$^{42}$\lhcborcid{0000-0003-3605-832X},
+J.~Heuel$^{14}$\lhcborcid{0000-0001-9384-6926},
+A.~Hicheur$^{2}$\lhcborcid{0000-0002-3712-7318},
+D.~Hill$^{43}$\lhcborcid{0000-0003-2613-7315},
+M.~Hilton$^{56}$\lhcborcid{0000-0001-7703-7424},
+S.E.~Hollitt$^{15}$\lhcborcid{0000-0002-4962-3546},
+R.~Hou$^{7}$\lhcborcid{0000-0002-3139-3332},
+Y.~Hou$^{8}$\lhcborcid{0000-0001-6454-278X},
+J.~Hu$^{17}$,
+J.~Hu$^{66}$\lhcborcid{0000-0002-8227-4544},
+W.~Hu$^{7}$\lhcborcid{0000-0002-2855-0544},
+X.~Hu$^{3}$\lhcborcid{0000-0002-5924-2683},
+W.~Huang$^{6}$\lhcborcid{0000-0002-1407-1729},
+X.~Huang$^{67}$,
+W.~Hulsbergen$^{32}$\lhcborcid{0000-0003-3018-5707},
+R.J.~Hunter$^{50}$\lhcborcid{0000-0001-7894-8799},
+M.~Hushchyn$^{38}$\lhcborcid{0000-0002-8894-6292},
+D.~Hutchcroft$^{54}$\lhcborcid{0000-0002-4174-6509},
+D.~Hynds$^{32}$\lhcborcid{0009-0009-0976-2312},
+P.~Ibis$^{15}$\lhcborcid{0000-0002-2022-6862},
+M.~Idzik$^{34}$\lhcborcid{0000-0001-6349-0033},
+D.~Ilin$^{38}$\lhcborcid{0000-0001-8771-3115},
+P.~Ilten$^{59}$\lhcborcid{0000-0001-5534-1732},
+A.~Inglessi$^{38}$\lhcborcid{0000-0002-2522-6722},
+A.~Ishteev$^{38}$\lhcborcid{0000-0003-1409-1428},
+K.~Ivshin$^{38}$\lhcborcid{0000-0001-8403-0706},
+R.~Jacobsson$^{42}$\lhcborcid{0000-0003-4971-7160},
+H.~Jage$^{14}$\lhcborcid{0000-0002-8096-3792},
+S.~Jakobsen$^{42}$\lhcborcid{0000-0002-6564-040X},
+E.~Jans$^{32}$\lhcborcid{0000-0002-5438-9176},
+B.K.~Jashal$^{41}$\lhcborcid{0000-0002-0025-4663},
+A.~Jawahery$^{60}$\lhcborcid{0000-0003-3719-119X},
+V.~Jevtic$^{15}$\lhcborcid{0000-0001-6427-4746},
+X.~Jiang$^{4,6}$\lhcborcid{0000-0001-8120-3296},
+M.~John$^{57}$\lhcborcid{0000-0002-8579-844X},
+D.~Johnson$^{58}$\lhcborcid{0000-0003-3272-6001},
+C.R.~Jones$^{49}$\lhcborcid{0000-0003-1699-8816},
+T.P.~Jones$^{50}$\lhcborcid{0000-0001-5706-7255},
+B.~Jost$^{42}$\lhcborcid{0009-0005-4053-1222},
+N.~Jurik$^{42}$\lhcborcid{0000-0002-6066-7232},
+S.~Kandybei$^{45}$\lhcborcid{0000-0003-3598-0427},
+Y.~Kang$^{3}$\lhcborcid{0000-0002-6528-8178},
+M.~Karacson$^{42}$\lhcborcid{0009-0006-1867-9674},
+D.~Karpenkov$^{38}$\lhcborcid{0000-0001-8686-2303},
+M.~Karpov$^{38}$\lhcborcid{0000-0003-4503-2682},
+J.W.~Kautz$^{59}$\lhcborcid{0000-0001-8482-5576},
+F.~Keizer$^{42}$\lhcborcid{0000-0002-1290-6737},
+D.M.~Keller$^{62}$\lhcborcid{0000-0002-2608-1270},
+M.~Kenzie$^{50}$\lhcborcid{0000-0001-7910-4109},
+T.~Ketel$^{33}$\lhcborcid{0000-0002-9652-1964},
+B.~Khanji$^{15}$\lhcborcid{0000-0003-3838-281X},
+A.~Kharisova$^{38}$\lhcborcid{0000-0002-5291-9583},
+S.~Kholodenko$^{38}$\lhcborcid{0000-0002-0260-6570},
+T.~Kirn$^{14}$\lhcborcid{0000-0002-0253-8619},
+V.S.~Kirsebom$^{43}$\lhcborcid{0009-0005-4421-9025},
+O.~Kitouni$^{58}$\lhcborcid{0000-0001-9695-8165},
+S.~Klaver$^{33}$\lhcborcid{0000-0001-7909-1272},
+N.~Kleijne$^{29,q}$\lhcborcid{0000-0003-0828-0943},
+K.~Klimaszewski$^{36}$\lhcborcid{0000-0003-0741-5922},
+M.R.~Kmiec$^{36}$\lhcborcid{0000-0002-1821-1848},
+S.~Koliiev$^{46}$\lhcborcid{0009-0002-3680-1224},
+A.~Kondybayeva$^{38}$\lhcborcid{0000-0001-8727-6840},
+A.~Konoplyannikov$^{38}$\lhcborcid{0009-0005-2645-8364},
+P.~Kopciewicz$^{34}$\lhcborcid{0000-0001-9092-3527},
+R.~Kopecna$^{17}$,
+P.~Koppenburg$^{32}$\lhcborcid{0000-0001-8614-7203},
+M.~Korolev$^{38}$\lhcborcid{0000-0002-7473-2031},
+I.~Kostiuk$^{32,46}$\lhcborcid{0000-0002-8767-7289},
+O.~Kot$^{46}$,
+S.~Kotriakhova$^{}$\lhcborcid{0000-0002-1495-0053},
+A.~Kozachuk$^{38}$\lhcborcid{0000-0001-6805-0395},
+P.~Kravchenko$^{38}$\lhcborcid{0000-0002-4036-2060},
+L.~Kravchuk$^{38}$\lhcborcid{0000-0001-8631-4200},
+R.D.~Krawczyk$^{42}$\lhcborcid{0000-0001-8664-4787},
+M.~Kreps$^{50}$\lhcborcid{0000-0002-6133-486X},
+S.~Kretzschmar$^{14}$\lhcborcid{0009-0008-8631-9552},
+P.~Krokovny$^{38}$\lhcborcid{0000-0002-1236-4667},
+W.~Krupa$^{34}$\lhcborcid{0000-0002-7947-465X},
+W.~Krzemien$^{36}$\lhcborcid{0000-0002-9546-358X},
+J.~Kubat$^{17}$,
+W.~Kucewicz$^{35,34}$\lhcborcid{0000-0002-2073-711X},
+M.~Kucharczyk$^{35}$\lhcborcid{0000-0003-4688-0050},
+V.~Kudryavtsev$^{38}$\lhcborcid{0009-0000-2192-995X},
+H.S.~Kuindersma$^{32}$,
+G.J.~Kunde$^{61}$,
+T.~Kvaratskheliya$^{38}$,
+D.~Lacarrere$^{42}$\lhcborcid{0009-0005-6974-140X},
+G.~Lafferty$^{56}$\lhcborcid{0000-0003-0658-4919},
+A.~Lai$^{27}$\lhcborcid{0000-0003-1633-0496},
+A.~Lampis$^{27}$\lhcborcid{0000-0002-5443-4870},
+D.~Lancierini$^{44}$\lhcborcid{0000-0003-1587-4555},
+J.J.~Lane$^{56}$\lhcborcid{0000-0002-5816-9488},
+R.~Lane$^{48}$\lhcborcid{0000-0002-2360-2392},
+G.~Lanfranchi$^{23}$\lhcborcid{0000-0002-9467-8001},
+C.~Langenbruch$^{14}$\lhcborcid{0000-0002-3454-7261},
+J.~Langer$^{15}$\lhcborcid{0000-0002-0322-5550},
+O.~Lantwin$^{38}$\lhcborcid{0000-0003-2384-5973},
+T.~Latham$^{50}$\lhcborcid{0000-0002-7195-8537},
+F.~Lazzari$^{29,u}$\lhcborcid{0000-0002-3151-3453},
+M.~Lazzaroni$^{25}$\lhcborcid{0000-0002-4094-1273},
+R.~Le~Gac$^{10}$\lhcborcid{0000-0002-7551-6971},
+S.H.~Lee$^{77}$\lhcborcid{0000-0003-3523-9479},
+R.~Lef{\`e}vre$^{9}$\lhcborcid{0000-0002-6917-6210},
+A.~Leflat$^{38}$\lhcborcid{0000-0001-9619-6666},
+S.~Legotin$^{38}$\lhcborcid{0000-0003-3192-6175},
+O.~Leroy$^{10}$\lhcborcid{0000-0002-2589-240X},
+T.~Lesiak$^{35}$\lhcborcid{0000-0002-3966-2998},
+B.~Leverington$^{17}$\lhcborcid{0000-0001-6640-7274},
+H.~Li$^{66}$\lhcborcid{0000-0002-2366-9554},
+P.~Li$^{17}$\lhcborcid{0000-0003-2740-9765},
+S.~Li$^{7}$\lhcborcid{0000-0001-5455-3768},
+Y.~Li$^{4}$\lhcborcid{0000-0003-2043-4669},
+Z.~Li$^{62}$\lhcborcid{0000-0003-0755-8413},
+X.~Liang$^{62}$\lhcborcid{0000-0002-5277-9103},
+T.~Lin$^{55}$\lhcborcid{0000-0001-6052-8243},
+R.~Lindner$^{42}$\lhcborcid{0000-0002-5541-6500},
+V.~Lisovskyi$^{15}$\lhcborcid{0000-0003-4451-214X},
+R.~Litvinov$^{27}$\lhcborcid{0000-0002-4234-435X},
+G.~Liu$^{66}$\lhcborcid{0000-0001-5961-6588},
+H.~Liu$^{6}$\lhcborcid{0000-0001-6658-1993},
+Q.~Liu$^{6}$\lhcborcid{0000-0003-4658-6361},
+S.~Liu$^{4,6}$\lhcborcid{0000-0002-6919-227X},
+A.~Lobo~Salvia$^{39}$\lhcborcid{0000-0002-2375-9509},
+A.~Loi$^{27}$\lhcborcid{0000-0003-4176-1503},
+R.~Lollini$^{72}$\lhcborcid{0000-0003-3898-7464},
+J.~Lomba~Castro$^{40}$\lhcborcid{0000-0003-1874-8407},
+I.~Longstaff$^{53}$,
+J.H.~Lopes$^{2}$\lhcborcid{0000-0003-1168-9547},
+S.~L{\'o}pez~Soli{\~n}o$^{40}$\lhcborcid{0000-0001-9892-5113},
+G.H.~Lovell$^{49}$\lhcborcid{0000-0002-9433-054X},
+Y.~Lu$^{4,b}$\lhcborcid{0000-0003-4416-6961},
+C.~Lucarelli$^{22,j}$\lhcborcid{0000-0002-8196-1828},
+D.~Lucchesi$^{28,o}$\lhcborcid{0000-0003-4937-7637},
+S.~Luchuk$^{38}$\lhcborcid{0000-0002-3697-8129},
+M.~Lucio~Martinez$^{32}$\lhcborcid{0000-0001-6823-2607},
+V.~Lukashenko$^{32,46}$\lhcborcid{0000-0002-0630-5185},
+Y.~Luo$^{3}$\lhcborcid{0009-0001-8755-2937},
+A.~Lupato$^{56}$\lhcborcid{0000-0003-0312-3914},
+E.~Luppi$^{21,i}$\lhcborcid{0000-0002-1072-5633},
+O.~Lupton$^{50}$\lhcborcid{0000-0002-3500-7398},
+A.~Lusiani$^{29,q}$\lhcborcid{0000-0002-6876-3288},
+X.-R.~Lyu$^{6}$\lhcborcid{0000-0001-5689-9578},
+L.~Ma$^{4}$\lhcborcid{0009-0004-5695-8274},
+R.~Ma$^{6}$\lhcborcid{0000-0002-0152-2412},
+S.~Maccolini$^{20}$\lhcborcid{0000-0002-9571-7535},
+F.~Machefert$^{11}$\lhcborcid{0000-0002-4644-5916},
+F.~Maciuc$^{37}$\lhcborcid{0000-0001-6651-9436},
+V.~Macko$^{43}$\lhcborcid{0009-0003-8228-0404},
+P.~Mackowiak$^{15}$\lhcborcid{0009-0007-6216-7155},
+S.~Maddrell-Mander$^{48}$,
+L.R.~Madhan~Mohan$^{48}$\lhcborcid{0000-0002-9390-8821},
+A.~Maevskiy$^{38}$\lhcborcid{0000-0003-1652-8005},
+D.~Maisuzenko$^{38}$\lhcborcid{0000-0001-5704-3499},
+M.W.~Majewski$^{34}$,
+J.J.~Malczewski$^{35}$\lhcborcid{0000-0003-2744-3656},
+S.~Malde$^{57}$\lhcborcid{0000-0002-8179-0707},
+B.~Malecki$^{35}$\lhcborcid{0000-0003-0062-1985},
+A.~Malinin$^{38}$\lhcborcid{0000-0002-3731-9977},
+T.~Maltsev$^{38}$\lhcborcid{0000-0002-2120-5633},
+H.~Malygina$^{17}$\lhcborcid{0000-0002-1807-3430},
+G.~Manca$^{27,h}$\lhcborcid{0000-0003-1960-4413},
+G.~Mancinelli$^{10}$\lhcborcid{0000-0003-1144-3678},
+D.~Manuzzi$^{20}$\lhcborcid{0000-0002-9915-6587},
+C.A.~Manzari$^{44}$\lhcborcid{0000-0001-8114-3078},
+D.~Marangotto$^{25,l}$\lhcborcid{0000-0001-9099-4878},
+J.M.~Maratas$^{9,w}$\lhcborcid{0000-0002-7669-1982},
+J.F.~Marchand$^{8}$\lhcborcid{0000-0002-4111-0797},
+U.~Marconi$^{20}$\lhcborcid{0000-0002-5055-7224},
+S.~Mariani$^{22,j}$\lhcborcid{0000-0002-7298-3101},
+C.~Marin~Benito$^{42}$\lhcborcid{0000-0003-0529-6982},
+M.~Marinangeli$^{43}$\lhcborcid{0000-0002-8361-9356},
+J.~Marks$^{17}$\lhcborcid{0000-0002-2867-722X},
+A.M.~Marshall$^{48}$\lhcborcid{0000-0002-9863-4954},
+P.J.~Marshall$^{54}$,
+G.~Martelli$^{72,p}$\lhcborcid{0000-0002-6150-3168},
+G.~Martellotti$^{30}$\lhcborcid{0000-0002-8663-9037},
+L.~Martinazzoli$^{42,m}$\lhcborcid{0000-0002-8996-795X},
+M.~Martinelli$^{26,m}$\lhcborcid{0000-0003-4792-9178},
+D.~Martinez~Santos$^{40}$\lhcborcid{0000-0002-6438-4483},
+F.~Martinez~Vidal$^{41}$\lhcborcid{0000-0001-6841-6035},
+A.~Massafferri$^{1}$\lhcborcid{0000-0002-3264-3401},
+M.~Materok$^{14}$\lhcborcid{0000-0002-7380-6190},
+R.~Matev$^{42}$\lhcborcid{0000-0001-8713-6119},
+A.~Mathad$^{44}$\lhcborcid{0000-0002-9428-4715},
+V.~Matiunin$^{38}$\lhcborcid{0000-0003-4665-5451},
+C.~Matteuzzi$^{26}$\lhcborcid{0000-0002-4047-4521},
+K.R.~Mattioli$^{77}$\lhcborcid{0000-0003-2222-7727},
+A.~Mauri$^{32}$\lhcborcid{0000-0003-1664-8963},
+E.~Maurice$^{12}$\lhcborcid{0000-0002-7366-4364},
+J.~Mauricio$^{39}$\lhcborcid{0000-0002-9331-1363},
+M.~Mazurek$^{42}$\lhcborcid{0000-0002-3687-9630},
+M.~McCann$^{55}$\lhcborcid{0000-0002-3038-7301},
+L.~Mcconnell$^{18}$\lhcborcid{0009-0004-7045-2181},
+T.H.~McGrath$^{56}$\lhcborcid{0000-0001-8993-3234},
+N.T.~McHugh$^{53}$\lhcborcid{0000-0002-5477-3995},
+A.~McNab$^{56}$\lhcborcid{0000-0001-5023-2086},
+R.~McNulty$^{18}$\lhcborcid{0000-0001-7144-0175},
+J.V.~Mead$^{54}$\lhcborcid{0000-0003-0875-2533},
+B.~Meadows$^{59}$\lhcborcid{0000-0002-1947-8034},
+G.~Meier$^{15}$\lhcborcid{0000-0002-4266-1726},
+D.~Melnychuk$^{36}$\lhcborcid{0000-0003-1667-7115},
+S.~Meloni$^{26,m}$\lhcborcid{0000-0003-1836-0189},
+M.~Merk$^{32,74}$\lhcborcid{0000-0003-0818-4695},
+A.~Merli$^{25,l}$\lhcborcid{0000-0002-0374-5310},
+L.~Meyer~Garcia$^{2}$\lhcborcid{0000-0002-2622-8551},
+M.~Mikhasenko$^{69,d}$\lhcborcid{0000-0002-6969-2063},
+D.A.~Milanes$^{68}$\lhcborcid{0000-0001-7450-1121},
+E.~Millard$^{50}$,
+M.~Milovanovic$^{42}$\lhcborcid{0000-0003-1580-0898},
+M.-N.~Minard$^{8,\dagger}$,
+A.~Minotti$^{26,m}$\lhcborcid{0000-0002-0091-5177},
+S.E.~Mitchell$^{52}$\lhcborcid{0000-0002-7956-054X},
+B.~Mitreska$^{56}$\lhcborcid{0000-0002-1697-4999},
+D.S.~Mitzel$^{15}$\lhcborcid{0000-0003-3650-2689},
+A.~M{\"o}dden~$^{15}$\lhcborcid{0009-0009-9185-4901},
+R.A.~Mohammed$^{57}$\lhcborcid{0000-0002-3718-4144},
+R.D.~Moise$^{55}$\lhcborcid{0000-0002-5662-8804},
+S.~Mokhnenko$^{38}$\lhcborcid{0000-0002-1849-1472},
+T.~Momb{\"a}cher$^{40}$\lhcborcid{0000-0002-5612-979X},
+I.A.~Monroy$^{68}$\lhcborcid{0000-0001-8742-0531},
+S.~Monteil$^{9}$\lhcborcid{0000-0001-5015-3353},
+M.~Morandin$^{28}$\lhcborcid{0000-0003-4708-4240},
+G.~Morello$^{23}$\lhcborcid{0000-0002-6180-3697},
+M.J.~Morello$^{29,q}$\lhcborcid{0000-0003-4190-1078},
+J.~Moron$^{34}$\lhcborcid{0000-0002-1857-1675},
+A.B.~Morris$^{69}$\lhcborcid{0000-0002-0832-9199},
+A.G.~Morris$^{50}$\lhcborcid{0000-0001-6644-9888},
+R.~Mountain$^{62}$\lhcborcid{0000-0003-1908-4219},
+H.~Mu$^{3}$\lhcborcid{0000-0001-9720-7507},
+F.~Muheim$^{52}$\lhcborcid{0000-0002-1131-8909},
+M.~Mulder$^{73}$\lhcborcid{0000-0001-6867-8166},
+K.~M{\"u}ller$^{44}$\lhcborcid{0000-0002-5105-1305},
+C.H.~Murphy$^{57}$\lhcborcid{0000-0002-6441-075X},
+D.~Murray$^{56}$\lhcborcid{0000-0002-5729-8675},
+R.~Murta$^{55}$\lhcborcid{0000-0002-6915-8370},
+P.~Muzzetto$^{27}$\lhcborcid{0000-0003-3109-3695},
+P.~Naik$^{48}$\lhcborcid{0000-0001-6977-2971},
+T.~Nakada$^{43}$\lhcborcid{0009-0000-6210-6861},
+R.~Nandakumar$^{51}$\lhcborcid{0000-0002-6813-6794},
+T.~Nanut$^{42}$\lhcborcid{0000-0002-5728-9867},
+I.~Nasteva$^{2}$\lhcborcid{0000-0001-7115-7214},
+M.~Needham$^{52}$\lhcborcid{0000-0002-8297-6714},
+N.~Neri$^{25,l}$\lhcborcid{0000-0002-6106-3756},
+S.~Neubert$^{69}$\lhcborcid{0000-0002-0706-1944},
+N.~Neufeld$^{42}$\lhcborcid{0000-0003-2298-0102},
+P.~Neustroev$^{38}$,
+R.~Newcombe$^{55}$,
+E.M.~Niel$^{43}$\lhcborcid{0000-0002-6587-4695},
+S.~Nieswand$^{14}$,
+N.~Nikitin$^{38}$\lhcborcid{0000-0003-0215-1091},
+N.S.~Nolte$^{58}$\lhcborcid{0000-0003-2536-4209},
+C.~Normand$^{8}$\lhcborcid{0000-0001-5055-7710},
+C.~Nunez$^{77}$\lhcborcid{0000-0002-2521-9346},
+A.~Oblakowska-Mucha$^{34}$\lhcborcid{0000-0003-1328-0534},
+V.~Obraztsov$^{38}$\lhcborcid{0000-0002-0994-3641},
+T.~Oeser$^{14}$\lhcborcid{0000-0001-7792-4082},
+D.P.~O'Hanlon$^{48}$\lhcborcid{0000-0002-3001-6690},
+S.~Okamura$^{21,i}$\lhcborcid{0000-0003-1229-3093},
+R.~Oldeman$^{27,h}$\lhcborcid{0000-0001-6902-0710},
+F.~Oliva$^{52}$\lhcborcid{0000-0001-7025-3407},
+M.E.~Olivares$^{62}$,
+C.J.G.~Onderwater$^{73}$\lhcborcid{0000-0002-2310-4166},
+R.H.~O'Neil$^{52}$\lhcborcid{0000-0002-9797-8464},
+J.M.~Otalora~Goicochea$^{2}$\lhcborcid{0000-0002-9584-8500},
+T.~Ovsiannikova$^{38}$\lhcborcid{0000-0002-3890-9426},
+P.~Owen$^{44}$\lhcborcid{0000-0002-4161-9147},
+A.~Oyanguren$^{41}$\lhcborcid{0000-0002-8240-7300},
+O.~Ozcelik$^{52}$\lhcborcid{0000-0003-3227-9248},
+K.O.~Padeken$^{69}$\lhcborcid{0000-0001-7251-9125},
+B.~Pagare$^{50}$\lhcborcid{0000-0003-3184-1622},
+P.R.~Pais$^{42}$\lhcborcid{0009-0005-9758-742X},
+T.~Pajero$^{57}$\lhcborcid{0000-0001-9630-2000},
+A.~Palano$^{19}$\lhcborcid{0000-0002-6095-9593},
+M.~Palutan$^{23}$\lhcborcid{0000-0001-7052-1360},
+Y.~Pan$^{56}$\lhcborcid{0000-0002-4110-7299},
+G.~Panshin$^{38}$\lhcborcid{0000-0001-9163-2051},
+A.~Papanestis$^{51}$\lhcborcid{0000-0002-5405-2901},
+M.~Pappagallo$^{19,f}$\lhcborcid{0000-0001-7601-5602},
+L.L.~Pappalardo$^{21,i}$\lhcborcid{0000-0002-0876-3163},
+C.~Pappenheimer$^{59}$\lhcborcid{0000-0003-0738-3668},
+W.~Parker$^{60}$\lhcborcid{0000-0001-9479-1285},
+C.~Parkes$^{56}$\lhcborcid{0000-0003-4174-1334},
+B.~Passalacqua$^{21,i}$\lhcborcid{0000-0003-3643-7469},
+G.~Passaleva$^{22}$\lhcborcid{0000-0002-8077-8378},
+A.~Pastore$^{19}$\lhcborcid{0000-0002-5024-3495},
+M.~Patel$^{55}$\lhcborcid{0000-0003-3871-5602},
+C.~Patrignani$^{20,g}$\lhcborcid{0000-0002-5882-1747},
+C.J.~Pawley$^{74}$\lhcborcid{0000-0001-9112-3724},
+A.~Pearce$^{42}$\lhcborcid{0000-0002-9719-1522},
+A.~Pellegrino$^{32}$\lhcborcid{0000-0002-7884-345X},
+M.~Pepe~Altarelli$^{42}$\lhcborcid{0000-0002-1642-4030},
+S.~Perazzini$^{20}$\lhcborcid{0000-0002-1862-7122},
+D.~Pereima$^{38}$\lhcborcid{0000-0002-7008-8082},
+A.~Pereiro~Castro$^{40}$\lhcborcid{0000-0001-9721-3325},
+P.~Perret$^{9}$\lhcborcid{0000-0002-5732-4343},
+M.~Petric$^{53}$,
+K.~Petridis$^{48}$\lhcborcid{0000-0001-7871-5119},
+A.~Petrolini$^{24,k}$\lhcborcid{0000-0003-0222-7594},
+A.~Petrov$^{38}$,
+S.~Petrucci$^{52}$\lhcborcid{0000-0001-8312-4268},
+M.~Petruzzo$^{25}$\lhcborcid{0000-0001-8377-149X},
+H.~Pham$^{62}$\lhcborcid{0000-0003-2995-1953},
+A.~Philippov$^{38}$\lhcborcid{0000-0002-5103-8880},
+R.~Piandani$^{6}$\lhcborcid{0000-0003-2226-8924},
+L.~Pica$^{29,q}$\lhcborcid{0000-0001-9837-6556},
+M.~Piccini$^{72}$\lhcborcid{0000-0001-8659-4409},
+B.~Pietrzyk$^{8}$\lhcborcid{0000-0003-1836-7233},
+G.~Pietrzyk$^{11}$\lhcborcid{0000-0001-9622-820X},
+M.~Pili$^{57}$\lhcborcid{0000-0002-7599-4666},
+D.~Pinci$^{30}$\lhcborcid{0000-0002-7224-9708},
+F.~Pisani$^{42}$\lhcborcid{0000-0002-7763-252X},
+M.~Pizzichemi$^{26,m,42}$\lhcborcid{0000-0001-5189-230X},
+V.~Placinta$^{37}$\lhcborcid{0000-0003-4465-2441},
+J.~Plews$^{47}$\lhcborcid{0009-0009-8213-7265},
+M.~Plo~Casasus$^{40}$\lhcborcid{0000-0002-2289-918X},
+F.~Polci$^{13,42}$\lhcborcid{0000-0001-8058-0436},
+M.~Poli~Lener$^{23}$\lhcborcid{0000-0001-7867-1232},
+M.~Poliakova$^{62}$,
+A.~Poluektov$^{10}$\lhcborcid{0000-0003-2222-9925},
+N.~Polukhina$^{38}$\lhcborcid{0000-0001-5942-1772},
+I.~Polyakov$^{62}$\lhcborcid{0000-0002-6855-7783},
+E.~Polycarpo$^{2}$\lhcborcid{0000-0002-4298-5309},
+S.~Ponce$^{42}$\lhcborcid{0000-0002-1476-7056},
+D.~Popov$^{6,42}$\lhcborcid{0000-0002-8293-2922},
+S.~Popov$^{38}$\lhcborcid{0000-0003-2849-3233},
+S.~Poslavskii$^{38}$\lhcborcid{0000-0003-3236-1452},
+K.~Prasanth$^{35}$\lhcborcid{0000-0001-9923-0938},
+L.~Promberger$^{42}$\lhcborcid{0000-0003-0127-6255},
+C.~Prouve$^{40}$\lhcborcid{0000-0003-2000-6306},
+V.~Pugatch$^{46}$\lhcborcid{0000-0002-5204-9821},
+V.~Puill$^{11}$\lhcborcid{0000-0003-0806-7149},
+G.~Punzi$^{29,r}$\lhcborcid{0000-0002-8346-9052},
+H.R.~Qi$^{3}$\lhcborcid{0000-0002-9325-2308},
+W.~Qian$^{6}$\lhcborcid{0000-0003-3932-7556},
+N.~Qin$^{3}$\lhcborcid{0000-0001-8453-658X},
+R.~Quagliani$^{43}$\lhcborcid{0000-0002-3632-2453},
+N.V.~Raab$^{18}$\lhcborcid{0000-0002-3199-2968},
+R.I.~Rabadan~Trejo$^{6}$\lhcborcid{0000-0002-9787-3910},
+B.~Rachwal$^{34}$\lhcborcid{0000-0002-0685-6497},
+J.H.~Rademacker$^{48}$\lhcborcid{0000-0003-2599-7209},
+R.~Rajagopalan$^{62}$,
+M.~Rama$^{29}$\lhcborcid{0000-0003-3002-4719},
+M.~Ramos~Pernas$^{50}$\lhcborcid{0000-0003-1600-9432},
+M.S.~Rangel$^{2}$\lhcborcid{0000-0002-8690-5198},
+F.~Ratnikov$^{38}$\lhcborcid{0000-0003-0762-5583},
+G.~Raven$^{33,42}$\lhcborcid{0000-0002-2897-5323},
+M.~Reboud$^{8}$\lhcborcid{0000-0001-6033-3606},
+F.~Redi$^{42}$\lhcborcid{0000-0001-9728-8984},
+F.~Reiss$^{56}$\lhcborcid{0000-0002-8395-7654},
+C.~Remon~Alepuz$^{41}$,
+Z.~Ren$^{3}$\lhcborcid{0000-0001-9974-9350},
+V.~Renaudin$^{57}$\lhcborcid{0000-0003-4440-937X},
+P.K.~Resmi$^{10}$\lhcborcid{0000-0001-9025-2225},
+R.~Ribatti$^{29,q}$\lhcborcid{0000-0003-1778-1213},
+A.M.~Ricci$^{27}$\lhcborcid{0000-0002-8816-3626},
+S.~Ricciardi$^{51}$\lhcborcid{0000-0002-4254-3658},
+K.~Rinnert$^{54}$\lhcborcid{0000-0001-9802-1122},
+P.~Robbe$^{11}$\lhcborcid{0000-0002-0656-9033},
+G.~Robertson$^{52}$\lhcborcid{0000-0002-7026-1383},
+A.B.~Rodrigues$^{43}$\lhcborcid{0000-0002-1955-7541},
+E.~Rodrigues$^{54}$\lhcborcid{0000-0003-2846-7625},
+J.A.~Rodriguez~Lopez$^{68}$\lhcborcid{0000-0003-1895-9319},
+E.~Rodriguez~Rodriguez$^{40}$\lhcborcid{0000-0002-7973-8061},
+A.~Rollings$^{57}$\lhcborcid{0000-0002-5213-3783},
+P.~Roloff$^{42}$\lhcborcid{0000-0001-7378-4350},
+V.~Romanovskiy$^{38}$\lhcborcid{0000-0003-0939-4272},
+M.~Romero~Lamas$^{40}$\lhcborcid{0000-0002-1217-8418},
+A.~Romero~Vidal$^{40}$\lhcborcid{0000-0002-8830-1486},
+J.D.~Roth$^{77,\dagger}$,
+M.~Rotondo$^{23}$\lhcborcid{0000-0001-5704-6163},
+M.S.~Rudolph$^{62}$\lhcborcid{0000-0002-0050-575X},
+T.~Ruf$^{42}$\lhcborcid{0000-0002-8657-3576},
+R.A.~Ruiz~Fernandez$^{40}$\lhcborcid{0000-0002-5727-4454},
+J.~Ruiz~Vidal$^{41}$,
+A.~Ryzhikov$^{38}$\lhcborcid{0000-0002-3543-0313},
+J.~Ryzka$^{34}$\lhcborcid{0000-0003-4235-2445},
+J.J.~Saborido~Silva$^{40}$\lhcborcid{0000-0002-6270-130X},
+N.~Sagidova$^{38}$\lhcborcid{0000-0002-2640-3794},
+N.~Sahoo$^{47}$\lhcborcid{0000-0001-9539-8370},
+B.~Saitta$^{27,h}$\lhcborcid{0000-0003-3491-0232},
+M.~Salomoni$^{42}$\lhcborcid{0009-0007-9229-653X},
+C.~Sanchez~Gras$^{32}$\lhcborcid{0000-0002-7082-887X},
+R.~Santacesaria$^{30}$\lhcborcid{0000-0003-3826-0329},
+C.~Santamarina~Rios$^{40}$\lhcborcid{0000-0002-9810-1816},
+M.~Santimaria$^{23}$\lhcborcid{0000-0002-8776-6759},
+E.~Santovetti$^{31,t}$\lhcborcid{0000-0002-5605-1662},
+D.~Saranin$^{38}$\lhcborcid{0000-0002-9617-9986},
+G.~Sarpis$^{14}$\lhcborcid{0000-0003-1711-2044},
+M.~Sarpis$^{69}$\lhcborcid{0000-0002-6402-1674},
+A.~Sarti$^{30}$\lhcborcid{0000-0001-5419-7951},
+C.~Satriano$^{30,s}$\lhcborcid{0000-0002-4976-0460},
+A.~Satta$^{31}$\lhcborcid{0000-0003-2462-913X},
+M.~Saur$^{15}$\lhcborcid{0000-0001-8752-4293},
+D.~Savrina$^{38}$\lhcborcid{0000-0001-8372-6031},
+H.~Sazak$^{9}$\lhcborcid{0000-0003-2689-1123},
+L.G.~Scantlebury~Smead$^{57}$\lhcborcid{0000-0001-8702-7991},
+A.~Scarabotto$^{13}$\lhcborcid{0000-0003-2290-9672},
+S.~Schael$^{14}$\lhcborcid{0000-0003-4013-3468},
+S.~Scherl$^{54}$\lhcborcid{0000-0003-0528-2724},
+M.~Schiller$^{53}$\lhcborcid{0000-0001-8750-863X},
+H.~Schindler$^{42}$\lhcborcid{0000-0002-1468-0479},
+M.~Schmelling$^{16}$\lhcborcid{0000-0003-3305-0576},
+B.~Schmidt$^{42}$\lhcborcid{0000-0002-8400-1566},
+S.~Schmitt$^{14}$\lhcborcid{0000-0002-6394-1081},
+O.~Schneider$^{43}$\lhcborcid{0000-0002-6014-7552},
+A.~Schopper$^{42}$\lhcborcid{0000-0002-8581-3312},
+M.~Schubiger$^{32}$\lhcborcid{0000-0001-9330-1440},
+S.~Schulte$^{43}$\lhcborcid{0009-0001-8533-0783},
+M.H.~Schune$^{11}$\lhcborcid{0000-0002-3648-0830},
+R.~Schwemmer$^{42}$\lhcborcid{0009-0005-5265-9792},
+B.~Sciascia$^{23,42}$\lhcborcid{0000-0003-0670-006X},
+A.~Sciuccati$^{42}$\lhcborcid{0000-0002-8568-1487},
+S.~Sellam$^{40}$\lhcborcid{0000-0003-0383-1451},
+A.~Semennikov$^{38}$\lhcborcid{0000-0003-1130-2197},
+M.~Senghi~Soares$^{33}$\lhcborcid{0000-0001-9676-6059},
+A.~Sergi$^{24,k}$\lhcborcid{0000-0001-9495-6115},
+N.~Serra$^{44}$\lhcborcid{0000-0002-5033-0580},
+L.~Sestini$^{28}$\lhcborcid{0000-0002-1127-5144},
+A.~Seuthe$^{15}$\lhcborcid{0000-0002-0736-3061},
+Y.~Shang$^{5}$\lhcborcid{0000-0001-7987-7558},
+D.M.~Shangase$^{77}$\lhcborcid{0000-0002-0287-6124},
+M.~Shapkin$^{38}$\lhcborcid{0000-0002-4098-9592},
+I.~Shchemerov$^{38}$\lhcborcid{0000-0001-9193-8106},
+L.~Shchutska$^{43}$\lhcborcid{0000-0003-0700-5448},
+T.~Shears$^{54}$\lhcborcid{0000-0002-2653-1366},
+L.~Shekhtman$^{38}$\lhcborcid{0000-0003-1512-9715},
+Z.~Shen$^{5}$\lhcborcid{0000-0003-1391-5384},
+S.~Sheng$^{4,6}$\lhcborcid{0000-0002-1050-5649},
+V.~Shevchenko$^{38}$\lhcborcid{0000-0003-3171-9125},
+E.B.~Shields$^{26,m}$\lhcborcid{0000-0001-5836-5211},
+Y.~Shimizu$^{11}$\lhcborcid{0000-0002-4936-1152},
+E.~Shmanin$^{38}$\lhcborcid{0000-0002-8868-1730},
+J.D.~Shupperd$^{62}$\lhcborcid{0009-0006-8218-2566},
+B.G.~Siddi$^{21,i}$\lhcborcid{0000-0002-3004-187X},
+R.~Silva~Coutinho$^{44}$\lhcborcid{0000-0002-1545-959X},
+G.~Simi$^{28}$\lhcborcid{0000-0001-6741-6199},
+S.~Simone$^{19,f}$\lhcborcid{0000-0003-3631-8398},
+M.~Singla$^{63}$\lhcborcid{0000-0003-3204-5847},
+N.~Skidmore$^{56}$\lhcborcid{0000-0003-3410-0731},
+R.~Skuza$^{17}$\lhcborcid{0000-0001-6057-6018},
+T.~Skwarnicki$^{62}$\lhcborcid{0000-0002-9897-9506},
+M.W.~Slater$^{47}$\lhcborcid{0000-0002-2687-1950},
+I.~Slazyk$^{21,i}$\lhcborcid{0000-0002-3513-9737},
+J.C.~Smallwood$^{57}$\lhcborcid{0000-0003-2460-3327},
+J.G.~Smeaton$^{49}$\lhcborcid{0000-0002-8694-2853},
+E.~Smith$^{44}$\lhcborcid{0000-0002-9740-0574},
+M.~Smith$^{55}$\lhcborcid{0000-0002-3872-1917},
+A.~Snoch$^{32}$\lhcborcid{0000-0001-6431-6360},
+L.~Soares~Lavra$^{9}$\lhcborcid{0000-0002-2652-123X},
+M.D.~Sokoloff$^{59}$\lhcborcid{0000-0001-6181-4583},
+F.J.P.~Soler$^{53}$\lhcborcid{0000-0002-4893-3729},
+A.~Solomin$^{38,48}$\lhcborcid{0000-0003-0644-3227},
+A.~Solovev$^{38}$\lhcborcid{0000-0003-4254-6012},
+I.~Solovyev$^{38}$\lhcborcid{0000-0003-4254-6012},
+F.L.~Souza~De~Almeida$^{2}$\lhcborcid{0000-0001-7181-6785},
+B.~Souza~De~Paula$^{2}$\lhcborcid{0009-0003-3794-3408},
+B.~Spaan$^{15,\dagger}$,
+E.~Spadaro~Norella$^{25,l}$\lhcborcid{0000-0002-1111-5597},
+E.~Spiridenkov$^{38}$,
+P.~Spradlin$^{53}$\lhcborcid{0000-0002-5280-9464},
+F.~Stagni$^{42}$\lhcborcid{0000-0002-7576-4019},
+M.~Stahl$^{59}$\lhcborcid{0000-0001-8476-8188},
+S.~Stahl$^{42}$\lhcborcid{0000-0002-8243-400X},
+S.~Stanislaus$^{57}$\lhcborcid{0000-0003-1776-0498},
+O.~Steinkamp$^{44}$\lhcborcid{0000-0001-7055-6467},
+O.~Stenyakin$^{38}$,
+H.~Stevens$^{15}$\lhcborcid{0000-0002-9474-9332},
+S.~Stone$^{62,\dagger}$\lhcborcid{0000-0002-2122-771X},
+D.~Strekalina$^{38}$\lhcborcid{0000-0003-3830-4889},
+F.~Suljik$^{57}$\lhcborcid{0000-0001-6767-7698},
+J.~Sun$^{27}$\lhcborcid{0000-0002-6020-2304},
+L.~Sun$^{67}$\lhcborcid{0000-0002-0034-2567},
+Y.~Sun$^{60}$\lhcborcid{0000-0003-4933-5058},
+P.~Svihra$^{56}$\lhcborcid{0000-0002-7811-2147},
+P.N.~Swallow$^{47}$\lhcborcid{0000-0003-2751-8515},
+K.~Swientek$^{34}$\lhcborcid{0000-0001-6086-4116},
+A.~Szabelski$^{36}$\lhcborcid{0000-0002-6604-2938},
+T.~Szumlak$^{34}$\lhcborcid{0000-0002-2562-7163},
+M.~Szymanski$^{42}$\lhcborcid{0000-0002-9121-6629},
+S.~Taneja$^{56}$\lhcborcid{0000-0001-8856-2777},
+A.R.~Tanner$^{48}$,
+M.D.~Tat$^{57}$\lhcborcid{0000-0002-6866-7085},
+A.~Terentev$^{38}$\lhcborcid{0000-0003-2574-8560},
+F.~Teubert$^{42}$\lhcborcid{0000-0003-3277-5268},
+E.~Thomas$^{42}$\lhcborcid{0000-0003-0984-7593},
+D.J.D.~Thompson$^{47}$\lhcborcid{0000-0003-1196-5943},
+K.A.~Thomson$^{54}$\lhcborcid{0000-0003-3111-4003},
+H.~Tilquin$^{55}$\lhcborcid{0000-0003-4735-2014},
+V.~Tisserand$^{9}$\lhcborcid{0000-0003-4916-0446},
+S.~T'Jampens$^{8}$\lhcborcid{0000-0003-4249-6641},
+M.~Tobin$^{4}$\lhcborcid{0000-0002-2047-7020},
+L.~Tomassetti$^{21,i}$\lhcborcid{0000-0003-4184-1335},
+X.~Tong$^{5}$\lhcborcid{0000-0002-5278-1203},
+D.~Torres~Machado$^{1}$\lhcborcid{0000-0001-7030-6468},
+D.Y.~Tou$^{3}$\lhcborcid{0000-0002-4732-2408},
+E.~Trifonova$^{38}$,
+S.M.~Trilov$^{48}$\lhcborcid{0000-0003-0267-6402},
+C.~Trippl$^{43}$\lhcborcid{0000-0003-3664-1240},
+G.~Tuci$^{6}$\lhcborcid{0000-0002-0364-5758},
+A.~Tully$^{43}$\lhcborcid{0000-0002-8712-9055},
+N.~Tuning$^{32,42}$\lhcborcid{0000-0003-2611-7840},
+A.~Ukleja$^{36,42}$\lhcborcid{0000-0003-0480-4850},
+D.J.~Unverzagt$^{17}$\lhcborcid{0000-0002-1484-2546},
+E.~Ursov$^{38}$\lhcborcid{0000-0002-6519-4526},
+A.~Usachov$^{32}$\lhcborcid{0000-0002-5829-6284},
+A.~Ustyuzhanin$^{38}$\lhcborcid{0000-0001-7865-2357},
+U.~Uwer$^{17}$\lhcborcid{0000-0002-8514-3777},
+A.~Vagner$^{38}$,
+V.~Vagnoni$^{20}$\lhcborcid{0000-0003-2206-311X},
+A.~Valassi$^{42}$\lhcborcid{0000-0001-9322-9565},
+G.~Valenti$^{20}$\lhcborcid{0000-0002-6119-7535},
+N.~Valls~Canudas$^{75}$\lhcborcid{0000-0001-8748-8448},
+M.~van~Beuzekom$^{32}$\lhcborcid{0000-0002-0500-1286},
+M.~Van~Dijk$^{43}$\lhcborcid{0000-0003-2538-5798},
+H.~Van~Hecke$^{61}$\lhcborcid{0000-0001-7961-7190},
+E.~van~Herwijnen$^{38}$\lhcborcid{0000-0001-8807-8811},
+M.~van~Veghel$^{73}$\lhcborcid{0000-0001-6178-6623},
+R.~Vazquez~Gomez$^{39}$\lhcborcid{0000-0001-5319-1128},
+P.~Vazquez~Regueiro$^{40}$\lhcborcid{0000-0002-0767-9736},
+C.~V{\'a}zquez~Sierra$^{42}$\lhcborcid{0000-0002-5865-0677},
+S.~Vecchi$^{21}$\lhcborcid{0000-0002-4311-3166},
+J.J.~Velthuis$^{48}$\lhcborcid{0000-0002-4649-3221},
+M.~Veltri$^{22,v}$\lhcborcid{0000-0001-7917-9661},
+A.~Venkateswaran$^{62}$\lhcborcid{0000-0001-6950-1477},
+M.~Veronesi$^{32}$\lhcborcid{0000-0002-1916-3884},
+M.~Vesterinen$^{50}$\lhcborcid{0000-0001-7717-2765},
+D.~~Vieira$^{59}$\lhcborcid{0000-0001-9511-2846},
+M.~Vieites~Diaz$^{43}$\lhcborcid{0000-0002-0944-4340},
+H.~Viemann$^{70}$,
+X.~Vilasis-Cardona$^{75}$\lhcborcid{0000-0002-1915-9543},
+E.~Vilella~Figueras$^{54}$\lhcborcid{0000-0002-7865-2856},
+A.~Villa$^{20}$\lhcborcid{0000-0002-9392-6157},
+P.~Vincent$^{13}$\lhcborcid{0000-0002-9283-4541},
+F.C.~Volle$^{11}$\lhcborcid{0000-0003-1828-3881},
+D.~vom~Bruch$^{10}$\lhcborcid{0000-0001-9905-8031},
+A.~Vorobyev$^{38}$,
+V.~Vorobyev$^{38}$,
+N.~Voropaev$^{38}$\lhcborcid{0000-0002-2100-0726},
+K.~Vos$^{74}$\lhcborcid{0000-0002-4258-4062},
+R.~Waldi$^{17}$\lhcborcid{0000-0002-4778-3642},
+J.~Walsh$^{29}$\lhcborcid{0000-0002-7235-6976},
+C.~Wang$^{17}$\lhcborcid{0000-0002-5909-1379},
+J.~Wang$^{5}$\lhcborcid{0000-0001-7542-3073},
+J.~Wang$^{4}$\lhcborcid{0000-0002-6391-2205},
+J.~Wang$^{3}$\lhcborcid{0000-0002-3281-8136},
+J.~Wang$^{67}$\lhcborcid{0000-0001-6711-4465},
+M.~Wang$^{5}$\lhcborcid{0000-0003-4062-710X},
+R.~Wang$^{48}$\lhcborcid{0000-0002-2629-4735},
+Y.~Wang$^{7}$\lhcborcid{0000-0003-3979-4330},
+Z.~Wang$^{44}$\lhcborcid{0000-0002-5041-7651},
+Z.~Wang$^{3}$\lhcborcid{0000-0003-0597-4878},
+Z.~Wang$^{6}$\lhcborcid{0000-0003-4410-6889},
+J.A.~Ward$^{50,63}$\lhcborcid{0000-0003-4160-9333},
+N.K.~Watson$^{47}$\lhcborcid{0000-0002-8142-4678},
+D.~Websdale$^{55}$\lhcborcid{0000-0002-4113-1539},
+C.~Weisser$^{58}$,
+B.D.C.~Westhenry$^{48}$\lhcborcid{0000-0002-4589-2626},
+D.J.~White$^{56}$\lhcborcid{0000-0002-5121-6923},
+M.~Whitehead$^{48}$\lhcborcid{0000-0002-2142-3673},
+A.R.~Wiederhold$^{50}$\lhcborcid{0000-0002-1023-1086},
+D.~Wiedner$^{15}$\lhcborcid{0000-0002-4149-4137},
+G.~Wilkinson$^{57}$\lhcborcid{0000-0001-5255-0619},
+M.K.~Wilkinson$^{62}$\lhcborcid{0000-0001-6561-2145},
+I.~Williams$^{49}$,
+M.~Williams$^{58}$\lhcborcid{0000-0001-8285-3346},
+M.R.J.~Williams$^{52}$\lhcborcid{0000-0001-5448-4213},
+F.F.~Wilson$^{51}$\lhcborcid{0000-0002-5552-0842},
+W.~Wislicki$^{36}$\lhcborcid{0000-0001-5765-6308},
+M.~Witek$^{35}$\lhcborcid{0000-0002-8317-385X},
+L.~Witola$^{17}$\lhcborcid{0000-0001-9178-9921},
+G.~Wormser$^{11}$\lhcborcid{0000-0003-4077-6295},
+S.A.~Wotton$^{49}$\lhcborcid{0000-0003-4543-8121},
+H.~Wu$^{62}$\lhcborcid{0000-0002-9337-3476},
+K.~Wyllie$^{42}$\lhcborcid{0000-0002-2699-2189},
+Z.~Xiang$^{6}$\lhcborcid{0000-0002-9700-3448},
+D.~Xiao$^{7}$\lhcborcid{0000-0003-4319-1305},
+Y.~Xie$^{7}$\lhcborcid{0000-0001-5012-4069},
+A.~Xu$^{5}$\lhcborcid{0000-0002-8521-1688},
+J.~Xu$^{6}$\lhcborcid{0000-0001-6950-5865},
+L.~Xu$^{3}$\lhcborcid{0000-0003-2800-1438},
+M.~Xu$^{50}$\lhcborcid{0000-0001-8885-565X},
+Q.~Xu$^{6}$,
+Z.~Xu$^{9}$\lhcborcid{0000-0002-7531-6873},
+Z.~Xu$^{6}$\lhcborcid{0000-0001-9558-1079},
+D.~Yang$^{3}$\lhcborcid{0009-0002-2675-4022},
+S.~Yang$^{6}$\lhcborcid{0000-0003-2505-0365},
+Y.~Yang$^{6}$\lhcborcid{0000-0002-8917-2620},
+Z.~Yang$^{5}$\lhcborcid{0000-0003-2937-9782},
+Z.~Yang$^{60}$\lhcborcid{0000-0003-0572-2021},
+Y.~Yao$^{62}$,
+L.E.~Yeomans$^{54}$\lhcborcid{0000-0002-6737-0511},
+H.~Yin$^{7}$\lhcborcid{0000-0001-6977-8257},
+J.~Yu$^{65}$\lhcborcid{0000-0003-1230-3300},
+X.~Yuan$^{62}$\lhcborcid{0000-0003-0468-3083},
+E.~Zaffaroni$^{43}$\lhcborcid{0000-0003-1714-9218},
+M.~Zavertyaev$^{16}$\lhcborcid{0000-0002-4655-715X},
+M.~Zdybal$^{35}$\lhcborcid{0000-0002-1701-9619},
+O.~Zenaiev$^{42}$\lhcborcid{0000-0003-3783-6330},
+M.~Zeng$^{3}$\lhcborcid{0000-0001-9717-1751},
+D.~Zhang$^{7}$\lhcborcid{0000-0002-8826-9113},
+L.~Zhang$^{3}$\lhcborcid{0000-0003-2279-8837},
+S.~Zhang$^{65}$\lhcborcid{0000-0002-9794-4088},
+S.~Zhang$^{5}$\lhcborcid{0000-0002-2385-0767},
+Y.~Zhang$^{5}$\lhcborcid{0000-0002-0157-188X},
+Y.~Zhang$^{57}$,
+A.~Zharkova$^{38}$\lhcborcid{0000-0003-1237-4491},
+A.~Zhelezov$^{17}$\lhcborcid{0000-0002-2344-9412},
+Y.~Zheng$^{6}$\lhcborcid{0000-0003-0322-9858},
+T.~Zhou$^{5}$\lhcborcid{0000-0002-3804-9948},
+X.~Zhou$^{6}$\lhcborcid{0009-0005-9485-9477},
+Y.~Zhou$^{6}$\lhcborcid{0000-0003-2035-3391},
+V.~Zhovkovska$^{11}$\lhcborcid{0000-0002-9812-4508},
+X.~Zhu$^{3}$\lhcborcid{0000-0002-9573-4570},
+X.~Zhu$^{7}$\lhcborcid{0000-0002-4485-1478},
+Z.~Zhu$^{6}$\lhcborcid{0000-0002-9211-3867},
+V.~Zhukov$^{14,38}$\lhcborcid{0000-0003-0159-291X},
+Q.~Zou$^{4,6}$\lhcborcid{0000-0003-0038-5038},
+S.~Zucchelli$^{20,g}$\lhcborcid{0000-0002-2411-1085},
+D.~Zuliani$^{28}$\lhcborcid{0000-0002-1478-4593},
+G.~Zunica$^{56}$\lhcborcid{0000-0002-5972-6290}.\bigskip
+
+{\footnotesize \it
+
+$^{1}$Centro Brasileiro de Pesquisas F{\'\i}sicas (CBPF), Rio de Janeiro, Brazil\\
+$^{2}$Universidade Federal do Rio de Janeiro (UFRJ), Rio de Janeiro, Brazil\\
+$^{3}$Center for High Energy Physics, Tsinghua University, Beijing, China\\
+$^{4}$Institute Of High Energy Physics (IHEP), Beijing, China\\
+$^{5}$School of Physics State Key Laboratory of Nuclear Physics and Technology, Peking University, Beijing, China\\
+$^{6}$University of Chinese Academy of Sciences, Beijing, China\\
+$^{7}$Institute of Particle Physics, Central China Normal University, Wuhan, Hubei, China\\
+$^{8}$Universit{\'e} Savoie Mont Blanc, CNRS, IN2P3-LAPP, Annecy, France\\
+$^{9}$Universit{\'e} Clermont Auvergne, CNRS/IN2P3, LPC, Clermont-Ferrand, France\\
+$^{10}$Aix Marseille Univ, CNRS/IN2P3, CPPM, Marseille, France\\
+$^{11}$Universit{\'e} Paris-Saclay, CNRS/IN2P3, IJCLab, Orsay, France\\
+$^{12}$Laboratoire Leprince-Ringuet, CNRS/IN2P3, Ecole Polytechnique, Institut Polytechnique de Paris, Palaiseau, France\\
+$^{13}$LPNHE, Sorbonne Universit{\'e}, Paris Diderot Sorbonne Paris Cit{\'e}, CNRS/IN2P3, Paris, France\\
+$^{14}$I. Physikalisches Institut, RWTH Aachen University, Aachen, Germany\\
+$^{15}$Fakult{\"a}t Physik, Technische Universit{\"a}t Dortmund, Dortmund, Germany\\
+$^{16}$Max-Planck-Institut f{\"u}r Kernphysik (MPIK), Heidelberg, Germany\\
+$^{17}$Physikalisches Institut, Ruprecht-Karls-Universit{\"a}t Heidelberg, Heidelberg, Germany\\
+$^{18}$School of Physics, University College Dublin, Dublin, Ireland\\
+$^{19}$INFN Sezione di Bari, Bari, Italy\\
+$^{20}$INFN Sezione di Bologna, Bologna, Italy\\
+$^{21}$INFN Sezione di Ferrara, Ferrara, Italy\\
+$^{22}$INFN Sezione di Firenze, Firenze, Italy\\
+$^{23}$INFN Laboratori Nazionali di Frascati, Frascati, Italy\\
+$^{24}$INFN Sezione di Genova, Genova, Italy\\
+$^{25}$INFN Sezione di Milano, Milano, Italy\\
+$^{26}$INFN Sezione di Milano-Bicocca, Milano, Italy\\
+$^{27}$INFN Sezione di Cagliari, Monserrato, Italy\\
+$^{28}$Universit{\`a} degli Studi di Padova, Universit{\`a} e INFN, Padova, Padova, Italy\\
+$^{29}$INFN Sezione di Pisa, Pisa, Italy\\
+$^{30}$INFN Sezione di Roma La Sapienza, Roma, Italy\\
+$^{31}$INFN Sezione di Roma Tor Vergata, Roma, Italy\\
+$^{32}$Nikhef National Institute for Subatomic Physics, Amsterdam, Netherlands\\
+$^{33}$Nikhef National Institute for Subatomic Physics and VU University Amsterdam, Amsterdam, Netherlands\\
+$^{34}$AGH - University of Science and Technology, Faculty of Physics and Applied Computer Science, Krak{\'o}w, Poland\\
+$^{35}$Henryk Niewodniczanski Institute of Nuclear Physics  Polish Academy of Sciences, Krak{\'o}w, Poland\\
+$^{36}$National Center for Nuclear Research (NCBJ), Warsaw, Poland\\
+$^{37}$Horia Hulubei National Institute of Physics and Nuclear Engineering, Bucharest-Magurele, Romania\\
+$^{38}$Affiliated with an institute covered by a cooperation agreement with CERN\\
+$^{39}$ICCUB, Universitat de Barcelona, Barcelona, Spain\\
+$^{40}$Instituto Galego de F{\'\i}sica de Altas Enerx{\'\i}as (IGFAE), Universidade de Santiago de Compostela, Santiago de Compostela, Spain\\
+$^{41}$Instituto de Fisica Corpuscular, Centro Mixto Universidad de Valencia - CSIC, Valencia, Spain\\
+$^{42}$European Organization for Nuclear Research (CERN), Geneva, Switzerland\\
+$^{43}$Institute of Physics, Ecole Polytechnique  F{\'e}d{\'e}rale de Lausanne (EPFL), Lausanne, Switzerland\\
+$^{44}$Physik-Institut, Universit{\"a}t Z{\"u}rich, Z{\"u}rich, Switzerland\\
+$^{45}$NSC Kharkiv Institute of Physics and Technology (NSC KIPT), Kharkiv, Ukraine\\
+$^{46}$Institute for Nuclear Research of the National Academy of Sciences (KINR), Kyiv, Ukraine\\
+$^{47}$University of Birmingham, Birmingham, United Kingdom\\
+$^{48}$H.H. Wills Physics Laboratory, University of Bristol, Bristol, United Kingdom\\
+$^{49}$Cavendish Laboratory, University of Cambridge, Cambridge, United Kingdom\\
+$^{50}$Department of Physics, University of Warwick, Coventry, United Kingdom\\
+$^{51}$STFC Rutherford Appleton Laboratory, Didcot, United Kingdom\\
+$^{52}$School of Physics and Astronomy, University of Edinburgh, Edinburgh, United Kingdom\\
+$^{53}$School of Physics and Astronomy, University of Glasgow, Glasgow, United Kingdom\\
+$^{54}$Oliver Lodge Laboratory, University of Liverpool, Liverpool, United Kingdom\\
+$^{55}$Imperial College London, London, United Kingdom\\
+$^{56}$Department of Physics and Astronomy, University of Manchester, Manchester, United Kingdom\\
+$^{57}$Department of Physics, University of Oxford, Oxford, United Kingdom\\
+$^{58}$Massachusetts Institute of Technology, Cambridge, MA, United States\\
+$^{59}$University of Cincinnati, Cincinnati, OH, United States\\
+$^{60}$University of Maryland, College Park, MD, United States\\
+$^{61}$Los Alamos National Laboratory (LANL), Los Alamos, NM, United States\\
+$^{62}$Syracuse University, Syracuse, NY, United States\\
+$^{63}$School of Physics and Astronomy, Monash University, Melbourne, Australia, associated to $^{50}$\\
+$^{64}$Pontif{\'\i}cia Universidade Cat{\'o}lica do Rio de Janeiro (PUC-Rio), Rio de Janeiro, Brazil, associated to $^{2}$\\
+$^{65}$Physics and Micro Electronic College, Hunan University, Changsha City, China, associated to $^{7}$\\
+$^{66}$Guangdong Provincial Key Laboratory of Nuclear Science, Guangdong-Hong Kong Joint Laboratory of Quantum Matter, Institute of Quantum Matter, South China Normal University, Guangzhou, China, associated to $^{3}$\\
+$^{67}$School of Physics and Technology, Wuhan University, Wuhan, China, associated to $^{3}$\\
+$^{68}$Departamento de Fisica , Universidad Nacional de Colombia, Bogota, Colombia, associated to $^{13}$\\
+$^{69}$Universit{\"a}t Bonn - Helmholtz-Institut f{\"u}r Strahlen und Kernphysik, Bonn, Germany, associated to $^{17}$\\
+$^{70}$Institut f{\"u}r Physik, Universit{\"a}t Rostock, Rostock, Germany, associated to $^{17}$\\
+$^{71}$Eotvos Lorand University, Budapest, Hungary, associated to $^{42}$\\
+$^{72}$INFN Sezione di Perugia, Perugia, Italy, associated to $^{21}$\\
+$^{73}$Van Swinderen Institute, University of Groningen, Groningen, Netherlands, associated to $^{32}$\\
+$^{74}$Universiteit Maastricht, Maastricht, Netherlands, associated to $^{32}$\\
+$^{75}$DS4DS, La Salle, Universitat Ramon Llull, Barcelona, Spain, associated to $^{39}$\\
+$^{76}$Department of Physics and Astronomy, Uppsala University, Uppsala, Sweden, associated to $^{53}$\\
+$^{77}$University of Michigan, Ann Arbor, MI, United States, associated to $^{62}$\\
+\bigskip
+$^{a}$Universidade Federal do Tri{\^a}ngulo Mineiro (UFTM), Uberaba-MG, Brazil\\
+$^{b}$Central South U., Changsha, China\\
+$^{c}$Hangzhou Institute for Advanced Study, UCAS, Hangzhou, China\\
+$^{d}$Excellence Cluster ORIGINS, Munich, Germany\\
+$^{e}$Universidad Nacional Aut{\`o}noma de Honduras, Tegucigalpa, Honduras\\
+$^{f}$Universit{\`a} di Bari, Bari, Italy\\
+$^{g}$Universit{\`a} di Bologna, Bologna, Italy\\
+$^{h}$Universit{\`a} di Cagliari, Cagliari, Italy\\
+$^{i}$Universit{\`a} di Ferrara, Ferrara, Italy\\
+$^{j}$Universit{\`a} di Firenze, Firenze, Italy\\
+$^{k}$Universit{\`a} di Genova, Genova, Italy\\
+$^{l}$Universit{\`a} degli Studi di Milano, Milano, Italy\\
+$^{m}$Universit{\`a} di Milano Bicocca, Milano, Italy\\
+$^{n}$Universit{\`a} di Modena e Reggio Emilia, Modena, Italy\\
+$^{o}$Universit{\`a} di Padova, Padova, Italy\\
+$^{p}$Universit{\`a}  di Perugia, Perugia, Italy\\
+$^{q}$Scuola Normale Superiore, Pisa, Italy\\
+$^{r}$Universit{\`a} di Pisa, Pisa, Italy\\
+$^{s}$Universit{\`a} della Basilicata, Potenza, Italy\\
+$^{t}$Universit{\`a} di Roma Tor Vergata, Roma, Italy\\
+$^{u}$Universit{\`a} di Siena, Siena, Italy\\
+$^{v}$Universit{\`a} di Urbino, Urbino, Italy\\
+$^{w}$MSU - Iligan Institute of Technology (MSU-IIT), Iligan, Philippines\\
+\medskip
+$ ^{\dagger}$Deceased
+}
+\end{flushleft} 
+
+
+\end{document}

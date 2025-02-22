@@ -70,7 +70,7 @@ def sub_command_for_def(string, command, definition, num_args):
         pattern = re.escape(command)
         for i in range(num_args):
             pattern += r"\s*({(?:[^{}]|(?" + f"{i+1}" + r"))*})"
-       
+        
         args = re.findall(pattern, string)
         for i, arg in enumerate(args):
             
@@ -80,7 +80,7 @@ def sub_command_for_def(string, command, definition, num_args):
                     sub_for_args[f"#{j+1}"] = arg_j[1:-1]
             else:
                 sub_for_args[f"#{1}"] = arg[1:-1]
-            
+
             pattern = re.compile("|".join(re.escape(key) for key in sub_for_args.keys()))
             subbed_definition = pattern.sub(lambda match: sub_for_args[match.group(0)], definition)
             pattern = re.escape(command)
@@ -117,14 +117,16 @@ def expand_nested_macros(command_mappings):
                 nested_command = f"\\{nested_command}"
                 # This module cannot handle recursive commands
                 if nested_command == command:
-                    #print(f"Cannot handle recursively defined macro {command}. Not attempting.")
                     recursive_commands.append(command)
                 # replace all nested user-defined commands
                 elif nested_command in command_mappings.keys():
                     nested_definition = command_mappings[nested_command]['definition']
                     nested_args = command_mappings[nested_command]['num_args']
-                    definition = sub_command_for_def(definition, nested_command, nested_definition, nested_args)
-                    changed = True
+                    new_definition = sub_command_for_def(definition, nested_command, nested_definition, nested_args)
+                    # Check that the substitution actually worked, because sometimes it does not
+                    if new_definition != definition:
+                        changed = True
+                    definition = new_definition
             if changed:
                 command_mappings[command]['definition'] = definition
         [command_mappings.pop(command) for command in recursive_commands]
