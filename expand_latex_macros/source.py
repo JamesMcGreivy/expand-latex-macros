@@ -12,9 +12,10 @@ def remove_macro_specific_commands(input_string):
                 content = input_string[command_end:end]
                 input_string = input_string[:command_start] + content + input_string[end + 1:]
 
-    input_string = re.sub(r"\\xspace", "", input_string)
-    input_string = re.sub(r"\\rm\s", "", input_string)
-    input_string = re.sub(r"\\[,!;.:]", "", input_string)
+    input_string = re.sub(r"\\xspace(?=\b|_|\^|\{|\})", "", input_string)
+    input_string = re.sub(r"\\rm(?=\b|_|\^|\{|\})", "", input_string)
+    input_string = re.sub(r"\\[,!;.:](?=\b|_|\^|\{|\})", "", input_string)
+    input_string = re.sub(r"\\kern(?=\b|_|\^|\{|\})", "", input_string)
     return input_string
 
 # Finds the matching closing brace for a given opening brace index.
@@ -93,7 +94,7 @@ def sub_command_for_def(string, command, definition, num_args):
     
     # If no args
     else:
-        pattern = re.escape(command) + r"\b"
+        pattern = re.escape(command) + r"(?:\b|_|\^|\{|\})"
         definition = definition.replace('\\', '\\\\')
         return re.sub(pattern, definition, string)
 
