@@ -1,0 +1,81 @@
+Starting Jupyter notebook server on compute node at http://18.4.134.74:8888/tree?token=3016410404
+[I 2025-03-06 11:26:06.407 ServerApp] Extension package jupyter_lsp took 0.2189s to import
+[I 2025-03-06 11:26:06.631 ServerApp] Extension package jupyter_server_terminals took 0.2229s to import
+[I 2025-03-06 11:26:07.812 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2025-03-06 11:26:07.822 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[W 2025-03-06 11:26:07.827 LabApp] 'token' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2025-03-06 11:26:07.827 LabApp] 'token' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2025-03-06 11:26:07.832 ServerApp] ServerApp.token config is deprecated in 2.0. Use IdentityProvider.token.
+[I 2025-03-06 11:26:07.832 ServerApp] jupyterlab | extension was successfully linked.
+[I 2025-03-06 11:26:07.842 ServerApp] notebook | extension was successfully linked.
+[I 2025-03-06 11:26:09.148 ServerApp] notebook_shim | extension was successfully linked.
+[I 2025-03-06 11:26:09.471 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2025-03-06 11:26:09.475 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2025-03-06 11:26:09.478 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2025-03-06 11:26:09.508 LabApp] JupyterLab extension loaded from /work/submit/mcgreivy/miniconda3/envs/BeautyInStats/lib/python3.10/site-packages/jupyterlab
+[I 2025-03-06 11:26:09.508 LabApp] JupyterLab application directory is /work/submit/mcgreivy/miniconda3/envs/BeautyInStats/share/jupyter/lab
+[I 2025-03-06 11:26:09.510 LabApp] Extension Manager is 'pypi'.
+[I 2025-03-06 11:26:10.069 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2025-03-06 11:26:10.084 ServerApp] notebook | extension was successfully loaded.
+[I 2025-03-06 11:26:10.085 ServerApp] Serving notebooks from local directory: /work/submit/mcgreivy/expand-latex-macros
+[I 2025-03-06 11:26:10.085 ServerApp] Jupyter Server 2.15.0 is running at:
+[I 2025-03-06 11:26:10.085 ServerApp] http://18.4.134.74:8888/tree?token=...
+[I 2025-03-06 11:26:10.085 ServerApp]     http://127.0.0.1:8888/tree?token=...
+[I 2025-03-06 11:26:10.085 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[I 2025-03-06 11:26:10.431 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+Unable to connect to VS Code server: Error in request.
+Error: connect ENOENT /run/user/239472/vscode-ipc-5d8013cf-ae01-43e6-b10a-32c0b8049495.sock
+    at PipeConnectWrap.afterConnect [as oncomplete] (node:net:1611:16) {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'connect',
+  address: '/run/user/239472/vscode-ipc-5d8013cf-ae01-43e6-b10a-32c0b8049495.sock'
+}
+[I 2025-03-06 11:26:10.598 ServerApp] 302 GET / (@18.4.134.168) 0.78ms
+[I 2025-03-06 11:26:10.603 JupyterNotebookApp] 302 GET /tree? (@18.4.134.168) 0.81ms
+[I 2025-03-06 11:26:11.306 ServerApp] 302 GET / (@18.4.134.168) 0.45ms
+[I 2025-03-06 11:26:11.309 JupyterNotebookApp] 302 GET /tree? (@18.4.134.168) 0.57ms
+[I 2025-03-06 11:26:14.693 ServerApp] 302 GET / (@18.4.134.168) 0.48ms
+[I 2025-03-06 11:26:14.698 JupyterNotebookApp] 302 GET /tree? (@18.4.134.168) 0.52ms
+[I 2025-03-06 11:26:14.802 ServerApp] Kernel started: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:26:16.966 ServerApp] Connecting to kernel 3788d585-902b-47d6-98f4-450fe2645b8c.
+[I 2025-03-06 11:44:46.273 ServerApp] Kernel interrupted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:45:19.904 ServerApp] Kernel restarted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:45:19.909 ServerApp] Starting buffering for 3788d585-902b-47d6-98f4-450fe2645b8c:500cdd75-b3ab-4e53-8d29-e4a7c24bbb9e
+[I 2025-03-06 11:45:19.919 ServerApp] Connecting to kernel 3788d585-902b-47d6-98f4-450fe2645b8c.
+[I 2025-03-06 11:45:19.919 ServerApp] Restoring connection for 3788d585-902b-47d6-98f4-450fe2645b8c:500cdd75-b3ab-4e53-8d29-e4a7c24bbb9e
+[I 2025-03-06 11:45:22.646 ServerApp] Kernel restarted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:45:22.650 ServerApp] Starting buffering for 3788d585-902b-47d6-98f4-450fe2645b8c:500cdd75-b3ab-4e53-8d29-e4a7c24bbb9e
+[I 2025-03-06 11:45:22.657 ServerApp] Connecting to kernel 3788d585-902b-47d6-98f4-450fe2645b8c.
+[I 2025-03-06 11:45:22.658 ServerApp] Restoring connection for 3788d585-902b-47d6-98f4-450fe2645b8c:500cdd75-b3ab-4e53-8d29-e4a7c24bbb9e
+[I 2025-03-06 11:52:48.163 ServerApp] Kernel interrupted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:53:42.537 ServerApp] Kernel interrupted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:54:35.195 ServerApp] Kernel interrupted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:57:00.192 ServerApp] Kernel interrupted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:57:05.685 ServerApp] Kernel restarted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:57:05.689 ServerApp] Starting buffering for 3788d585-902b-47d6-98f4-450fe2645b8c:500cdd75-b3ab-4e53-8d29-e4a7c24bbb9e
+[I 2025-03-06 11:57:05.694 ServerApp] Connecting to kernel 3788d585-902b-47d6-98f4-450fe2645b8c.
+[I 2025-03-06 11:57:05.695 ServerApp] Restoring connection for 3788d585-902b-47d6-98f4-450fe2645b8c:500cdd75-b3ab-4e53-8d29-e4a7c24bbb9e
+[I 2025-03-06 11:58:22.519 ServerApp] Kernel interrupted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:58:26.922 ServerApp] Kernel restarted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 11:58:26.925 ServerApp] Starting buffering for 3788d585-902b-47d6-98f4-450fe2645b8c:500cdd75-b3ab-4e53-8d29-e4a7c24bbb9e
+[I 2025-03-06 11:58:26.931 ServerApp] Connecting to kernel 3788d585-902b-47d6-98f4-450fe2645b8c.
+[I 2025-03-06 11:58:26.932 ServerApp] Restoring connection for 3788d585-902b-47d6-98f4-450fe2645b8c:500cdd75-b3ab-4e53-8d29-e4a7c24bbb9e
+[I 2025-03-06 12:14:12.685 ServerApp] Starting buffering for 3788d585-902b-47d6-98f4-450fe2645b8c:500cdd75-b3ab-4e53-8d29-e4a7c24bbb9e
+[I 2025-03-06 12:14:58.668 ServerApp] 302 GET / (@18.4.134.165) 0.63ms
+[I 2025-03-06 12:14:59.291 JupyterNotebookApp] 302 GET /tree? (@18.4.134.165) 0.78ms
+[I 2025-03-06 12:15:00.315 ServerApp] 302 GET / (@18.4.134.165) 0.36ms
+[I 2025-03-06 12:15:00.318 JupyterNotebookApp] 302 GET /tree? (@18.4.134.165) 0.53ms
+[I 2025-03-06 12:15:00.582 ServerApp] Connecting to kernel 3788d585-902b-47d6-98f4-450fe2645b8c.
+[I 2025-03-06 12:16:37.421 ServerApp] Kernel restarted: 3788d585-902b-47d6-98f4-450fe2645b8c
+[I 2025-03-06 12:16:37.427 ServerApp] Starting buffering for 3788d585-902b-47d6-98f4-450fe2645b8c:80d65f90-e4c5-4d56-b2ce-1db5c11eeaca
+[I 2025-03-06 12:16:37.436 ServerApp] Connecting to kernel 3788d585-902b-47d6-98f4-450fe2645b8c.
+[I 2025-03-06 12:16:37.436 ServerApp] Restoring connection for 3788d585-902b-47d6-98f4-450fe2645b8c:80d65f90-e4c5-4d56-b2ce-1db5c11eeaca
+[W 2025-03-06 12:16:40.322 ServerApp] 404 GET /nbextensions/jupyter-js-widgets/extension.js (@18.4.134.165) 43.97ms referer=None
+[I 2025-03-06 12:16:40.322 ServerApp] 302 GET / (@18.4.134.165) 44.13ms
+[I 2025-03-06 12:16:40.327 JupyterNotebookApp] 302 GET /tree? (@18.4.134.165) 0.58ms
+[W 2025-03-06 12:16:40.337 ServerApp] 404 GET /nbextensions/jupyter-js-widgets/extension.js (@18.4.134.165) 1.12ms referer=None
+[I 2025-03-06 12:25:22.554 ServerApp] Starting buffering for 3788d585-902b-47d6-98f4-450fe2645b8c:80d65f90-e4c5-4d56-b2ce-1db5c11eeaca
+[I 2025-03-06 12:25:33.764 ServerApp] 302 GET / (@18.4.134.165) 0.48ms
+[I 2025-03-06 12:25:33.942 JupyterNotebookApp] 302 GET /tree? (@18.4.134.165) 0.69ms
+slurmstepd: error: *** JOB 2091210 ON submit64 CANCELLED AT 2025-03-06T14:26:01 DUE TO TIME LIMIT ***
